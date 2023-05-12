@@ -35,9 +35,7 @@
 		"extra": {
 			"supportsRTL": true
 		},
-		"locales": {
-			"he": "./languages/japanese.json"
-		},
+
 		"plugins": ["expo-localization"]
 	}
 }

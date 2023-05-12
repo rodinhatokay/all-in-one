@@ -17,7 +17,7 @@ const Text = forwardRef<RNText, TextProps>(
 		const _style = useMemo(() => {
 			if (fontFamily) {
 				return [
-					{ fontFamily: FONTS[fontFamily] },
+					{ fontFamily: FONTS[fontFamily], textAlign: "left" },
 					style,
 				] as StyleProp<TextStyle>;
 			}
