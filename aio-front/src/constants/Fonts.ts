@@ -1,3 +1,6 @@
+import { configureFonts } from "react-native-paper";
+import { MD3Typescale } from "react-native-paper/lib/typescript/src/types";
+
 const FONTS = {
 	"Rubik-Light": require("../../assets/fonts/Rubik-Light.ttf"),
 	"Rubik-Regular": require("../../assets/fonts/Rubik-Regular.ttf"),
@@ -14,5 +17,44 @@ const FONTS = {
 	"Rubik-ExtraBoldItalic": require("../../assets/fonts/Rubik-ExtraBoldItalic.ttf"),
 	"Rubik-BlackItalic": require("../../assets/fonts/Rubik-BlackItalic.ttf"),
 };
+
+const baseFont = {
+	fontFamily: "Rubik-Regular",
+} as const;
+
+const baseVariants = configureFonts({ config: baseFont });
+
+// Then, define custom fonts for different variants
+
+const customVariants = {
+	// Customize individual base variants:
+	displayMedium: {
+		...baseVariants.displayMedium,
+		fontFamily: "Raleway-Bold",
+	},
+	// Add own tokens if required:
+	bold: {
+		...baseVariants.bodyMedium,
+		fontFamily: "Raleway-Bold",
+	},
+	italic: {
+		...baseVariants.bodyMedium,
+		fontFamily: "Raleway-Italic",
+	},
+	boldItalic: {
+		...baseVariants.bodyMedium,
+		fontFamily: "Raleway-BoldItalic",
+	},
+} as const;
+
+// Finally, merge base variants with your custom tokens
+// and apply custom fonts to your theme.
+
+export const FONTS_FOR_PAPER = configureFonts({
+	config: {
+		...baseVariants,
+		...customVariants,
+	},
+});
 
 export default FONTS;

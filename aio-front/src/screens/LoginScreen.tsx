@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Dimensions, View, Text, I18nManager } from "react-native";
+import {
+	StyleSheet,
+	Dimensions,
+	View,
+	I18nManager,
+	Text as TextRN,
+} from "react-native";
+import Text from "../components/partials/Text";
 import { Button } from "react-native-paper";
 import { useLocalization } from "../contexts/LocalizationContext";
 // import {Image} from '../components/partials/Image';
@@ -16,7 +23,10 @@ const LoginScreen = () => {
 		<View>
 			<Button onPress={() => setLocale("he")}>set to hebrew</Button>
 			<Text>{I18nManager.isRTL ? " RTL" : " LTR"}</Text>
-			<Text>שלום</Text>
+			<Text variant="bodyLarge">שלום</Text>
+			<Text variant="displayMedium">שלום</Text>
+			<TextRN style={{ fontSize: 30 }}>שלום</TextRN>
+
 			<Button onPress={() => setLocale("en")}>set to english</Button>
 		</View>
 	);
