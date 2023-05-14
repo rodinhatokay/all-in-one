@@ -1,4 +1,6 @@
-const he = {
+import { LangaugeTexts } from "./types";
+
+const he: LangaugeTexts = {
 	login: "כניסה",
 	hello: "שלום",
 	signIn: "התחברות",

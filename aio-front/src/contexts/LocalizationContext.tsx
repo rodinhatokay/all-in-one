@@ -8,11 +8,11 @@ import React, {
 import * as Localization from "expo-localization";
 import { I18n } from "i18n-js";
 import { I18nManager } from "react-native";
-// import RNRestart from "react-native-restart";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import en from "../localization/en";
 import he from "../localization/he";
 import * as Updates from "expo-updates";
+import { TextKeys } from "../localization/types";
 
 const transilations = {
 	en: { translations: en },
@@ -28,7 +28,7 @@ i18n.defaultLocale = "en";
 interface LocalizationContextProps {
 	locale: string;
 	setLocale: (locale: string) => void;
-	t: (scope: string) => string;
+	t: (scope: TextKeys) => string;
 }
 
 export const LocalizationContext = createContext<LocalizationContextProps>(
@@ -40,7 +40,7 @@ export const LocalizationProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
 	const [locale, setLocale] = useState<string>(Localization.locale);
 
-	const t = (scope: string): string => {
+	const t = (scope: TextKeys): string => {
 		return i18n.t(scope);
 	};
 

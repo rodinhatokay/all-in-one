@@ -7,4 +7,6 @@ const en = {
 	loading: "loading...",
 };
 
+export type IEnTranslations = typeof en;
+
 export default en;
