@@ -39,8 +39,6 @@ const Router = () => {
 		return null;
 	}
 
-	console.log("theme", theme);
-
 	return (
 		<View style={styles.main}>
 			<NavigationContainer
