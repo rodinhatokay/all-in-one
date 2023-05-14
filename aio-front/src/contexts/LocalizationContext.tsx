@@ -56,6 +56,7 @@ export const LocalizationProvider: React.FC<{ children: ReactNode }> = ({
 		if (I18nManager.isRTL !== isRTL) {
 			I18nManager.allowRTL(isRTL);
 			I18nManager.forceRTL(isRTL);
+			// Updates.reloadAsync throws error in dev mode
 			Updates.reloadAsync();
 		}
 	};
