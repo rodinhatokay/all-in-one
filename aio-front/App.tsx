@@ -1,19 +1,29 @@
 import { Provider as PaperProvider } from "react-native-paper";
-import { useTheme } from "./src/contexts/ThemeContext";
+import { ThemeProvider, useTheme } from "./src/contexts/ThemeContext";
 import Router from "./src/routes/Router";
 import { AuthProvider } from "./src/contexts/AuthContext";
 import { LocalizationProvider } from "./src/contexts/LocalizationContext";
 
-export default function App() {
+const App = () => {
 	const { theme } = useTheme();
 
 	return (
+		<PaperProvider theme={theme}>
+			<Router />
+		</PaperProvider>
+	);
+};
+
+const AppWrapper = () => {
+	return (
 		<AuthProvider>
 			<LocalizationProvider>
-				<PaperProvider theme={theme}>
-					<Router />
-				</PaperProvider>
+				<ThemeProvider>
+					<App />
+				</ThemeProvider>
 			</LocalizationProvider>
 		</AuthProvider>
 	);
-}
+};
+
+export default AppWrapper;
