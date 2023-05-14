@@ -62,7 +62,11 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 				console.error("error initing user from cookie", error);
 			}
 		};
-		loadUserFromStorage();
+
+		setLoading(false);
+
+		console.warn("need to enable user auth");
+		// loadUserFromStorage();
 	}, []);
 
 	/**
