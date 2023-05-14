@@ -1,5 +1,4 @@
 import { configureFonts } from "react-native-paper";
-import { MD3Typescale } from "react-native-paper/lib/typescript/src/types";
 
 const FONTS = {
 	"Rubik-Light": require("../../assets/fonts/Rubik-Light.ttf"),
