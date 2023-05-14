@@ -28,23 +28,9 @@ const baseVariants = configureFonts({ config: baseFont });
 
 const customVariants = {
 	// Customize individual base variants:
-	displayMedium: {
-		...baseVariants.displayMedium,
-		fontFamily: "Raleway-Bold",
-	},
-	// Add own tokens if required:
-	bold: {
-		...baseVariants.bodyMedium,
-		fontFamily: "Raleway-Bold",
-	},
-	italic: {
-		...baseVariants.bodyMedium,
-		fontFamily: "Raleway-Italic",
-	},
-	boldItalic: {
-		...baseVariants.bodyMedium,
-		fontFamily: "Raleway-BoldItalic",
-	},
+	// displayMedium: {
+	// 	...baseVariants.displayMedium,
+	// },
 } as const;
 
 // Finally, merge base variants with your custom tokens
