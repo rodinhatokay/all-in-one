@@ -9,7 +9,11 @@ const Stack = createNativeStackNavigator<NoAuthStack>();
 
 const NoAuthRouter: FC = () => {
 	return (
-		<Stack.Navigator>
+		<Stack.Navigator
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
 			<Stack.Screen
 				name="Login"
 				options={{ title: "שלום" }}

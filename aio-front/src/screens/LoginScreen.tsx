@@ -1,89 +1,66 @@
-import {
-	StyleSheet,
-	Dimensions,
-	View,
-	I18nManager,
-	Text as TextRN,
-} from "react-native";
-import Text from "../components/partials/Text";
-import { Button } from "react-native-paper";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { useTheme, Text, Appbar } from "react-native-paper";
 import { useLocalization } from "../contexts/LocalizationContext";
-// import {Image} from '../components/partials/Image';
-// import TextInput from '../components/partials/TextInput';
-// import Screen from '../components/Screen';
-// import useLogin from '../hooks/useLogin';
+import { Image } from "expo-image";
+import LocaleSelector from "../components/LocaleSelector/LocaleSelector";
+import PhoneNumberForm from "../sections/login/PhoneNumberForm";
+import CodeForm from "../sections/login/CodeForm";
+import { useState } from "react";
 
 /**
  * Login screen
  */
 const LoginScreen = () => {
-	const { setLocale } = useLocalization();
-	return (
-		<View>
-			<Button onPress={() => setLocale("he")}>set to hebrew</Button>
-			<Text>{I18nManager.isRTL ? " RTL" : " LTR"}</Text>
-			<Text variant="bodyLarge">שלום</Text>
-			<Text variant="displayMedium">שלום</Text>
-			<TextRN style={{ fontSize: 30 }}>שלום</TextRN>
+	const { t } = useLocalization();
+	const theme = useTheme();
 
-			<Button onPress={() => setLocale("en")}>set to english</Button>
+	const [displayFormCode, setDisplayFormCode] = useState(false);
+
+	return (
+		<View style={styles.main}>
+			<Appbar.Header>
+				<LocaleSelector />
+			</Appbar.Header>
+			<ScrollView
+				bounces={false}
+				contentContainerStyle={styles.contentContainer}
+				style={styles.main}
+			>
+				<Text style={{ fontSize: 35 }}>AiO</Text>
+				<Text style={{ fontSize: 18 }}>All in One</Text>
+				<Image
+					source={require("../../assets/images/logo.png")}
+					style={[styles.logo, { tintColor: theme.colors.primary }]}
+					tintColor={theme.colors.primary}
+					contentFit="contain"
+				/>
+
+				<View
+					style={{
+						gap: 20,
+						padding: 15,
+						flex: 1,
+
+						width: "100%",
+					}}
+				>
+					{!displayFormCode ? (
+						<PhoneNumberForm onPress={() => setDisplayFormCode(true)} />
+					) : (
+						<CodeForm onPress={() => {}} />
+					)}
+				</View>
+			</ScrollView>
 		</View>
 	);
-	// const {loading, password, setPassword, setUserName, userName, login} =
-	//   useLogin();
-	// const t = useTranslate();
-
-	// return (
-	//   <Screen style={styles.main}>
-	//     <TextInput
-	//       style={styles.textInput}
-	//       mode="flat"
-	//       value={userName}
-	//       placeholder={t('username')}
-	//       onChangeText={setUserName}
-	//     />
-	//     <TextInput
-	//       mode="flat"
-	//       value={password}
-	//       style={styles.textInput}
-	//       secureTextEntry={!!password.length}
-	//       placeholder={t('password')}
-	//       onChangeText={setPassword}
-	//     />
-	//     <Button
-	//       mode="contained"
-	//       style={styles.button}
-	//       loading={loading}
-	//       onPress={login}>
-	//       {loading ? t('loading') : t('login')}
-	//     </Button>
-	//     <Image
-	//       source={require('../assets/loginbg.png')}
-	//       style={styles.image}
-	//       resizeMode={'contain'}
-	//     />
-	//   </Screen>
-	// );
 };
 
 const styles = StyleSheet.create({
 	main: {
-		marginTop: 25,
+		flex: 1,
 	},
-	textInput: {
-		height: 50,
-		marginHorizontal: 25,
-		marginVertical: 25,
-		backgroundColor: "#ffffff",
-	},
-	button: {
-		marginHorizontal: 25,
-	},
-	image: {
-		height: Dimensions.get("screen").height / 3,
-		width: "100%",
-		alignSelf: "center",
-	},
+	contentContainer: { alignItems: "center", flex: 1 },
+	logo: { height: 120, width: 150 },
 });
 
 export default LoginScreen;
