@@ -3,11 +3,11 @@ import {
   Entity,
   JoinColumn,
   ManyToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from '../../common/entities/category.entity';
 import { User } from '../../users/entities/user.entity';
+import { ManyToOne } from 'typeorm';
 
 @Entity()
 export class Business {
@@ -23,7 +23,7 @@ export class Business {
   @Column({ unique: false })
   categoryId: string;
 
-  @OneToOne(() => Category)
+  @ManyToOne(() => Category)
   @JoinColumn({ name: 'categoryId' })
   category: Category;
 

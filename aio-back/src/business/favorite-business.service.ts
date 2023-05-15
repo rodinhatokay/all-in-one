@@ -32,9 +32,7 @@ export class FavoriteBusinessService {
     }
 
     if (
-      user.favoriteBusinesses.some(
-        (favorite: { id: string }) => favorite.id === businessId,
-      )
+      user.favoriteBusinesses.some((favorite) => favorite.id === businessId)
     ) {
       throw new Error('Business is already in the favorites list.');
     }
