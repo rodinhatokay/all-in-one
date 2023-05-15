@@ -15,6 +15,7 @@ const en = {
 	enter_the_code_sent_to: "enter the code sent to",
 	didnt_receive_otp: "didnt receieve code?",
 	verify_and_continue: "verify & continue",
+	verification_code: "verification code",
 };
 
 export type IEnTranslations = typeof en;

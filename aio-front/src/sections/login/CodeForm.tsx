@@ -32,7 +32,7 @@ const CodeForm: FC<Props> = ({ onPress }) => {
 				mode={"outlined"}
 				keyboardType="number-pad"
 				returnKeyType="done"
-				placeholder={t("phoneNumber")}
+				placeholder={t("verification_code")}
 			/>
 			<Button
 				textColor={theme.colors.tertiary}
