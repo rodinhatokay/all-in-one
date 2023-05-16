@@ -27,7 +27,7 @@ export const CombinedDefaultColor: MD3Theme["colors"] & Theme["colors"] = {
 	onError: "rgb(255, 255, 255)",
 	errorContainer: "rgb(255, 218, 214)",
 	onErrorContainer: "rgb(65, 0, 2)",
-	background: "rgb(255, 251, 255)",
+	background: "rgb(255, 255, 255)",
 	onBackground: "rgb(28, 27, 30)",
 	surface: "rgb(255, 251, 255)",
 	onSurface: "rgb(28, 27, 30)",

@@ -4,7 +4,7 @@ import { useTheme } from "../contexts/ThemeContext";
 
 import NoAuthRouter from "./NoAuthStack";
 import { navigationRef } from "./routerActions";
-import Routes from "./Routes";
+import AuthRoutes from "./AuthRoutes";
 import { useAuth } from "../contexts/AuthContext";
 
 import * as SplashScreen from "expo-splash-screen";
@@ -46,7 +46,7 @@ const Router = () => {
 				theme={theme}
 				ref={navigationRef}
 			>
-				{isAuthenticated ? <Routes /> : <NoAuthRouter />}
+				{isAuthenticated ? <AuthRoutes /> : <NoAuthRouter />}
 			</NavigationContainer>
 		</View>
 	);
