@@ -12,18 +12,13 @@ const CodeForm: FC<Props> = ({ onPress }) => {
 	const theme = useTheme();
 	return (
 		<>
-			<View
-				style={{
-					alignItems: "center",
-					gap: 0,
-					justifyContent: "center",
-					flexDirection: "row",
-				}}
-			>
+			<View style={styles.headerContainer}>
 				<Text style={styles.text}>{t("enter_the_code_sent_to")}</Text>
+
 				<Button
 					mode={"text"}
-					labelStyle={{ textDecorationLine: "underline", fontWeight: "700" }}
+					contentStyle={styles.phonNumberBtnContainer}
+					labelStyle={styles.phoneNumberBtnLabel}
 				>
 					0524560793
 				</Button>
@@ -48,7 +43,20 @@ const CodeForm: FC<Props> = ({ onPress }) => {
 };
 
 const styles = StyleSheet.create({
+	headerContainer: {
+		alignItems: "center",
+		justifyContent: "center",
+		flexDirection: "row",
+	},
 	text: { textAlign: "center", fontSize: 18 },
+	phonNumberBtnContainer: {
+		padding: 0,
+		margin: -10,
+	},
+	phoneNumberBtnLabel: {
+		textDecorationLine: "underline",
+		fontWeight: "700",
+	},
 });
 
 export default CodeForm;

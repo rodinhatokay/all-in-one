@@ -23,11 +23,11 @@ const LoginScreen = () => {
 			</Appbar.Header>
 			<ScrollView
 				bounces={false}
-				contentContainerStyle={styles.contentContainer}
+				contentContainerStyle={styles.scroll}
 				style={styles.main}
 			>
-				<Text style={{ fontSize: 35 }}>AiO</Text>
-				<Text style={{ fontSize: 18 }}>All in One</Text>
+				<Text style={styles.header}>AiO</Text>
+				<Text style={styles.subHeader}>All in One</Text>
 				<Image
 					source={require("../../assets/images/logo.png")}
 					style={[styles.logo, { tintColor: theme.colors.primary }]}
@@ -35,15 +35,7 @@ const LoginScreen = () => {
 					contentFit="contain"
 				/>
 
-				<View
-					style={{
-						gap: 20,
-						padding: 15,
-						flex: 1,
-
-						width: "100%",
-					}}
-				>
+				<View style={styles.contentContainer}>
 					{!displayFormCode ? (
 						<PhoneNumberForm onPress={() => setDisplayFormCode(true)} />
 					) : (
@@ -59,7 +51,15 @@ const styles = StyleSheet.create({
 	main: {
 		flex: 1,
 	},
-	contentContainer: { alignItems: "center", flex: 1 },
+	scroll: { alignItems: "center", flex: 1 },
+	header: { fontSize: 35 },
+	subHeader: { fontSize: 18 },
+	contentContainer: {
+		gap: 20,
+		padding: 15,
+		flex: 1,
+		width: "100%",
+	},
 	logo: { height: 120, width: 150 },
 });
 
