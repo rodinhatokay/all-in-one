@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { HomeStack } from "./types";
 
 import { NavigatorScreenParams } from "@react-navigation/native";
@@ -9,6 +9,7 @@ import FavoritesScreen from "../screens/FavoritesScreen";
 type BottomTabParams = {
 	HomeStack: NavigatorScreenParams<HomeStack>;
 	FavoritesTab: undefined;
+	ProfileTab: undefined;
 };
 // const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ const Routes: FC = () => {
 		<BottomTabs.Navigator screenOptions={{ headerShown: false }}>
 			<BottomTabs.Screen name="HomeStack" component={HomeStackScreen} />
 			<BottomTabs.Screen name="FavoritesTab" component={FavoritesScreen} />
+			<BottomTabs.Screen name="ProfileTab" component={FavoritesScreen} />
 		</BottomTabs.Navigator>
 	);
 };
