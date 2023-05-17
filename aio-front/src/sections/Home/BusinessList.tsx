@@ -17,7 +17,6 @@ const BusinessList: FC<Props> = ({ businesses }) => {
 		<FlatList
 			data={businesses}
 			style={{ flex: 1 }}
-			contentContainerStyle={{ flex: 1 }}
 			renderItem={renderItem}
 			keyExtractor={(item) => item.id}
 		/>

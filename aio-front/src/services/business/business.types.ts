@@ -5,4 +5,9 @@ export type Business = {
 	owner: string;
 	phoneNumber: string;
 	isFavorite: boolean;
+	/**
+	 * 1 - 5
+	 */
+	rating: number;
+	// image: string;
 };

@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { HomeStack } from "./types";
-
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStackScreen from "./HomeStackScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
-import BottomIconsSet from "react-native-vector-icons/Feather";
+import IoniconsIcon from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 type BottomTabParams = {
 	HomeStack: NavigatorScreenParams<HomeStack>;
@@ -23,9 +23,12 @@ const AuthRoutes: FC = () => {
 				name="HomeStack"
 				options={{
 					tabBarLabel: "Home",
-					// tabBarShowLabel: false,
-					tabBarIcon: ({ color, size }) => (
-						<BottomIconsSet name="home" color={color} size={size} />
+					tabBarIcon: ({ color, size, focused }) => (
+						<MaterialCommunityIcons
+							name={focused ? "home" : "home-outline"}
+							color={color}
+							size={size}
+						/>
 					),
 				}}
 				component={HomeStackScreen}
@@ -35,8 +38,12 @@ const AuthRoutes: FC = () => {
 				options={{
 					tabBarLabel: "Favorites",
 					tabBarShowLabel: false,
-					tabBarIcon: ({ color, size }) => (
-						<BottomIconsSet name="heart" color={color} size={size} />
+					tabBarIcon: ({ color, size, focused }) => (
+						<MaterialCommunityIcons
+							name={focused ? "heart" : "heart-outline"}
+							color={color}
+							size={size}
+						/>
 					),
 				}}
 				component={FavoritesScreen}
@@ -46,8 +53,12 @@ const AuthRoutes: FC = () => {
 				options={{
 					tabBarLabel: "Profile",
 					tabBarShowLabel: false,
-					tabBarIcon: ({ color, size }) => (
-						<BottomIconsSet name="user" color={color} size={size} />
+					tabBarIcon: ({ color, size, focused }) => (
+						<IoniconsIcon
+							name={focused ? "person" : "person-outline"}
+							color={color}
+							size={size}
+						/>
 					),
 				}}
 				component={FavoritesScreen}
