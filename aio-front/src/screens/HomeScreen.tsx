@@ -12,7 +12,7 @@ const HomeScreen = () => {
 		}, 1500);
 	}, []);
 
-	if (loading) return <Loader />;
+	if (loading) return <Loader style={styles.loader} />;
 	return (
 		<View style={styles.main}>
 			<BusinessCategories />
@@ -21,6 +21,7 @@ const HomeScreen = () => {
 };
 const styles = StyleSheet.create({
 	main: { flex: 1 },
+	loader: { alignSelf: "center", marginTop: 50 },
 });
 
 export default HomeScreen;

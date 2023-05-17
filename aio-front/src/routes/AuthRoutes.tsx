@@ -18,11 +18,12 @@ const BottomTabs = createBottomTabNavigator<BottomTabParams>();
 
 const AuthRoutes: FC = () => {
 	return (
-		<BottomTabs.Navigator screenOptions={{ headerShown: false }}>
+		<BottomTabs.Navigator
+			screenOptions={{ headerShown: false, tabBarShowLabel: false }}
+		>
 			<BottomTabs.Screen
 				name="HomeStack"
 				options={{
-					tabBarLabel: "Home",
 					tabBarIcon: ({ color, size, focused }) => (
 						<MaterialCommunityIcons
 							name={focused ? "home" : "home-outline"}
@@ -36,7 +37,6 @@ const AuthRoutes: FC = () => {
 			<BottomTabs.Screen
 				name="FavoritesTab"
 				options={{
-					tabBarLabel: "Favorites",
 					tabBarShowLabel: false,
 					tabBarIcon: ({ color, size, focused }) => (
 						<MaterialCommunityIcons

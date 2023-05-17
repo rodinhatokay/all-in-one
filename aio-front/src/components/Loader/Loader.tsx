@@ -1,10 +1,16 @@
 import LottieView from "lottie-react-native";
-import { StyleSheet } from "react-native";
-const Loader = () => {
+import { FC, useMemo } from "react";
+import { StyleProp, StyleSheet, ViewStyle } from "react-native";
+
+interface Props {
+	style?: StyleProp<ViewStyle>;
+}
+
+const Loader: FC<Props> = (props) => {
 	return (
 		<LottieView
 			source={require("../../../assets/lottieAnimations/infinity-loader.json")}
-			style={styles.lottieView}
+			style={[styles.lottieView, props.style]}
 			autoPlay
 			resizeMode="contain"
 			loop
@@ -13,6 +19,6 @@ const Loader = () => {
 };
 
 const styles = StyleSheet.create({
-	lottieView: { width: 250, height: 200, alignSelf: "center", marginTop: 50 },
+	lottieView: { width: 250, height: 200 },
 });
 export default Loader;
