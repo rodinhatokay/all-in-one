@@ -18,6 +18,7 @@ const en = {
 	verification_code: "verification code",
 	Home: "Home",
 	Business: "Business",
+	Search: "Search",
 };
 
 export type IEnTranslations = typeof en;

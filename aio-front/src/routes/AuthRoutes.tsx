@@ -18,7 +18,11 @@ const BottomTabs = createBottomTabNavigator<BottomTabParams>();
 const AuthRoutes: FC = () => {
 	return (
 		<BottomTabs.Navigator
-			screenOptions={{ headerShown: false, tabBarShowLabel: false }}
+			screenOptions={{
+				headerShown: false,
+				tabBarShowLabel: false,
+				tabBarHideOnKeyboard: true,
+			}}
 		>
 			<BottomTabs.Screen
 				name="HomeStack"

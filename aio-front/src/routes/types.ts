@@ -11,6 +11,7 @@ export type Routes = {
 export type HomeStack = {
 	Home: undefined;
 	Business: undefined;
+	Search: undefined;
 };
 
 export type RootNavigation = NoAuthStack & Routes & HomeStack;
