@@ -22,7 +22,6 @@ const SubCategoriesBusiness: FC<Props> = (props) => {
 	return (
 		<Tab.Navigator
 			screenOptions={{ tabBarScrollEnabled: true }}
-			// sceneContainerStyle={{ backgroundColor: theme. }}
 			initialLayout={initialLayout}
 		>
 			{subCategories.map((subCategory) => {

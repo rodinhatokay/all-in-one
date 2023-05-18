@@ -37,13 +37,12 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 		// logic to share business
 	};
 
+	const onPressCard = () => {
+		navigate("Business");
+	};
+
 	return (
-		<Card
-			onPress={() => {
-				navigate("Business");
-			}}
-			style={cardStyle}
-		>
+		<Card onPress={onPressCard} style={cardStyle}>
 			<Card.Content>
 				<View style={styles.topRow}>
 					<Image
@@ -64,10 +63,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 						</Paragraph>
 						<Paragraph style={styles.noMarginVertical}>12:00 - 15:00</Paragraph>
 						<Paragraph
-							style={[
-								styles.address,
-								{ color: theme.colors.primary, marginVertical: 0 },
-							]}
+							style={[styles.address, { color: theme.colors.primary }]}
 						>
 							hatokay 5
 						</Paragraph>
@@ -114,7 +110,7 @@ const styles = StyleSheet.create({
 		marginBottom: 0,
 	},
 	noMarginVertical: { marginVertical: 0 },
-	address: { textDecorationLine: "underline" },
+	address: { textDecorationLine: "underline", marginVertical: 0 },
 });
 
 export default BusinessCard;

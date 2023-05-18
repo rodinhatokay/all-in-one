@@ -1,8 +1,8 @@
-import { View, FlatList } from "react-native";
-import { Text } from "react-native-paper";
+import { FlatList } from "react-native";
 import { Business } from "../../services/business/business.types";
 import { FC } from "react";
 import BusinessCard from "../../components/BusinessCard/BusinessCard";
+import { StyleSheet } from "react-native";
 
 interface Props {
 	businesses: Business[];
@@ -16,11 +16,15 @@ const BusinessList: FC<Props> = ({ businesses }) => {
 	return (
 		<FlatList
 			data={businesses}
-			style={{ flex: 1 }}
+			style={styles.main}
 			renderItem={renderItem}
 			keyExtractor={(item) => item.id}
 		/>
 	);
 };
+
+const styles = StyleSheet.create({
+	main: { flex: 1 },
+});
 
 export default BusinessList;

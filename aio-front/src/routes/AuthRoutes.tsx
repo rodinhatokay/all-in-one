@@ -12,7 +12,6 @@ type BottomTabParams = {
 	FavoritesTab: undefined;
 	SettingsTab: undefined;
 };
-// const Stack = createStackNavigator();
 
 const BottomTabs = createBottomTabNavigator<BottomTabParams>();
 
