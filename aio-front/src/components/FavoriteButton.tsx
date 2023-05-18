@@ -9,6 +9,7 @@ import Animated, {
 import { Pressable, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
+import { useTheme } from "../contexts/ThemeContext";
 
 interface Props {
 	onPress?: VoidFunction;
@@ -46,13 +47,15 @@ const FavoriteButton: FC<Props> = (props) => {
 		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 	}, [props.isFavorite, props.onPress]);
 
+	const { theme } = useTheme();
+
 	return (
 		<Pressable hitSlop={15} onPress={_onPress}>
 			<Animated.View style={[StyleSheet.absoluteFillObject, outlineStyle]}>
 				<MaterialCommunityIcons
 					name={"heart-outline"}
 					size={props.size ?? 20}
-					color={"black"}
+					color={theme.colors.onSurface}
 				/>
 			</Animated.View>
 			<Animated.View style={fillStyle}>

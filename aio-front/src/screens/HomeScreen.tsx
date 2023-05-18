@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import BusinessCategories from "../sections/Home/BusinessCategories/BusinessCategories";
+import CategoriesBusiness from "../sections/Home/CategoriesBusiness/CategoriesBusiness";
 import { useEffect, useState } from "react";
 import Loader from "../components/Loader/Loader";
 
@@ -15,7 +15,7 @@ const HomeScreen = () => {
 	if (loading) return <Loader style={styles.loader} />;
 	return (
 		<View style={styles.main}>
-			<BusinessCategories />
+			<CategoriesBusiness />
 		</View>
 	);
 };

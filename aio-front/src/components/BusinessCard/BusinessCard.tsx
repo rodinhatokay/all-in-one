@@ -1,31 +1,16 @@
 import { View, StyleSheet } from "react-native";
-
+import { Image } from "../partials";
 import { Card, Divider, Paragraph, Title } from "react-native-paper";
 import { Business } from "../../services/business/business.types";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { Image } from "expo-image";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useMemo } from "react";
 import BottomActions from "./BottomActions";
 import FavoriteButton from "../FavoriteButton";
 import { navigate } from "../../routes/routerActions";
+import StarRating from "../RatingStar";
 
 type BusinessCardProps = {
 	business: Business;
-};
-
-const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
-	const stars = [];
-	for (let i = 1; i <= 5; i++) {
-		stars.push(
-			<Icon
-				key={i}
-				name={i <= rating ? "star" : "star-o"}
-				color={i <= rating ? "#6D13FF" : "#808080"}
-			/>
-		);
-	}
-	return <View style={{ flexDirection: "row" }}>{stars}</View>;
 };
 
 export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
@@ -67,32 +52,17 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 						}}
 						style={styles.image}
 					/>
-					<View style={{ flex: 1 }}>
-						<View
-							style={{
-								flexDirection: "row",
-								justifyContent: "space-between",
-								alignItems: "center",
-								flex: 1,
-							}}
-						>
-							<Title
-								numberOfLines={2}
-								style={{
-									marginRight: 15,
-									maxWidth: "75%",
-									paddingBottom: 0,
-									marginBottom: 0,
-								}}
-							>
+					<View style={styles.flex}>
+						<View style={styles.titleRow}>
+							<Title numberOfLines={2} style={styles.name}>
 								{name}
 							</Title>
 							<FavoriteButton onPress={() => {}} isFavorite={isFavorite} />
 						</View>
-						<Paragraph style={{ marginVertical: 0 }}>
+						<Paragraph style={styles.noMarginVertical}>
 							<StarRating rating={rating} />
 						</Paragraph>
-						<Paragraph style={{ marginVertical: 0 }}>12:00 - 15:00</Paragraph>
+						<Paragraph style={styles.noMarginVertical}>12:00 - 15:00</Paragraph>
 						<Paragraph
 							style={[
 								styles.address,
@@ -104,7 +74,6 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 					</View>
 				</View>
 				<Divider />
-
 				<Paragraph>{description}</Paragraph>
 			</Card.Content>
 			<BottomActions
@@ -131,7 +100,20 @@ const styles = StyleSheet.create({
 		height: 100,
 		marginRight: 10,
 	},
-
+	flex: { flex: 1 },
+	titleRow: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		flex: 1,
+	},
+	name: {
+		marginRight: 15,
+		maxWidth: "75%",
+		paddingBottom: 0,
+		marginBottom: 0,
+	},
+	noMarginVertical: { marginVertical: 0 },
 	address: { textDecorationLine: "underline" },
 });
 

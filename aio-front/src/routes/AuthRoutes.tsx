@@ -51,7 +51,6 @@ const AuthRoutes: FC = () => {
 			<BottomTabs.Screen
 				name="SettingsTab"
 				options={{
-					tabBarLabel: "Settings",
 					tabBarShowLabel: false,
 					tabBarIcon: ({ color, size, focused }) => (
 						<IoniconsIcon

@@ -20,7 +20,8 @@ const BottomActions: FC<Props> = ({
 	handleWhatsApp,
 }) => {
 	const { theme } = useTheme();
-	const color = undefined;
+
+	const color = theme.colors.tertiary;
 	return (
 		<View style={styles.buttonContainer}>
 			<IconButton

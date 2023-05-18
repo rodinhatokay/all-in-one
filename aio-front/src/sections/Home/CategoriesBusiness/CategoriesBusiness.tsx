@@ -1,7 +1,8 @@
 import { Dimensions, View } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { categories } from "../../../mock/businsesses";
-import BusinessSubCategories from "../BusinessSubCategories/BusinessSubCategories";
+import SubCategoriesBusiness from "../SubCategoriesBusiness/SubCategoriesBusiness";
+import { StyleSheet } from "react-native";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -9,9 +10,9 @@ const initialLayout = {
 	width: Dimensions.get("window").width,
 };
 
-const BusinessCategories = () => {
+const CategoriesBusiness = () => {
 	return (
-		<View style={{ flex: 1 }}>
+		<View style={styles.main}>
 			<Tab.Navigator
 				screenOptions={{
 					swipeEnabled: false,
@@ -23,7 +24,7 @@ const BusinessCategories = () => {
 						<Tab.Screen
 							key={category.name}
 							name={category.name}
-							component={BusinessSubCategories}
+							component={SubCategoriesBusiness}
 							options={{
 								tabBarLabel: category.name,
 							}}
@@ -36,4 +37,8 @@ const BusinessCategories = () => {
 	);
 };
 
-export default BusinessCategories;
+const styles = StyleSheet.create({
+	main: { flex: 1 },
+});
+
+export default CategoriesBusiness;

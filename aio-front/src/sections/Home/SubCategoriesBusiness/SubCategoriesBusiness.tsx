@@ -17,9 +17,8 @@ const initialLayout = {
 	width: Dimensions.get("window").width,
 };
 
-const BusinessSubCategories: FC<Props> = (props) => {
+const SubCategoriesBusiness: FC<Props> = (props) => {
 	const subCategories = props?.route?.params?.subCategories ?? [];
-	const theme = useTheme();
 	return (
 		<Tab.Navigator
 			screenOptions={{ tabBarScrollEnabled: true }}
@@ -47,4 +46,4 @@ const BusinessSubCategories: FC<Props> = (props) => {
 	);
 };
 
-export default BusinessSubCategories;
+export default SubCategoriesBusiness;

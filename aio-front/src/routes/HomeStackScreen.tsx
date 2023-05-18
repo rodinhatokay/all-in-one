@@ -6,48 +6,34 @@ import HomeScreen from "../screens/HomeScreen";
 import Loader from "../components/Loader/Loader";
 import { Image } from "expo-image";
 import { useTheme } from "../contexts/ThemeContext";
+import HeaderLogo from "../sections/Home/HeaderLogo";
+import SearchButton from "../sections/Home/SearchButton";
+import { useLocalization } from "../contexts/LocalizationContext";
 
 const HomeStack = createNativeStackNavigator<HomeStackProps>();
 
 const HomeStackScreen = () => {
-	const { theme } = useTheme();
+	const { t } = useLocalization();
 
 	return (
 		<HomeStack.Navigator>
 			<HomeStack.Screen
 				name="Home"
 				options={{
-					headerTitle: ({ children }) => {
-						return <View></View>;
-					},
-					headerLeft: (props) => {
-						return (
-							<View style={{ flexDirection: "row", alignItems: "center" }}>
-								<Image
-									source={require("../../assets/images/logo.png")}
-									style={{
-										height: 50,
-										width: 50,
-										tintColor: theme.colors.primary,
-										marginLeft: 5,
-									}}
-								/>
-								<Text style={{ fontSize: 25 }}>AiO</Text>
-								{/* <Loader style={{ height: 50, width: 50 }} /> */}
-							</View>
-						);
-					},
-					headerRight: (props) => {
-						return (
-							<View>
-								<Text>search</Text>
-							</View>
-						);
-					},
+					headerTitle: () => <View />,
+					headerLeft: () => <HeaderLogo />,
+					headerRight: () => <SearchButton />,
+					title: t("Home"),
 				}}
 				component={HomeScreen}
 			/>
-			<HomeStack.Screen name="Business" component={Temp} />
+			<HomeStack.Screen
+				name="Business"
+				options={{
+					title: t("Business"),
+				}}
+				component={Temp}
+			/>
 		</HomeStack.Navigator>
 	);
 };
