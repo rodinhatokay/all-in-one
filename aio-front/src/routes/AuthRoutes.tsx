@@ -10,7 +10,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 type BottomTabParams = {
 	HomeStack: NavigatorScreenParams<HomeStack>;
 	FavoritesTab: undefined;
-	SettingsTab: undefined;
+	ProfileTab: undefined;
 };
 // const Stack = createStackNavigator();
 
@@ -49,12 +49,13 @@ const AuthRoutes: FC = () => {
 				component={FavoritesScreen}
 			/>
 			<BottomTabs.Screen
-				name="SettingsTab"
+				name="ProfileTab"
 				options={{
+					tabBarLabel: "Profile",
 					tabBarShowLabel: false,
 					tabBarIcon: ({ color, size, focused }) => (
 						<IoniconsIcon
-							name={focused ? "cog" : "cog-outline"}
+							name={focused ? "person" : "person-outline"}
 							color={color}
 							size={size}
 						/>
