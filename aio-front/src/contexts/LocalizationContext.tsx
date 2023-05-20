@@ -14,16 +14,24 @@ import he from "../localization/he";
 import * as Updates from "expo-updates";
 import { TextKeys } from "../localization/types";
 
+const getLocalLocaleHelper = (locale: string) => {
+	if (locale.toLocaleLowerCase().includes("he")) return "he";
+	if (locale.toLocaleLowerCase().includes("ar")) return "ar";
+	return "en";
+};
 const transilations = {
-	en: { translations: en },
-	he: { translations: he },
+	en: en,
+	he: he,
 };
 
-const i18n = new I18n(transilations);
+const i18n = new I18n(transilations, {
+	availableLocales: ["en", "he"],
+	defaultLocale: "en",
+	locale: getLocalLocaleHelper(Localization.locale),
+	enableFallback: true,
+});
 
-i18n.locale = Localization.locale;
 i18n.enableFallback = true;
-i18n.defaultLocale = "en";
 
 interface LocalizationContextProps {
 	locale: string;
