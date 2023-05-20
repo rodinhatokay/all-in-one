@@ -6,7 +6,11 @@ import { User } from '../common/decorators/user.decorator';
 import { User as UserType } from './entities/user.entity';
 
 @ApiTags('user')
+<<<<<<< HEAD
 @Controller('user')
+=======
+@Controller('users')
+>>>>>>> main
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

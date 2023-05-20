@@ -15,6 +15,7 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+<<<<<<< HEAD
   @Column({ nullable: true })
   firstName?: string;
 
@@ -31,4 +32,19 @@ export class User {
   // @ManyToMany(() => Business)
   // @JoinTable()
   // favoriteBusinesses: Business[];
+=======
+  @Column()
+  firstName: string;
+
+  @Column()
+  lastName: string;
+
+  @OneToOne(() => Otp)
+  @JoinColumn()
+  otp: Otp;
+
+  @ManyToMany(() => Business)
+  @JoinTable()
+  favoriteBusinesses: Business[];
+>>>>>>> main
 }
