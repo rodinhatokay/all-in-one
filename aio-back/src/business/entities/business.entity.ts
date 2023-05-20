@@ -27,11 +27,6 @@ export class Business {
   @JoinColumn({ name: 'categoryId' })
   category: Category;
 
-<<<<<<< HEAD
   // @ManyToMany(() => User, (user) => user.favoriteBusinesses)
   // users: User[];
-=======
-  @ManyToMany(() => User, (user) => user.favoriteBusinesses)
-  users: User[];
->>>>>>> main
 }

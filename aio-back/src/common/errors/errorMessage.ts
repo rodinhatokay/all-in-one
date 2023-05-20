@@ -3,10 +3,7 @@ export enum ErrorMessages {
   IncorrectPassword = 'Incorrect password',
   PasswordsDontMatch = "Passwords don't match",
   UserAlreadyExists = 'User already exists',
-<<<<<<< HEAD
   UserDoesNotExists = 'User does not exists',
-=======
->>>>>>> main
   BusinessAlreadyExists = 'Business already exists',
   BusinessDoesNotExists = 'Business does not exists',
   NotValidPassword = 'Password must be at least 8 characters long.',

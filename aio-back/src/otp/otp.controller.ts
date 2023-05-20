@@ -18,11 +18,7 @@ export class OtpController {
     type: String,
   })
   async createOtp(@Body() createOtp: CreateOtp) {
-<<<<<<< HEAD
     await this.otpService.verify(createOtp);
-=======
-    return await this.otpService.createOtp(createOtp);
->>>>>>> main
   }
 
   @Post('verify')
@@ -32,10 +28,6 @@ export class OtpController {
     type: JwtPayload,
   })
   async verifyOtp(@Body() verifyOtp: VerifyOtp) {
-<<<<<<< HEAD
     return await this.otpService.verifyCheck(verifyOtp);
-=======
-    return await this.otpService.verifyOtp(verifyOtp);
->>>>>>> main
   }
 }

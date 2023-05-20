@@ -4,19 +4,13 @@ import { Repository } from 'typeorm';
 import { ErrorMessages } from '../common/errors/errorMessage';
 import { User } from './entities/user.entity';
 import { RegisterDto } from './dto/register.dto';
-<<<<<<< HEAD
 import { Otp } from '../otp/entities/otp.entity';
-=======
->>>>>>> main
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
-<<<<<<< HEAD
     @InjectRepository(Otp) private readonly otpRepository: Repository<Otp>,
-=======
->>>>>>> main
   ) {}
 
   findOne(id: string) {
@@ -25,7 +19,6 @@ export class UserService {
     });
   }
 
-<<<<<<< HEAD
   async initialRegistration(phoneNumber: string, channel: 'sms' | 'whatsapp') {
     const existingUser: User = await this.userRepository.findOne({
       where: {
@@ -62,16 +55,11 @@ export class UserService {
 
   async fullRegistration(register: RegisterDto) {
     const existingUser: User = await this.userRepository.findOne({
-=======
-  async create(register: RegisterDto) {
-    const existingUser = await this.userRepository.findOne({
->>>>>>> main
       where: {
         otp: { phoneNumber: register.otp.phoneNumber },
       },
     });
 
-<<<<<<< HEAD
     if (existingUser && (existingUser.firstName || existingUser.lastName))
       throw new BadRequestException(ErrorMessages.UserAlreadyExists);
 
@@ -119,18 +107,5 @@ export class UserService {
     });
 
     return user?.otp;
-=======
-    if (existingUser)
-      throw new BadRequestException(ErrorMessages.UserAlreadyExists);
-
-    // create user and save
-    const user = this.userRepository.create({
-      firstName: register.firstName,
-      lastName: register.lastName,
-      otp: register.otp,
-    });
-
-    return await this.userRepository.save(user);
->>>>>>> main
   }
 }

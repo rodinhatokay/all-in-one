@@ -14,14 +14,10 @@ export class Otp {
   phoneNumber: string;
 
   @Column()
-<<<<<<< HEAD
   status: string;
 
   @Column()
   channel: 'sms' | 'whatsapp';
-=======
-  otpCode: string;
->>>>>>> main
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
