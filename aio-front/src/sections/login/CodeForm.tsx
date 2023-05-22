@@ -2,6 +2,7 @@ import { Text, TextInput, Button, useTheme } from "react-native-paper";
 import { useLocalization } from "../../contexts/LocalizationContext";
 import { FC } from "react";
 import { StyleSheet, View } from "react-native";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface Props {
 	onPress: VoidFunction;
@@ -10,6 +11,7 @@ interface Props {
 const CodeForm: FC<Props> = ({ onPress }) => {
 	const { t } = useLocalization();
 	const theme = useTheme();
+	const { signIn } = useAuth();
 	return (
 		<>
 			<View style={styles.headerContainer}>
@@ -35,7 +37,7 @@ const CodeForm: FC<Props> = ({ onPress }) => {
 			>
 				{t("didnt_receive_otp")}
 			</Button>
-			<Button mode={"contained"} onPress={onPress}>
+			<Button mode={"contained"} onPress={signIn}>
 				{t("verify_and_continue")}
 			</Button>
 		</>
