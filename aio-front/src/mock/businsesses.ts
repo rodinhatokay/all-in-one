@@ -150,3 +150,9 @@ export const categories = [
 	{ name: "Retail & Services", subCategories: RetailsAndServicesCategories },
 	{ name: "Food & Drink", subCategories: foodCategories },
 ] as const;
+
+export const favoriteBusinesses = [
+	...foodCategories[0].businesses,
+	...RetailsAndServicesCategories[0].businesses,
+];
+

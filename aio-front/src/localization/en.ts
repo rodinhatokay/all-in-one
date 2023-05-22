@@ -1,4 +1,9 @@
 const en = {
+	appearances: "Appearances",
+	logOut: "Log Out",
+	areYouSureYouWantToLogOut: "Are you sure you want to log out?",
+	yes: "Yes",
+	no: "No",
 	english: "English",
 	hebrew: "עברית",
 	arabic: "عربي",
@@ -19,6 +24,8 @@ const en = {
 	home: "Home",
 	business: "Business",
 	search: "Search",
+	favorites: "Favorites",
+	noFavoritesYetStartAddingSome: "No favorites yet. Start adding some!",
 };
 
 export type IEnTranslations = typeof en;

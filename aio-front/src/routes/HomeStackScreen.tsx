@@ -6,7 +6,9 @@ import HomeScreen from "../screens/HomeScreen";
 import HeaderLogo from "../sections/Home/HeaderLogo";
 import SearchButton from "../sections/Home/SearchButton";
 import { useLocalization } from "../contexts/LocalizationContext";
+
 import SearchScreen from "../screens/SearchScreen";
+
 
 const HomeStack = createNativeStackNavigator<HomeStackProps>();
 
@@ -17,10 +19,12 @@ const HomeStackScreen = () => {
 		<HomeStack.Navigator>
 			<HomeStack.Screen
 				name="home"
+
 				options={{
 					headerTitle: () => <View />,
 					headerLeft: () => <HeaderLogo />,
 					headerRight: () => <SearchButton />,
+
 					title: t("home"),
 				}}
 				component={HomeScreen}
@@ -39,6 +43,7 @@ const HomeStackScreen = () => {
 				}}
 				component={SearchScreen}
 			/>
+
 		</HomeStack.Navigator>
 	);
 };

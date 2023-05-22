@@ -46,6 +46,7 @@ export const CombinedDefaultColor = {
 	onSurfaceDisabled: "rgba(28, 27, 30, 0.38)",
 	backdrop: "rgba(50, 47, 56, 0.4)",
 	lightGrey: "#F5F5F5",
+	lightBackground: "#F5F5F5",
 
 	// primary: '#3daccf',
 	// secondary: 'purple',
@@ -94,4 +95,6 @@ export const CombinedDarkColor = {
 	onSurfaceDisabled: "rgba(230, 225, 230, 0.38)",
 	backdrop: "rgba(50, 47, 56, 0.4)",
 	lightGrey: "#F5F5F5",
+	lightBackground: "rgb(37, 35, 41)",
+
 };

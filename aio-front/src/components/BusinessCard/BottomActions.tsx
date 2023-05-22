@@ -6,6 +6,10 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import OcticonsIcon from "react-native-vector-icons/Octicons";
 import { useTheme } from "../../contexts/ThemeContext";
 
+const iconSize = 22;
+const hitSlop = 20;
+
+
 interface Props {
 	handleCall: VoidFunction;
 	handleWhatsApp: VoidFunction;
@@ -38,6 +42,7 @@ const BottomActions: FC<Props> = ({
 			/>
 			<IconButton
 				icon={() => <FeatherIcon name="share" color={color} size={22} />}
+
 				onPress={handleShare}
 			/>
 		</View>
