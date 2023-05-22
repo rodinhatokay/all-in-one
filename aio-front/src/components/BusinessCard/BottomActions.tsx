@@ -9,6 +9,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 const iconSize = 22;
 const hitSlop = 20;
 
+
 interface Props {
 	handleCall: VoidFunction;
 	handleWhatsApp: VoidFunction;
@@ -28,25 +29,20 @@ const BottomActions: FC<Props> = ({
 	return (
 		<View style={styles.buttonContainer}>
 			<IconButton
-				hitSlop={hitSlop}
-				icon={() => <FeatherIcon color={color} name="phone" size={iconSize} />}
+				icon={() => <FeatherIcon color={color} name="phone" size={22} />}
 				onPress={handleCall}
 			/>
 			<IconButton
-				hitSlop={hitSlop}
-				icon={() => <Icon name="whatsapp" color={color} size={iconSize} />}
+				icon={() => <Icon name="whatsapp" color={color} size={22} />}
 				onPress={handleWhatsApp}
 			/>
 			<IconButton
-				hitSlop={hitSlop}
-				icon={() => (
-					<OcticonsIcon name="person-add" color={color} size={iconSize} />
-				)}
+				icon={() => <OcticonsIcon name="person-add" color={color} size={22} />}
 				onPress={handleSaveContact}
 			/>
 			<IconButton
-				hitSlop={hitSlop}
-				icon={() => <FeatherIcon name="share" color={color} size={iconSize} />}
+				icon={() => <FeatherIcon name="share" color={color} size={22} />}
+
 				onPress={handleShare}
 			/>
 		</View>

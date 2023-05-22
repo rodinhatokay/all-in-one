@@ -25,6 +25,7 @@ const Loader: FC<Props> = (props) => {
 
 const styles = StyleSheet.create({
 	lottieView: { width: 250, height: 200 },
+
 	loadingScreen: { alignSelf: "center", marginTop: 50 },
 });
 export default Loader;

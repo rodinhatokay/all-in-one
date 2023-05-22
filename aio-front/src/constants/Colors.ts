@@ -96,4 +96,5 @@ export const CombinedDarkColor = {
 	backdrop: "rgba(50, 47, 56, 0.4)",
 	lightGrey: "#F5F5F5",
 	lightBackground: "rgb(37, 35, 41)",
+
 };

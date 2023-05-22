@@ -2,10 +2,12 @@ import { memo } from "react";
 import { IconButton } from "react-native-paper";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import { useTheme } from "../../contexts/ThemeContext";
+import { navigate } from "../../routes/routerActions";
 
 const SearchButton = () => {
 	const onPress = () => {
-		console.log("Need to implement on press search");
+		navigate("Search");
+
 	};
 	const { theme } = useTheme();
 	return (

@@ -155,3 +155,4 @@ export const favoriteBusinesses = [
 	...foodCategories[0].businesses,
 	...RetailsAndServicesCategories[0].businesses,
 ];
+

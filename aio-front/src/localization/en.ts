@@ -21,8 +21,9 @@ const en = {
 	didnt_receive_otp: "didnt receieve code?",
 	verify_and_continue: "verify & continue",
 	verification_code: "verification code",
-	Home: "Home",
-	Business: "Business",
+	home: "Home",
+	business: "Business",
+	search: "Search",
 	favorites: "Favorites",
 	noFavoritesYetStartAddingSome: "No favorites yet. Start adding some!",
 };
