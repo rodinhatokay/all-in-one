@@ -16,9 +16,8 @@ const en = {
 	didnt_receive_otp: "didnt receieve code?",
 	verify_and_continue: "verify & continue",
 	verification_code: "verification code",
-	home: "Home",
-	business: "Business",
-	search: "Search",
+	Home: "Home",
+	Business: "Business",
 };
 
 export type IEnTranslations = typeof en;
