@@ -94,7 +94,8 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	 * sign in user in app
 	 */
 	const signIn = useCallback(async () => {
-		console.error("neeed to implment signIn");
+		setUser({ id: "asd", companyName: "asd", email: "asd" });
+		// console.error("neeed to implment signIn");
 	}, []);
 
 	const signOut = () => {

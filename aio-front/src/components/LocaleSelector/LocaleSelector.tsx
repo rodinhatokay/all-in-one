@@ -29,7 +29,7 @@ const LocaleSelector: FC = () => {
 		<Menu
 			visible={visible}
 			onDismiss={closeMenu}
-			anchor={<Appbar.Action icon={"earth"} onPress={openMenu} />}
+			anchor={<Appbar.Action size={24} icon={"earth"} onPress={openMenu} />}
 		>
 			<Menu.Item onPress={onPressEnglish} title={t("english")} />
 			<Divider />

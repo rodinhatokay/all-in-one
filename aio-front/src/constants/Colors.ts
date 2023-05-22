@@ -1,15 +1,9 @@
 import {
 	DarkTheme as NavigationDarkTheme,
 	DefaultTheme as NavigationDefaultTheme,
-	Theme,
 } from "@react-navigation/native";
-import {
-	// MD3DarkTheme as PaperDarkTheme,
-	// DefaultTheme as PaperDefaultTheme,
-	MD3Theme,
-} from "react-native-paper";
 
-export const CombinedDefaultColor: MD3Theme["colors"] & Theme["colors"] = {
+export const CombinedDefaultColor = {
 	...NavigationDefaultTheme.colors,
 	primary: "rgb(110, 25, 255)",
 	onPrimary: "rgb(255, 255, 255)",
@@ -19,15 +13,15 @@ export const CombinedDefaultColor: MD3Theme["colors"] & Theme["colors"] = {
 	onSecondary: "rgb(255, 255, 255)",
 	secondaryContainer: "rgb(232, 222, 248)",
 	onSecondaryContainer: "rgb(30, 25, 43)",
-	tertiary: "rgb(126, 82, 96)",
+	tertiary: "rgb(71, 85, 182)",
 	onTertiary: "rgb(255, 255, 255)",
-	tertiaryContainer: "rgb(255, 217, 227)",
-	onTertiaryContainer: "rgb(49, 16, 29)",
+	tertiaryContainer: "rgb(223, 224, 255)",
+	onTertiaryContainer: "rgb(0, 13, 95)",
 	error: "rgb(186, 26, 26)",
 	onError: "rgb(255, 255, 255)",
 	errorContainer: "rgb(255, 218, 214)",
 	onErrorContainer: "rgb(65, 0, 2)",
-	background: "rgb(255, 251, 255)",
+	background: "rgb(255, 255, 255)", // modified
 	onBackground: "rgb(28, 27, 30)",
 	surface: "rgb(255, 251, 255)",
 	onSurface: "rgb(28, 27, 30)",
@@ -51,12 +45,13 @@ export const CombinedDefaultColor: MD3Theme["colors"] & Theme["colors"] = {
 	surfaceDisabled: "rgba(28, 27, 30, 0.12)",
 	onSurfaceDisabled: "rgba(28, 27, 30, 0.38)",
 	backdrop: "rgba(50, 47, 56, 0.4)",
+	lightGrey: "#F5F5F5",
 
 	// primary: '#3daccf',
 	// secondary: 'purple',
 };
 
-export const CombinedDarkColor: MD3Theme["colors"] & Theme["colors"] = {
+export const CombinedDarkColor = {
 	...NavigationDarkTheme.colors,
 	primary: "rgb(207, 189, 255)",
 	onPrimary: "rgb(58, 0, 146)",
@@ -66,15 +61,15 @@ export const CombinedDarkColor: MD3Theme["colors"] & Theme["colors"] = {
 	onSecondary: "rgb(51, 45, 65)",
 	secondaryContainer: "rgb(74, 68, 88)",
 	onSecondaryContainer: "rgb(232, 222, 248)",
-	tertiary: "rgb(239, 184, 200)",
-	onTertiary: "rgb(74, 37, 50)",
-	tertiaryContainer: "rgb(99, 59, 72)",
-	onTertiaryContainer: "rgb(255, 217, 227)",
+	tertiary: "rgb(187, 195, 255)",
+	onTertiary: "rgb(17, 34, 134)",
+	tertiaryContainer: "rgb(45, 60, 156)",
+	onTertiaryContainer: "rgb(223, 224, 255)",
 	error: "rgb(255, 180, 171)",
 	onError: "rgb(105, 0, 5)",
 	errorContainer: "rgb(147, 0, 10)",
 	onErrorContainer: "rgb(255, 180, 171)",
-	background: "rgb(28, 27, 30)",
+	background: "rgb(0, 0, 0)", // modified
 	onBackground: "rgb(230, 225, 230)",
 	surface: "rgb(28, 27, 30)",
 	onSurface: "rgb(230, 225, 230)",
@@ -98,4 +93,5 @@ export const CombinedDarkColor: MD3Theme["colors"] & Theme["colors"] = {
 	surfaceDisabled: "rgba(230, 225, 230, 0.12)",
 	onSurfaceDisabled: "rgba(230, 225, 230, 0.38)",
 	backdrop: "rgba(50, 47, 56, 0.4)",
+	lightGrey: "#F5F5F5",
 };
