@@ -1,82 +1,141 @@
-import { useState } from "react";
-import { View, StyleSheet, Alert } from "react-native";
-import {
-	Button,
-	TextInput,
-	Checkbox,
-	Text,
-	TouchableRipple,
-} from "react-native-paper";
+import { useCallback, useState } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { Button, TextInput, HelperText } from "react-native-paper";
+import TermsAndConditionsCheckBox from "../components/TermsAndConditionsCheckBox/TermsAndConditionsCheckBox";
+import { useLocalization } from "../contexts/LocalizationContext";
+import * as Haptics from "expo-haptics";
+import { useAuth } from "../contexts/AuthContext";
+
+type Errors = {
+	[key in Inputs]: boolean;
+};
+
+type Inputs = "firstName" | "lastName" | "TAC";
 
 const RegisterScreen = () => {
+	const { t } = useLocalization();
+	const { signIn } = useAuth();
+
 	const [firstName, setFirstName] = useState<string>("");
 	const [lastName, setLastName] = useState<string>("");
-	const [phoneNumber, setPhoneNumber] = useState<string>("");
+	const [phoneNumber, setPhoneNumber] = useState<string>("0521234567");
 	const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
 
-	const validateFields = () => {
-		if (firstName.trim() === "" || lastName.trim() === "") {
-			Alert.alert("Error", "First name and last name cannot be empty.");
-			return false;
-		}
+	const [errors, setErrors] = useState<Errors>({
+		firstName: false,
+		lastName: false,
+		TAC: false,
+	});
 
+	const isValidForm = useCallback(() => {
+		const _errors: Errors = {
+			firstName: false,
+			lastName: false,
+			TAC: false,
+		};
+		let isValidForm = true;
+		if (firstName.trim() === "") {
+			_errors.firstName = true;
+			isValidForm = false;
+		}
+		if (lastName.trim() === "") {
+			_errors.lastName = true;
+			isValidForm = false;
+		}
 		if (!termsAccepted) {
-			Alert.alert(
-				"Error",
-				"You must accept the terms and conditions to register."
-			);
-			return false;
+			_errors.TAC = true;
+			isValidForm = false;
 		}
+		if (!isValidForm) {
+			setErrors(_errors);
+			Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+		}
+		return isValidForm;
+	}, [firstName, lastName, termsAccepted, setErrors]);
 
-		return true;
-	};
+	const onChangeFirstName = useCallback(
+		(text: string) => {
+			setFirstName(text);
+			setErrors((_erros) => {
+				return { ..._erros, firstName: false };
+			});
+		},
+		[setErrors, setFirstName]
+	);
+
+	const onChangeLastName = useCallback(
+		(text: string) => {
+			setLastName(text);
+			setErrors((_erros) => {
+				return { ..._erros, lastName: false };
+			});
+		},
+		[setErrors, setLastName]
+	);
+
+	const onPressTermsAndConditions = useCallback(
+		(value: boolean) => {
+			setTermsAccepted(value);
+			setErrors((_erros) => {
+				return { ..._erros, TAC: false };
+			});
+		},
+		[setErrors, setTermsAccepted]
+	);
 
 	const register = () => {
-		if (validateFields()) {
-			// Implement your registration functionality here
-			console.log(firstName, lastName, phoneNumber, termsAccepted);
-		}
+		if (!isValidForm()) return;
+		signIn();
+		// else implement all logic to register..
 	};
 
 	return (
-		<View style={styles.container}>
-			<TextInput
-				label="First Name"
-				value={firstName}
-				style={styles.textInput}
-				onChangeText={setFirstName}
+		<ScrollView style={styles.container} contentContainerStyle={{ gap: 5 }}>
+			<View>
+				<TextInput
+					label="First Name"
+					value={firstName}
+					style={styles.textInput}
+					onChangeText={onChangeFirstName}
+				/>
+				<HelperText type="error" visible={errors.firstName}>
+					{t("pleaseEnterYourFirstName")}
+				</HelperText>
+			</View>
+			<View>
+				<TextInput
+					label="Last Name"
+					value={lastName}
+					style={styles.textInput}
+					onChangeText={onChangeLastName}
+				/>
+				<HelperText type="error" visible={errors.lastName}>
+					{t("pleaseEnterYourLastName")}
+				</HelperText>
+			</View>
+
+			<View>
+				<TextInput
+					label="Phone Number"
+					value={phoneNumber}
+					disabled
+					style={styles.textInput}
+					onChangeText={setPhoneNumber}
+				/>
+				<HelperText type="error" visible={false}>
+					this is making space not a text!
+				</HelperText>
+			</View>
+
+			<TermsAndConditionsCheckBox
+				checked={termsAccepted}
+				onCheck={onPressTermsAndConditions}
+				error={errors.TAC ?? false}
 			/>
-			<TextInput
-				label="Last Name"
-				value={lastName}
-				style={styles.textInput}
-				onChangeText={setLastName}
-			/>
-			<TextInput
-				label="Phone Number"
-				value={"0524560793"}
-				disabled
-				style={styles.textInput}
-				onChangeText={setPhoneNumber}
-			/>
-			<TouchableRipple
-				onPress={() => setTermsAccepted(!termsAccepted)}
-				style={{ justifyContent: "center" }}
-			>
-				<View style={styles.checkboxContainer}>
-					<Checkbox
-						status={termsAccepted ? "checked" : "unchecked"}
-						onPress={() => {
-							setTermsAccepted(!termsAccepted);
-						}}
-					/>
-					<Text>I agree to the Terms and Conditions</Text>
-				</View>
-			</TouchableRipple>
-			<Button mode="contained" onPress={register} style={{ margin: 15 }}>
-				Register
+			<Button mode="contained" onPress={register} style={styles.btnRegister}>
+				{t("register")}
 			</Button>
-		</View>
+		</ScrollView>
 	);
 };
 
@@ -85,14 +144,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		// justifyContent: "center",
 		padding: 16,
-		gap: 20,
 	},
-	textInput: { backgroundColor: "white" },
-	checkboxContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		alignSelf: "flex-start",
+	textInput: {
+		backgroundColor: "white",
+		marginVertical: 0,
+		paddingVertical: 0,
 	},
+
 	row: {
 		flexDirection: "row",
 		alignItems: "center",
@@ -100,6 +158,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 8,
 		paddingHorizontal: 16,
 	},
+	btnRegister: { margin: 15 },
 });
 
 export default RegisterScreen;
