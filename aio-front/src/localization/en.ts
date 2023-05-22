@@ -1,4 +1,9 @@
 const en = {
+	appearances: "Appearances",
+	logOut: "Log Out",
+	areYouSureYouWantToLogOut: "Are you sure you want to log out?",
+	yes: "Yes",
+	no: "No",
 	english: "English",
 	hebrew: "עברית",
 	arabic: "عربي",
