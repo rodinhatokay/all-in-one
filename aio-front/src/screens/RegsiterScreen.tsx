@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
 		padding: 16,
 	},
 	textInput: {
-		backgroundColor: "white",
+		// backgroundColor: "white",
 		marginVertical: 0,
 		paddingVertical: 0,
 	},

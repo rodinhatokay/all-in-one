@@ -38,7 +38,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	};
 
 	const onPressCard = () => {
-		navigate("Business");
+		navigate("business");
 	};
 
 	return (

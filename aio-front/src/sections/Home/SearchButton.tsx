@@ -6,8 +6,7 @@ import { navigate } from "../../routes/routerActions";
 
 const SearchButton = () => {
 	const onPress = () => {
-		navigate("Search");
-
+		navigate("search");
 	};
 	const { theme } = useTheme();
 	return (
