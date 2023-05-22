@@ -1,7 +1,7 @@
 export type NoAuthStack = {
 	// Intro: undefined;
 	Login: undefined;
-	Register: undefined;
+	register: undefined;
 };
 
 export type Routes = {

@@ -10,6 +10,7 @@ const en = {
 	login: "login",
 	hello: "hello",
 	signIn: "sign in",
+	register: "Register",
 	username: "user name",
 	password: "password",
 	loading: "loading...",
