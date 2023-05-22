@@ -26,6 +26,12 @@ const en = {
 	Business: "Business",
 	favorites: "Favorites",
 	noFavoritesYetStartAddingSome: "No favorites yet. Start adding some!",
+	pleaseAccpetTheTermsAndConditionsToProceed:
+		"Please accept the terms and conditions to proceed.",
+	iAgreeToThe: "I agree to the",
+	termsAndConditions: "Terms and Conditions",
+	pleaseEnterYourFirstName: "Please enter your first name.",
+	pleaseEnterYourLastName: "Please enter your last name.",
 };
 
 export type IEnTranslations = typeof en;
