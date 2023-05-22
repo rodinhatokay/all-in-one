@@ -20,10 +20,13 @@ import { FONTS_FOR_PAPER } from "../constants/Fonts";
 
 interface ThemeContext {
 	theme: DefaultCombinedTheme;
-	changeTheme: (colorScheme: "dark" | "light" | "deviceTheme") => void;
+	changeTheme: (mode: ThemeMode) => void;
 	isThemeDark: boolean;
 	isThemeReady: boolean;
+	mode: ThemeMode;
 }
+
+export type ThemeMode = "dark" | "light" | "deviceTheme";
 
 const CombinedDefaultTheme = {
 	...PaperDefaultTheme,
@@ -61,22 +64,22 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 		isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme
 	);
 	const [isThemeReady, setIsThemeReady] = useState(false);
+	const [mode, setMode] = useState<ThemeMode>("deviceTheme");
 
 	const changeTheme = useCallback(
-		async (colorScheme: "light" | "dark" | "deviceTheme") => {
-			if (colorScheme === "deviceTheme") {
+		async (mode: ThemeMode) => {
+			setMode(mode);
+			if (mode === "deviceTheme") {
 				// try setting into color scheme device if provided
-				colorScheme = colorSchemeDevice ?? "light";
+				mode = colorSchemeDevice ?? "light";
 				// clear storage in device
 				await storeColorScheme(null);
 			} else {
 				// store scheme in device
-				await storeColorScheme(colorScheme);
+				await storeColorScheme(mode);
 			}
-			setIsThemeDark(colorScheme === "dark");
-			setTheme(
-				colorScheme === "dark" ? CombinedDarkTheme : CombinedDefaultTheme
-			);
+			setIsThemeDark(mode === "dark");
+			setTheme(mode === "dark" ? CombinedDarkTheme : CombinedDefaultTheme);
 		},
 		[setTheme, setIsThemeDark, colorSchemeDevice]
 	);
@@ -87,12 +90,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 				// store color scheme, if not stored it goes by default
 				const colorScheme = await getStoredColorScheme();
 				// in case doesnt stored any color schema just follow the device
-				if (!colorScheme) return;
-				// if color scheme stored set it as theme
-				setIsThemeDark(colorScheme === "dark");
-				setTheme(
-					colorScheme === "dark" ? CombinedDarkTheme : CombinedDefaultTheme
-				);
+				changeTheme(colorScheme ?? "deviceTheme");
 			} catch (e) {
 				console.error("error initing theme", e);
 			} finally {
@@ -100,7 +98,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 			}
 		};
 		initTheme();
-	}, []);
+	}, [changeTheme]);
 
 	useEffect(() => {
 		// listener to color scheme device
@@ -126,6 +124,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 			isThemeDark,
 			theme,
 			isThemeReady,
+			mode,
 		}),
 		[changeTheme, isThemeDark, theme, isThemeReady]
 	);

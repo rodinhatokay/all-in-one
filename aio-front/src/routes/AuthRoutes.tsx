@@ -6,6 +6,8 @@ import HomeStackScreen from "./HomeStackScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import IoniconsIcon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import SettingsScreen from "../screens/SettingsScreen";
+import LocaleSelector from "../components/LocaleSelector/LocaleSelector";
 
 type BottomTabParams = {
 	HomeStack: NavigatorScreenParams<HomeStack>;
@@ -50,7 +52,10 @@ const AuthRoutes: FC = () => {
 			<BottomTabs.Screen
 				name="SettingsTab"
 				options={{
+					headerShown: true,
 					tabBarShowLabel: false,
+					title: "John Doe",
+					headerRight: () => <LocaleSelector />,
 					tabBarIcon: ({ color, size, focused }) => (
 						<IoniconsIcon
 							name={focused ? "cog" : "cog-outline"}
@@ -59,7 +64,7 @@ const AuthRoutes: FC = () => {
 						/>
 					),
 				}}
-				component={FavoritesScreen}
+				component={SettingsScreen}
 			/>
 		</BottomTabs.Navigator>
 	);
