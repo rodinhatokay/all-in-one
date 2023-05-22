@@ -23,6 +23,8 @@ const en = {
 	verification_code: "verification code",
 	Home: "Home",
 	Business: "Business",
+	favorites: "Favorites",
+	noFavoritesYetStartAddingSome: "No favorites yet. Start adding some!",
 };
 
 export type IEnTranslations = typeof en;
