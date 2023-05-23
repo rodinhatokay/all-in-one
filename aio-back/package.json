@@ -25,7 +25,7 @@
     "pretest:e2e": "docker-compose up -d test-db",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "posttest:e2e": "docker-compose stop test-db && docker-compose rm -f test-db",
-    "fast": "docker compose down && docker compose up -d && pnpm typeorm-migaration && pnpm dev"
+    "fast": "docker compose down && docker compose up -d && pnpm install && pnpm typeorm-migaration && pnpm dev"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
