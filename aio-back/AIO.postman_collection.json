@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "e057aa65-3e08-4032-83e1-2cc520d5b7e5",
+		"name": "AIO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19623859"
+	},
+	"item": [
+		{
+			"name": "Business",
+			"item": [
+				{
+					"name": "Get Businesses",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Add Business",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZU51bWJlciI6IjA1MDIyNzkxMzMiLCJvdHBDb2RlIjoiOTYwNTk2IiwiaWF0IjoxNjg0MTc5MTY2LCJleHAiOjE2ODkzNjMxNjZ9.8Thpb_AzMEM8bxd5J2jmPClbsKrNQe_Gqsw1Cbw1kiM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"123 N3al Naaa2g32arot\",\n    \"phoneNumber\": \"052-231223311212\",\n    \"categoryName\": \"Carpentry\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/business",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"business"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Business",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"123 N3al Naaa2g32arot\",\n    \"phoneNumber\": \"052-231223311212\",\n    \"categoryName\": \"Carpentry\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/business",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"business"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Business",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update Business",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Twilio",
+			"item": [
+				{
+					"name": "verify twilio",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "44593c09e45588ade51a2478e973104e",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "AC5988ef4517112caedb17247a1bddfbcd",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "To",
+									"value": "+972509887021",
+									"type": "text"
+								},
+								{
+									"key": "Channel",
+									"value": "sms",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://verify.twilio.com/v2/Services/VA63336fe4af56409b8db076b5337cca20/Verifications",
+							"protocol": "https",
+							"host": [
+								"verify",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v2",
+								"Services",
+								"VA63336fe4af56409b8db076b5337cca20",
+								"Verifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VerificationCheck",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "AC5988ef4517112caedb17247a1bddfbcd",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "$TWILIO_AUTH_TOKEN",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "To",
+									"value": "+972509887021",
+									"type": "text"
+								},
+								{
+									"key": "Code",
+									"value": "$OTP_CODE",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://verify.twilio.com/v2/Services/VA63336fe4af56409b8db076b5337cca20/VerificationCheck",
+							"protocol": "https",
+							"host": [
+								"verify",
+								"twilio",
+								"com"
+							],
+							"path": [
+								"v2",
+								"Services",
+								"VA63336fe4af56409b8db076b5337cca20",
+								"VerificationCheck"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "current user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZnlPdHAiOnsicGhvbmVOdW1iZXIiOiIrOTcyNTA5ODg3MDIxIiwib3RwQ29kZSI6IjIxMDA0OCJ9LCJpYXQiOjE2ODQ1ODUyOTF9.XNK2wuIyPFPHsKfE1c0DrckH9ae9FOwxJAhPg-topwI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/user/current-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"user",
+								"current-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find one",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZnlPdHAiOnsicGhvbmVOdW1iZXIiOiIrOTcyNTA5ODg3MDIxIiwib3RwQ29kZSI6IjIxMDA0OCJ9LCJpYXQiOjE2ODQ1ODUyOTF9.XNK2wuIyPFPHsKfE1c0DrckH9ae9FOwxJAhPg-topwI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/user/a1d45583-1f72-4ae7-bdea-5dab941ce81d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"user",
+								"a1d45583-1f72-4ae7-bdea-5dab941ce81d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "create otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"phoneNumber\": \"0502279133\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/otp/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"otp",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"phoneNumber\": \"+972509887021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3010/api/auth/create_otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"auth",
+						"create_otp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"phoneNumber\": \"+972509887021\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3010/api/auth/create_otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3010",
+					"path": [
+						"api",
+						"auth",
+						"create_otp"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

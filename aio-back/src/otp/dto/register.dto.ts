@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 
 export class Register {
   @IsString()
@@ -8,6 +8,10 @@ export class Register {
   @IsString()
   @IsNotEmpty()
   firstName: string;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  terms: boolean;
 
   @IsString()
   @IsNotEmpty()
