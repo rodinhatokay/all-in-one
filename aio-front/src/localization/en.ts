@@ -10,6 +10,7 @@ const en = {
 	login: "login",
 	hello: "hello",
 	signIn: "sign in",
+	register: "Register",
 	username: "user name",
 	password: "password",
 	loading: "loading...",
@@ -26,6 +27,12 @@ const en = {
 	search: "Search",
 	favorites: "Favorites",
 	noFavoritesYetStartAddingSome: "No favorites yet. Start adding some!",
+	pleaseAccpetTheTermsAndConditionsToProceed:
+		"Please accept the terms and conditions to proceed.",
+	iAgreeToThe: "I agree to the",
+	termsAndConditions: "Terms and Conditions",
+	pleaseEnterYourFirstName: "Please enter your first name.",
+	pleaseEnterYourLastName: "Please enter your last name.",
 };
 
 export type IEnTranslations = typeof en;

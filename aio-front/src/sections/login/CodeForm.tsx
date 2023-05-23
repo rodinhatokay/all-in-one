@@ -3,6 +3,7 @@ import { useLocalization } from "../../contexts/LocalizationContext";
 import { FC } from "react";
 import { StyleSheet, View } from "react-native";
 import { useAuth } from "../../contexts/AuthContext";
+import { navigate } from "../../routes/routerActions";
 
 interface Props {
 	onPress: VoidFunction;
@@ -37,7 +38,12 @@ const CodeForm: FC<Props> = ({ onPress }) => {
 			>
 				{t("didnt_receive_otp")}
 			</Button>
-			<Button mode={"contained"} onPress={signIn}>
+			<Button
+				mode={"contained"}
+				onPress={() => {
+					navigate("register");
+				}}
+			>
 				{t("verify_and_continue")}
 			</Button>
 		</>
