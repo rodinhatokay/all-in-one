@@ -38,7 +38,7 @@ const TermsAndConditionsCheckBox: FC<Props> = (props) => {
 			<Pressable onPress={() => onCheck(!checked)}>
 				<View style={styles.checkboxContainer}>
 					<Checkbox.Android status={checked ? "checked" : "unchecked"} />
-					<View style={{ flexDirection: "row", alignItems: "center" }}>
+					<View style={styles.textContainer}>
 						<Text>{t("iAgreeToThe")}</Text>
 						<Pressable hitSlop={20} onPress={displayTermsAndConditions}>
 							<Text
@@ -61,7 +61,7 @@ const TermsAndConditionsCheckBox: FC<Props> = (props) => {
 				<Dialog
 					onDismiss={hideTAC}
 					visible={isDisplayTAC}
-					style={{ maxHeight: 0.6 * Dimensions.get("window").height }}
+					style={styles.dialog}
 				>
 					<Dialog.Title>{t("termsAndConditions")}</Dialog.Title>
 					<Dialog.ScrollArea style={styles.smallPadding}>
@@ -131,6 +131,8 @@ const styles = StyleSheet.create({
 	biggerPadding: {
 		paddingHorizontal: 24,
 	},
+	textContainer: { flexDirection: "row", alignItems: "center" },
+	dialog: { maxHeight: 0.6 * Dimensions.get("window").height },
 });
 
 export default TermsAndConditionsCheckBox;
