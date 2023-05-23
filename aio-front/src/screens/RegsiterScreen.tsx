@@ -5,6 +5,7 @@ import TermsAndConditionsCheckBox from "../components/TermsAndConditionsCheckBox
 import { useLocalization } from "../contexts/LocalizationContext";
 import * as Haptics from "expo-haptics";
 import { useAuth } from "../contexts/AuthContext";
+import { useTheme } from "../contexts/ThemeContext";
 
 type Errors = {
 	[key in Inputs]: boolean;
@@ -15,6 +16,7 @@ type Inputs = "firstName" | "lastName" | "TAC";
 const RegisterScreen = () => {
 	const { t } = useLocalization();
 	const { signIn } = useAuth();
+	const { theme } = useTheme();
 
 	const [firstName, setFirstName] = useState<string>("");
 	const [lastName, setLastName] = useState<string>("");
@@ -95,7 +97,7 @@ const RegisterScreen = () => {
 				<TextInput
 					label="First Name"
 					value={firstName}
-					style={styles.textInput}
+					style={[styles.textInput, { backgroundColor: theme.colors.surface }]}
 					onChangeText={onChangeFirstName}
 				/>
 				<HelperText type="error" visible={errors.firstName}>
@@ -106,7 +108,7 @@ const RegisterScreen = () => {
 				<TextInput
 					label="Last Name"
 					value={lastName}
-					style={styles.textInput}
+					style={[styles.textInput, { backgroundColor: theme.colors.surface }]}
 					onChangeText={onChangeLastName}
 				/>
 				<HelperText type="error" visible={errors.lastName}>
@@ -119,7 +121,7 @@ const RegisterScreen = () => {
 					label="Phone Number"
 					value={phoneNumber}
 					disabled
-					style={styles.textInput}
+					style={[styles.textInput, { backgroundColor: theme.colors.surface }]}
 					onChangeText={setPhoneNumber}
 				/>
 				<HelperText type="error" visible={false}>

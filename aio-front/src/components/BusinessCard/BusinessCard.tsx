@@ -22,11 +22,10 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 		const { lightGrey } = theme.colors;
 
 		if (isThemeDark) return styles.card;
-		return [styles.card, { backgroundColor: lightGrey }];
+		return [styles.card, { backgroundColor: "rgba(150, 150, 150, 0.12)" }];
 	}, [isThemeDark, theme]);
 
 	const handleCall = () => {};
-
 	const handleWhatsApp = () => {};
 
 	const handleSaveContact = () => {
@@ -42,7 +41,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	};
 
 	return (
-		<Card onPress={onPressCard} style={cardStyle}>
+		<Card onPress={onPressCard} mode="elevated" style={cardStyle}>
 			<Card.Content>
 				<View style={styles.topRow}>
 					<Image

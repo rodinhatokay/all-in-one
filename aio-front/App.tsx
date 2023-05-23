@@ -3,12 +3,14 @@ import { ThemeProvider, useTheme } from "./src/contexts/ThemeContext";
 import Router from "./src/routes/Router";
 import { AuthProvider } from "./src/contexts/AuthContext";
 import { LocalizationProvider } from "./src/contexts/LocalizationContext";
+import { StatusBar } from "expo-status-bar";
 
 const App = () => {
-	const { theme } = useTheme();
+	const { theme, isThemeDark } = useTheme();
 
 	return (
 		<PaperProvider theme={theme}>
+			<StatusBar style={isThemeDark ? "light" : "dark"} />
 			<Router />
 		</PaperProvider>
 	);

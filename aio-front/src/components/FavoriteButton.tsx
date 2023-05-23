@@ -62,7 +62,7 @@ const FavoriteButton: FC<Props> = (props) => {
 				<MaterialCommunityIcons
 					name={"heart"}
 					size={props.size ?? 20}
-					color={theme.colors.error}
+					color={theme.colors.red}
 				/>
 			</Animated.View>
 		</Pressable>

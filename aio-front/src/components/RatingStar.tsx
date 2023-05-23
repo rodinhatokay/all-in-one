@@ -18,7 +18,7 @@ const StarRating: React.FC<Props> = ({ rating, size }) => {
 			<Icon
 				key={i}
 				name={i <= rating ? "star" : "star-o"}
-				color={i <= rating ? "#1317ff" : "#808080"}
+				color={i <= rating ? "#CFB53B" : "#808080"}
 				size={size}
 			/>
 		);
