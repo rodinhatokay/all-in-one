@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsBoolean, IsString } from 'class-validator';
 import { Otp } from '../../otp/entities/otp.entity';
 
 export class RegisterDto {
@@ -7,6 +7,9 @@ export class RegisterDto {
 
   @IsString()
   lastName: string;
+
+  @IsBoolean()
+  terms: boolean;
 
   otp: Otp;
 }

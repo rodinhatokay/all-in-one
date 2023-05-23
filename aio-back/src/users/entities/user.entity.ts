@@ -15,17 +15,20 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  firstName: string;
+  @Column({ nullable: true })
+  firstName?: string;
 
-  @Column()
-  lastName: string;
+  @Column({ nullable: true })
+  lastName?: string;
+
+  @Column({ nullable: true })
+  terms: boolean;
 
   @OneToOne(() => Otp)
   @JoinColumn()
-  otp: Otp;
+  otp?: Otp;
 
-  @ManyToMany(() => Business)
-  @JoinTable()
-  favoriteBusinesses: Business[];
+  // @ManyToMany(() => Business)
+  // @JoinTable()
+  // favoriteBusinesses: Business[];
 }
