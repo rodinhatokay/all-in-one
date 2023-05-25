@@ -2,17 +2,20 @@ import { Text, TextInput, Button, useTheme } from "react-native-paper";
 import { useLocalization } from "../../contexts/LocalizationContext";
 import { FC } from "react";
 import { StyleSheet, View } from "react-native";
-import { useAuth } from "../../contexts/AuthContext";
-import { navigate } from "../../routes/routerActions";
 
 interface Props {
-	onPress: VoidFunction;
+	onPressRegenerateOTP: VoidFunction;
+	onPressVerifiy: VoidFunction;
+	verificationCode: string;
+	onChangeVerificationCode: (val: string) => void;
+	phoneNumber: string;
+	onPressPhoneNumber: VoidFunction;
+	loading: boolean;
 }
 
-const CodeForm: FC<Props> = ({ onPress }) => {
+const CodeForm: FC<Props> = (props) => {
 	const { t } = useLocalization();
 	const theme = useTheme();
-	const { signIn } = useAuth();
 	return (
 		<>
 			<View style={styles.headerContainer}>
@@ -22,27 +25,30 @@ const CodeForm: FC<Props> = ({ onPress }) => {
 					mode={"text"}
 					contentStyle={styles.phonNumberBtnContainer}
 					labelStyle={styles.phoneNumberBtnLabel}
+					onPress={props.onPressPhoneNumber}
 				>
-					0524560793
+					{props.phoneNumber}
 				</Button>
 			</View>
 			<TextInput
+				value={props.verificationCode}
+				onChangeText={props.onChangeVerificationCode}
 				mode={"outlined"}
 				keyboardType="number-pad"
 				returnKeyType="done"
 				placeholder={t("verification_code")}
 			/>
 			<Button
+				onPress={props.onPressRegenerateOTP}
 				textColor={theme.colors.tertiary}
-				labelStyle={{ textDecorationLine: "underline" }}
+				labelStyle={styles.labelResendOTP}
 			>
 				{t("didnt_receive_otp")}
 			</Button>
 			<Button
+				loading={props.loading}
 				mode={"contained"}
-				onPress={() => {
-					navigate("register");
-				}}
+				onPress={props.onPressVerifiy}
 			>
 				{t("verify_and_continue")}
 			</Button>
@@ -65,6 +71,7 @@ const styles = StyleSheet.create({
 		textDecorationLine: "underline",
 		fontWeight: "700",
 	},
+	labelResendOTP: { textDecorationLine: "underline" },
 });
 
 export default CodeForm;

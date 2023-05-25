@@ -1,4 +1,6 @@
 const en = {
+	aio: "AiO",
+	allInOne: "All in One",
 	appearances: "Appearances",
 	logOut: "Log Out",
 	areYouSureYouWantToLogOut: "Are you sure you want to log out?",

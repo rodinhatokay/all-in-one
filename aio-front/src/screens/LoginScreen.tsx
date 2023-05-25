@@ -5,7 +5,10 @@ import { Image } from "expo-image";
 import LocaleSelector from "../components/LocaleSelector/LocaleSelector";
 import PhoneNumberForm from "../sections/login/PhoneNumberForm";
 import CodeForm from "../sections/login/CodeForm";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { generateOTPApi } from "../services/otp/otpApi";
+import { logError } from "../services/logger/loggerService";
+import useOTP from "../hooks/useOTP";
 
 /**
  * Login screen
@@ -15,6 +18,28 @@ const LoginScreen = () => {
 	const theme = useTheme();
 
 	const [displayFormCode, setDisplayFormCode] = useState(false);
+
+	const displayVerificatonCodeForm = useCallback(
+		() => setDisplayFormCode(true),
+		[setDisplayFormCode]
+	);
+
+	const {
+		loading,
+		onPressGetVerificationCode,
+		onPressValdiateVerficationCode,
+		phoneNumber,
+		setLoading,
+		setPhoneNumber,
+		setVerificationCode,
+		verificationCode,
+	} = useOTP({
+		onGetVerificationCode: displayVerificatonCodeForm,
+	});
+
+	const onPressChangePhoneNumber = useCallback(() => {
+		setDisplayFormCode(false);
+	}, []);
 
 	return (
 		<View style={styles.main}>
@@ -26,8 +51,8 @@ const LoginScreen = () => {
 				contentContainerStyle={styles.scroll}
 				style={styles.main}
 			>
-				<Text style={styles.header}>AiO</Text>
-				<Text style={styles.subHeader}>All in One</Text>
+				<Text style={styles.header}>{t("aio")}</Text>
+				<Text style={styles.subHeader}>{t("allInOne")}</Text>
 				<Image
 					source={require("../../assets/images/logo.png")}
 					style={[styles.logo, { tintColor: theme.colors.primary }]}
@@ -37,9 +62,22 @@ const LoginScreen = () => {
 
 				<View style={styles.contentContainer}>
 					{!displayFormCode ? (
-						<PhoneNumberForm onPress={() => setDisplayFormCode(true)} />
+						<PhoneNumberForm
+							loading={loading}
+							onChangePhoneNumber={setPhoneNumber}
+							phoneNumber={phoneNumber}
+							onPressGetVerificationCode={onPressGetVerificationCode}
+						/>
 					) : (
-						<CodeForm onPress={() => {}} />
+						<CodeForm
+							loading={loading}
+							verificationCode={verificationCode}
+							onPressPhoneNumber={onPressChangePhoneNumber}
+							onChangeVerificationCode={setVerificationCode}
+							onPressRegenerateOTP={onPressGetVerificationCode}
+							onPressVerifiy={onPressValdiateVerficationCode}
+							phoneNumber={phoneNumber}
+						/>
 					)}
 				</View>
 			</ScrollView>
