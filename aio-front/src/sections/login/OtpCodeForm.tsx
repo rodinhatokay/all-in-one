@@ -1,26 +1,33 @@
-import { Text, TextInput, Button, useTheme } from "react-native-paper";
+import {
+	Text,
+	TextInput,
+	Button,
+	useTheme,
+	HelperText,
+} from "react-native-paper";
 import { useLocalization } from "../../contexts/LocalizationContext";
 import { FC } from "react";
 import { StyleSheet, View } from "react-native";
+import { IEnTranslations } from "../../localization/en";
 
 interface Props {
-	onPressRegenerateOTP: VoidFunction;
-	onPressVerifiy: VoidFunction;
-	verificationCode: string;
-	onChangeVerificationCode: (val: string) => void;
+	onPressResendOtpCode: VoidFunction;
+	onPressValidateOtpCode: VoidFunction;
+	otpCode: string;
+	onChangeOtpCode: (val: string) => void;
 	phoneNumber: string;
 	onPressPhoneNumber: VoidFunction;
 	loading: boolean;
+	errorOtpCode: keyof IEnTranslations | "";
 }
 
-const CodeForm: FC<Props> = (props) => {
+const OtpCodeForm: FC<Props> = (props) => {
 	const { t } = useLocalization();
 	const theme = useTheme();
 	return (
 		<>
 			<View style={styles.headerContainer}>
 				<Text style={styles.text}>{t("enter_the_code_sent_to")}</Text>
-
 				<Button
 					mode={"text"}
 					contentStyle={styles.phonNumberBtnContainer}
@@ -31,15 +38,19 @@ const CodeForm: FC<Props> = (props) => {
 				</Button>
 			</View>
 			<TextInput
-				value={props.verificationCode}
-				onChangeText={props.onChangeVerificationCode}
+				value={props.otpCode}
+				onChangeText={props.onChangeOtpCode}
 				mode={"outlined"}
 				keyboardType="number-pad"
 				returnKeyType="done"
 				placeholder={t("verification_code")}
+				error={!!props.errorOtpCode}
 			/>
+			<HelperText visible={!!props.errorOtpCode} type={"error"}>
+				{props.errorOtpCode ? t(props.errorOtpCode) : null}
+			</HelperText>
 			<Button
-				onPress={props.onPressRegenerateOTP}
+				onPress={props.onPressResendOtpCode}
 				textColor={theme.colors.tertiary}
 				labelStyle={styles.labelResendOTP}
 			>
@@ -48,7 +59,7 @@ const CodeForm: FC<Props> = (props) => {
 			<Button
 				loading={props.loading}
 				mode={"contained"}
-				onPress={props.onPressVerifiy}
+				onPress={props.onPressValidateOtpCode}
 			>
 				{t("verify_and_continue")}
 			</Button>
@@ -74,4 +85,4 @@ const styles = StyleSheet.create({
 	labelResendOTP: { textDecorationLine: "underline" },
 });
 
-export default CodeForm;
+export default OtpCodeForm;

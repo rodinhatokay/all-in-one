@@ -6,7 +6,7 @@ import api from "../api/api";
  * @param signal
  * @returns
  */
-export const generateOTPApi = async (
+export const generateOtpApi = async (
 	phoneNumber: string,
 	signal?: AbortSignal
 ) => {
@@ -28,7 +28,7 @@ export const generateOTPApi = async (
  * @param signal
  * @returns
  */
-export const verifyOTPApi = async (
+export const verifyOtpCodeApi = async (
 	data: { otpCode: string; phoneNumber: string },
 	signal?: AbortSignal
 ) => {

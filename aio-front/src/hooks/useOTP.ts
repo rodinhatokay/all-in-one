@@ -1,54 +1,86 @@
 import { useCallback, useMemo, useState } from "react";
-import { generateOTPApi } from "../services/otp/otpApi";
+import { generateOtpApi, verifyOtpCodeApi } from "../services/otp/otpApi";
 import { logError } from "../services/logger/loggerService";
+import { validateOTP, validatePhoneNumber } from "../services/common/validate";
+import { IEnTranslations } from "../localization/en";
 
-interface Props {
-	onGetVerificationCode: () => void;
-}
-
-export const useOTP = (props: Props) => {
+/**
+ * otp hook that handles all logic related to authenticate via otp
+ */
+export const useOTP = () => {
 	const [phoneNumber, setPhoneNumber] = useState("");
-	const [verificationCode, setVerificationCode] = useState("");
+	const [errorPhoneNumber, setErrorPhoneNumber] = useState<
+		keyof IEnTranslations | ""
+	>("");
+	const [otpCode, setOtpCode] = useState("");
+	const [errorOtpCode, setErrorOtpCode] = useState<keyof IEnTranslations | "">(
+		""
+	);
 	const [loading, setLoading] = useState(false);
 
-	const onPressGetVerificationCode = useCallback(async () => {
+	const getOtpCode = useCallback(async () => {
 		try {
-			if (phoneNumber.length !== 10) return;
+			if (!validatePhoneNumber(phoneNumber)) {
+				setErrorPhoneNumber("invalidPhoneNumber");
+				return;
+			}
 			setLoading(true);
-			await generateOTPApi(phoneNumber);
-			props.onGetVerificationCode();
+			await generateOtpApi(phoneNumber);
 		} catch (e) {
-			logError("error onPressGetVerificationCode", e);
+			logError("error onPressGetotp", e);
 		} finally {
 			setLoading(false);
 		}
-	}, [phoneNumber, props.onGetVerificationCode, setLoading, loading]);
+	}, [phoneNumber, setLoading, loading]);
 
 	/**
-	 * validate via api if code inseted is correct
+	 * validate via api if code inserted is correct
 	 */
-	const onPressValdiateVerficationCode = useCallback(() => {}, []);
+	const valdiateOtpCode = useCallback(async () => {
+		try {
+			if (!validatePhoneNumber(phoneNumber)) {
+				setErrorPhoneNumber("invalidPhoneNumber");
+				return;
+			}
+			if (!validateOTP(otpCode)) {
+				setErrorOtpCode("invalidOtpCode");
+				return;
+			}
+			setLoading(true);
+			const responseVerification = await verifyOtpCodeApi({
+				otpCode,
+				phoneNumber,
+			});
+			return responseVerification.data;
+		} catch (e) {
+			logError("error onPressValdiateVerficationCode", e);
+		} finally {
+			setLoading(false);
+		}
+	}, [setErrorPhoneNumber, setErrorOtpCode, setLoading, otpCode, phoneNumber]);
 
 	return useMemo(() => {
 		return {
 			phoneNumber,
 			setPhoneNumber,
-			verificationCode,
-			setVerificationCode,
+			otpCode,
+			setOtpCode,
 			loading,
-			setLoading,
-			onPressGetVerificationCode,
-			onPressValdiateVerficationCode,
+			getOtpCode,
+			valdiateOtpCode,
+			errorOtpCode,
+			errorPhoneNumber,
 		};
 	}, [
 		phoneNumber,
 		setPhoneNumber,
-		verificationCode,
-		setVerificationCode,
+		otpCode,
+		setOtpCode,
 		loading,
-		setLoading,
-		onPressGetVerificationCode,
-		onPressValdiateVerficationCode,
+		getOtpCode,
+		valdiateOtpCode,
+		errorOtpCode,
+		errorPhoneNumber,
 	]);
 };
 

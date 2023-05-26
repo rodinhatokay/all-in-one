@@ -35,6 +35,8 @@ const en = {
 	termsAndConditions: "Terms and Conditions",
 	pleaseEnterYourFirstName: "Please enter your first name.",
 	pleaseEnterYourLastName: "Please enter your last name.",
+	invalidPhoneNumber: "Invlaid phone number",
+	invalidOtpCode: "Invalid code",
 };
 
 export type IEnTranslations = typeof en;

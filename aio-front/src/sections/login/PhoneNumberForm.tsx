@@ -1,12 +1,14 @@
-import { Text, TextInput, Button } from "react-native-paper";
+import { Text, TextInput, Button, HelperText } from "react-native-paper";
 import { useLocalization } from "../../contexts/LocalizationContext";
 import { FC } from "react";
 import { StyleSheet } from "react-native";
+import { IEnTranslations } from "../../localization/en";
 
 interface Props {
 	phoneNumber: string;
+	error: keyof IEnTranslations | "";
 	onChangePhoneNumber: (text: string) => void;
-	onPressGetVerificationCode: VoidFunction;
+	onPressGetOtpCode: VoidFunction;
 	loading: boolean;
 }
 
@@ -24,10 +26,14 @@ const PhoneNumberForm: FC<Props> = (props) => {
 				keyboardType="number-pad"
 				returnKeyType="done"
 				placeholder={t("phoneNumber")}
+				error={!!props.error}
 			/>
+			<HelperText visible={!!props.error} type={"error"}>
+				{props.error ? t(props.error) : ""}
+			</HelperText>
 			<Button
 				mode={"contained"}
-				onPress={props.onPressGetVerificationCode}
+				onPress={props.onPressGetOtpCode}
 				style={styles.btn}
 				loading={props.loading}
 			>

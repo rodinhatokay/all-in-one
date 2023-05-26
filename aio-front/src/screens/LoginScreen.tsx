@@ -4,10 +4,8 @@ import { useLocalization } from "../contexts/LocalizationContext";
 import { Image } from "expo-image";
 import LocaleSelector from "../components/LocaleSelector/LocaleSelector";
 import PhoneNumberForm from "../sections/login/PhoneNumberForm";
-import CodeForm from "../sections/login/CodeForm";
+import OtpCodeForm from "../sections/login/OtpCodeForm";
 import { useCallback, useState } from "react";
-import { generateOTPApi } from "../services/otp/otpApi";
-import { logError } from "../services/logger/loggerService";
 import useOTP from "../hooks/useOTP";
 
 /**
@@ -19,27 +17,39 @@ const LoginScreen = () => {
 
 	const [displayFormCode, setDisplayFormCode] = useState(false);
 
-	const displayVerificatonCodeForm = useCallback(
-		() => setDisplayFormCode(true),
-		[setDisplayFormCode]
-	);
-
 	const {
 		loading,
-		onPressGetVerificationCode,
-		onPressValdiateVerficationCode,
 		phoneNumber,
-		setLoading,
 		setPhoneNumber,
-		setVerificationCode,
-		verificationCode,
-	} = useOTP({
-		onGetVerificationCode: displayVerificatonCodeForm,
-	});
+		getOtpCode,
+		valdiateOtpCode,
+		otpCode,
+		setOtpCode,
+		errorOtpCode,
+	} = useOTP();
 
-	const onPressChangePhoneNumber = useCallback(() => {
+	/**
+	 * requests otp and then sets display state to otp code form
+	 */
+	const onPressGetOtpCode = useCallback(async () => {
+		try {
+			await getOtpCode();
+			setDisplayFormCode(true);
+		} catch (error) {}
+	}, [setDisplayFormCode]);
+
+	const displayPhoneNumberForm = useCallback(() => {
 		setDisplayFormCode(false);
 	}, []);
+
+	const onPressValidateOtpCode = useCallback(async () => {
+		try {
+			console.error("need to implement this error");
+			const jwt = await valdiateOtpCode();
+			// validate if user is registered, if so, then login user
+			// otherwise navigate to register screen with token, and phoneNumber
+		} catch (error) {}
+	}, [valdiateOtpCode]);
 
 	return (
 		<View style={styles.main}>
@@ -66,17 +76,19 @@ const LoginScreen = () => {
 							loading={loading}
 							onChangePhoneNumber={setPhoneNumber}
 							phoneNumber={phoneNumber}
-							onPressGetVerificationCode={onPressGetVerificationCode}
+							onPressGetOtpCode={onPressGetOtpCode}
+							error={errorOtpCode}
 						/>
 					) : (
-						<CodeForm
+						<OtpCodeForm
 							loading={loading}
-							verificationCode={verificationCode}
-							onPressPhoneNumber={onPressChangePhoneNumber}
-							onChangeVerificationCode={setVerificationCode}
-							onPressRegenerateOTP={onPressGetVerificationCode}
-							onPressVerifiy={onPressValdiateVerficationCode}
+							otpCode={otpCode}
+							onPressPhoneNumber={displayPhoneNumberForm}
+							onChangeOtpCode={setOtpCode}
+							onPressResendOtpCode={getOtpCode}
+							onPressValidateOtpCode={onPressValidateOtpCode}
 							phoneNumber={phoneNumber}
+							errorOtpCode={errorOtpCode}
 						/>
 					)}
 				</View>
