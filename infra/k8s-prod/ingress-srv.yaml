@@ -16,7 +16,7 @@ spec:
               service:
                 name: backend-srv
                 port:
-                  number: 3000
+                  number: 3001
           # add later here the client link
           # - path: /?(.*)
           #   pathType: Prefix

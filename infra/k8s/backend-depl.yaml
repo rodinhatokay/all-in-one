@@ -6,7 +6,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: backend 
   template:
     metadata:
       labels:
@@ -14,15 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: slothiey/auth
-          env:
-            - name: MONGO_URI
-              value: mongodb://auth-mongo-srv:27017/auth
-            - name: JWT_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secret
-                  key: JWT_KEY
+          image: allinoneocean/allinone
 ---
 apiVersion: v1
 kind: Service
@@ -34,5 +26,5 @@ spec:
   ports:
     - name: backend
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 3001
+      targetPort: 3001
