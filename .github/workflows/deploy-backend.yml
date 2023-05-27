@@ -1,4 +1,4 @@
-name: deploy-client
+name: deploy-backend
 
 on:
   push:
