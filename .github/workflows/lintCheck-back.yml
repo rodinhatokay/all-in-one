@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [18.x]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-          cache-dependency-path: aio-back/pnpm-lock.yml
+          cache-dependency-path: ./aio-back/pnpm-lock.yml
       - name: Install dependencies
         run: pnpm install
 
