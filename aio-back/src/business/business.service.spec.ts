@@ -4,17 +4,17 @@ import { BusinessService } from './business.service';
 jest.mock('./business.service');
 
 describe('BusinessService', () => {
-  let service: BusinessService;
+	let service: BusinessService;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [BusinessService],
-    }).compile();
+	beforeEach(async () => {
+		const module: TestingModule = await Test.createTestingModule({
+			providers: [BusinessService],
+		}).compile();
 
-    service = module.get<BusinessService>(BusinessService);
-  });
+		service = module.get<BusinessService>(BusinessService);
+	});
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
+	it('should be defined', () => {
+		expect(service).toBeDefined();
+	});
 });

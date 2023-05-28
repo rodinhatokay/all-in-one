@@ -8,17 +8,17 @@ import { User as UserType } from './entities/user.entity';
 @ApiTags('user')
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+	constructor(private readonly userService: UserService) {}
 
-  @UseGuards(JwtAuthGuard)
-  @Get('/current-user')
-  async findOneByToken(@User() user: UserType) {
-    return await this.userService.findOne(user.id);
-  }
+	@UseGuards(JwtAuthGuard)
+	@Get('/current-user')
+	async findOneByToken(@User() user: UserType) {
+		return await this.userService.findOne(user.id);
+	}
 
-  @UseGuards(JwtAuthGuard)
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.userService.findOne(id);
-  }
+	@UseGuards(JwtAuthGuard)
+	@Get(':id')
+	async findOne(@Param('id') id: string) {
+		return await this.userService.findOne(id);
+	}
 }

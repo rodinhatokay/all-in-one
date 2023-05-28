@@ -1,3 +1,3 @@
 export class JwtPayload {
-  accessToken: string;
+	accessToken: string;
 }

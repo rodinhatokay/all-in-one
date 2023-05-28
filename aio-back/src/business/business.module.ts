@@ -7,9 +7,9 @@ import { Category } from '../common/entities/category.entity';
 import { SubCategory } from '../common/entities/subCategory.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Business, Category, SubCategory])],
-  providers: [BusinessService],
-  exports: [BusinessService],
-  controllers: [BusinessController],
+	imports: [TypeOrmModule.forFeature([Business, Category, SubCategory])],
+	providers: [BusinessService],
+	exports: [BusinessService],
+	controllers: [BusinessController],
 })
 export class BusinessModule {}

@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CreateCategoryTable1679074427751 implements MigrationInterface {
-  name = 'CreateCategoryTable1679074427751';
+	name = 'CreateCategoryTable1679074427751';
 
-  public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`
+	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.query(`
       CREATE TABLE category (
         id UUID NOT NULL DEFAULT uuid_generate_v4(),
         name VARCHAR NOT NULL,
@@ -12,7 +12,7 @@ export class CreateCategoryTable1679074427751 implements MigrationInterface {
       )
     `);
 
-    await queryRunner.query(`
+		await queryRunner.query(`
       CREATE TABLE subcategory (
         id UUID NOT NULL DEFAULT uuid_generate_v4(),
         name VARCHAR NOT NULL,
@@ -21,10 +21,10 @@ export class CreateCategoryTable1679074427751 implements MigrationInterface {
         FOREIGN KEY (categoryId) REFERENCES category (id) ON DELETE CASCADE
       )
     `);
-  }
+	}
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DROP TABLE "maincategory"`);
-    await queryRunner.query(`DROP TABLE "subcategory"`);
-  }
+	public async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.query(`DROP TABLE "maincategory"`);
+		await queryRunner.query(`DROP TABLE "subcategory"`);
+	}
 }
