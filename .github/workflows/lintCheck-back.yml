@@ -23,7 +23,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2.0.1
         with:
-          version: 7.1.0
+          version: 7.29.3
 
       - name: Install dependencies
         run: |
