@@ -1,0 +1,29 @@
+name: Lint Check - Back End
+
+on:
+  pull_request:
+    paths:
+      - "aio-back/**"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Install dependencies
+        run: |
+          cd aio-back
+          npm ci
+
+      - name: Run Lint
+        run: |
+          cd aio-back
+          npm run lint
