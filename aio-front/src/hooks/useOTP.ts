@@ -60,7 +60,6 @@ export const useOTP = () => {
 			return responseVerification.data;
 		} catch (err) {
 			if (axios.isAxiosError(err) && err.response?.status === 400) {
-				console.log("err.response", err.response);
 				setErrorOtpCode("invalidOtpCode");
 			}
 			logError("error onPressValdiateVerficationCode", err);
