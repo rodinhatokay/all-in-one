@@ -18,12 +18,15 @@ jobs:
         with:
           node-version: "14"
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Install dependencies
         run: |
           cd aio-back
-          npm ci
+          pnpm install
 
       - name: Run Lint
         run: |
           cd aio-back
-          npm run lint
+          pnpm run lint
