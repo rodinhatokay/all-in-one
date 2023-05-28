@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
+          cache-dependency-path: aio-back/pnpm-lock.yml
 
       - name: Install dependencies
         run: |
