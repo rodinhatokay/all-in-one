@@ -17,4 +17,6 @@ export enum ErrorMessages {
   UserDoesntHaveAccessToProject = 'User doesnt have access to project',
   ProjectDoesntExist = 'project doesnt exist',
   NoActivitiesFound = 'no activities found',
+  InvalidPhoneNumber = 'Invalid Phone Number',
+  invalidOtpCode = 'invalid otp code',
 }

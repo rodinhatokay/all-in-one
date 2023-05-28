@@ -3,6 +3,8 @@ import { generateOtpApi, verifyOtpCodeApi } from "../services/otp/otpApi";
 import { logError } from "../services/logger/loggerService";
 import { validateOTP, validatePhoneNumber } from "../services/common/validate";
 import { IEnTranslations } from "../localization/en";
+import { fPhoneNumberToGlobal } from "../services/common/format";
+import axios from "axios";
 
 /**
  * otp hook that handles all logic related to authenticate via otp
@@ -22,12 +24,16 @@ export const useOTP = () => {
 		try {
 			if (!validatePhoneNumber(phoneNumber)) {
 				setErrorPhoneNumber("invalidPhoneNumber");
-				return;
+				throw new Error("invalidPhoneNumber");
 			}
 			setLoading(true);
-			await generateOtpApi(phoneNumber);
-		} catch (e) {
-			logError("error onPressGetotp", e);
+			await generateOtpApi(fPhoneNumberToGlobal(phoneNumber));
+		} catch (err) {
+			logError("error onPressGetotp", err);
+			if (axios.isAxiosError(err) && err.response?.status === 400) {
+				setErrorPhoneNumber("invalidPhoneNumber");
+			}
+			throw err;
 		} finally {
 			setLoading(false);
 		}
@@ -40,31 +46,52 @@ export const useOTP = () => {
 		try {
 			if (!validatePhoneNumber(phoneNumber)) {
 				setErrorPhoneNumber("invalidPhoneNumber");
-				return;
+				throw new Error("invalidPhoneNumber");
 			}
 			if (!validateOTP(otpCode)) {
 				setErrorOtpCode("invalidOtpCode");
-				return;
+				throw new Error("invalidOtpCode");
 			}
 			setLoading(true);
 			const responseVerification = await verifyOtpCodeApi({
 				otpCode,
-				phoneNumber,
+				phoneNumber: fPhoneNumberToGlobal(phoneNumber),
 			});
 			return responseVerification.data;
-		} catch (e) {
-			logError("error onPressValdiateVerficationCode", e);
+		} catch (err) {
+			if (axios.isAxiosError(err) && err.response?.status === 400) {
+				console.log("err.response", err.response);
+				setErrorOtpCode("invalidOtpCode");
+			}
+			logError("error onPressValdiateVerficationCode", err);
+			throw err;
 		} finally {
 			setLoading(false);
 		}
 	}, [setErrorPhoneNumber, setErrorOtpCode, setLoading, otpCode, phoneNumber]);
 
+	const _setPhoneNumber = useCallback(
+		(phoneNumber: string) => {
+			setPhoneNumber(phoneNumber);
+			setErrorPhoneNumber("");
+		},
+		[setPhoneNumber, setErrorPhoneNumber]
+	);
+
+	const _setOtpCode = useCallback(
+		(otpCode: string) => {
+			setOtpCode(otpCode);
+			setErrorOtpCode("");
+		},
+		[setOtpCode, setErrorOtpCode]
+	);
+
 	return useMemo(() => {
 		return {
 			phoneNumber,
-			setPhoneNumber,
+			setPhoneNumber: _setPhoneNumber,
 			otpCode,
-			setOtpCode,
+			setOtpCode: _setOtpCode,
 			loading,
 			getOtpCode,
 			valdiateOtpCode,
@@ -73,9 +100,9 @@ export const useOTP = () => {
 		};
 	}, [
 		phoneNumber,
-		setPhoneNumber,
+		_setPhoneNumber,
 		otpCode,
-		setOtpCode,
+		_setOtpCode,
 		loading,
 		getOtpCode,
 		valdiateOtpCode,

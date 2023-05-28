@@ -1,3 +1,5 @@
+import { OTP_LENGTH } from "../services/otp/otp.util";
+
 const en = {
 	aio: "AiO",
 	allInOne: "All in One",
@@ -16,8 +18,7 @@ const en = {
 	username: "user name",
 	password: "password",
 	loading: "loading...",
-	enter_your_phone_number_we_will_send_4_digits_verification_code:
-		"enter your phone number we will send 4 digits verification code",
+	enter_your_phone_number_we_will_send_x_digits_verification_code: `enter your phone number we will send ${OTP_LENGTH} digits verification code`,
 	phoneNumber: "phone number",
 	get_verification_code: "get verification code",
 	enter_the_code_sent_to: "enter the code sent to",

@@ -9,6 +9,7 @@ import { useLocalization } from "../../contexts/LocalizationContext";
 import { FC } from "react";
 import { StyleSheet, View } from "react-native";
 import { IEnTranslations } from "../../localization/en";
+import { OTP_LENGTH } from "../../services/otp/otp.util";
 
 interface Props {
 	onPressResendOtpCode: VoidFunction;
@@ -21,6 +22,10 @@ interface Props {
 	errorOtpCode: keyof IEnTranslations | "";
 }
 
+/**
+ * form for filling otp code, also re-requesting again otp code,
+ * or changing phoneNumber
+ */
 const OtpCodeForm: FC<Props> = (props) => {
 	const { t } = useLocalization();
 	const theme = useTheme();
@@ -37,18 +42,22 @@ const OtpCodeForm: FC<Props> = (props) => {
 					{props.phoneNumber}
 				</Button>
 			</View>
-			<TextInput
-				value={props.otpCode}
-				onChangeText={props.onChangeOtpCode}
-				mode={"outlined"}
-				keyboardType="number-pad"
-				returnKeyType="done"
-				placeholder={t("verification_code")}
-				error={!!props.errorOtpCode}
-			/>
-			<HelperText visible={!!props.errorOtpCode} type={"error"}>
-				{props.errorOtpCode ? t(props.errorOtpCode) : null}
-			</HelperText>
+			<View>
+				<TextInput
+					value={props.otpCode}
+					onChangeText={props.onChangeOtpCode}
+					mode={"outlined"}
+					keyboardType="number-pad"
+					returnKeyType="done"
+					placeholder={t("verification_code")}
+					error={!!props.errorOtpCode}
+					maxLength={OTP_LENGTH}
+					onSubmitEditing={props.onPressValidateOtpCode}
+				/>
+				<HelperText visible={!!props.errorOtpCode} type={"error"}>
+					{props.errorOtpCode ? t(props.errorOtpCode) : null}
+				</HelperText>
+			</View>
 			<Button
 				onPress={props.onPressResendOtpCode}
 				textColor={theme.colors.tertiary}

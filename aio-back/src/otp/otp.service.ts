@@ -14,10 +14,11 @@ export class OtpService {
     private userService: UserService,
   ) {}
 
-  async verify(createOtp: CreateOtp): Promise<void> {
+  async createOtp(createOtp: CreateOtp): Promise<void> {
     const { phoneNumber, channel } = createOtp;
     await this.userService.initialRegistration(phoneNumber, channel);
-    await this.twilioService.verify(phoneNumber, channel);
+    const verification = await this.twilioService.getOtp(phoneNumber, channel);
+    console.log('verification', verification);
   }
 
   async verifyCheck(verifyOtp: VerifyOtp) {
@@ -27,7 +28,7 @@ export class OtpService {
       otpCode,
     );
 
-    if (!verificationCheckInstance.status) return false;
+    if (!verificationCheckInstance.valid) return false;
 
     await this.userService.updateOtpStatus(phoneNumber, 'approved');
 

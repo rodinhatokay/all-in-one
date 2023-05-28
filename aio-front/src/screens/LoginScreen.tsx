@@ -7,6 +7,7 @@ import PhoneNumberForm from "../sections/login/PhoneNumberForm";
 import OtpCodeForm from "../sections/login/OtpCodeForm";
 import { useCallback, useState } from "react";
 import useOTP from "../hooks/useOTP";
+import { logError } from "../services/logger/loggerService";
 
 /**
  * Login screen
@@ -26,6 +27,7 @@ const LoginScreen = () => {
 		otpCode,
 		setOtpCode,
 		errorOtpCode,
+		errorPhoneNumber,
 	} = useOTP();
 
 	/**
@@ -35,8 +37,11 @@ const LoginScreen = () => {
 		try {
 			await getOtpCode();
 			setDisplayFormCode(true);
-		} catch (error) {}
-	}, [setDisplayFormCode]);
+		} catch (error) {
+			logError("error occured in onPressGetOtpCode", error);
+			throw error;
+		}
+	}, [setDisplayFormCode, getOtpCode]);
 
 	const displayPhoneNumberForm = useCallback(() => {
 		setDisplayFormCode(false);
@@ -44,10 +49,10 @@ const LoginScreen = () => {
 
 	const onPressValidateOtpCode = useCallback(async () => {
 		try {
-			console.error("need to implement this error");
 			const jwt = await valdiateOtpCode();
-			// validate if user is registered, if so, then login user
-			// otherwise navigate to register screen with token, and phoneNumber
+			console.log("jwt", jwt);
+			// TODO: if registered login user
+			// TODO: else navigate to register user with token and phoneNumber
 		} catch (error) {}
 	}, [valdiateOtpCode]);
 
@@ -77,7 +82,7 @@ const LoginScreen = () => {
 							onChangePhoneNumber={setPhoneNumber}
 							phoneNumber={phoneNumber}
 							onPressGetOtpCode={onPressGetOtpCode}
-							error={errorOtpCode}
+							error={errorPhoneNumber}
 						/>
 					) : (
 						<OtpCodeForm
