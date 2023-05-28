@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: backend.allinoneocean.com # change this to actual url
+    - host: allinoneocean.com # change this to actual url
       http:
         paths:
           - path: /api//?(.*)
@@ -31,7 +31,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "backend.allinoneocean.com"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "allinoneocean.com"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
