@@ -52,10 +52,10 @@ spec:
                   name: jwt-key
                   key: JWT_KEY
              - name: DATABASE_DB
-              valueFrom:
-                secretKeyRef:
-                  name: database-db
-                  key: DATABASE_DB
+               valueFrom:
+                 secretKeyRef:
+                   name: database-db
+                   key: DATABASE_DB
                   
       imagePullSecrets:
         - name: dockerreg
