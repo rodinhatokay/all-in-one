@@ -19,8 +19,8 @@ module.exports = {
 	},
 	plugins: ["react", "@typescript-eslint", "react-native"],
 	rules: {
-		indent: ["error", "tab"],
-		"linebreak-style": ["error", "windows"],
+		indent: "off",
+		"linebreak-style": "off",
 		quotes: ["error", "double"],
 		semi: ["error", "always"],
 	},
