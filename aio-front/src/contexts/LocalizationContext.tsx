@@ -40,7 +40,7 @@ interface LocalizationContextProps {
 }
 
 export const LocalizationContext = createContext<LocalizationContextProps>(
-	{} as LocalizationContextProps
+	{} as LocalizationContextProps,
 );
 
 export const LocalizationProvider: React.FC<{ children: ReactNode }> = ({

@@ -62,7 +62,7 @@ const RegisterScreen = () => {
 				return { ..._erros, firstName: false };
 			});
 		},
-		[setErrors, setFirstName]
+		[setErrors, setFirstName],
 	);
 
 	const onChangeLastName = useCallback(
@@ -72,7 +72,7 @@ const RegisterScreen = () => {
 				return { ..._erros, lastName: false };
 			});
 		},
-		[setErrors, setLastName]
+		[setErrors, setLastName],
 	);
 
 	const onPressTermsAndConditions = useCallback(
@@ -82,7 +82,7 @@ const RegisterScreen = () => {
 				return { ..._erros, TAC: false };
 			});
 		},
-		[setErrors, setTermsAccepted]
+		[setErrors, setTermsAccepted],
 	);
 
 	const register = () => {

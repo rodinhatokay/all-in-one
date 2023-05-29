@@ -20,7 +20,7 @@ const StarRating: React.FC<Props> = ({ rating, size }) => {
 				name={i <= rating ? "star" : "star-o"}
 				color={i <= rating ? "#CFB53B" : "#808080"}
 				size={size}
-			/>
+			/>,
 		);
 	}
 	return <View style={styles.container}>{stars}</View>;

@@ -1,7 +1,7 @@
 import {
 	DarkTheme as NavigationDarkTheme,
 	DefaultTheme as NavigationDefaultTheme,
-} from "@react-navigation/native"
+} from "@react-navigation/native";
 
 export const CombinedDefaultColor = {
 	...NavigationDefaultTheme.colors,
@@ -51,7 +51,7 @@ export const CombinedDefaultColor = {
 
 	// primary: '#3daccf',
 	// secondary: 'purple',
-}
+};
 
 export const CombinedDarkColor = {
 	...NavigationDarkTheme.colors,
@@ -98,4 +98,4 @@ export const CombinedDarkColor = {
 	lightGrey: "#F5F5F5",
 	lightBackground: "rgb(37, 35, 41)",
 	red: "rgb(186, 26, 26)",
-}
+};

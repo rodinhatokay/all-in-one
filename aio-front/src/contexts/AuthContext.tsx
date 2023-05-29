@@ -80,7 +80,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 			const { data: user } = await getCurrentUserApi(access_token);
 			setUser(user);
 		},
-		[setUser]
+		[setUser],
 	);
 
 	/**

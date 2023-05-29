@@ -3,7 +3,7 @@ import { User } from "./user.types";
 
 export const getCurrentUserApi = async (
 	token?: string | null,
-	signal?: AbortSignal
+	signal?: AbortSignal,
 ) => {
 	const headers = token
 		? {

@@ -23,8 +23,12 @@ const AuthRoutes: FC = () => {
 	const { t } = useLocalization();
 	return (
 		<BottomTabs.Navigator
-			screenOptions={{ headerShown: false, tabBarShowLabel: false,
-				tabBarHideOnKeyboard: true }}	>
+			screenOptions={{
+				headerShown: false,
+				tabBarShowLabel: false,
+				tabBarHideOnKeyboard: true,
+			}}
+		>
 			<BottomTabs.Screen
 				name="HomeStack"
 				options={{
@@ -41,7 +45,6 @@ const AuthRoutes: FC = () => {
 			<BottomTabs.Screen
 				name="FavoritesTab"
 				options={{
-
 					headerShown: true,
 					headerTitle: t("favorites"),
 
@@ -59,7 +62,6 @@ const AuthRoutes: FC = () => {
 			<BottomTabs.Screen
 				name="SettingsTab"
 				options={{
-
 					headerShown: true,
 					tabBarShowLabel: false,
 					title: "John Doe",
