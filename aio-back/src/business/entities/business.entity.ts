@@ -1,17 +1,10 @@
-import {
-	Column,
-	Entity,
-	JoinColumn,
-	ManyToMany,
-	PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Category } from '../../common/entities/category.entity';
-import { User } from '../../users/entities/user.entity';
-import { ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Category } from "../../common/entities/category.entity";
+import { ManyToOne } from "typeorm";
 
 @Entity()
 export class Business {
-	@PrimaryGeneratedColumn('uuid')
+	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
 	@Column({ unique: true })
@@ -24,7 +17,7 @@ export class Business {
 	categoryId: string;
 
 	@ManyToOne(() => Category)
-	@JoinColumn({ name: 'categoryId' })
+	@JoinColumn({ name: "categoryId" })
 	category: Category;
 
 	// @ManyToMany(() => User, (user) => user.favoriteBusinesses)
