@@ -46,11 +46,11 @@ spec:
                 secretKeyRef:
                   name: twilio-auth-token
                   key: TWILIO_AUTH_TOKEN
-            - name: JWT_TOKEN
+            - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
                   name: jwt-key
-                  key: JWT_TOKEN
+                  key: JWT_KEY
       imagePullSecrets:
         - name: dockerreg
 ---
