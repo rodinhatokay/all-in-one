@@ -8,29 +8,29 @@ const verifySid = 'VA63336fe4af56409b8db076b5337cca20';
 
 @Injectable()
 export class TwilioService {
-  private client: Twilio;
-  constructor() {
-    this.client = new Twilio(accountSid, authToken);
-  }
+	private client: Twilio;
+	constructor() {
+		this.client = new Twilio(accountSid, authToken);
+	}
 
-  async getOtp(phoneNumber: string, channel = 'sms') {
-    const verification = await this.client.verify.v2
-      .services(verifySid)
-      .verifications.create({ to: phoneNumber, channel: channel });
+	async getOtp(phoneNumber: string, channel = 'sms') {
+		const verification = await this.client.verify.v2
+			.services(verifySid)
+			.verifications.create({ to: phoneNumber, channel: channel });
 
-    console.log(`[${phoneNumber}]: ${verification.status}`);
-    return verification;
-  }
+		console.log(`[${phoneNumber}]: ${verification.status}`);
+		return verification;
+	}
 
-  async verifyCheck(
-    phoneNumber: string,
-    otpCode: string,
-  ): Promise<VerificationCheckInstance> {
-    const verificationCheck = await this.client.verify.v2
-      .services(verifySid)
-      .verificationChecks.create({ to: phoneNumber, code: otpCode });
-    console.log(`[${phoneNumber}]: ${verificationCheck.status}`);
+	async verifyCheck(
+		phoneNumber: string,
+		otpCode: string,
+	): Promise<VerificationCheckInstance> {
+		const verificationCheck = await this.client.verify.v2
+			.services(verifySid)
+			.verificationChecks.create({ to: phoneNumber, code: otpCode });
+		console.log(`[${phoneNumber}]: ${verificationCheck.status}`);
 
-    return verificationCheck;
-  }
+		return verificationCheck;
+	}
 }

@@ -8,40 +8,40 @@ import { Otp } from './entities/otp.entity';
 
 @Injectable()
 export class OtpService {
-  constructor(
-    private twilioService: TwilioService,
-    private jwtService: JwtService,
-    private userService: UserService,
-  ) {}
+	constructor(
+		private twilioService: TwilioService,
+		private jwtService: JwtService,
+		private userService: UserService,
+	) {}
 
-  async createOtp(createOtp: CreateOtp): Promise<void> {
-    const { phoneNumber, channel } = createOtp;
-    await this.userService.initialRegistration(phoneNumber, channel);
-    await this.twilioService.getOtp(phoneNumber, channel);
-  }
+	async createOtp(createOtp: CreateOtp): Promise<void> {
+		const { phoneNumber, channel } = createOtp;
+		await this.userService.initialRegistration(phoneNumber, channel);
+		await this.twilioService.getOtp(phoneNumber, channel);
+	}
 
-  async verifyCheck(verifyOtp: VerifyOtp) {
-    const { phoneNumber, otpCode } = verifyOtp;
-    const verificationCheckInstance = await this.twilioService.verifyCheck(
-      phoneNumber,
-      otpCode,
-    );
+	async verifyCheck(verifyOtp: VerifyOtp) {
+		const { phoneNumber, otpCode } = verifyOtp;
+		const verificationCheckInstance = await this.twilioService.verifyCheck(
+			phoneNumber,
+			otpCode,
+		);
 
-    if (!verificationCheckInstance.valid) return false;
+		if (!verificationCheckInstance.status) return false;
 
-    await this.userService.updateOtpStatus(phoneNumber, 'approved');
+		await this.userService.updateOtpStatus(phoneNumber, 'approved');
 
-    return {
-      access_token: this.jwtService.sign(
-        { verifyOtp },
-        {
-          secret: process.env.JWT_KEY,
-        },
-      ),
-    };
-  }
+		return {
+			access_token: this.jwtService.sign(
+				{ verifyOtp },
+				{
+					secret: process.env.JWT_KEY,
+				},
+			),
+		};
+	}
 
-  async getOtp(phoneNumber: string): Promise<Otp> {
-    return await this.userService.getOtp(phoneNumber);
-  }
+	async getOtp(phoneNumber: string): Promise<Otp> {
+		return await this.userService.getOtp(phoneNumber);
+	}
 }

@@ -13,41 +13,41 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { BusinessModule } from './business/business.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRootAsync({
-      useFactory: () => ({
-        type: 'postgres',
-        host: '127.0.0.1',
-        post: 5432,
-        username: 'postgres',
-        password: 'pass123',
-        database: 'postgres',
-        autoLoadEntities: true,
-        synchronize: true,
-      }),
-    }),
-    ConfigModule.forRoot({
-      validationSchema: Joi.object({
-        DATABASE_HOST: Joi.required(),
-        DATABASE_PORT: Joi.number().default(5432),
-        JWT_KEY: Joi.string().required(),
-        SESSION_KEY: Joi.string().required(),
-      }),
-      load: [appConfig],
-    }),
+	imports: [
+		TypeOrmModule.forRootAsync({
+			useFactory: () => ({
+				type: 'postgres',
+				host: '127.0.0.1',
+				post: 5432,
+				username: 'postgres',
+				password: 'pass123',
+				database: 'postgres',
+				autoLoadEntities: true,
+				synchronize: true,
+			}),
+		}),
+		ConfigModule.forRoot({
+			validationSchema: Joi.object({
+				DATABASE_HOST: Joi.required(),
+				DATABASE_PORT: Joi.number().default(5432),
+				JWT_KEY: Joi.string().required(),
+				SESSION_KEY: Joi.string().required(),
+			}),
+			load: [appConfig],
+		}),
 
-    CommonModule,
-    UsersModule,
-    AuthModule,
-    BusinessModule,
-  ],
-  controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
-  ],
+		CommonModule,
+		UsersModule,
+		AuthModule,
+		BusinessModule,
+	],
+	controllers: [AppController],
+	providers: [
+		AppService,
+		{
+			provide: APP_GUARD,
+			useClass: JwtAuthGuard,
+		},
+	],
 })
 export class AppModule {}

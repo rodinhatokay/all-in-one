@@ -10,41 +10,41 @@ import { ErrorMessages } from '../common/errors/errorMessage';
 @ApiTags('otp')
 @Controller('otp')
 export class OtpController {
-  constructor(private readonly otpService: OtpService) {}
+	constructor(private readonly otpService: OtpService) {}
 
-  @Post('create')
-  @Public()
-  @ApiResponse({
-    status: 200,
-    type: String,
-  })
-  async createOtp(@Body() createOtp: CreateOtp) {
-    try {
-      await this.otpService.createOtp(createOtp);
-    } catch (error) {
-      if (error.status === 400) {
-        throw new BadRequestException(ErrorMessages.InvalidPhoneNumber);
-      }
-    }
-  }
+	@Post('create')
+	@Public()
+	@ApiResponse({
+		status: 200,
+		type: String,
+	})
+	async createOtp(@Body() createOtp: CreateOtp) {
+		try {
+			await this.otpService.createOtp(createOtp);
+		} catch (error) {
+			if (error.status === 400) {
+				throw new BadRequestException(ErrorMessages.InvalidPhoneNumber);
+			}
+		}
+	}
 
-  @Post('verify')
-  @Public()
-  @ApiResponse({
-    status: 200,
-    type: JwtPayload,
-  })
-  async verifyOtp(@Body() verifyOtp: VerifyOtp) {
-    try {
-      const payload = await this.otpService.verifyCheck(verifyOtp);
-      if (!payload) {
-        throw new BadRequestException(ErrorMessages.invalidOtpCode);
-      }
-      return payload;
-    } catch (err) {
-      if (err.status === 404 || err.status === 400) {
-        throw new BadRequestException(ErrorMessages.invalidOtpCode);
-      }
-    }
-  }
+	@Post('verify')
+	@Public()
+	@ApiResponse({
+		status: 200,
+		type: JwtPayload,
+	})
+	async verifyOtp(@Body() verifyOtp: VerifyOtp) {
+		try {
+			const payload = await this.otpService.verifyCheck(verifyOtp);
+			if (!payload) {
+				throw new BadRequestException(ErrorMessages.invalidOtpCode);
+			}
+			return payload;
+		} catch (err) {
+			if (err.status === 404 || err.status === 400) {
+				throw new BadRequestException(ErrorMessages.invalidOtpCode);
+			}
+		}
+	}
 }

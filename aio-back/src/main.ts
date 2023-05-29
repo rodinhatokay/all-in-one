@@ -12,48 +12,49 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 // }
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
-      transformOptions: {
-        enableImplicitConversion: true,
-      },
-    }),
-  );
-  // app.use(
-  //   session({
-  //     secret: process.env.SESSION_KEY,
-  //     resave: false,
-  //     saveUninitialized: false,
-  //   }),
-  // );
+	const app = await NestFactory.create<NestExpressApplication>(AppModule);
+	app.useGlobalPipes(
+		new ValidationPipe({
+			whitelist: true,
+			forbidNonWhitelisted: true,
+			transform: true,
+			transformOptions: {
+				enableImplicitConversion: true,
+			},
+		}),
+	);
 
-  app.set('trust proxy', true);
+	// app.use(
+	//   session({
+	//     secret: process.env.SESSION_KEY,
+	//     resave: false,
+	//     saveUninitialized: false,
+	//   }),
+	// );
 
-  app.enableCors({
-    origin: ['http://localhost:5173', 'www.logscount.com'],
-  });
+	app.set('trust proxy', true);
 
-  // app.useGlobalFilters(new HttpExceptionFilter());
-  // app.useGlobalInterceptors(
-  //   new WrapResponseInterceptor(),
-  //   new TimeoutInterceptor(),
-  // );
-  // app.useGlobalGuards(new ApiKeyGuard());
-  app.setGlobalPrefix('api');
+	app.enableCors({
+		origin: ['http://localhost:5173', 'www.logscount.com'],
+	});
 
-  const options = new DocumentBuilder()
-    .setTitle('aio-back')
-    .setDescription('activity log history poc appliction')
-    .setVersion('1.0')
-    .build();
-  const document = SwaggerModule.createDocument(app, options);
+	// app.useGlobalFilters(new HttpExceptionFilter());
+	// app.useGlobalInterceptors(
+	//   new WrapResponseInterceptor(),
+	//   new TimeoutInterceptor(),
+	// );
+	// app.useGlobalGuards(new ApiKeyGuard());
+	app.setGlobalPrefix('api');
 
-  SwaggerModule.setup('api', app, document);
+	const options = new DocumentBuilder()
+		.setTitle('aio-back')
+		.setDescription('activity log history poc appliction')
+		.setVersion('1.0')
+		.build();
+	const document = SwaggerModule.createDocument(app, options);
 
-  await app.listen(3001);
+	SwaggerModule.setup('api', app, document);
+
+	await app.listen(3001);
 }
 bootstrap();

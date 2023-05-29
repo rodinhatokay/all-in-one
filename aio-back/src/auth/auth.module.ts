@@ -10,16 +10,16 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { OtpModule } from '../otp/otp.module';
 
 @Module({
-  imports: [
-    JwtModule.register({
-      secret: process.env.JWT_KEY,
-      signOptions: { expiresIn: '60d' },
-    }),
-    UsersModule,
-    PassportModule,
-    OtpModule,
-  ],
-  providers: [JwtStrategy, AuthService, OtpModule, LocalStrategy],
-  controllers: [AuthController],
+	imports: [
+		JwtModule.register({
+			secret: process.env.JWT_KEY,
+			signOptions: { expiresIn: '60d' },
+		}),
+		UsersModule,
+		PassportModule,
+		OtpModule,
+	],
+	providers: [JwtStrategy, AuthService, OtpModule, LocalStrategy],
+	controllers: [AuthController],
 })
 export class AuthModule {}
