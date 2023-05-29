@@ -25,7 +25,8 @@ import { BusinessModule } from "./business/business.module";
 				password: configService.get("database.pass", "pass123"),
 				database: configService.get("database.db", "postgres"),
 				ssl: {
-					cert: process.env.CA_CERT,
+					ca: process.env.CA_CERT,
+					rejectUnauthorized: true,
 				},
 				// autoLoadEntities: true,
 				// synchronize: true,
