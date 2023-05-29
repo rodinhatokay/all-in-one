@@ -46,7 +46,7 @@ const CombinedDarkTheme = {
 export type DefaultCombinedTheme = typeof CombinedDefaultTheme;
 
 export const ThemeContext = React.createContext<ThemeContext>(
-	{} as ThemeContext
+	{} as ThemeContext,
 );
 
 export const useTheme = () => useContext(ThemeContext);
@@ -61,7 +61,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 	const [isThemeDark, setIsThemeDark] = useState(colorSchemeDevice === "dark");
 
 	const [theme, setTheme] = useState(
-		isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme
+		isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme,
 	);
 	const [isThemeReady, setIsThemeReady] = useState(false);
 	const [mode, setMode] = useState<ThemeMode>("deviceTheme");
@@ -81,7 +81,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 			setIsThemeDark(mode === "dark");
 			setTheme(mode === "dark" ? CombinedDarkTheme : CombinedDefaultTheme);
 		},
-		[setTheme, setIsThemeDark, colorSchemeDevice]
+		[setTheme, setIsThemeDark, colorSchemeDevice],
 	);
 
 	useEffect(() => {
@@ -126,7 +126,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 			isThemeReady,
 			mode,
 		}),
-		[changeTheme, isThemeDark, theme, isThemeReady]
+		[changeTheme, isThemeDark, theme, isThemeReady],
 	);
 
 	return (

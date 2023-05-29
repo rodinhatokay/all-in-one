@@ -4,17 +4,17 @@ import { OtpService } from './otp.service';
 jest.mock('./otp.service');
 
 describe('OtpService', () => {
-  let service: OtpService;
+	let service: OtpService;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [OtpService],
-    }).compile();
+	beforeEach(async () => {
+		const module: TestingModule = await Test.createTestingModule({
+			providers: [OtpService],
+		}).compile();
 
-    service = module.get<OtpService>(OtpService);
-  });
+		service = module.get<OtpService>(OtpService);
+	});
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
+	it('should be defined', () => {
+		expect(service).toBeDefined();
+	});
 });

@@ -1,0 +1,37 @@
+name: Lint Check - Back End
+
+on:
+  pull_request:
+    paths:
+      - "aio-back/**"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.29.3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+          cache-dependency-path: "./aio-back/pnpm-lock.yaml"
+
+      - name: Install dependencies
+        run: |
+          cd aio-back
+          pnpm install
+
+      - name: Run Lint
+        run: |
+          cd aio-back
+          pnpm run lint

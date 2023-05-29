@@ -8,9 +8,9 @@ import { TwilioService } from './twilio.service';
 import { UsersModule } from '../users/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Otp]), UsersModule],
-  providers: [OtpService, TwilioService, JwtService],
-  exports: [OtpService, TwilioService],
-  controllers: [OtpController],
+	imports: [TypeOrmModule.forFeature([Otp]), UsersModule],
+	providers: [OtpService, TwilioService, JwtService],
+	exports: [OtpService, TwilioService],
+	controllers: [OtpController],
 })
 export class OtpModule {}

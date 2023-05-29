@@ -9,25 +9,25 @@ import { JwtPayload } from '../auth/dto/jwt.dto';
 @ApiTags('otp')
 @Controller('otp')
 export class OtpController {
-  constructor(private readonly otpService: OtpService) {}
+	constructor(private readonly otpService: OtpService) {}
 
-  @Post('create')
-  @Public()
-  @ApiResponse({
-    status: 200,
-    type: String,
-  })
-  async createOtp(@Body() createOtp: CreateOtp) {
-    await this.otpService.verify(createOtp);
-  }
+	@Post('create')
+	@Public()
+	@ApiResponse({
+		status: 200,
+		type: String,
+	})
+	async createOtp(@Body() createOtp: CreateOtp) {
+		await this.otpService.verify(createOtp);
+	}
 
-  @Post('verify')
-  @Public()
-  @ApiResponse({
-    status: 200,
-    type: JwtPayload,
-  })
-  async verifyOtp(@Body() verifyOtp: VerifyOtp) {
-    return await this.otpService.verifyCheck(verifyOtp);
-  }
+	@Post('verify')
+	@Public()
+	@ApiResponse({
+		status: 200,
+		type: JwtPayload,
+	})
+	async verifyOtp(@Body() verifyOtp: VerifyOtp) {
+		return await this.otpService.verifyCheck(verifyOtp);
+	}
 }

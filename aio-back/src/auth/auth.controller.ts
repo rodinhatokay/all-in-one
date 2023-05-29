@@ -8,15 +8,15 @@ import { Register } from '../otp/dto/register.dto';
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+	constructor(private readonly authService: AuthService) {}
 
-  @Post('register')
-  @Public()
-  @ApiResponse({
-    status: 200,
-    type: JwtPayload,
-  })
-  async register(@Body() register: Register) {
-    return await this.authService.register(register);
-  }
+	@Post('register')
+	@Public()
+	@ApiResponse({
+		status: 200,
+		type: JwtPayload,
+	})
+	async register(@Body() register: Register) {
+		return await this.authService.register(register);
+	}
 }

@@ -51,4 +51,6 @@ const LogoutDialog = forwardRef<DialogRef>((props, ref) => {
 	);
 });
 
+LogoutDialog.displayName = "logout dialog";
+
 export default LogoutDialog;

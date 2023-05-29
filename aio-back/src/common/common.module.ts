@@ -3,10 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggingMiddleware } from './middleware/logging/logging.middleware';
 
 @Module({
-  imports: [ConfigModule],
+	imports: [ConfigModule],
 })
 export class CommonModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggingMiddleware).forRoutes('*');
-  }
+	configure(consumer: MiddlewareConsumer) {
+		consumer.apply(LoggingMiddleware).forRoutes('*');
+	}
 }
