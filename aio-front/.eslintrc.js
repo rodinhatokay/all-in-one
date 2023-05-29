@@ -23,5 +23,6 @@ module.exports = {
 		"linebreak-style": "off",
 		quotes: ["error", "double"],
 		semi: ["error", "always"],
+		"react/prop-types": "off",
 	},
 };
