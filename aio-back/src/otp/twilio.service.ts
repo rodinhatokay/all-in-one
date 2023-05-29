@@ -13,12 +13,13 @@ export class TwilioService {
 		this.client = new Twilio(accountSid, authToken);
 	}
 
-	async verify(phoneNumber: string, channel = 'sms'): Promise<void> {
+	async getOtp(phoneNumber: string, channel = 'sms') {
 		const verification = await this.client.verify.v2
 			.services(verifySid)
 			.verifications.create({ to: phoneNumber, channel: channel });
 
 		console.log(`[${phoneNumber}]: ${verification.status}`);
+		return verification;
 	}
 
 	async verifyCheck(

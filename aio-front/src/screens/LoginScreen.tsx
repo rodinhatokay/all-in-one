@@ -4,8 +4,10 @@ import { useLocalization } from "../contexts/LocalizationContext";
 import { Image } from "expo-image";
 import LocaleSelector from "../components/LocaleSelector/LocaleSelector";
 import PhoneNumberForm from "../sections/login/PhoneNumberForm";
-import CodeForm from "../sections/login/CodeForm";
-import { useState } from "react";
+import OtpCodeForm from "../sections/login/OtpCodeForm";
+import { useCallback, useState } from "react";
+import useOTP from "../hooks/useOTP";
+import { logError } from "../services/logger/loggerService";
 
 /**
  * Login screen
@@ -15,6 +17,43 @@ const LoginScreen = () => {
 	const theme = useTheme();
 
 	const [displayFormCode, setDisplayFormCode] = useState(false);
+
+	const {
+		loading,
+		phoneNumber,
+		setPhoneNumber,
+		getOtpCode,
+		valdiateOtpCode,
+		otpCode,
+		setOtpCode,
+		errorOtpCode,
+		errorPhoneNumber,
+	} = useOTP();
+
+	const onPressGetOtpCode = useCallback(async () => {
+		try {
+			await getOtpCode();
+			setDisplayFormCode(true);
+		} catch (error) {
+			logError("error occured in onPressGetOtpCode", error);
+			throw error;
+		}
+	}, [setDisplayFormCode, getOtpCode]);
+
+	const displayPhoneNumberForm = useCallback(() => {
+		setDisplayFormCode(false);
+	}, []);
+
+	const onPressValidateOtpCode = useCallback(async () => {
+		try {
+			const jwt = await valdiateOtpCode();
+			console.log("jwt", jwt);
+			// TODO: if registered login user
+			// TODO: else navigate to register user with token and phoneNumber
+		} catch (error) {
+			// TODO: implement error
+		}
+	}, [valdiateOtpCode]);
 
 	return (
 		<View style={styles.main}>
@@ -26,8 +65,8 @@ const LoginScreen = () => {
 				contentContainerStyle={styles.scroll}
 				style={styles.main}
 			>
-				<Text style={styles.header}>AiO</Text>
-				<Text style={styles.subHeader}>All in One</Text>
+				<Text style={styles.header}>{t("aio")}</Text>
+				<Text style={styles.subHeader}>{t("allInOne")}</Text>
 				<Image
 					source={require("../../assets/images/logo.png")}
 					style={[styles.logo, { tintColor: theme.colors.primary }]}
@@ -37,12 +76,23 @@ const LoginScreen = () => {
 
 				<View style={styles.contentContainer}>
 					{!displayFormCode ? (
-						<PhoneNumberForm onPress={() => setDisplayFormCode(true)} />
+						<PhoneNumberForm
+							loading={loading}
+							onChangePhoneNumber={setPhoneNumber}
+							phoneNumber={phoneNumber}
+							onPressGetOtpCode={onPressGetOtpCode}
+							error={errorPhoneNumber}
+						/>
 					) : (
-						<CodeForm
-							onPress={() => {
-								throw new Error("need to implement");
-							}}
+						<OtpCodeForm
+							loading={loading}
+							otpCode={otpCode}
+							onPressPhoneNumber={displayPhoneNumberForm}
+							onChangeOtpCode={setOtpCode}
+							onPressResendOtpCode={getOtpCode}
+							onPressValidateOtpCode={onPressValidateOtpCode}
+							phoneNumber={phoneNumber}
+							errorOtpCode={errorOtpCode}
 						/>
 					)}
 				</View>

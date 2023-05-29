@@ -2,10 +2,11 @@ import Axios from "axios";
 import * as SecureStore from "expo-secure-store";
 const KEY_STORE_TOKEN = "StoreTokenAPI";
 
-const baseUrlApi = "http://localhost:3010/api";
+const baseUrlApi = "http://192.168.1.107:3001/api"; // temporary local ip will fix later
 
 const api = Axios.create({
 	baseURL: baseUrlApi,
+	timeout: 30000, // 30 seconds
 	headers: {
 		Accept: "application/json",
 		"Content-Type": "application/json",
