@@ -7,14 +7,14 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: www.ticketing-app-rodin.site # change this to actual url
+    - host: allinoneocean.com # change this to actual url
       http:
         paths:
           - path: /api//?(.*)
             pathType: Prefix
             backend:
               service:
-                name: backend-srv 
+                name: aio-backend
                 port:
                   number: 3001
           # add later here the client link
@@ -31,7 +31,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "www.ticketing-app-rodin.site"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "allinoneocean.com"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
