@@ -50,7 +50,9 @@ const LoginScreen = () => {
 			console.log("jwt", jwt);
 			// TODO: if registered login user
 			// TODO: else navigate to register user with token and phoneNumber
-		} catch (error) {}
+		} catch (error) {
+			// TODO: implement error
+		}
 	}, [valdiateOtpCode]);
 
 	return (
