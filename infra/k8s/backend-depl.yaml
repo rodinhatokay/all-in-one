@@ -21,7 +21,36 @@ spec:
                 secretKeyRef:
                   name: databasehost
                   key: DATABASE_HOST
-            - name: USer
+            - name: DATABASE_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: database-port
+                  key: DATABASE_PORT
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: database-user
+                  key: DATABASE_USER
+            - name: DATABASE_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: database-pass
+                  key: DATABASE_PASS
+            - name: TWILIO_ACCOUNT_SID
+              valueFrom:
+                secretKeyRef:
+                  name: twilio-account-sid
+                  key: TWILIO_ACCOUNT_SID
+            - name: TWILIO_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: twilio-auth-token
+                  key: TWILIO_AUTH_TOKEN
+            - name: JWT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-key
+                  key: JWT_TOKEN
       imagePullSecrets:
         - name: dockerreg
 ---
