@@ -25,8 +25,12 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 		return [styles.card, { backgroundColor: "rgba(150, 150, 150, 0.12)" }];
 	}, [isThemeDark, theme]);
 
-	const handleCall = () => {};
-	const handleWhatsApp = () => {};
+	const handleCall = () => {
+		throw new Error("need to implement");
+	};
+	const handleWhatsApp = () => {
+		throw new Error("need to implement");
+	};
 
 	const handleSaveContact = () => {
 		// logic to save contact
@@ -55,7 +59,12 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 							<Title numberOfLines={2} style={styles.name}>
 								{name}
 							</Title>
-							<FavoriteButton onPress={() => {}} isFavorite={isFavorite} />
+							<FavoriteButton
+								onPress={() => {
+									throw new Error("need to implement");
+								}}
+								isFavorite={isFavorite}
+							/>
 						</View>
 						<Paragraph style={styles.noMarginVertical}>
 							<StarRating rating={rating} />

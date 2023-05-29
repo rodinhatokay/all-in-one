@@ -39,7 +39,11 @@ const LoginScreen = () => {
 					{!displayFormCode ? (
 						<PhoneNumberForm onPress={() => setDisplayFormCode(true)} />
 					) : (
-						<CodeForm onPress={() => {}} />
+						<CodeForm
+							onPress={() => {
+								throw new Error("need to implement");
+							}}
+						/>
 					)}
 				</View>
 			</ScrollView>
