@@ -4,15 +4,12 @@ import {
 	PrimaryGeneratedColumn,
 	OneToOne,
 	JoinColumn,
-	ManyToMany,
-	JoinTable,
-} from 'typeorm';
-import { Otp } from '../../otp/entities/otp.entity';
-import { Business } from '../../business/entities/business.entity';
+} from "typeorm";
+import { Otp } from "../../otp/entities/otp.entity";
 
 @Entity()
 export class User {
-	@PrimaryGeneratedColumn('uuid')
+	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
 	@Column({ nullable: true })
