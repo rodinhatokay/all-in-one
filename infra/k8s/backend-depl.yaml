@@ -21,6 +21,7 @@ spec:
                 secretKeyRef:
                   name: databasehost
                   key: DATABASE_HOST
+            - name: USer
       imagePullSecrets:
         - name: dockerreg
 ---
