@@ -18,5 +18,5 @@ export enum ErrorMessages {
   ProjectDoesntExist = 'project doesnt exist',
   NoActivitiesFound = 'no activities found',
   InvalidPhoneNumber = 'Invalid Phone Number',
-  invalidOtpCode = 'invalid otp code',
+  invalidOtpCode = 'Invalid otp code',
 }
