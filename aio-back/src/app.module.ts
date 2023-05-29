@@ -12,8 +12,6 @@ import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
 import { BusinessModule } from "./business/business.module";
 
-console.log("process.env.DATABASE_HOSE", process.env.DATABASE_HOST);
-
 @Module({
 	imports: [
 		TypeOrmModule.forRootAsync({
