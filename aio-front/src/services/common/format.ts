@@ -3,6 +3,6 @@
  * @param phoneNumber
  * @returns
  */
-export const fPhoneNumberToGlobal = (phoneNumber: string) => {
+export const formatPhoneNumberToGlobal = (phoneNumber: string) => {
 	return `+972${phoneNumber.slice(1)}`;
 };

@@ -20,7 +20,7 @@ const PhoneNumberForm: FC<Props> = (props) => {
 	return (
 		<>
 			<Text style={styles.text}>
-				{t("enter_your_phone_number_we_will_send_x_digits_verification_code")}
+				{t("enterYourPhoneNumberWeWillSendXDigitsVerificationCode")}
 			</Text>
 			<View>
 				<TextInput
@@ -44,7 +44,7 @@ const PhoneNumberForm: FC<Props> = (props) => {
 				style={styles.btn}
 				loading={props.loading}
 			>
-				{t("get_verification_code")}
+				{t("getVerificationCode")}
 			</Button>
 		</>
 	);

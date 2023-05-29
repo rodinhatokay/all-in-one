@@ -17,8 +17,7 @@ export class OtpService {
   async createOtp(createOtp: CreateOtp): Promise<void> {
     const { phoneNumber, channel } = createOtp;
     await this.userService.initialRegistration(phoneNumber, channel);
-    const verification = await this.twilioService.getOtp(phoneNumber, channel);
-    console.log('verification', verification);
+    await this.twilioService.getOtp(phoneNumber, channel);
   }
 
   async verifyCheck(verifyOtp: VerifyOtp) {

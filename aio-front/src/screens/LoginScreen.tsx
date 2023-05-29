@@ -30,9 +30,6 @@ const LoginScreen = () => {
 		errorPhoneNumber,
 	} = useOTP();
 
-	/**
-	 * requests otp and then sets display state to otp code form
-	 */
 	const onPressGetOtpCode = useCallback(async () => {
 		try {
 			await getOtpCode();

@@ -32,7 +32,7 @@ const OtpCodeForm: FC<Props> = (props) => {
 	return (
 		<>
 			<View style={styles.headerContainer}>
-				<Text style={styles.text}>{t("enter_the_code_sent_to")}</Text>
+				<Text style={styles.text}>{t("enterTheCodeSentTo")}</Text>
 				<Button
 					mode={"text"}
 					contentStyle={styles.phonNumberBtnContainer}
@@ -49,7 +49,7 @@ const OtpCodeForm: FC<Props> = (props) => {
 					mode={"outlined"}
 					keyboardType="number-pad"
 					returnKeyType="done"
-					placeholder={t("verification_code")}
+					placeholder={t("verificationCode")}
 					error={!!props.errorOtpCode}
 					maxLength={OTP_LENGTH}
 					onSubmitEditing={props.onPressValidateOtpCode}
@@ -63,14 +63,14 @@ const OtpCodeForm: FC<Props> = (props) => {
 				textColor={theme.colors.tertiary}
 				labelStyle={styles.labelResendOTP}
 			>
-				{t("didnt_receive_otp")}
+				{t("didntReceiveOtp")}
 			</Button>
 			<Button
 				loading={props.loading}
 				mode={"contained"}
 				onPress={props.onPressValidateOtpCode}
 			>
-				{t("verify_and_continue")}
+				{t("verifyAndContinue")}
 			</Button>
 		</>
 	);

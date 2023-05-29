@@ -3,7 +3,7 @@ import { generateOtpApi, verifyOtpCodeApi } from "../services/otp/otpApi";
 import { logError } from "../services/logger/loggerService";
 import { validateOTP, validatePhoneNumber } from "../services/common/validate";
 import { IEnTranslations } from "../localization/en";
-import { fPhoneNumberToGlobal } from "../services/common/format";
+import { formatPhoneNumberToGlobal } from "../services/common/format";
 import axios from "axios";
 
 /**
@@ -27,7 +27,7 @@ export const useOTP = () => {
 				throw new Error("invalidPhoneNumber");
 			}
 			setLoading(true);
-			await generateOtpApi(fPhoneNumberToGlobal(phoneNumber));
+			await generateOtpApi(formatPhoneNumberToGlobal(phoneNumber));
 		} catch (err) {
 			logError("error onPressGetotp", err);
 			if (axios.isAxiosError(err) && err.response?.status === 400) {
@@ -55,7 +55,7 @@ export const useOTP = () => {
 			setLoading(true);
 			const responseVerification = await verifyOtpCodeApi({
 				otpCode,
-				phoneNumber: fPhoneNumberToGlobal(phoneNumber),
+				phoneNumber: formatPhoneNumberToGlobal(phoneNumber),
 			});
 			return responseVerification.data;
 		} catch (err) {
