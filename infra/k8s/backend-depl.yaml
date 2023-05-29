@@ -6,7 +6,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend 
+      app: backend
   template:
     metadata:
       labels:
@@ -15,6 +15,12 @@ spec:
       containers:
         - name: backend
           image: allinoneocean/allinone
+          env:
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: databasehost
+                  key: DATABASE_HOST
       imagePullSecrets:
         - name: dockerreg
 ---
