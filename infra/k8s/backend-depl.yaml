@@ -16,10 +16,10 @@ spec:
         - name: backend
           image: allinoneocean/allinone
           volumeMounts:
-            - name: secret-volume
+            - name: db-cert-volume
               mountPath: "/etc/ssl/certs" # the directory where the .crt file will be placed
           volumes:
-            - name: secret-volume
+            - name: db-cert-volume
               secret:
                 secretName: db-cert # the name of the Secret you created earlier
           env:
