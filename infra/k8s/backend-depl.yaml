@@ -18,10 +18,6 @@ spec:
           volumeMounts:
             - name: db-cert-volume
               mountPath: "/etc/ssl/certs" # the directory where the .crt file will be placed
-          volumes:
-            - name: db-cert-volume
-              secret:
-                secretName: db-cert # the name of the Secret you created earlier
           env:
             - name: DATABASE_HOST
               valueFrom:
@@ -63,7 +59,10 @@ spec:
                 secretKeyRef:
                   name: database-db
                   key: DATABASE_DB
-
+      volumes: # Moved volumes to the Pod level
+        - name: db-cert-volume
+          secret:
+            secretName: db-cert # the name of the Secret you created earlier
       imagePullSecrets:
         - name: dockerreg
 ---
