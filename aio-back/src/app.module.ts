@@ -11,26 +11,26 @@ import { AuthModule } from "./auth/auth.module";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
 import { BusinessModule } from "./business/business.module";
+import { readFileSync } from "fs";
 
 @Module({
 	imports: [
 		TypeOrmModule.forRootAsync({
 			imports: [ConfigModule],
 			inject: [ConfigService],
-			useFactory: async (configService: ConfigService) => ({
-				type: "postgres",
-				host: configService.get("database.host", "127.0.0.1"),
-				port: configService.get("database.port", 5432),
-				username: configService.get("database.user", "postgres"),
-				password: configService.get("database.pass", "pass123"),
-				database: configService.get("database.db", "postgres"),
-				ssl: {
-					ca: process.env.CA_CERT,
-					rejectUnauthorized: true,
-				},
-				// autoLoadEntities: true,
-				// synchronize: true,
-			}),
+			useFactory: async (configService: ConfigService) => {
+				return {
+					type: "postgres",
+					host: configService.get("database.host", "127.0.0.1"),
+					port: configService.get("database.port", 5432),
+					username: configService.get("database.user", "postgres"),
+					password: configService.get("database.pass", "pass123"),
+					database: configService.get("database.db", "postgres"),
+					ssl: {
+						ca: readFileSync("./ca-certificate.crt"),
+					},
+				};
+			},
 		}),
 		ConfigModule.forRoot({
 			validationSchema: Joi.object({
