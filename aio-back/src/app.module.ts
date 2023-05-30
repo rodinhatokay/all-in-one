@@ -27,7 +27,7 @@ import { readFileSync } from "fs";
 					password: configService.get("database.pass", "pass123"),
 					database: configService.get("database.db", "postgres"),
 					ssl: {
-						ca: readFileSync("./ca-certificate.crt"),
+						ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
 					},
 				};
 			},
