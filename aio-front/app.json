@@ -1,7 +1,7 @@
 {
 	"expo": {
 		"name": "aio-front",
-		"slug": "aio-front",
+		"slug": "all-in-one",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
@@ -34,8 +34,12 @@
 			"favicon": "./assets/images/favicon.png"
 		},
 		"extra": {
-			"supportsRTL": true
+			"supportsRTL": true,
+			"eas": {
+				"projectId": "bb5b5c67-fce9-4660-890d-4104d97ec36f"
+			}
 		},
-		"plugins": ["expo-localization"]
+		"plugins": ["expo-localization"],
+		"owner": "allinoneocean"
 	}
 }
