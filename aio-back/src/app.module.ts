@@ -12,6 +12,13 @@ import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
 import { BusinessModule } from "./business/business.module";
 import { readFileSync } from "fs";
+import { Business } from "./business/entities/business.entity";
+import { Category } from "./common/entities/category.entity";
+import { SubCategory } from "./common/entities/subCategory.entity";
+import { User } from "./users/entities/user.entity";
+import { Otp } from "./otp/entities/otp.entity";
+import { CreateCategoryTable1679074427751 } from "./migrations/CreateCategoryTable-1679074427751";
+import { AddCategories1679074427752 } from "./migrations/AddCategories-1679074427752";
 
 @Module({
 	imports: [
@@ -30,6 +37,8 @@ import { readFileSync } from "fs";
 						ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
 					},
 					migrationsRun: configService.get("database.migrationsRun", false),
+					entities: [Business, Category, SubCategory, User, Otp],
+					migrations: [CreateCategoryTable1679074427751, AddCategories1679074427752],
 				};
 			},
 		}),
