@@ -29,6 +29,7 @@ import { readFileSync } from "fs";
 					ssl: {
 						ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
 					},
+					migrationsRun: configService.get("database.migrationsRun", false),
 				};
 			},
 		}),
