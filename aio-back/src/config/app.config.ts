@@ -6,6 +6,7 @@ export default () => ({
 		user: process.env.DATABASE_USER,
 		pass: process.env.DATABASE_PASS,
 		db: process.env.DATABASE_DB,
+		migrationsRun: true
 	},
 	twilio: {
 		authToken: process.env.TWILIO_AUTH_TOKEN,
