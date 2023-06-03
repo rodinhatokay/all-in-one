@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { OtpService } from '../otp/otp.service';
-import { Register } from '../otp/dto/register.dto';
-import { UserService } from '../users/user.service';
-import { RegisterDto } from '../users/dto/register.dto';
+import { Injectable } from "@nestjs/common";
+import { OtpService } from "../otp/otp.service";
+import { Register } from "../otp/dto/register.dto";
+import { UserService } from "../users/user.service";
+import { RegisterDto } from "../users/dto/register.dto";
 
 @Injectable()
 export class AuthService {
@@ -19,4 +19,10 @@ export class AuthService {
 		const registerDto = { firstName, lastName, otp, terms } as RegisterDto;
 		await this.userService.fullRegistration(registerDto);
 	}
+
+	/**
+	 * generates token based on phone number
+	 * @param phoneNumber
+	 */
+	async genereateToken(phoneNumber: string) {}
 }

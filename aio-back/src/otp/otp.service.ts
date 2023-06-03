@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { VerifyOtp } from './dto/verifyOtp.dto';
-import { CreateOtp } from './dto/createOtp.dto';
-import { TwilioService } from './twilio.service';
-import { JwtService } from '@nestjs/jwt';
-import { UserService } from '../users/user.service';
-import { Otp } from './entities/otp.entity';
+import { Injectable } from "@nestjs/common";
+import { VerifyOtp } from "./dto/verifyOtp.dto";
+import { CreateOtp } from "./dto/createOtp.dto";
+import { TwilioService } from "./twilio.service";
+import { JwtService } from "@nestjs/jwt";
+import { UserService } from "../users/user.service";
+import { Otp } from "./entities/otp.entity";
 
 @Injectable()
 export class OtpService {
@@ -16,8 +16,8 @@ export class OtpService {
 
 	async createOtp(createOtp: CreateOtp): Promise<void> {
 		const { phoneNumber, channel } = createOtp;
-		await this.userService.initialRegistration(phoneNumber, channel);
 		await this.twilioService.getOtp(phoneNumber, channel);
+		await this.userService.initialRegistration(phoneNumber, channel);
 	}
 
 	async verifyCheck(verifyOtp: VerifyOtp) {
@@ -29,7 +29,7 @@ export class OtpService {
 
 		if (!verificationCheckInstance.status) return false;
 
-		await this.userService.updateOtpStatus(phoneNumber, 'approved');
+		await this.userService.updateOtpStatus(phoneNumber, "approved");
 
 		return {
 			access_token: this.jwtService.sign(

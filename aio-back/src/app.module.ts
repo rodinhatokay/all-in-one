@@ -33,12 +33,15 @@ import { AddCategories1679074427752 } from "./migrations/AddCategories-167907442
 					username: configService.get("database.user", "postgres"),
 					password: configService.get("database.pass", "pass123"),
 					database: configService.get("database.db", "postgres"),
-					ssl: {
-						ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
-					},
+					// ssl: {
+					// 	ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
+					// },
 					migrationsRun: configService.get("database.migrationsRun", false),
 					entities: [Business, Category, SubCategory, User, Otp],
-					migrations: [CreateCategoryTable1679074427751, AddCategories1679074427752],
+					migrations: [
+						CreateCategoryTable1679074427751,
+						AddCategories1679074427752,
+					],
 				};
 			},
 		}),

@@ -1,8 +1,8 @@
-import { ExtractJwt, Strategy } from 'passport-jwt';
-import { PassportStrategy } from '@nestjs/passport';
-import { Injectable } from '@nestjs/common';
-import { UserService } from '../../users/user.service';
-import { Request } from 'express';
+import { ExtractJwt, Strategy } from "passport-jwt";
+import { PassportStrategy } from "@nestjs/passport";
+import { Injectable } from "@nestjs/common";
+import { UserService } from "../../users/user.service";
+import { Request } from "express";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -27,7 +27,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		});
 	}
 
+	/**
+	 * on valid jwt token sets on request.user
+	 * as the returned type
+	 * you can throw error here e.g: throw new UnauthorizedException();
+	 * @param payload
+	 * @returns
+	 */
 	async validate(payload: { email: string; id: string }) {
+		// should return the content right away
+		//  instead of accessing to the db
 		const user = await this.usersService.findOne(payload.id);
 		const userWithoutPassword = { ...user, password: undefined };
 		return userWithoutPassword;
