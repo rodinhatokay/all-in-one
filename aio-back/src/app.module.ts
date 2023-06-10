@@ -19,29 +19,11 @@ import { User } from "./users/entities/user.entity";
 import { Otp } from "./otp/entities/otp.entity";
 import { CreateCategoryTable1679074427751 } from "./migrations/CreateCategoryTable-1679074427751";
 import { AddCategories1679074427752 } from "./migrations/AddCategories-1679074427752";
+import { AppDataSource } from '../typeorm-cli.config'
 
 @Module({
 	imports: [
-		TypeOrmModule.forRootAsync({
-			imports: [ConfigModule],
-			inject: [ConfigService],
-			useFactory: async (configService: ConfigService) => {
-				return {
-					type: "postgres",
-					host: configService.get("database.host", "127.0.0.1"),
-					port: configService.get("database.port", 5432),
-					username: configService.get("database.user", "postgres"),
-					password: configService.get("database.pass", "pass123"),
-					database: configService.get("database.db", "postgres"),
-					ssl: {
-						ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
-					},
-					migrationsRun: configService.get("database.migrationsRun", false),
-					entities: [Business, Category, SubCategory, User, Otp],
-					migrations: [CreateCategoryTable1679074427751, AddCategories1679074427752],
-				};
-			},
-		}),
+		TypeOrmModule.forRoot(AppDataSource.options),
 		ConfigModule.forRoot({
 			validationSchema: Joi.object({
 				DATABASE_HOST: Joi.required(),
