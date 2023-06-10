@@ -20,12 +20,12 @@
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
 		"//": "comment: -> adding 'pre' to the script will run that before here in e2e we run docker mock db and then run e2e test",
 		"generate:migrations": "npx typeorm migration:generate src/migrations/SchemaSync -d dist/typeorm-cli.config",
-		"run:migaration": "npx typeorm migration:run -d dist/typeorm-cli.config",
-		"typeorm-migaration": "npm run build && npm run generate:migrations && npm run run:migaration",
+		"run:migration": "npx typeorm migration:run -d dist/typeorm-cli.config",
+		"typeorm-migration": "npm run build && npm run generate:migrations && npm run run:migration",
 		"pretest:e2e": "docker-compose up -d test-db",
 		"test:e2e": "jest --config ./test/jest-e2e.json",
 		"posttest:e2e": "docker-compose stop test-db && docker-compose rm -f test-db",
-		"fast": "docker compose down && docker compose up -d && pnpm install && pnpm typeorm-migaration && pnpm dev"
+		"fast": "docker compose down && docker compose up -d && pnpm install && pnpm typeorm-migration && pnpm dev"
 	},
 	"dependencies": {
 		"@hapi/joi": "^17.1.1",
