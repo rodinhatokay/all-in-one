@@ -11,6 +11,7 @@ export class AddCategories1679074427752 implements MigrationInterface {
         ('Carpentry'),
         ('Stores'),
         ('Care and beauty')
+        ('random category')
     `);
 
 		await queryRunner.query(`
