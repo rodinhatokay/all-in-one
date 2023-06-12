@@ -6,6 +6,7 @@ import { SubCategory } from './src/common/entities/subCategory.entity';
 import { Business } from './src/business/entities/business.entity';
 import { User } from './src/users/entities/user.entity';
 import { Otp } from './src/otp/entities/otp.entity';
+import { readFileSync } from 'fs';
 
 export default new DataSource({
   type: 'postgres',
@@ -16,4 +17,7 @@ export default new DataSource({
   database: process.env.DATABASE_DB || 'postgres',
   entities: [Business, Category, SubCategory, User, Otp],
   migrations: [CreateCategoryTable1679074427751, AddCategories1679074427752],
+  ssl: {
+    ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
+  },
 });
