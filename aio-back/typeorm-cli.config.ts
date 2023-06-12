@@ -9,11 +9,11 @@ import { Otp } from './src/otp/entities/otp.entity';
 
 export default new DataSource({
   type: 'postgres',
-  host: '127.0.0.1',
-  port: 5432,
-  username: 'postgres',
-  password: 'pass123',
-  database: 'postgres',
+  host: process.env.DATABASE_HOST || '127.0.0.1',
+  port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
+  username: process.env.DATABASE_USER || 'postgres',
+  password: process.env.DATABASE_PASS || 'pass123',
+  database: process.env.DATABASE_DB || 'postgres',
   entities: [Business, Category, SubCategory, User, Otp],
   migrations: [CreateCategoryTable1679074427751, AddCategories1679074427752],
 });
