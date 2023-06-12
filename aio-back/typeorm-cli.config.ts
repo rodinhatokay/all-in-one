@@ -20,4 +20,5 @@ export default new DataSource({
   ssl: {
     ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
   },
+  migrationsRun: true
 });
