@@ -17,7 +17,7 @@ import { User } from "./users/entities/user.entity";
 import { Otp } from "./otp/entities/otp.entity";
 import { CreateCategoryTable1679074427751 } from "./migrations/CreateCategoryTable-1679074427751";
 import { AddCategories1679074427752 } from "./migrations/AddCategories-1679074427752";
-// import { readFileSync } from "fs";
+import { readFileSync } from "fs";
 import { BusinessModule } from "./business/business.module";
 
 @Module({
@@ -33,9 +33,9 @@ import { BusinessModule } from "./business/business.module";
 					username: configService.get("database.user", "postgres"),
 					password: configService.get("database.pass", "pass123"),
 					database: configService.get("database.db", "postgres"),
-					// ssl: {
-					// 	ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
-					// },
+					ssl: {
+						ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
+					},
 					migrationsRun: configService.get("database.migrationsRun", false),
 					entities: [Business, Category, SubCategory, User, Otp],
 					migrations: [

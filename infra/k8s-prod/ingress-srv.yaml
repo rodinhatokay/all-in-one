@@ -14,7 +14,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: aio-backend
+                name: backend-srv
                 port:
                   number: 3001
           # add later here the client link
