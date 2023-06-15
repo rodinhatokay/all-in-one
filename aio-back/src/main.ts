@@ -37,8 +37,10 @@ async function bootstrap() {
 	app.enableCors({
 		origin: [
 			"http://localhost:5173",
-			"wwww.allinoneocean.com",
+			"http://wwww.allinoneocean.com",
+			"http://allinoneocean.com",
 			"allinoneocean.com",
+			"wwww.allinoneocean.com",
 		],
 	});
 
