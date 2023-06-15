@@ -10,7 +10,7 @@ spec:
     - host: wwww.allinoneocean.com # change this to actual url
       http:
         paths:
-          - path: /api/?(.*)
+          - path: /api?(.*)
             pathType: Prefix
             backend:
               service:
