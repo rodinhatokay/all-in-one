@@ -31,6 +31,8 @@ metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "www.allinoneocean.com"
+    kubernetes.digitalocean.com/load-balancer-id: a67ac1781f393491e93061f8ae13ebfa
+    service.kubernetes.io/do-loadbalancer-disown: "true"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx
