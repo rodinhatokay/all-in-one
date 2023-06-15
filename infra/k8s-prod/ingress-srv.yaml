@@ -22,7 +22,7 @@ spec:
           #   pathType: Prefix
           #   backend:
           #     service:
-          #       name: client-srv
+          #       name: client-srvv
           #       port:
           #         number: 3000
 ---
