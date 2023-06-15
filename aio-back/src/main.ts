@@ -35,13 +35,7 @@ async function bootstrap() {
 	app.set("trust proxy", true);
 
 	app.enableCors({
-		origin: [
-			"http://localhost:5173",
-			"http://wwww.allinoneocean.com",
-			"http://allinoneocean.com",
-			"allinoneocean.com",
-			"wwww.allinoneocean.com",
-		],
+		origin: ["http://localhost:5173", "wwww.allinoneocean.com"],
 	});
 
 	// app.useGlobalFilters(new HttpExceptionFilter());
