@@ -31,7 +31,7 @@ export class OtpService {
 			throw ex;
 		}
 
-		if (!verificationCheckInstance.status) return false;
+		if (verificationCheckInstance.status !== 'approved') return false;
 
 		let user = null;
 
