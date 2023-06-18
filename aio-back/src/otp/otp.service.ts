@@ -59,7 +59,7 @@ export class OtpService {
 		}
 
 		return {
-			isUserRegistered: payload !== null,
+			isUserRegistered: payload.user?.id !== null,
 			access_token: this.jwtService.sign(payload, {
 				secret: process.env.JWT_KEY,
 			}),
