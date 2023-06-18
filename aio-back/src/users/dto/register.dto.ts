@@ -1,5 +1,4 @@
 import { IsBoolean, IsString } from 'class-validator';
-import { Otp } from '../../otp/entities/otp.entity';
 
 export class RegisterDto {
 	@IsString()
@@ -11,5 +10,6 @@ export class RegisterDto {
 	@IsBoolean()
 	terms: boolean;
 
-	otp: Otp;
+	@IsString()
+	phoneNumber: string;
 }

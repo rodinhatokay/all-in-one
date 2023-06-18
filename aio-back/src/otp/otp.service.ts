@@ -1,10 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { VerifyOtp } from './dto/verifyOtp.dto';
-import { CreateOtp } from './dto/createOtp.dto';
-import { TwilioService } from './twilio.service';
-import { JwtService } from '@nestjs/jwt';
-import { UserService } from '../users/user.service';
-import { Otp } from './entities/otp.entity';
+import { Injectable } from "@nestjs/common";
+import { VerifyOtp } from "./dto/verifyOtp.dto";
+import { CreateOtp } from "./dto/createOtp.dto";
+import { TwilioService } from "./twilio.service";
+import { JwtService } from "@nestjs/jwt";
+import { UserService } from "../users/user.service";
 
 @Injectable()
 export class OtpService {
@@ -16,32 +15,54 @@ export class OtpService {
 
 	async createOtp(createOtp: CreateOtp): Promise<void> {
 		const { phoneNumber, channel } = createOtp;
-		await this.userService.initialRegistration(phoneNumber, channel);
 		await this.twilioService.getOtp(phoneNumber, channel);
 	}
 
 	async verifyCheck(verifyOtp: VerifyOtp) {
 		const { phoneNumber, otpCode } = verifyOtp;
-		const verificationCheckInstance = await this.twilioService.verifyCheck(
-			phoneNumber,
-			otpCode,
-		);
+		let verificationCheckInstance;
+		try {
+			verificationCheckInstance = await this.twilioService.verifyCheck(
+				phoneNumber,
+				otpCode,
+			);
+		} catch (ex) {
+			console.log(ex);
+			throw ex;
+		}
 
 		if (!verificationCheckInstance.status) return false;
 
-		await this.userService.updateOtpStatus(phoneNumber, 'approved');
+		let user = null;
+
+		try {
+			user = await this.userService.findUserByPhoneNumber(phoneNumber);
+		} catch (ex) {
+			console.log(ex);
+		}
+
+		let payload = null;
+
+		if (user) {
+			payload = {
+				...payload,
+				user,
+			};
+		} else { 
+			payload = { 
+				...payload,
+				user: { 
+					id: null,
+					phoneNumber: phoneNumber
+				}
+			}
+		}
 
 		return {
-			access_token: this.jwtService.sign(
-				{ verifyOtp },
-				{
-					secret: process.env.JWT_KEY,
-				},
-			),
+			isUserRegistered: payload !== null,
+			access_token: this.jwtService.sign(payload, {
+				secret: process.env.JWT_KEY,
+			}),
 		};
-	}
-
-	async getOtp(phoneNumber: string): Promise<Otp> {
-		return await this.userService.getOtp(phoneNumber);
 	}
 }

@@ -2,10 +2,7 @@ import {
 	Column,
 	Entity,
 	PrimaryGeneratedColumn,
-	OneToOne,
-	JoinColumn,
 } from "typeorm";
-import { Otp } from "../../otp/entities/otp.entity";
 
 @Entity()
 export class User {
@@ -21,9 +18,11 @@ export class User {
 	@Column({ nullable: true })
 	terms: boolean;
 
-	@OneToOne(() => Otp)
-	@JoinColumn()
-	otp?: Otp;
+	@Column({ nullable: false })
+	phoneNumber?: string;
+
+	@Column({ nullable: true })
+	isFullyRegistered: boolean;
 
 	// @ManyToMany(() => Business)
 	// @JoinTable()

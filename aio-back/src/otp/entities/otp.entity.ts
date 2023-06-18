@@ -11,9 +11,6 @@ export class Otp {
 	id: string;
 
 	@Column()
-	phoneNumber: string;
-
-	@Column()
 	status: string;
 
 	@Column()

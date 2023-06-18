@@ -9,11 +9,11 @@ export class Register {
 	@IsNotEmpty()
 	firstName: string;
 
-	@IsBoolean()
-	@IsNotEmpty()
-	terms: boolean;
-
 	@IsString()
 	@IsNotEmpty()
 	lastName: string;
+
+	@IsBoolean()
+	@IsNotEmpty()
+	terms: boolean;
 }

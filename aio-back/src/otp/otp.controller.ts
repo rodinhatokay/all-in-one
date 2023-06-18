@@ -44,7 +44,8 @@ export class OtpController {
 		} catch (err) {
 			if (err.status === 404 || err.status === 400) {
 				throw new BadRequestException(ErrorMessages.invalidOtpCode);
-			}
+			} 
+			throw err;
 		}
 	}
 }
