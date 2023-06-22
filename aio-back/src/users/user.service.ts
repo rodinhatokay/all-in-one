@@ -43,11 +43,11 @@ export class UserService {
 			isFullyRegistered: true,
 		} as User;
 
-		await this.userRepository.save(newUser);
+		const user = await this.userRepository.save(newUser);
 		return {
 			isUserRegistered: true,
 			access_token: this.jwtService.sign(
-				newUser,
+				user,
 				{
 					secret: process.env.JWT_KEY,
 				},

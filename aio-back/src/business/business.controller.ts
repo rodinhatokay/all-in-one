@@ -6,14 +6,17 @@ import {
 	Param,
 	Post,
 	Put,
+	UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BusinessService } from './business.service';
 import { CreateBusiness } from './dto/createBusiness.dto';
 import { UpdateBusiness } from './dto/updateBusiness.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('business')
 @Controller('business')
+@UseGuards(JwtAuthGuard)
 export class BusinessController {
 	constructor(private readonly businessService: BusinessService) {}
 
@@ -23,8 +26,8 @@ export class BusinessController {
 	}
 
 	@Get()
-	findBusinessesWithCategoryNames() {
-		return this.businessService.findBusinessesWithCategoryNames();
+	findAll() {
+		return this.businessService.findAll();
 	}
 
 	@Post()

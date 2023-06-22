@@ -5,15 +5,12 @@ import { Business } from './entities/business.entity';
 import { CreateBusiness } from './dto/createBusiness.dto';
 import { ErrorMessages } from '../common/errors/errorMessage';
 import { UpdateBusiness } from './dto/updateBusiness.dto';
-import { Category } from '../common/entities/category.entity';
 
 @Injectable()
 export class BusinessService {
 	constructor(
 		@InjectRepository(Business)
 		private readonly businessRepository: Repository<Business>,
-		@InjectRepository(Category)
-		private readonly categoryRepository: Repository<Category>,
 	) {}
 
 	findOne(id: string) {
@@ -26,13 +23,13 @@ export class BusinessService {
 		return this.businessRepository.find();
 	}
 
-	async findBusinessesWithCategoryNames(): Promise<Business[]> {
-		return this.businessRepository
-			.createQueryBuilder('business')
-			.leftJoinAndSelect('business.category', 'category')
-			.select(['business', 'category.name'])
-			.getMany();
-	}
+	// async findBusinessesWithCategoryNames(): Promise<Business[]> {
+	// 	return this.businessRepository
+	// 		.createQueryBuilder('business')
+	// 		.leftJoinAndSelect('business.category', 'category')
+	// 		.select(['business', 'category.name'])
+	// 		.getMany();
+	// }
 
 	async create(createBusiness: CreateBusiness) {
 		const existingBusiness = await this.businessRepository.findOne({
@@ -42,17 +39,11 @@ export class BusinessService {
 		if (existingBusiness)
 			throw new BadRequestException(ErrorMessages.BusinessAlreadyExists);
 
-		const category = await this.categoryRepository.findOne({
-			where: { name: createBusiness.categoryName },
-		});
+		// const category = await this.categoryRepository.findOne({
+		// 	where: { name: createBusiness.categoryName },
+		// });
 
-		// create user and save
-		const user = this.businessRepository.create({
-			name: createBusiness.name,
-			phoneNumber: createBusiness.phoneNumber,
-			categoryId: category.id,
-		});
-
+		const user = this.businessRepository.create(createBusiness);
 		return await this.businessRepository.save(user);
 	}
 

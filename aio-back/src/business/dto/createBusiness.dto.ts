@@ -1,4 +1,13 @@
-import { IsString } from 'class-validator';
+import {
+	IsString,
+	IsBoolean,
+	IsArray,
+	ArrayMinSize,
+	ArrayMaxSize,
+	IsNotEmpty,
+} from "class-validator";
+import { Location } from "../../common/dto/location.dto";
+import { OpeningHours } from "../../common/dto/opening-hours.dto";
 
 export class CreateBusiness {
 	@IsString()
@@ -8,5 +17,19 @@ export class CreateBusiness {
 	phoneNumber: string;
 
 	@IsString()
-	categoryName: string;
+	logoPath: string;
+
+	@IsBoolean()
+	hasWhatsapp: boolean;
+
+	@IsString()
+	description: string;
+
+	@IsNotEmpty({ message: 'location is required' })
+	location: Location;
+
+	@IsArray()
+	@ArrayMinSize(7, { message: "Array must contain exactly 7 elements" })
+	@ArrayMaxSize(7, { message: "Array must contain exactly 7 elements" })
+	openingHours: OpeningHours[];
 }
