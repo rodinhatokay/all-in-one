@@ -13,4 +13,3 @@ import { OpeningHours } from "../common/entities/openingHours.entity";
 	controllers: [BusinessController],
 })
 export class BusinessModule {}
-
