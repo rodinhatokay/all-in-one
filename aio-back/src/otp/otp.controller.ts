@@ -1,18 +1,18 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Public } from '../common/decorators/public.decorator';
-import { VerifyOtp } from './dto/verifyOtp.dto';
-import { CreateOtp } from './dto/createOtp.dto';
-import { OtpService } from './otp.service';
-import { JwtPayload } from '../auth/dto/jwt.dto';
-import { ErrorMessages } from '../common/errors/errorMessage';
+import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
+import { ApiResponse, ApiTags } from "@nestjs/swagger";
+import { Public } from "../common/decorators/public.decorator";
+import { VerifyOtp } from "./dto/verifyOtp.dto";
+import { CreateOtp } from "./dto/createOtp.dto";
+import { OtpService } from "./otp.service";
+import { ErrorMessages } from "../common/errors/errorMessage";
+import { AccessTokenResponse } from "../auth/dto/resp/accessToken";
 
-@ApiTags('otp')
-@Controller('otp')
+@ApiTags("otp")
+@Controller("otp")
 export class OtpController {
 	constructor(private readonly otpService: OtpService) {}
 
-	@Post('create')
+	@Post("create")
 	@Public()
 	@ApiResponse({
 		status: 200,
@@ -28,11 +28,11 @@ export class OtpController {
 		}
 	}
 
-	@Post('verify')
+	@Post("verify")
 	@Public()
 	@ApiResponse({
 		status: 200,
-		type: JwtPayload,
+		type: AccessTokenResponse,
 	})
 	async verifyOtp(@Body() verifyOtp: VerifyOtp) {
 		try {
@@ -44,7 +44,7 @@ export class OtpController {
 		} catch (err) {
 			if (err.status === 404 || err.status === 400) {
 				throw new BadRequestException(ErrorMessages.invalidOtpCode);
-			} 
+			}
 			throw err;
 		}
 	}

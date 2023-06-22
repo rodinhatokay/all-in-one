@@ -1,20 +1,22 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AuthService } from './auth.service';
-import { Public } from '../common/decorators/public.decorator';
-import { JwtPayload } from './dto/jwt.dto';
-import { Register } from '../otp/dto/register.dto';
+import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { ApiResponse, ApiTags } from "@nestjs/swagger";
+import { AuthService } from "./auth.service";
+import { Public } from "../common/decorators/public.decorator";
+import { Register } from "../otp/dto/register.dto";
+import { AccessTokenResponse } from "./dto/resp/accessToken";
+import { JwtAuthToRegisterGuard } from "./guards/jwt-auth-to-register.guard";
 
-@ApiTags('auth')
-@Controller('auth')
+@ApiTags("auth")
+@Controller("auth")
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
-	@Post('register')
+	@Post("register")
 	@Public()
+	@UseGuards(JwtAuthToRegisterGuard) // anyone authed with phone number can register
 	@ApiResponse({
 		status: 200,
-		type: JwtPayload,
+		type: AccessTokenResponse,
 	})
 	async register(@Body() register: Register) {
 		return await this.authService.register(register);
