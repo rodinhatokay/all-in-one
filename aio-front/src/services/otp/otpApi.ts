@@ -1,4 +1,5 @@
 import api from "../api/api";
+import { JwtPayload } from "../auth/types";
 
 /**
  * sends request to generate otp to server
@@ -8,7 +9,7 @@ import api from "../api/api";
  */
 export const generateOtpApi = async (
 	phoneNumber: string,
-	signal?: AbortSignal
+	signal?: AbortSignal,
 ) => {
 	return await api.post(
 		"otp/create",
@@ -18,7 +19,7 @@ export const generateOtpApi = async (
 		},
 		{
 			signal,
-		}
+		},
 	);
 };
 
@@ -30,7 +31,7 @@ export const generateOtpApi = async (
  */
 export const verifyOtpCodeApi = async (
 	data: { otpCode: string; phoneNumber: string },
-	signal?: AbortSignal
+	signal?: AbortSignal,
 ) => {
 	return await api.post<JwtPayload>("otp/verify", data, {
 		signal,

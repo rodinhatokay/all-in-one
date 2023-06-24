@@ -1,9 +1,9 @@
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { PassportStrategy } from "@nestjs/passport";
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { UserService } from "../../users/user.service";
 import { Request } from "express";
-import { User } from "../dto/jwt.dto";
+import { JwtPayload } from "../types/jwt";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -21,11 +21,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		});
 	}
 
-	async validate(payload: User) {
-		const { id, isFullyRegistered } = payload;
-		if (!id || !isFullyRegistered) {
-			throw new UnauthorizedException(); // Throw the exception if user is not found
-		}
-		return true;
+	/**
+	 *
+	 * @param payload payload is jwt decrypted into object :-> payload: JwtPayload
+	 * @returns
+	 */
+	async validate(payload: JwtPayload) {
+		// ! DONT CHANGE THIS IT IS USED FOR JWT-AUTH.guard.ts -> handleRequest
+		return payload;
 	}
 }

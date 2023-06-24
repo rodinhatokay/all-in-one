@@ -6,6 +6,7 @@ import { User } from "./entities/user.entity";
 import { RegisterDto } from "./dto/register.dto";
 import { Otp } from "../otp/entities/otp.entity";
 import { JwtService } from "@nestjs/jwt";
+import { JwtPayload } from "../auth/types/jwt";
 
 @Injectable()
 export class UserService {
@@ -44,14 +45,18 @@ export class UserService {
 		} as User;
 
 		const user = await this.userRepository.save(newUser);
+
+		const jwtPayload: JwtPayload = {
+			phoneNumber: user.phoneNumber,
+			userId: user.id,
+		};
+
+		const access_token = this.jwtService.sign(jwtPayload, {
+			secret: process.env.JWT_KEY,
+		});
 		return {
 			isUserRegistered: true,
-			access_token: this.jwtService.sign(
-				user,
-				{
-					secret: process.env.JWT_KEY,
-				},
-			),
+			access_token,
 		};
 	}
 }
