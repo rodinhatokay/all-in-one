@@ -46,6 +46,7 @@ export class OtpService {
 			console.log(ex);
 		}
 
+		// TODO: create some util file to create jwt payload to maintain same
 		const jwtPayload: JwtPayload = {
 			phoneNumber,
 			userId,

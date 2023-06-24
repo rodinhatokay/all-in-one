@@ -4,7 +4,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthModule } from "../../src/auth/auth.module";
 import * as request from "supertest";
 import { ConfigModule } from "@nestjs/config";
-import * as session from "express-session";
 
 describe("[Feature] Auth - ", () => {
 	let app: INestApplication;
