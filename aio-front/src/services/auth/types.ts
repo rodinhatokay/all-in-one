@@ -1,3 +1,4 @@
-export type JwtPayload = {
-	accessToken: string;
+export type AccessTokenResponse = {
+	access_token: string;
+	isUserRegistered: boolean;
 };
