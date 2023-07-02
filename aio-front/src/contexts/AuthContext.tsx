@@ -23,7 +23,7 @@ interface AuthContextProps {
 	user: User | null;
 	isLoading: boolean;
 	isAuthenticated: boolean;
-	signIn: () => Promise<void>;
+	signIn: (access_token: string) => Promise<void>;
 	signUp: () => Promise<void>;
 	signOut: () => void;
 }
@@ -73,7 +73,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	 * stores in app the token and user
 	 * and sets users as logged in
 	 */
-	const setAuthInApp = useCallback(
+	const setAuthInAppByAccessToken = useCallback(
 		async (access_token: string) => {
 			storeApiToken(access_token);
 			api.defaults.headers.Authorization = `Bearer ${access_token}`;
@@ -93,8 +93,8 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	/**
 	 * sign in user in app
 	 */
-	const signIn = useCallback(async () => {
-		setUser({ id: "asd", companyName: "asd", email: "asd" });
+	const signIn = useCallback(async (access_token: string) => {
+		await setAuthInAppByAccessToken(access_token);
 		// console.error("neeed to implment signIn");
 	}, []);
 

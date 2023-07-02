@@ -1,8 +1,13 @@
 export type NoAuthStack = {
 	// Intro: undefined;
-	Login: undefined;
-	register: undefined;
+	login: undefined;
+	register: RegisterParams;
 };
+
+export interface RegisterParams {
+	phoneNumber: string;
+	access_token: string;
+}
 
 export type Routes = {
 	Temp: undefined;

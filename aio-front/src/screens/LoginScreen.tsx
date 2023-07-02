@@ -44,17 +44,6 @@ const LoginScreen = () => {
 		setDisplayFormCode(false);
 	}, []);
 
-	const onPressValidateOtpCode = useCallback(async () => {
-		try {
-			const jwt = await valdiateOtpCode();
-			console.log("jwt", jwt);
-			// TODO: if registered login user
-			// TODO: else navigate to register user with token and phoneNumber
-		} catch (error) {
-			// TODO: implement error
-		}
-	}, [valdiateOtpCode]);
-
 	return (
 		<View style={styles.main}>
 			<Appbar.Header>
@@ -90,7 +79,7 @@ const LoginScreen = () => {
 							onPressPhoneNumber={displayPhoneNumberForm}
 							onChangeOtpCode={setOtpCode}
 							onPressResendOtpCode={getOtpCode}
-							onPressValidateOtpCode={onPressValidateOtpCode}
+							onPressValidateOtpCode={valdiateOtpCode}
 							phoneNumber={phoneNumber}
 							errorOtpCode={errorOtpCode}
 						/>

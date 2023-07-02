@@ -4,7 +4,6 @@ import { Button, TextInput, HelperText } from "react-native-paper";
 import TermsAndConditionsCheckBox from "../components/TermsAndConditionsCheckBox/TermsAndConditionsCheckBox";
 import { useLocalization } from "../contexts/LocalizationContext";
 import * as Haptics from "expo-haptics";
-import { useAuth } from "../contexts/AuthContext";
 import { useTheme } from "../contexts/ThemeContext";
 
 type Errors = {
@@ -15,7 +14,6 @@ type Inputs = "firstName" | "lastName" | "TAC";
 
 const RegisterScreen = () => {
 	const { t } = useLocalization();
-	const { signIn } = useAuth();
 	const { theme } = useTheme();
 
 	const [firstName, setFirstName] = useState<string>("");
@@ -87,7 +85,7 @@ const RegisterScreen = () => {
 
 	const register = () => {
 		if (!isValidForm()) return;
-		signIn();
+		// signIn();
 		// else implement all logic to register..
 	};
 

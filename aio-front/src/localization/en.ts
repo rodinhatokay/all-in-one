@@ -38,6 +38,9 @@ const en = {
 	pleaseEnterYourLastName: "Please enter your last name.",
 	invalidPhoneNumber: "Invlaid phone number",
 	invalidOtpCode: "Invalid code",
+	noInternet:
+		"Unable to connect to the internet. Please check your network connection and try again.",
+	genericError: "An error occurred. Please try again later.",
 };
 
 export type IEnTranslations = typeof en;
