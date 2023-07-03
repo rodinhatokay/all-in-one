@@ -1,93 +1,30 @@
-import { useCallback, useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { Button, TextInput, HelperText } from "react-native-paper";
 import TermsAndConditionsCheckBox from "../components/TermsAndConditionsCheckBox/TermsAndConditionsCheckBox";
 import { useLocalization } from "../contexts/LocalizationContext";
-import * as Haptics from "expo-haptics";
 import { useTheme } from "../contexts/ThemeContext";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useRegister } from "../hooks/useRegister";
+import { NoAuthStack } from "../routes/types";
 
-type Errors = {
-	[key in Inputs]: boolean;
-};
+type Props = NativeStackScreenProps<NoAuthStack, "register">;
 
-type Inputs = "firstName" | "lastName" | "TAC";
-
-const RegisterScreen = () => {
+const RegisterScreen = ({ route }: Props) => {
 	const { t } = useLocalization();
 	const { theme } = useTheme();
+	const { access_token, phoneNumber } = route.params;
 
-	const [firstName, setFirstName] = useState<string>("");
-	const [lastName, setLastName] = useState<string>("");
-	const [phoneNumber, setPhoneNumber] = useState<string>("0521234567");
-	const [termsAccepted, setTermsAccepted] = useState<boolean>(false);
-
-	const [errors, setErrors] = useState<Errors>({
-		firstName: false,
-		lastName: false,
-		TAC: false,
-	});
-
-	const isValidForm = useCallback(() => {
-		const _errors: Errors = {
-			firstName: false,
-			lastName: false,
-			TAC: false,
-		};
-		let isValidForm = true;
-		if (firstName.trim() === "") {
-			_errors.firstName = true;
-			isValidForm = false;
-		}
-		if (lastName.trim() === "") {
-			_errors.lastName = true;
-			isValidForm = false;
-		}
-		if (!termsAccepted) {
-			_errors.TAC = true;
-			isValidForm = false;
-		}
-		if (!isValidForm) {
-			setErrors(_errors);
-			Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-		}
-		return isValidForm;
-	}, [firstName, lastName, termsAccepted, setErrors]);
-
-	const onChangeFirstName = useCallback(
-		(text: string) => {
-			setFirstName(text);
-			setErrors((_erros) => {
-				return { ..._erros, firstName: false };
-			});
-		},
-		[setErrors, setFirstName],
-	);
-
-	const onChangeLastName = useCallback(
-		(text: string) => {
-			setLastName(text);
-			setErrors((_erros) => {
-				return { ..._erros, lastName: false };
-			});
-		},
-		[setErrors, setLastName],
-	);
-
-	const onPressTermsAndConditions = useCallback(
-		(value: boolean) => {
-			setTermsAccepted(value);
-			setErrors((_erros) => {
-				return { ..._erros, TAC: false };
-			});
-		},
-		[setErrors, setTermsAccepted],
-	);
-
-	const register = () => {
-		if (!isValidForm()) return;
-		// signIn();
-		// else implement all logic to register..
-	};
+	const {
+		termsAccepted,
+		errors,
+		firstName,
+		lastName,
+		loading,
+		onChangeFirstName,
+		onChangeLastName,
+		onPressTermsAndConditions,
+		register,
+	} = useRegister(phoneNumber, access_token);
 
 	return (
 		<ScrollView style={styles.container} contentContainerStyle={{ gap: 5 }}>
@@ -120,7 +57,6 @@ const RegisterScreen = () => {
 					value={phoneNumber}
 					disabled
 					style={[styles.textInput, { backgroundColor: theme.colors.surface }]}
-					onChangeText={setPhoneNumber}
 				/>
 				<HelperText type="error" visible={false}>
 					this is making space not a text!
@@ -132,7 +68,12 @@ const RegisterScreen = () => {
 				onCheck={onPressTermsAndConditions}
 				error={errors.TAC ?? false}
 			/>
-			<Button mode="contained" onPress={register} style={styles.btnRegister}>
+			<Button
+				mode="contained"
+				disabled={loading}
+				onPress={register}
+				style={styles.btnRegister}
+			>
 				{t("register")}
 			</Button>
 		</ScrollView>
@@ -142,11 +83,9 @@ const RegisterScreen = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		// justifyContent: "center",
 		padding: 16,
 	},
 	textInput: {
-		// backgroundColor: "white",
 		marginVertical: 0,
 		paddingVertical: 0,
 	},

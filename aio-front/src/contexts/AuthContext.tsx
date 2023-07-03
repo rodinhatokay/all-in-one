@@ -23,8 +23,7 @@ interface AuthContextProps {
 	user: User | null;
 	isLoading: boolean;
 	isAuthenticated: boolean;
-	signIn: (access_token: string) => Promise<void>;
-	signUp: () => Promise<void>;
+	signIn: (access_token: string, user?: User) => Promise<void>;
 	signOut: () => void;
 }
 
@@ -39,14 +38,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [loading, setLoading] = useState(true);
 
-	// const pathname = usePathname();
-
 	useEffect(() => {
-		// const shouldRedirectToHomePage = () =>
-		// 	pathname === "/auth/signin" || pathname === "/auth//signup";
-		// const shouldRedirectToSignIn = () =>
-		// 	pathname !== "/auth//signin" && pathname !== "/auth//signup";
-
 		const loadUserFromStorage = async () => {
 			try {
 				const token = await getStoredApiToken();
@@ -66,7 +58,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 		setLoading(false);
 
 		console.warn("need to enable user auth");
-		// loadUserFromStorage();
+		loadUserFromStorage();
 	}, []);
 
 	/**
@@ -74,27 +66,24 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	 * and sets users as logged in
 	 */
 	const setAuthInAppByAccessToken = useCallback(
-		async (access_token: string) => {
+		async (access_token: string, user?: User) => {
 			storeApiToken(access_token);
 			api.defaults.headers.Authorization = `Bearer ${access_token}`;
-			const { data: user } = await getCurrentUserApi(access_token);
+			if (!user) {
+				// if user wasnt provided
+				const { data } = await getCurrentUserApi(access_token);
+				user = data;
+			}
 			setUser(user);
 		},
 		[setUser],
 	);
 
 	/**
-	 * sign up user in app
-	 */
-	const signUp = useCallback(async () => {
-		console.error("need to implement sign up");
-	}, []);
-
-	/**
 	 * sign in user in app
 	 */
-	const signIn = useCallback(async (access_token: string) => {
-		await setAuthInAppByAccessToken(access_token);
+	const signIn = useCallback(async (access_token: string, user?: User) => {
+		await setAuthInAppByAccessToken(access_token, user);
 		// console.error("neeed to implment signIn");
 	}, []);
 
@@ -110,7 +99,6 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 		signIn,
 		isLoading: loading,
 		signOut,
-		signUp,
 	};
 	if (loading) return null;
 	return (

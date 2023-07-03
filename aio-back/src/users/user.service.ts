@@ -55,8 +55,8 @@ export class UserService {
 			secret: process.env.JWT_KEY,
 		});
 		return {
-			isUserRegistered: true,
 			access_token,
+			user,
 		};
 	}
 }

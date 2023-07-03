@@ -5,8 +5,8 @@ export type NoAuthStack = {
 };
 
 export interface RegisterParams {
-	phoneNumber: string;
-	access_token: string;
+	phoneNumber?: string;
+	access_token?: string;
 }
 
 export type Routes = {
