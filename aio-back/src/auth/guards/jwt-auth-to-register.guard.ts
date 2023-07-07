@@ -14,7 +14,7 @@ export class JwtAuthToRegisterGuard extends AuthGuard("jwt") {
 	handleRequest<TUser = JwtPayload>(err: any, user: JwtPayload): TUser {
 		// if payload with user id then its already registered
 		console.log("user", user);
-		if (err || user.userId) {
+		if (!user || err || user.userId) {
 			throw err || new UnauthorizedException();
 		}
 

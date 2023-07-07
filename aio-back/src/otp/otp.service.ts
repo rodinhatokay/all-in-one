@@ -7,6 +7,10 @@ import { UserService } from "../users/user.service";
 import { AccessTokenResponse } from "../auth/dto/resp/accessToken";
 import { ErrorMessages } from "../common/errors/errorMessage";
 import { JwtPayload } from "../auth/types/jwt";
+import {
+	isDevPhoneNumber,
+	validateOtpCodeForDevPhoneNumber,
+} from "./otp.utils";
 
 @Injectable()
 export class OtpService {
@@ -18,6 +22,7 @@ export class OtpService {
 
 	async createOtp(createOtp: CreateOtp): Promise<void> {
 		const { phoneNumber, channel } = createOtp;
+		if (isDevPhoneNumber(phoneNumber)) return;
 		await this.twilioService.getOtp(phoneNumber, channel);
 	}
 
@@ -25,16 +30,23 @@ export class OtpService {
 		const { phoneNumber, otpCode } = verifyOtp;
 		let verificationCheckInstance;
 		try {
-			verificationCheckInstance = await this.twilioService.verifyCheck(
-				phoneNumber,
-				otpCode,
-			);
+			if (!isDevPhoneNumber(phoneNumber)) {
+				verificationCheckInstance = await this.twilioService.verifyCheck(
+					phoneNumber,
+					otpCode,
+				);
+			}
 		} catch (ex) {
 			console.log(ex);
 			throw ex;
 		}
+		console.log("phoneNumber", phoneNumber);
 
-		if (verificationCheckInstance.status !== "approved") {
+		if (
+			verificationCheckInstance?.status !== "approved" ||
+			(isDevPhoneNumber(phoneNumber) &&
+				validateOtpCodeForDevPhoneNumber(otpCode))
+		) {
 			throw new BadRequestException(ErrorMessages.invalidOtpCode);
 		}
 

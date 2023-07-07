@@ -80,7 +80,7 @@ export const useRegister = (phoneNumber?: string, access_token?: string) => {
 		[setErrors, setTermsAccepted],
 	);
 
-	const register = useCallback(async () => {
+	const handleRegister = useCallback(async () => {
 		if (!isValidForm()) return;
 		try {
 			setLoading(true);
@@ -102,7 +102,7 @@ export const useRegister = (phoneNumber?: string, access_token?: string) => {
 	}, [setLoading, loading, lastName, firstName, phoneNumber, termsAccepted]);
 
 	return {
-		register,
+		handleRegister,
 		onPressTermsAndConditions,
 		onChangeFirstName,
 		onChangeLastName,

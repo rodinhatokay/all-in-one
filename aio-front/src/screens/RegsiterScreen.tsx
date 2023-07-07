@@ -23,7 +23,7 @@ const RegisterScreen = ({ route }: Props) => {
 		onChangeFirstName,
 		onChangeLastName,
 		onPressTermsAndConditions,
-		register,
+		handleRegister,
 	} = useRegister(phoneNumber, access_token);
 
 	return (
@@ -71,7 +71,7 @@ const RegisterScreen = ({ route }: Props) => {
 			<Button
 				mode="contained"
 				disabled={loading}
-				onPress={register}
+				onPress={handleRegister}
 				style={styles.btnRegister}
 			>
 				{t("register")}

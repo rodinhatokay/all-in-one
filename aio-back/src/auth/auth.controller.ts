@@ -2,7 +2,7 @@ import { Body, Controller, Post, UseGuards } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { AuthService } from "./auth.service";
 import { Public } from "../common/decorators/public.decorator";
-import { Register } from "../otp/dto/register.dto";
+import { RegisterDto } from "../otp/dto/register.dto";
 
 import { JwtAuthToRegisterGuard } from "./guards/jwt-auth-to-register.guard";
 import { RegisterResponseDto } from "./dto/resp/registerDto";
@@ -20,7 +20,7 @@ export class AuthController {
 		status: 200,
 		type: RegisterResponseDto,
 	})
-	async register(@Body() register: Register): Promise<RegisterResponseDto> {
+	async register(@Body() register: RegisterDto): Promise<RegisterResponseDto> {
 		return await this.authService.register(register);
 	}
 }

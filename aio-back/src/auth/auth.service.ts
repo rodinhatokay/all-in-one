@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { Register } from "../otp/dto/register.dto";
 import { UserService } from "../users/user.service";
 import { RegisterDto } from "../users/dto/register.dto";
 
@@ -7,15 +6,14 @@ import { RegisterDto } from "../users/dto/register.dto";
 export class AuthService {
 	constructor(private readonly userService: UserService) {}
 
-	async register(register: Register) {
+	async register(register: RegisterDto) {
 		const { firstName, lastName, phoneNumber, terms } = register;
-
-		const registerDto = {
+		const registerDto: RegisterDto = {
 			firstName,
 			lastName,
 			phoneNumber,
 			terms,
-		} as RegisterDto;
+		};
 		return this.userService.register(registerDto);
 	}
 }

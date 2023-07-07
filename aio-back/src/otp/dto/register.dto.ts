@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 
-export class Register {
+export class RegisterDto {
 	@IsString()
 	@IsNotEmpty()
 	phoneNumber: string;
