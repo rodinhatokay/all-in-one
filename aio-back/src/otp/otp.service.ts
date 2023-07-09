@@ -7,10 +7,7 @@ import { UserService } from "../users/user.service";
 import { AccessTokenResponse } from "../auth/dto/resp/accessToken";
 import { ErrorMessages } from "../common/errors/errorMessage";
 import { JwtPayload } from "../auth/types/jwt";
-import {
-	isDevPhoneNumber,
-	validateOtpCodeForDevPhoneNumber,
-} from "./otp.utils";
+import { devPhoneNumberWithValidOtp, isDevPhoneNumber } from "./otp.utils";
 
 @Injectable()
 export class OtpService {
@@ -40,13 +37,12 @@ export class OtpService {
 			console.log(ex);
 			throw ex;
 		}
-		console.log("phoneNumber", phoneNumber);
 
 		if (
-			verificationCheckInstance?.status !== "approved" ||
-			(isDevPhoneNumber(phoneNumber) &&
-				validateOtpCodeForDevPhoneNumber(otpCode))
+			!devPhoneNumberWithValidOtp(phoneNumber, otpCode) &&
+			verificationCheckInstance?.status !== "approved"
 		) {
+			console.log("bad code", otpCode, phoneNumber);
 			throw new BadRequestException(ErrorMessages.invalidOtpCode);
 		}
 

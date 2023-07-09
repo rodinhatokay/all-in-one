@@ -14,3 +14,12 @@ export const isDevPhoneNumber = (phoneNumber: string) => {
 export const validateOtpCodeForDevPhoneNumber = (code: string) => {
 	return CODE_FOR_DEV_PHONES === code;
 };
+
+export const devPhoneNumberWithValidOtp = (
+	phoneNumber: string,
+	otpCode: string,
+) => {
+	return (
+		validateOtpCodeForDevPhoneNumber(otpCode) && isDevPhoneNumber(phoneNumber)
+	);
+};

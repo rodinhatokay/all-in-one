@@ -10,11 +10,18 @@ export const getCurrentUserApi = async (
 				Authorization: `Bearer ${token}`,
 		  }
 		: undefined;
-	return await api.get<User>("users/current-user", {
+	return await api.get<User>("user/current-user", {
 		headers,
 		signal,
 	});
 };
+
+interface RegisterDto {
+	phoneNumber: string;
+	firstName: string;
+	lastName: string;
+	termsAccepted: boolean;
+}
 
 /**
  * sends request to server to register user
@@ -23,16 +30,19 @@ export const getCurrentUserApi = async (
  * @returns
  */
 export const registerUserApi = async (
-	token?: string | null,
+	registerDetails: RegisterDto,
+	token: string | null,
 	signal?: AbortSignal,
 ) => {
-	const headers = token
-		? {
+	return await api.post<{ access_token: string; user: User }>(
+		"auth/register",
+		registerDetails,
+		{
+			headers: {
 				Authorization: `Bearer ${token}`,
-		  }
-		: undefined;
-	return await api.get<{ access_token: string; user: User }>("auth/register", {
-		headers,
-		signal,
-	});
+			},
+
+			signal,
+		},
+	);
 };

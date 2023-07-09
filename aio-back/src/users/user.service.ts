@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { ErrorMessages } from "../common/errors/errorMessage";
 import { User } from "./entities/user.entity";
-import { RegisterDto } from "./dto/register.dto";
+import { RegisterDto } from "../auth/dto/req/register.dto";
 import { Otp } from "../otp/entities/otp.entity";
 import { JwtService } from "@nestjs/jwt";
 import { JwtPayload } from "../auth/types/jwt";
@@ -29,7 +29,7 @@ export class UserService {
 	}
 
 	async register(register: RegisterDto) {
-		const { firstName, lastName, terms, phoneNumber } = register;
+		const { firstName, lastName, termsAccepted, phoneNumber } = register;
 
 		const existingUser: User = await this.findUserByPhoneNumber(phoneNumber);
 
@@ -40,7 +40,7 @@ export class UserService {
 			firstName,
 			lastName,
 			phoneNumber,
-			terms,
+			terms: termsAccepted,
 			isFullyRegistered: true,
 		} as User;
 

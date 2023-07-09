@@ -4,6 +4,8 @@ import { logError } from "../services/logger/loggerService";
 import axios from "axios";
 import { registerUserApi } from "../services/user/userApi";
 import { useAuth } from "../contexts/AuthContext";
+import { trimStringsInObj } from "../util/string.util";
+import { formatPhoneNumberToGlobal } from "../services/common/format";
 type Errors = {
 	[key in Inputs]: boolean;
 };
@@ -84,13 +86,26 @@ export const useRegister = (phoneNumber?: string, access_token?: string) => {
 		if (!isValidForm()) return;
 		try {
 			setLoading(true);
-			const registerResp = await registerUserApi(access_token);
+			if (!phoneNumber || !access_token) {
+				throw new Error(
+					"phone number or access_token not provided to register user, this is error",
+				);
+			}
+			const registerResp = await registerUserApi(
+				trimStringsInObj({
+					termsAccepted,
+					firstName,
+					lastName,
+					phoneNumber: formatPhoneNumberToGlobal(phoneNumber),
+				}),
+				access_token,
+			);
 			const { access_token: newAccessToken, user } = registerResp.data;
 			await signIn(newAccessToken, user);
 
 			// newAccessToken is token with access to all calls in the api
 		} catch (err) {
-			logError("error onPressGetotp", err);
+			logError("error handleRegister:", err);
 			if (axios.isAxiosError(err) && err.response?.status === 400) {
 				// some error form client
 			}

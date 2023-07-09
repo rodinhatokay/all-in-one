@@ -12,11 +12,7 @@ import api, {
 	removeStoredApiToken,
 	storeApiToken,
 } from "../services/api/api";
-
 import { User } from "../services/user/user.types";
-// import { SignInDto, SignUpDto } from "../services/auth/auth.types";
-// import { signInApi, signUpApi } from "../services/auth/authApi";
-
 import { getCurrentUserApi } from "../services/user/userApi";
 
 interface AuthContextProps {
@@ -51,7 +47,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 				setLoading(false);
 			} catch (error) {
 				setLoading(false);
-				console.error("error initing user from cookie", error);
+				console.error("error initing user from local local storage", error);
 			}
 		};
 

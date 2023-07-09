@@ -1,4 +1,9 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import {
+	View,
+	StyleSheet,
+	ScrollView,
+	TextInput as RNTextInput,
+} from "react-native";
 import { Button, TextInput, HelperText } from "react-native-paper";
 import TermsAndConditionsCheckBox from "../components/TermsAndConditionsCheckBox/TermsAndConditionsCheckBox";
 import { useLocalization } from "../contexts/LocalizationContext";
@@ -6,6 +11,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useRegister } from "../hooks/useRegister";
 import { NoAuthStack } from "../routes/types";
+import { useCallback, useRef } from "react";
 
 type Props = NativeStackScreenProps<NoAuthStack, "register">;
 
@@ -26,14 +32,27 @@ const RegisterScreen = ({ route }: Props) => {
 		handleRegister,
 	} = useRegister(phoneNumber, access_token);
 
+	const focusLastNameInput = useCallback(() => {
+		if (lastNameInputRef.current) {
+			lastNameInputRef.current.focus();
+		}
+	}, []);
+
+	const lastNameInputRef = useRef<RNTextInput | null>(null);
+
 	return (
-		<ScrollView style={styles.container} contentContainerStyle={{ gap: 5 }}>
+		<ScrollView
+			style={styles.container}
+			contentContainerStyle={{ gap: 5 }}
+			keyboardShouldPersistTaps={"handled"}
+		>
 			<View>
 				<TextInput
 					label="First Name"
 					value={firstName}
 					style={[styles.textInput, { backgroundColor: theme.colors.surface }]}
 					onChangeText={onChangeFirstName}
+					onSubmitEditing={focusLastNameInput}
 				/>
 				<HelperText type="error" visible={errors.firstName}>
 					{t("pleaseEnterYourFirstName")}
@@ -41,6 +60,7 @@ const RegisterScreen = ({ route }: Props) => {
 			</View>
 			<View>
 				<TextInput
+					ref={lastNameInputRef}
 					label="Last Name"
 					value={lastName}
 					style={[styles.textInput, { backgroundColor: theme.colors.surface }]}

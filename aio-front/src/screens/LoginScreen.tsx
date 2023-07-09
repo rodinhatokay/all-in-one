@@ -53,6 +53,7 @@ const LoginScreen = () => {
 				bounces={false}
 				contentContainerStyle={styles.scroll}
 				style={styles.main}
+				keyboardShouldPersistTaps={"handled"}
 			>
 				<Text style={styles.header}>{t("aio")}</Text>
 				<Text style={styles.subHeader}>{t("allInOne")}</Text>
