@@ -10,7 +10,7 @@ type Errors = {
 	[key in Inputs]: boolean;
 };
 
-type Inputs = "firstName" | "lastName" | "TAC";
+type Inputs = "firstName" | "lastName" | "TAC" | "generic";
 
 export const useRegister = (phoneNumber?: string, access_token?: string) => {
 	const [firstName, setFirstName] = useState<string>("");
@@ -24,10 +24,11 @@ export const useRegister = (phoneNumber?: string, access_token?: string) => {
 		firstName: false,
 		lastName: false,
 		TAC: false,
+		generic: false,
 	});
 
 	const isValidForm = useCallback(() => {
-		const _errors: Errors = {
+		const _errors: Omit<Errors, "generic"> = {
 			firstName: false,
 			lastName: false,
 			TAC: false,
@@ -46,11 +47,13 @@ export const useRegister = (phoneNumber?: string, access_token?: string) => {
 			isValidForm = false;
 		}
 		if (!isValidForm) {
-			setErrors(_errors);
+			setErrors((state) => {
+				return { ...state, _errors };
+			});
 			Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 		}
 		return isValidForm;
-	}, [firstName, lastName, termsAccepted, setErrors]);
+	}, [firstName, lastName, termsAccepted, setErrors, errors]);
 
 	const onChangeFirstName = useCallback(
 		(text: string) => {
@@ -84,6 +87,9 @@ export const useRegister = (phoneNumber?: string, access_token?: string) => {
 
 	const handleRegister = useCallback(async () => {
 		if (!isValidForm()) return;
+		setErrors((state) => {
+			return { ...state, generic: false };
+		});
 		try {
 			setLoading(true);
 			if (!phoneNumber || !access_token) {
@@ -106,8 +112,13 @@ export const useRegister = (phoneNumber?: string, access_token?: string) => {
 			// newAccessToken is token with access to all calls in the api
 		} catch (err) {
 			logError("error handleRegister:", err);
-			if (axios.isAxiosError(err) && err.response?.status === 400) {
-				// some error form client
+			if (
+				axios.isAxiosError(err) &&
+				(err.response?.status === 400 || err.response?.status === 500)
+			) {
+				setErrors((state) => {
+					return { ...state, generic: true };
+				});
 			}
 		} finally {
 			setLoading(false);
