@@ -17,8 +17,9 @@ export default new DataSource({
 	database: process.env.DATABASE_DB || "postgres",
 	entities: [User, Otp, Business, Location, OpeningHours],
 	migrations: [join(__dirname, "/src/migrations/*.js")],
-	ssl: { 	//TODO: comment for dev mode at the moment
-	  ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
+	ssl: {
+		//TODO: comment for dev mode at the moment
+		ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
 	},
 	migrationsRun: true,
 });

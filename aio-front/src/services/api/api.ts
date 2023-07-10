@@ -13,6 +13,22 @@ const api = Axios.create({
 	},
 });
 
+if (__DEV__) {
+	api.interceptors.request.use(
+		function (config) {
+			console.log(`API URL(${config.method}):`, config.url);
+
+			console.log("API DATA:", config.data);
+			return config;
+		},
+		function (error) {
+			console.log("API ERROR:", error);
+
+			return Promise.reject(error);
+		},
+	);
+}
+
 /**
  * store token locally to end user
  */

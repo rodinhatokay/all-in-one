@@ -32,7 +32,8 @@ import { OpeningHours } from "./common/entities/openingHours.entity";
 					username: configService.get("database.user", "postgres"),
 					password: configService.get("database.pass", "pass123"),
 					database: configService.get("database.db", "postgres"),
-					ssl: { // TODO: comment SSL in local mode
+					ssl: {
+						// TODO: comment SSL in local mode
 						ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
 					},
 					migrationsRun: configService.get("database.migrationsRun", true),

@@ -18,7 +18,7 @@ const NoAuthRouter: FC = () => {
 			}}
 		>
 			<Stack.Screen
-				name="Login"
+				name="login"
 				options={{ title: "שלום" }}
 				component={LoginScreen}
 			/>
