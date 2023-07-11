@@ -1,21 +1,15 @@
 import { View, StyleSheet } from "react-native";
-import CategoriesBusiness from "../sections/Home/CategoriesBusiness/CategoriesBusiness";
-import { useEffect, useState } from "react";
 import Loader from "../components/Loader/Loader";
+import BusinessList from "../sections/Home/BusinessList";
+import useBusinesses from "../hooks/useBusinesses";
 
 const HomeScreen = () => {
-	const [loading, setLoading] = useState(true);
+	const { data: businesses, isLoading } = useBusinesses();
 
-	useEffect(() => {
-		setTimeout(() => {
-			setLoading(false);
-		}, 1500);
-	}, []);
-
-	if (loading) return <Loader style={styles.loader} />;
+	if (isLoading || !businesses) return <Loader style={styles.loader} />;
 	return (
 		<View style={styles.main}>
-			<CategoriesBusiness />
+			<BusinessList businesses={businesses} />
 		</View>
 	);
 };
