@@ -1,5 +1,7 @@
 export type User = {
 	id: string;
-	email: string;
-	companyName: string;
+	firstName: string;
+	lastName: string;
+	terms: boolean;
+	phoneNumber: string;
 };

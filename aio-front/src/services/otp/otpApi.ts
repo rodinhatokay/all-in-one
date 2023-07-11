@@ -1,5 +1,5 @@
 import api from "../api/api";
-import { JwtPayload } from "../auth/types";
+import { AccessTokenResponse } from "../auth/types";
 
 /**
  * sends request to generate otp to server
@@ -33,7 +33,7 @@ export const verifyOtpCodeApi = async (
 	data: { otpCode: string; phoneNumber: string },
 	signal?: AbortSignal,
 ) => {
-	return await api.post<JwtPayload>("otp/verify", data, {
+	return await api.post<AccessTokenResponse>("otp/verify", data, {
 		signal,
 	});
 };

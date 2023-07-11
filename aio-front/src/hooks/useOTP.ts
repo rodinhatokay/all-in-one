@@ -5,18 +5,21 @@ import { validateOTP, validatePhoneNumber } from "../services/common/validate";
 import { IEnTranslations } from "../localization/en";
 import { formatPhoneNumberToGlobal } from "../services/common/format";
 import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
+import { navigate } from "../routes/routerActions";
 
 /**
  * otp hook that handles all logic related to authenticate via otp
  */
 export const useOTP = () => {
+	const { signIn } = useAuth();
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [errorPhoneNumber, setErrorPhoneNumber] = useState<
 		keyof IEnTranslations | ""
 	>("");
 	const [otpCode, setOtpCode] = useState("");
 	const [errorOtpCode, setErrorOtpCode] = useState<keyof IEnTranslations | "">(
-		""
+		"",
 	);
 	const [loading, setLoading] = useState(false);
 
@@ -57,7 +60,15 @@ export const useOTP = () => {
 				otpCode,
 				phoneNumber: formatPhoneNumberToGlobal(phoneNumber),
 			});
-			return responseVerification.data;
+			const responseValidation = responseVerification.data;
+			const { access_token, isUserRegistered } = responseValidation;
+			if (isUserRegistered) {
+				// fetch user details then login
+				await signIn(access_token);
+			} else {
+				// navigate to regiser screen with phone number and access_token (for register)
+				navigate("register", { access_token, phoneNumber });
+			}
 		} catch (err) {
 			if (axios.isAxiosError(err) && err.response?.status === 400) {
 				setErrorOtpCode("invalidOtpCode");
@@ -74,7 +85,7 @@ export const useOTP = () => {
 			setPhoneNumber(phoneNumber);
 			setErrorPhoneNumber("");
 		},
-		[setPhoneNumber, setErrorPhoneNumber]
+		[setPhoneNumber, setErrorPhoneNumber],
 	);
 
 	const _setOtpCode = useCallback(
@@ -82,7 +93,7 @@ export const useOTP = () => {
 			setOtpCode(otpCode);
 			setErrorOtpCode("");
 		},
-		[setOtpCode, setErrorOtpCode]
+		[setOtpCode, setErrorOtpCode],
 	);
 
 	return useMemo(() => {

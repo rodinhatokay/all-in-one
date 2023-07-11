@@ -6,5 +6,3 @@ import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConne
 export const connectionSource = new DataSource({
 	...config().database,
   } as PostgresConnectionOptions);
-  
-

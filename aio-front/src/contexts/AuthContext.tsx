@@ -12,19 +12,14 @@ import api, {
 	removeStoredApiToken,
 	storeApiToken,
 } from "../services/api/api";
-
 import { User } from "../services/user/user.types";
-// import { SignInDto, SignUpDto } from "../services/auth/auth.types";
-// import { signInApi, signUpApi } from "../services/auth/authApi";
-
 import { getCurrentUserApi } from "../services/user/userApi";
 
 interface AuthContextProps {
 	user: User | null;
 	isLoading: boolean;
 	isAuthenticated: boolean;
-	signIn: () => Promise<void>;
-	signUp: () => Promise<void>;
+	signIn: (access_token: string, user?: User) => Promise<void>;
 	signOut: () => void;
 }
 
@@ -39,14 +34,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [loading, setLoading] = useState(true);
 
-	// const pathname = usePathname();
-
 	useEffect(() => {
-		// const shouldRedirectToHomePage = () =>
-		// 	pathname === "/auth/signin" || pathname === "/auth//signup";
-		// const shouldRedirectToSignIn = () =>
-		// 	pathname !== "/auth//signin" && pathname !== "/auth//signup";
-
 		const loadUserFromStorage = async () => {
 			try {
 				const token = await getStoredApiToken();
@@ -59,42 +47,39 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 				setLoading(false);
 			} catch (error) {
 				setLoading(false);
-				console.error("error initing user from cookie", error);
+				console.error("error initing user from local local storage", error);
 			}
 		};
 
 		setLoading(false);
 
 		console.warn("need to enable user auth");
-		// loadUserFromStorage();
+		loadUserFromStorage();
 	}, []);
 
 	/**
 	 * stores in app the token and user
 	 * and sets users as logged in
 	 */
-	const setAuthInApp = useCallback(
-		async (access_token: string) => {
+	const setAuthInAppByAccessToken = useCallback(
+		async (access_token: string, user?: User) => {
 			storeApiToken(access_token);
 			api.defaults.headers.Authorization = `Bearer ${access_token}`;
-			const { data: user } = await getCurrentUserApi(access_token);
+			if (!user) {
+				// if user wasnt provided
+				const { data } = await getCurrentUserApi(access_token);
+				user = data;
+			}
 			setUser(user);
 		},
 		[setUser],
 	);
 
 	/**
-	 * sign up user in app
-	 */
-	const signUp = useCallback(async () => {
-		console.error("need to implement sign up");
-	}, []);
-
-	/**
 	 * sign in user in app
 	 */
-	const signIn = useCallback(async () => {
-		setUser({ id: "asd", companyName: "asd", email: "asd" });
+	const signIn = useCallback(async (access_token: string, user?: User) => {
+		await setAuthInAppByAccessToken(access_token, user);
 		// console.error("neeed to implment signIn");
 	}, []);
 
@@ -110,7 +95,6 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 		signIn,
 		isLoading: loading,
 		signOut,
-		signUp,
 	};
 	if (loading) return null;
 	return (

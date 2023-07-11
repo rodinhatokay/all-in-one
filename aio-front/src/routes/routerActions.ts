@@ -3,22 +3,24 @@ import {
 	StackActions,
 } from "@react-navigation/native";
 
-// import {NavigatorScreenParams} from '@react-navigation/native';
-import { RootNavigation } from "./types";
+import { NavigatorScreenParams } from "@react-navigation/native";
+import { RegisterParams, RootNavigation } from "./types";
 
 export const navigationRef = createNavigationContainerRef<RootNavigation>();
 
 /**
  * function no navigate anywhere
+ * @example
+ * navigate("register", { access_token, phoneNumber });
+ * navigate("login");
  */
-export const navigate = (
-	name: keyof RootNavigation,
-	// params?: NavigatorScreenParams<never>,
-): void => {
-	// params.screen ==  '';
+export const navigate = <RouteName extends keyof RootNavigation>(
+	...args: undefined extends RootNavigation[RouteName]
+		? [RouteName] | [RouteName, RootNavigation[RouteName]]
+		: [RouteName, RootNavigation[RouteName]]
+) => {
 	if (navigationRef.isReady()) {
-		// navigationRef.navigate(name, params);
-		navigationRef.navigate(name);
+		navigationRef.navigate(args[0] as any, args[1] as any);
 	}
 };
 
