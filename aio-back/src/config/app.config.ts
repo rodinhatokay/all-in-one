@@ -20,12 +20,14 @@ export default () => {
 			migrationsRun: true,
 			migrations: [join(__dirname, "/src/migrations/*.js")],
 			entities: [User, Otp, Business, Location, OpeningHours],
-			ssl:
-				env === "development"
-					? undefined
-					: {
-							ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
-					  },
+			ssl: {
+				ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
+			},
+			// env === "development"
+			// 	? undefined
+			// 	: {
+			// 			ca: readFileSync("/etc/ssl/certs/ca-certificate.crt"),
+			// 	  },
 			synchronize: env === "development",
 		},
 		twilio: {
@@ -35,3 +37,4 @@ export default () => {
 		jwtKey: process.env.JWT_KEY,
 	};
 };
+
