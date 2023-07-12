@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import { Image } from "../partials";
 import { Card, Divider, Paragraph, Title } from "react-native-paper";
 import { Business } from "../../services/business/business.types";
@@ -19,10 +19,13 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	const { theme, isThemeDark } = useTheme();
 
 	const cardStyle = useMemo(() => {
-		const { lightGrey } = theme.colors;
+		// const { lightGrey } = theme.colors;
 
 		if (isThemeDark) return styles.card;
-		return [styles.card, { backgroundColor: "rgba(150, 150, 150, 0.12)" }];
+		return [
+			styles.card,
+			Platform.OS === "ios" && { backgroundColor: "rgba(150, 150, 150, 0.12)" },
+		];
 	}, [isThemeDark, theme]);
 
 	const handleCall = () => {
