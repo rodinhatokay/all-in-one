@@ -20,7 +20,7 @@ if (__DEV__) {
 		function (config) {
 			console.log(`API URL(${config.method}):`, config.url);
 
-			console.log("API DATA:", config.data);
+			console.log("API requesting data:", config.data);
 			return config;
 		},
 		function (error) {

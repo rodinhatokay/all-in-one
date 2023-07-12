@@ -1,10 +1,10 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Business } from './entities/business.entity';
-import { CreateBusiness } from './dto/createBusiness.dto';
-import { ErrorMessages } from '../common/errors/errorMessage';
-import { UpdateBusiness } from './dto/updateBusiness.dto';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Business } from "./entities/business.entity";
+import { CreateBusiness } from "./dto/createBusiness.dto";
+import { ErrorMessages } from "../common/errors/errorMessage";
+import { UpdateBusiness } from "./dto/updateBusiness.dto";
 
 @Injectable()
 export class BusinessService {
@@ -43,8 +43,8 @@ export class BusinessService {
 		// 	where: { name: createBusiness.categoryName },
 		// });
 
-		const user = this.businessRepository.create(createBusiness);
-		return await this.businessRepository.save(user);
+		const business = this.businessRepository.create(createBusiness);
+		return await this.businessRepository.save(business);
 	}
 
 	async update(id: string, updateBusiness: UpdateBusiness) {

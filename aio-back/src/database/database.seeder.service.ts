@@ -3,12 +3,15 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { RegisterDto } from "../auth/dto/req/register.dto";
 import { User } from "../users/entities/user.entity";
+import { CreateBusiness } from "../business/dto/createBusiness.dto";
+import { Business } from "../business/entities/business.entity";
 
 @Injectable()
 export class DatabaseSeederService implements OnApplicationBootstrap {
 	constructor(
 		@InjectRepository(User)
 		private readonly userRepository: Repository<User>,
+		private readonly businessRepository: Repository<Business>,
 	) {}
 
 	async onApplicationBootstrap() {
@@ -37,6 +40,47 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 
 			await this.userRepository.save(user1);
 			await this.userRepository.save(user2);
+
+			// BUILD BUSINESS
+
+			const businesses: CreateBusiness[] = [
+				{
+					name: "Fashion Emporium(Rodin)",
+					description: "Trendy clothing store with a wide selection",
+					phoneNumber: "+972524560793",
+					logoPath: "",
+					hasWhatsapp: true,
+					location: {
+						latitude: 50,
+						longitude: 20,
+					},
+					openingHours: [
+						{ day: "Monday", hours: [{ start: "00:00", end: "04:00" }] },
+						{ day: "Thursday", hours: [{ start: "00:00", end: "04:00" }] },
+						{ day: "Wednesday", hours: [{ start: "00:00", end: "04:00" }] },
+						{ day: "Tuesday", hours: [{ start: "00:00", end: "04:00" }] },
+					],
+				},
+				{
+					name: "Wellness Spa(Aslan)",
+					description: "Relaxing spa with various wellness treatments",
+					phoneNumber: "+972509887021",
+					logoPath: "",
+					hasWhatsapp: false,
+					location: {
+						latitude: 50,
+						longitude: 20,
+					},
+					openingHours: [
+						{ day: "Monday", hours: [{ start: "00:00", end: "04:00" }] },
+						{ day: "Thursday", hours: [{ start: "00:00", end: "04:00" }] },
+						{ day: "Wednesday", hours: [{ start: "00:00", end: "04:00" }] },
+						{ day: "Tuesday", hours: [{ start: "00:00", end: "04:00" }] },
+					],
+				},
+			];
+
+			await this.businessRepository.save(businesses);
 		}
 	}
 }
