@@ -14,7 +14,7 @@ type BusinessCardProps = {
 };
 
 export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
-	const { name, description, rating, isFavorite } = business;
+	const { name, description } = business;
 
 	const { theme, isThemeDark } = useTheme();
 
@@ -62,15 +62,15 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 							<Title numberOfLines={2} style={styles.name}>
 								{name}
 							</Title>
-							<FavoriteButton
+							{/* <FavoriteButton
 								onPress={() => {
 									throw new Error("need to implement");
 								}}
 								isFavorite={isFavorite}
-							/>
+							/> */}
 						</View>
 						<Paragraph style={styles.noMarginVertical}>
-							<StarRating rating={rating} />
+							{/* <StarRating rating={rating} /> */}
 						</Paragraph>
 						<Paragraph style={styles.noMarginVertical}>12:00 - 15:00</Paragraph>
 						<Paragraph

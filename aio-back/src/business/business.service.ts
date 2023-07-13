@@ -19,8 +19,16 @@ export class BusinessService {
 		});
 	}
 
-	findAll() {
-		return this.businessRepository.find();
+	findAll(query?: string) {
+		return this.businessRepository.find(
+			query
+				? {
+						where: {
+							name: query,
+						},
+				  }
+				: undefined,
+		);
 	}
 
 	// async findBusinessesWithCategoryNames(): Promise<Business[]> {
