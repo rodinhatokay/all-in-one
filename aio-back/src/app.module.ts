@@ -1,9 +1,8 @@
 import * as Joi from "@hapi/joi";
 import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ConfigModule } from "@nestjs/config";
 import { CommonModule } from "./common/common.module";
 import appConfig from "./config/app.config";
 import { UsersModule } from "./users/user.module";
@@ -11,14 +10,10 @@ import { AuthModule } from "./auth/auth.module";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
 import { BusinessModule } from "./business/business.module";
+import { DatabaseModule } from "./database/database.module";
 
 @Module({
 	imports: [
-		TypeOrmModule.forRootAsync({
-			imports: [ConfigModule],
-			inject: [ConfigService],
-			useFactory: (config: ConfigService) => config.get("database"),
-		}),
 		ConfigModule.forRoot({
 			validationSchema: Joi.object({
 				DATABASE_HOST: Joi.required(),
@@ -32,7 +27,7 @@ import { BusinessModule } from "./business/business.module";
 			}),
 			load: [appConfig],
 		}),
-
+		DatabaseModule.forRoot(),
 		CommonModule,
 		UsersModule,
 		AuthModule,
