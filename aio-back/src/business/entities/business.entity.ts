@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Location } from './location.entity';
+import { Location } from "./location.entity";
 import { OpeningHours } from "../../common/entities/openingHours.entity";
 
 @Entity()
@@ -9,6 +9,9 @@ export class Business {
 
 	@Column({ unique: true })
 	name: string;
+
+	@Column()
+	address: string;
 
 	@Column()
 	logoPath: string;
@@ -25,7 +28,10 @@ export class Business {
 	@Column(() => Location)
 	location: Location;
 
-	@OneToMany(() => OpeningHours, openingHours => openingHours.business, { cascade: true, eager: true })
+	@OneToMany(() => OpeningHours, (openingHours) => openingHours.business, {
+		cascade: true,
+		eager: true,
+	})
 	openingHours: OpeningHours[];
 
 	// @Column({ unique: false })

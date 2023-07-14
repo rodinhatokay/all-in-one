@@ -3,7 +3,7 @@ export type Business = {
 	name: string;
 	logoPath: string;
 	description: string;
-
+	address: string;
 	hasWhatsapp: boolean;
 	location: {
 		latitude: number;

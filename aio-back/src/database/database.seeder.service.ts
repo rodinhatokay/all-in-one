@@ -31,7 +31,8 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 				name: "Fashion Emporium(Rodin)",
 				description: "Trendy clothing store with a wide selection",
 				phoneNumber: "+972524560793",
-				logoPath: "",
+				logoPath: "https://avatars.githubusercontent.com/u/57593612?s=96&v=4",
+				address: "Kfar Kama, abazkh 5",
 				hasWhatsapp: true,
 				location: {
 					latitude: 50,
@@ -48,7 +49,8 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 				name: "Wellness Spa(Aslan)",
 				description: "Relaxing spa with various wellness treatments",
 				phoneNumber: "+972509887021",
-				logoPath: "",
+				logoPath: "https://avatars.githubusercontent.com/u/57593612?s=96&v=4",
+				address: "Kfar Kama, Adiga 10",
 				hasWhatsapp: false,
 				location: {
 					latitude: 50,

@@ -17,7 +17,6 @@ export class DatabaseModule {
 					inject: [ConfigService],
 					useFactory: (config: ConfigService) => {
 						const dbConfig = config.get("database");
-						console.log(dbConfig);
 						return dbConfig;
 					},
 				}),

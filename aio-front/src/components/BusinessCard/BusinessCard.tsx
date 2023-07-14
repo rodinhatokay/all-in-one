@@ -8,6 +8,7 @@ import BottomActions from "./BottomActions";
 import FavoriteButton from "../FavoriteButton";
 import { navigate } from "../../routes/routerActions";
 import StarRating from "../RatingStar";
+import OpeningHours from "./OpeningHours";
 
 type BusinessCardProps = {
 	business: Business;
@@ -48,12 +49,12 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	};
 
 	return (
-		<Card onPress={onPressCard} mode="elevated" style={cardStyle}>
+		<Card onPress={onPressCard} disabled mode="elevated" style={cardStyle}>
 			<Card.Content>
 				<View style={styles.topRow}>
 					<Image
 						source={{
-							uri: "https://img.freepik.com/premium-vector/store-retail-logo-template_59362-82.jpg?w=826",
+							uri: business.logoPath,
 						}}
 						style={styles.image}
 					/>
@@ -69,14 +70,14 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 								isFavorite={isFavorite}
 							/> */}
 						</View>
-						<Paragraph style={styles.noMarginVertical}>
-							{/* <StarRating rating={rating} /> */}
-						</Paragraph>
-						<Paragraph style={styles.noMarginVertical}>12:00 - 15:00</Paragraph>
+						{/* <Paragraph style={styles.noMarginVertical}>
+							<StarRating rating={rating} />
+						</Paragraph> */}
+						<OpeningHours openingHours={business.openingHours} />
 						<Paragraph
 							style={[styles.address, { color: theme.colors.primary }]}
 						>
-							hatokay 5
+							{business.address}
 						</Paragraph>
 					</View>
 				</View>
@@ -84,6 +85,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 				<Paragraph>{description}</Paragraph>
 			</Card.Content>
 			<BottomActions
+				hasWhatsapp={business.hasWhatsapp}
 				handleCall={handleCall}
 				handleSaveContact={handleSaveContact}
 				handleShare={handleShare}
@@ -109,14 +111,18 @@ const styles = StyleSheet.create({
 	},
 	flex: { flex: 1 },
 	titleRow: {
+		// borderWidth: 1,
+		// alignSelf: "flex-start",
 		flexDirection: "row",
 		justifyContent: "space-between",
-		alignItems: "center",
+		// alignItems: "center",
 		flex: 1,
 	},
 	name: {
+		// borderWidth: 1,
 		marginRight: 15,
 		maxWidth: "75%",
+		// fontSize: 14,
 		paddingBottom: 0,
 		marginBottom: 0,
 	},

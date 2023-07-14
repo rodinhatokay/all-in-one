@@ -19,13 +19,16 @@ export class CreateBusiness {
 	@IsString()
 	logoPath: string;
 
+	@IsString()
+	address: string;
+
 	@IsBoolean()
 	hasWhatsapp: boolean;
 
 	@IsString()
 	description: string;
 
-	@IsNotEmpty({ message: 'location is required' })
+	@IsNotEmpty({ message: "location is required" })
 	location: Location;
 
 	@IsArray()
