@@ -5,10 +5,10 @@ import { Business } from "../../services/business/business.types";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useMemo } from "react";
 import BottomActions from "./BottomActions";
-import FavoriteButton from "../FavoriteButton";
+// import FavoriteButton from "../FavoriteButton";
 import { navigate } from "../../routes/routerActions";
-import StarRating from "../RatingStar";
-import OpeningHours from "./OpeningHours";
+// import StarRating from "../RatingStar";
+import OpeningHours from "./OpeningHours/OpeningHours";
 
 type BusinessCardProps = {
 	business: Business;

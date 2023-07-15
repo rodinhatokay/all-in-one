@@ -4,7 +4,7 @@ const KEY_STORE_TOKEN = "StoreTokenAPI";
 
 const baseUrlApi = !__DEV__
 	? "http://allinoneocean.com/api"
-	: "http://192.168.80.1:3001/api"; // temporary local ip will fix later
+	: "http://192.168.1.107:3001/api"; // temporary local ip will fix later
 
 const api = Axios.create({
 	baseURL: baseUrlApi,

@@ -5,6 +5,13 @@ import { AuthProvider } from "./src/contexts/AuthContext";
 import { LocalizationProvider } from "./src/contexts/LocalizationContext";
 import { StatusBar } from "expo-status-bar";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { Platform, UIManager } from "react-native";
+
+if (Platform.OS === "android") {
+	if (UIManager.setLayoutAnimationEnabledExperimental) {
+		UIManager.setLayoutAnimationEnabledExperimental(true);
+	}
+}
 
 const queryClient = new QueryClient();
 

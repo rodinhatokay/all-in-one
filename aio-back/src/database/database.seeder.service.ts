@@ -26,6 +26,8 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 		const count = await this.businessRepository.count();
 		if (count) return;
 
+		console.log("RUNNING SEED BUSINESSES FOR DB");
+
 		const businesses: CreateBusiness[] = [
 			{
 				name: "Fashion Emporium(Rodin)",
@@ -39,10 +41,13 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 					longitude: 20,
 				},
 				openingHours: [
+					{ day: "Sunday", hours: [{ start: "00:00", end: "04:00" }] },
 					{ day: "Monday", hours: [{ start: "00:00", end: "04:00" }] },
-					{ day: "Thursday", hours: [{ start: "00:00", end: "04:00" }] },
-					{ day: "Wednesday", hours: [{ start: "00:00", end: "04:00" }] },
 					{ day: "Tuesday", hours: [{ start: "00:00", end: "04:00" }] },
+					{ day: "Wednesday", hours: [{ start: "00:00", end: "04:00" }] },
+					{ day: "Thursday", hours: [{ start: "00:00", end: "04:00" }] },
+					{ day: "Friday", hours: [] },
+					{ day: "Saturday", hours: [] },
 				],
 			},
 			{
@@ -57,10 +62,26 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 					longitude: 20,
 				},
 				openingHours: [
-					{ day: "Monday", hours: [{ start: "00:00", end: "04:00" }] },
-					{ day: "Thursday", hours: [{ start: "00:00", end: "04:00" }] },
-					{ day: "Wednesday", hours: [{ start: "00:00", end: "04:00" }] },
+					{ day: "Sunday", hours: [{ start: "00:00", end: "04:00" }] },
+					{
+						day: "Monday",
+						hours: [
+							{ start: "00:00", end: "04:00" },
+							{ start: "08:00", end: "12:00" },
+						],
+					},
 					{ day: "Tuesday", hours: [{ start: "00:00", end: "04:00" }] },
+					{
+						day: "Wednesday",
+						hours: [
+							{ start: "00:00", end: "04:00" },
+							{ start: "08:00", end: "12:00" },
+							{ start: "15:00", end: "17:00" },
+						],
+					},
+					{ day: "Thursday", hours: [{ start: "00:00", end: "04:00" }] },
+					{ day: "Friday", hours: [] },
+					{ day: "Saturday", hours: [] },
 				],
 			},
 		];
@@ -72,6 +93,8 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 		const count = await this.userRepository.count();
 		if (count) return;
 		// No users in the database, let's seed!
+
+		console.log("RUNNING SEED USER FOR DB");
 
 		// TODO: create folder for seeding seperate of concerens
 		const user1: RegisterDto = {
