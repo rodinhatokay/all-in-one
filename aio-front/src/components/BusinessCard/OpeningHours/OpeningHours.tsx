@@ -38,9 +38,9 @@ const OpeningHours: FC<Props> = (props) => {
 		<Pressable onPress={toggleSetExpandList} style={styles.main}>
 			<View style={styles.contentContainer}>
 				{expandList ? (
-					openingHours.map((openingHour) => {
+					openingHours.map((openingHour, idx) => {
 						return (
-							<View key={openingHour.day} style={styles.expandedListView}>
+							<View key={idx} style={styles.expandedListView}>
 								<Text variant="bodySmall" style={styles.dayText}>
 									{t(openingHour.day)}:{" "}
 								</Text>

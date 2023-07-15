@@ -2,12 +2,6 @@ import { useMemo } from "react";
 import { isWithinInterval, getDay, set, parse, parseISO } from "date-fns";
 import { Business, DayOfWeek } from "../services/business/business.types";
 
-type OpeningHours = {
-	id: number;
-	day: DayOfWeek;
-	hours: { start: string; end: string }[];
-}[];
-
 const daysOfWeek: DayOfWeek[] = [
 	"Sunday",
 	"Monday",
