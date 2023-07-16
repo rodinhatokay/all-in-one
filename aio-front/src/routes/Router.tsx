@@ -1,16 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import { useTheme } from "../contexts/ThemeContext";
-
 import NoAuthRouter from "./NoAuthStack";
 import { navigationRef } from "./routerActions";
 import AuthRoutes from "./AuthRoutes";
 import { useAuth } from "../contexts/AuthContext";
-
 import * as SplashScreen from "expo-splash-screen";
 import useInitApp from "../hooks/useInitApp";
 import { useCallback } from "react";
-import { useLocalization } from "../contexts/LocalizationContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,8 +29,6 @@ const Router = () => {
 			await SplashScreen.hideAsync();
 		}
 	}, [appIsReady]);
-
-	const { locale } = useLocalization();
 
 	if (!appIsReady) {
 		return null;
