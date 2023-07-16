@@ -48,7 +48,7 @@ export const CombinedDefaultColor = {
 	lightGrey: "#F5F5F5",
 	lightBackground: "#F5F5F5",
 	red: "rgb(186, 26, 26)",
-
+	green: "#008000",
 	// primary: '#3daccf',
 	// secondary: 'purple',
 };
@@ -98,4 +98,5 @@ export const CombinedDarkColor = {
 	lightGrey: "#F5F5F5",
 	lightBackground: "rgb(37, 35, 41)",
 	red: "rgb(186, 26, 26)",
+	green: "#008000",
 };
