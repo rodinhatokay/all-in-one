@@ -10,6 +10,7 @@ import { AuthModule } from "./auth/auth.module";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
 import { BusinessModule } from "./business/business.module";
+import { SpacesModule } from "./spaces/spaces.module";
 import { DatabaseModule } from "./database/database.module";
 
 @Module({
@@ -32,6 +33,7 @@ import { DatabaseModule } from "./database/database.module";
 		UsersModule,
 		AuthModule,
 		BusinessModule,
+		SpacesModule
 	],
 	controllers: [AppController],
 	providers: [
