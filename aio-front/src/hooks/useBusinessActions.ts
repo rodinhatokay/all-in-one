@@ -4,7 +4,7 @@ import { Linking, Platform, Share } from "react-native";
 import { navigate } from "../routes/routerActions";
 import { log } from "../services/logger/loggerService";
 
-const useBusinessHandles = ({
+const useBusinessActions = ({
 	phoneNumber,
 	name,
 	hasWhatsapp,
@@ -87,4 +87,4 @@ const useBusinessHandles = ({
 	};
 };
 
-export default useBusinessHandles;
+export default useBusinessActions;
