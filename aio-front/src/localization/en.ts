@@ -41,6 +41,17 @@ const en = {
 	noInternet:
 		"Unable to connect to the internet. Please check your network connection and try again.",
 	genericError: "An error occurred. Please try again later.",
+	closed: "Closed",
+	open: "Open",
+	closedToday: "Closed Today",
+	today: "Today",
+	Sunday: "Sun",
+	Monday: "Mon",
+	Tuesday: "Tue",
+	Wednesday: "Wed",
+	Thursday: "Thu",
+	Friday: "Fri",
+	Saturday: "Sat",
 };
 
 export type IEnTranslations = typeof en;

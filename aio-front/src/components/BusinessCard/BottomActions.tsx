@@ -10,6 +10,7 @@ const iconSize = 22;
 const hitSlop = 20;
 
 interface Props {
+	hasWhatsapp: boolean;
 	handleCall: VoidFunction;
 	handleWhatsApp: VoidFunction;
 	handleSaveContact: VoidFunction;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const BottomActions: FC<Props> = ({
+	hasWhatsapp,
 	handleCall,
 	handleSaveContact,
 	handleShare,
@@ -25,6 +27,7 @@ const BottomActions: FC<Props> = ({
 	const { theme } = useTheme();
 
 	const color = theme.colors.tertiary;
+	const disabledColor = theme.colors.onSurfaceDisabled;
 	return (
 		<View style={styles.buttonContainer}>
 			<IconButton
@@ -32,8 +35,15 @@ const BottomActions: FC<Props> = ({
 				onPress={handleCall}
 			/>
 			<IconButton
-				icon={() => <Icon name="whatsapp" color={color} size={22} />}
+				icon={() => (
+					<Icon
+						name="whatsapp"
+						color={hasWhatsapp ? color : disabledColor}
+						size={22}
+					/>
+				)}
 				onPress={handleWhatsApp}
+				disabled={!hasWhatsapp}
 			/>
 			<IconButton
 				icon={() => <OcticonsIcon name="person-add" color={color} size={22} />}

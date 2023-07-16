@@ -1,28 +1,32 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import { Image } from "../partials";
 import { Card, Divider, Paragraph, Title } from "react-native-paper";
 import { Business } from "../../services/business/business.types";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useMemo } from "react";
 import BottomActions from "./BottomActions";
-import FavoriteButton from "../FavoriteButton";
+// import FavoriteButton from "../FavoriteButton";
 import { navigate } from "../../routes/routerActions";
-import StarRating from "../RatingStar";
+// import StarRating from "../RatingStar";
+import OpeningHours from "./OpeningHours/OpeningHours";
 
 type BusinessCardProps = {
 	business: Business;
 };
 
 export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
-	const { name, description, rating, isFavorite } = business;
+	const { name, description } = business;
 
 	const { theme, isThemeDark } = useTheme();
 
 	const cardStyle = useMemo(() => {
-		const { lightGrey } = theme.colors;
+		// const { lightGrey } = theme.colors;
 
 		if (isThemeDark) return styles.card;
-		return [styles.card, { backgroundColor: "rgba(150, 150, 150, 0.12)" }];
+		return [
+			styles.card,
+			Platform.OS === "ios" && { backgroundColor: "rgba(150, 150, 150, 0.12)" },
+		];
 	}, [isThemeDark, theme]);
 
 	const handleCall = () => {
@@ -45,12 +49,12 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	};
 
 	return (
-		<Card onPress={onPressCard} mode="elevated" style={cardStyle}>
+		<Card onPress={onPressCard} disabled mode="elevated" style={cardStyle}>
 			<Card.Content>
 				<View style={styles.topRow}>
 					<Image
 						source={{
-							uri: "https://img.freepik.com/premium-vector/store-retail-logo-template_59362-82.jpg?w=826",
+							uri: business.logoPath,
 						}}
 						style={styles.image}
 					/>
@@ -59,21 +63,21 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 							<Title numberOfLines={2} style={styles.name}>
 								{name}
 							</Title>
-							<FavoriteButton
+							{/* <FavoriteButton
 								onPress={() => {
 									throw new Error("need to implement");
 								}}
 								isFavorite={isFavorite}
-							/>
+							/> */}
 						</View>
-						<Paragraph style={styles.noMarginVertical}>
+						{/* <Paragraph style={styles.noMarginVertical}>
 							<StarRating rating={rating} />
-						</Paragraph>
-						<Paragraph style={styles.noMarginVertical}>12:00 - 15:00</Paragraph>
+						</Paragraph> */}
+						<OpeningHours openingHours={business.openingHours} />
 						<Paragraph
 							style={[styles.address, { color: theme.colors.primary }]}
 						>
-							hatokay 5
+							{business.address}
 						</Paragraph>
 					</View>
 				</View>
@@ -81,6 +85,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 				<Paragraph>{description}</Paragraph>
 			</Card.Content>
 			<BottomActions
+				hasWhatsapp={business.hasWhatsapp}
 				handleCall={handleCall}
 				handleSaveContact={handleSaveContact}
 				handleShare={handleShare}
@@ -106,14 +111,18 @@ const styles = StyleSheet.create({
 	},
 	flex: { flex: 1 },
 	titleRow: {
+		// borderWidth: 1,
+		// alignSelf: "flex-start",
 		flexDirection: "row",
 		justifyContent: "space-between",
-		alignItems: "center",
+		// alignItems: "center",
 		flex: 1,
 	},
 	name: {
+		// borderWidth: 1,
 		marginRight: 15,
 		maxWidth: "75%",
+		// fontSize: 14,
 		paddingBottom: 0,
 		marginBottom: 0,
 	},

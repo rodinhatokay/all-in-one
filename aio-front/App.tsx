@@ -4,6 +4,16 @@ import Router from "./src/routes/Router";
 import { AuthProvider } from "./src/contexts/AuthContext";
 import { LocalizationProvider } from "./src/contexts/LocalizationContext";
 import { StatusBar } from "expo-status-bar";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { Platform, UIManager } from "react-native";
+
+if (Platform.OS === "android") {
+	if (UIManager.setLayoutAnimationEnabledExperimental) {
+		UIManager.setLayoutAnimationEnabledExperimental(true);
+	}
+}
+
+const queryClient = new QueryClient();
 
 const App = () => {
 	const { theme, isThemeDark } = useTheme();
@@ -18,13 +28,15 @@ const App = () => {
 
 const AppWrapper = () => {
 	return (
-		<AuthProvider>
-			<LocalizationProvider>
-				<ThemeProvider>
-					<App />
-				</ThemeProvider>
-			</LocalizationProvider>
-		</AuthProvider>
+		<QueryClientProvider client={queryClient}>
+			<AuthProvider>
+				<LocalizationProvider>
+					<ThemeProvider>
+						<App />
+					</ThemeProvider>
+				</LocalizationProvider>
+			</AuthProvider>
+		</QueryClientProvider>
 	);
 };
 
