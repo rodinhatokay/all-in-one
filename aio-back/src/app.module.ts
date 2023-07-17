@@ -12,6 +12,7 @@ import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
 import { BusinessModule } from "./business/business.module";
 import { SpacesModule } from "./spaces/spaces.module";
 import { DatabaseModule } from "./database/database.module";
+import { CategoryModule } from "./category/category.module";
 
 @Module({
 	imports: [
@@ -33,7 +34,8 @@ import { DatabaseModule } from "./database/database.module";
 		UsersModule,
 		AuthModule,
 		BusinessModule,
-		SpacesModule
+		SpacesModule,
+		CategoryModule,
 	],
 	controllers: [AppController],
 	providers: [
@@ -45,3 +47,4 @@ import { DatabaseModule } from "./database/database.module";
 	],
 })
 export class AppModule {}
+

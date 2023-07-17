@@ -10,7 +10,8 @@ export class OpeningHours {
 	@Column()
 	day: DayOfWeek;
 
-	@Column("jsonb")
+  
+	@Column('jsonb')
 	hours: { start: string; end: string }[];
 
 	@ManyToOne(() => Business, (business) => business.openingHours)

@@ -1,6 +1,14 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+	Column,
+	Entity,
+	JoinColumn,
+	ManyToOne,
+	OneToMany,
+	PrimaryGeneratedColumn,
+} from "typeorm";
 import { Location } from "./location.entity";
 import { OpeningHours } from "../../common/entities/openingHours.entity";
+import { Category } from "../../category/entities/category.entity";
 
 @Entity()
 export class Business {
@@ -34,12 +42,9 @@ export class Business {
 	})
 	openingHours: OpeningHours[];
 
-	// @Column({ unique: false })
-	// categoryId: string;
-
-	// @ManyToOne(() => Category)
-	// @JoinColumn({ name: "categoryId" })
-	// category: Category;
+	@ManyToOne(() => Category)
+	@JoinColumn({ name: "categoryId" })
+	category: Category;
 
 	// @ManyToMany(() => User, (user) => user.favoriteBusinesses)
 	// users: User[];

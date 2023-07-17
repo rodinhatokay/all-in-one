@@ -6,6 +6,7 @@ import { OpeningHours } from "../common/entities/openingHours.entity";
 import { join } from "path";
 import { readFileSync } from "fs";
 import { User } from "../users/entities/user.entity";
+import { Category } from "../category/entities/category.entity";
 
 export const getDbConfig = (): TypeOrmModuleOptions => {
 	const env = process.env.NODE_ENV || "development";
@@ -17,7 +18,7 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 		port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
 		username: process.env.DATABASE_USER || "postgres",
 		password: process.env.DATABASE_PASS || "pass123",
-		entities: [User, Otp, Business, Location, OpeningHours],
+		entities: [User, Otp, Business, Location, OpeningHours, Category],
 	};
 
 	const devConfig: TypeOrmModuleOptions = {
@@ -37,3 +38,4 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 
 	return isDevMode ? devConfig : prodConfig;
 };
+
