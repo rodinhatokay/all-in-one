@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { convertDataToOpeningHours } from "../utils";
 
-export class BusinessClient {
+export class AioBackClient {
   private readonly baseUrl: string;
   private readonly authToken: string;
 
@@ -44,12 +44,12 @@ export class BusinessClient {
       };
 
       // Create an array of OpeningHours
-      const openingHours = form.openingHours.map((item: any) => {
-        return {
-          day: item.day,
-          hours: [{ start: item.start, end: item.end }],
-        };
-      });
+      // const openingHours = form.openingHours.map((item: any) => {
+      //   return {
+      //     day: item.day,
+      //     hours: [{ start: item.start, end: item.end }],
+      //   };
+      // });
 
       // Create an instance of CreateBusiness
       const createBusiness = {
@@ -59,7 +59,8 @@ export class BusinessClient {
         hasWhatsapp: form.hasWhatsapp,
         description: form.description,
         location: location,
-        openingHours: convertDataToOpeningHours(openingHours),
+        openingHours: convertDataToOpeningHours(form.openingHours),
+        address: form.address,
       };
 
       // Prepare the request headers
@@ -88,6 +89,33 @@ export class BusinessClient {
       // Handle any errors that occurred during the request
       console.error(error);
       throw new Error("Failed to create business");
+    }
+  }
+
+  public async getCategories(): Promise<any> {
+    try {
+      // Prepare the request headers
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.authToken}`,
+      };
+
+      // Create the Axios request configuration
+      const config: AxiosRequestConfig = {
+        method: "get",
+        url: `${this.baseUrl}/category`, // Adjust the URL endpoint according to your backend API
+        headers: headers,
+      };
+
+      // Send the POST request to the backend using Axios
+      const response = await axios(config);
+
+      // Return the response from the backend
+      return response.data;
+    } catch (error) {
+      // Handle any errors that occurred during the request
+      console.error(error);
+      throw new Error("Failed to get categories");
     }
   }
 }

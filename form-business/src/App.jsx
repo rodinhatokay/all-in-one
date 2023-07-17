@@ -1,12 +1,12 @@
 import "./App.css";
 import BusinessForm from "./components/BusinessForm";
-import { BusinessProvider } from "./context/BusinessContext";
+import { AioBackContextProvider } from "./context/AioBackContext";
 
 function App() {
   return (
-    <BusinessProvider>
+    <AioBackContextProvider>
       <BusinessForm />
-    </BusinessProvider>
+    </AioBackContextProvider>
   );
 }
 

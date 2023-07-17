@@ -17,16 +17,18 @@ export const convertDataToOpeningHours = (
     const dayExists = openingHours.some((o) => o.day === item.day);
 
     if (!dayExists) {
-      openingHours.push({ day: item.day, hours: [] });
+      openingHours.push({ day: item.day, hours: item.hours });
     }
 
-    const dayIndex = openingHours.findIndex((o) => o.day === item.day);
-    const hoursIndex = openingHours[dayIndex].hours.length;
+    // const dayIndex = openingHours.findIndex((o) => o.day === item.day);
+    // const hoursIndex = openingHours[dayIndex].hours.length;
 
-    openingHours[dayIndex].hours[hoursIndex] = {
-      start: item.hours[0].start,
-      end: item.hours[0].end,
-    };
+    // if (openingHours[dayIndex].hours?.length > 0) {
+    //   openingHours[dayIndex].hours[hoursIndex] = {
+    //     start: item.hours[0].start,
+    //     end: item.hours[0].end,
+    //   };
+    // }
   });
 
   return openingHours;
