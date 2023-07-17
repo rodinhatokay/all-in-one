@@ -19,6 +19,7 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 		port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
 		username: process.env.DATABASE_USER || 'postgres',
 		password: process.env.DATABASE_PASS || 'pass123',
+		database: process.env.DATABASE_DB || 'postgres',
 		entities: [User, Otp, Business, Location, OpeningHours, Category],
 	};
 
@@ -44,4 +45,3 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 
 	return config;
 };
-
