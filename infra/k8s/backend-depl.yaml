@@ -59,6 +59,21 @@ spec:
                 secretKeyRef:
                   name: database-db
                   key: DATABASE_DB
+            - name: SPACES_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: spaces-access-key-id
+                  key: SPACES_ACCESS_KEY_ID
+            - name: SPACES_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: spaces-secret-access-key
+                  key: SPACES_SECRET_ACCESS_KEY
+            - name: SPACES_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: spaces-endpoint
+                  key: SPACES_ENDPOINT
       volumes: # Moved volumes to the Pod level
         - name: db-cert-volume
           secret:
