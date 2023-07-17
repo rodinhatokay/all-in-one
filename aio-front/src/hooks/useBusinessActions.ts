@@ -3,6 +3,7 @@ import { Business } from "../services/business/business.types";
 import { Linking, Platform, Share } from "react-native";
 import { navigate } from "../routes/routerActions";
 import { log } from "../services/logger/loggerService";
+import { useLocalization } from "../contexts/LocalizationContext";
 
 const useBusinessActions = ({
 	phoneNumber,
@@ -10,6 +11,7 @@ const useBusinessActions = ({
 	hasWhatsapp,
 	location,
 }: Business) => {
+	const { t } = useLocalization();
 	const handleCall = useCallback(() => {
 		Linking.openURL(`tel:${phoneNumber}`);
 	}, [phoneNumber]);
@@ -22,7 +24,7 @@ const useBusinessActions = ({
 		// logic to share business
 		try {
 			const result = await Share.share({
-				message: `All in One | ${name}: \n${phoneNumber}`,
+				message: `${t("allInOne")} | ${name}: \n${phoneNumber}`,
 				// url: "",
 			});
 			if (result.action === Share.sharedAction) {
