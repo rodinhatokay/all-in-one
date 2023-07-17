@@ -17,4 +17,7 @@ COPY . .
 # building app
 RUN npm run build
 
+# set env to production 
+ENV NODE_ENV=production
+
 CMD ["npm","run","prod"]
