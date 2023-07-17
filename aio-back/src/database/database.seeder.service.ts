@@ -5,6 +5,7 @@ import { RegisterDto } from "../auth/dto/req/register.dto";
 import { User } from "../users/entities/user.entity";
 import { CreateBusiness } from "../business/dto/createBusiness.dto";
 import { Business } from "../business/entities/business.entity";
+import { Category } from "../category/entities/category.entity";
 
 @Injectable()
 export class DatabaseSeederService implements OnApplicationBootstrap {
@@ -13,11 +14,14 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 		private readonly userRepository: Repository<User>,
 		@InjectRepository(Business)
 		private readonly businessRepository: Repository<Business>,
+		@InjectRepository(Category)
+		private readonly categoryRepository: Repository<Category>,
 	) {}
 
 	async onApplicationBootstrap() {
 		await this.seedBusinesses();
 		await this.seedUsers();
+		await this.seedCategories();
 	}
 
 	private async seedBusinesses() {
@@ -114,4 +118,34 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 		await this.userRepository.save(user1);
 		await this.userRepository.save(user2);
 	}
+
+	private async seedCategories() {
+		const count = await this.categoryRepository.count();
+		if (count) return;
+		// No categories in the database, let's seed!
+
+		console.log("RUNNING SEED CATEGORY FOR DB");
+
+		// TODO: create folder for seeding seperate of concerens
+		const categories = [{
+			name: "Retails",
+		},{
+			name: "Cosmetics",
+		},{
+			name: "Technicals",
+		},{
+			name: "Motor",
+		},{
+			name: "Food",
+		},{
+			name: "Health",
+		},{
+			name: "Goverment",
+		},{
+			name: "Hang outs",
+		}];
+
+		await this.categoryRepository.save(categories);
+	}
 }
+

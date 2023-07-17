@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { DatabaseSeederService } from "./database.seeder.service";
 import { User } from "../users/entities/user.entity";
 import { Business } from "../business/entities/business.entity";
+import { Category } from "../category/entities/category.entity";
 
 @Module({})
 export class DatabaseModule {
@@ -20,7 +21,7 @@ export class DatabaseModule {
 						return dbConfig;
 					},
 				}),
-				TypeOrmModule.forFeature([User, Business]), // Include your entities here
+				TypeOrmModule.forFeature([User, Business, Category]), // Include your entities here
 			],
 			providers: [
 				...(process.env.NODE_ENV || "development" === "development"

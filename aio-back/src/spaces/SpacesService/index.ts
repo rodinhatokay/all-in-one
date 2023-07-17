@@ -28,7 +28,6 @@ export const SpacesServiceProvider: Provider<AWS.S3> = {
   inject: [ConfigService], // Inject the ConfigService
 };
 
-// This is just a simple interface that represents an uploaded file object
 export interface UploadedMulterFileI {
 	fieldname: string;
 	originalname: string;

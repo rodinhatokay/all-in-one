@@ -1,19 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { useBusinessClient } from "../context/BusinessContext";
+import { useAioBackClient } from "../context/AioBackContext";
 import {
   Button,
   Checkbox,
-  FormControl,
   FormControlLabel,
   Grid,
-  InputLabel,
-  Select,
   TextField,
   Typography,
+  InputLabel,
+  Select,
   MenuItem,
 } from "@material-ui/core";
-
+import { WeekOpeningHours } from "./WeekOpeningHours";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
@@ -21,16 +20,6 @@ const useStyles = makeStyles(() => ({
     margin: "20px",
   },
 }));
-
-const daysOfWeek = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
 
 const BusinessForm = () => {
   const [form, setForm] = useState({
@@ -40,19 +29,43 @@ const BusinessForm = () => {
     phoneNumber: "",
     hasWhatsapp: false,
     location: { lat: "", lon: "" },
-    openingHours: [{ day: "", start: "", end: "" }],
+    openingHours: [
+      { day: "Sunday", isOpen: true, hours: [] },
+      { day: "Monday", isOpen: true, hours: [] },
+      { day: "Tuesday", isOpen: true, hours: [] },
+      { day: "Wednesday", isOpen: true, hours: [] },
+      { day: "Thursday", isOpen: true, hours: [] },
+      { day: "Friday", isOpen: true, hours: [] },
+      { day: "Saturday", isOpen: true, hours: [] },
+    ],
     // categoryName: "",
     // subCategoryName: "",
     filePath: null,
+    address: null,
+    selectedCategory: null,
   });
-  const businessClient = useBusinessClient();
+
+  const [categories, setCategories] = useState([]);
+
+  const aioBackClient = useAioBackClient();
   const classes = useStyles();
 
-  const addOpeningHour = () => {
-    setForm({
-      ...form,
-      openingHours: [...form.openingHours, { day: "", start: "", end: "" }],
-    });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await aioBackClient.getCategories();
+        setCategories(response);
+        // Handle the response here
+      } catch (error) {
+        // Handle any errors
+      }
+    };
+
+    fetchData();
+  }, [aioBackClient]);
+
+  const handleOpeningHoursChange = (updatedOpeningHours) => {
+    setForm({ ...form, openingHours: updatedOpeningHours });
   };
 
   const handleInputChange = (event, index) => {
@@ -70,8 +83,16 @@ const BusinessForm = () => {
     setForm({ ...form, hasWhatsapp: !form.hasWhatsapp });
   };
 
+  const handleAddressChange = (event) => {
+    setForm({ ...form, address: event.target.value });
+  };
+
+  const handleCategoryChange = (event) => {
+    setForm({ ...form, selectedCategory: event.target.value });
+  };
+
   const handleFileChange = (event) => {
-    businessClient
+    aioBackClient
       .uploadFile(event.target.files[0])
       .then((result) => {
         // Handle the result from the backend
@@ -85,7 +106,7 @@ const BusinessForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    businessClient
+    aioBackClient
       .createBusiness(form)
       .then((result) => {
         // Handle the result from the backend
@@ -109,6 +130,27 @@ const BusinessForm = () => {
               onChange={handleInputChange}
               fullWidth
             />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <InputLabel id="category-label">Category</InputLabel>
+            <Select
+              style={{ width: "200px" }}
+              labelId="category-label"
+              id="category"
+              value={form.selectedCategory}
+              onChange={handleCategoryChange}
+              label="Category"
+            >
+              {categories.map((category) => (
+                <MenuItem
+                  style={{ width: "200px" }}
+                  key={category.id}
+                  value={category.id}
+                >
+                  {category.name}
+                </MenuItem>
+              ))}
+            </Select>
           </Grid>
           {/* <Grid item xs={12} sm={2}>
             <TextField
@@ -175,26 +217,33 @@ const BusinessForm = () => {
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} className={classes.root}></Grid>
-
-        <Grid item xs={12}>
-          <TextField
-            label="Latitude"
-            name="location.lat"
-            variant="outlined"
-            onChange={handleInputChange}
-            fullWidth
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <TextField
-            label="Longitude"
-            name="location.lon"
-            variant="outlined"
-            onChange={handleInputChange}
-            fullWidth
-          />
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              label="Address"
+              variant="outlined"
+              fullWidth
+              onChange={handleAddressChange}
+            />
+          </Grid>
+          <Grid item xs={6} sm={4}>
+            <TextField
+              label="Latitude"
+              name="location.lat"
+              variant="outlined"
+              onChange={handleInputChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={6} sm={4}>
+            <TextField
+              label="Longitude"
+              name="location.lon"
+              variant="outlined"
+              onChange={handleInputChange}
+              fullWidth
+            />
+          </Grid>
         </Grid>
 
         <Grid item xs={12}>
@@ -225,61 +274,8 @@ const BusinessForm = () => {
             </div>
           )}
         </Grid>
-
-        {form.openingHours.map((openingHour, index) => (
-          <Grid
-            container
-            key={index}
-            item
-            xs={12}
-            justifyContent="center"
-            spacing={2}
-          >
-            <Grid item xs={4}>
-              <FormControl variant="outlined" fullWidth>
-                <InputLabel>Day</InputLabel>
-                <Select
-                  name="day"
-                  value={openingHour.day}
-                  onChange={(event) => handleInputChange(event, index)}
-                >
-                  {daysOfWeek.map((day) => (
-                    <MenuItem key={day} value={day}>
-                      {day}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={4}>
-              <TextField
-                label="Start Hour"
-                name="start"
-                variant="outlined"
-                value={openingHour.start}
-                onChange={(event) => handleInputChange(event, index)}
-                fullWidth
-              />
-            </Grid>
-
-            <Grid item xs={4}>
-              <TextField
-                label="End Hour"
-                name="end"
-                variant="outlined"
-                value={openingHour.end}
-                onChange={(event) => handleInputChange(event, index)}
-                fullWidth
-              />
-            </Grid>
-          </Grid>
-        ))}
-
-        <Grid item xs={12}>
-          <Button variant="contained" color="primary" onClick={addOpeningHour}>
-            Add Opening Hour
-          </Button>
+        <Grid>
+          <WeekOpeningHours onChange={handleOpeningHoursChange} />
         </Grid>
 
         <Grid item xs={12}>
