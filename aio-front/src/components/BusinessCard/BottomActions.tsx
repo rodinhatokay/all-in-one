@@ -13,14 +13,14 @@ interface Props {
 	hasWhatsapp: boolean;
 	handleCall: VoidFunction;
 	handleWhatsApp: VoidFunction;
-	handleSaveContact: VoidFunction;
+	handleSendSms: VoidFunction;
 	handleShare: VoidFunction;
 }
 
 const BottomActions: FC<Props> = ({
 	hasWhatsapp,
 	handleCall,
-	handleSaveContact,
+	handleSendSms,
 	handleShare,
 	handleWhatsApp,
 }) => {
@@ -46,8 +46,10 @@ const BottomActions: FC<Props> = ({
 				disabled={!hasWhatsapp}
 			/>
 			<IconButton
-				icon={() => <OcticonsIcon name="person-add" color={color} size={22} />}
-				onPress={handleSaveContact}
+				icon={() => (
+					<FeatherIcon name="message-circle" color={color} size={22} />
+				)}
+				onPress={handleSendSms}
 			/>
 			<IconButton
 				icon={() => <FeatherIcon name="share" color={color} size={22} />}
