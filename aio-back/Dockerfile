@@ -2,22 +2,26 @@ FROM node:alpine
 
 WORKDIR /app
 
-# copy package.json
+# Copy package.json
 COPY package.json .
 
-# copy packagejson 
+# Copy tsconfig.json 
 COPY tsconfig.json .
 
-# install dependencies 
+# Install dependencies 
 RUN npm install --only=prod
 
-# copying source files 
+# Copying source files 
 COPY . .
 
-# building app
+# Building app
 RUN npm run build
 
-# set env to production 
+# Generate and run migrations
+RUN npm run generate:migrations
+RUN npm run run:migrations
+
+# Set env to production 
 ENV NODE_ENV=production
 
 CMD ["npm","run","prod"]
