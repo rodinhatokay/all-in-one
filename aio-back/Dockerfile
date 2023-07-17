@@ -17,10 +17,6 @@ COPY . .
 # Building app
 RUN npm run build
 
-# Generate and run migrations
-RUN npm run generate:migrations
-RUN npm run run:migrations
-
 # Set env to production 
 ENV NODE_ENV=production
 
