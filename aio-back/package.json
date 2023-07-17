@@ -19,7 +19,7 @@
 		"test:cov": "jest --coverage",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
 		"//": "comment: -> adding 'pre' to the script will run that before here in e2e we run docker mock db and then run e2e test",
-		"generate:migrations": "npx typeorm migration:generate dist/src/migrations/SchemaSync -d dist/typeorm-cli.config",
+		"generate:migrations": "npx typeorm migration:generate dist/src/database/migrations/SchemaSync -d dist/typeorm-cli.config",
 		"run:migration": "npx typeorm migration:run -d dist/typeorm-cli.config",
 		"typeorm-migration": "npm run generate:migrations && npm run run:migration",
 		"pretest:e2e": "docker-compose up -d test-db",
