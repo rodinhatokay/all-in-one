@@ -5,6 +5,7 @@ export type Business = {
 	description: string;
 	address: string;
 	hasWhatsapp: boolean;
+	phoneNumber: string;
 	location: {
 		latitude: number;
 		longitude: number;

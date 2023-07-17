@@ -1,4 +1,4 @@
-import { View, StyleSheet, Platform } from "react-native";
+import { View, StyleSheet, Platform, Pressable } from "react-native";
 import { Image } from "../partials";
 import { Card, Divider, Paragraph, Title } from "react-native-paper";
 import { Business } from "../../services/business/business.types";
@@ -6,9 +6,9 @@ import { useTheme } from "../../contexts/ThemeContext";
 import { useMemo } from "react";
 import BottomActions from "./BottomActions";
 // import FavoriteButton from "../FavoriteButton";
-import { navigate } from "../../routes/routerActions";
 // import StarRating from "../RatingStar";
 import OpeningHours from "./OpeningHours/OpeningHours";
+import useBusinessActions from "../../hooks/useBusinessActions";
 
 type BusinessCardProps = {
 	business: Business;
@@ -16,6 +16,14 @@ type BusinessCardProps = {
 
 export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	const { name, description } = business;
+	const {
+		handleCall,
+		handleShare,
+		navigateToBusiness,
+		handleWhatsApp,
+		handleSendSms,
+		handleLocation,
+	} = useBusinessActions(business);
 
 	const { theme, isThemeDark } = useTheme();
 
@@ -29,27 +37,13 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 		];
 	}, [isThemeDark, theme]);
 
-	const handleCall = () => {
-		throw new Error("need to implement");
-	};
-	const handleWhatsApp = () => {
-		throw new Error("need to implement");
-	};
-
-	const handleSaveContact = () => {
-		// logic to save contact
-	};
-
-	const handleShare = () => {
-		// logic to share business
-	};
-
-	const onPressCard = () => {
-		navigate("business");
-	};
-
 	return (
-		<Card onPress={onPressCard} disabled mode="elevated" style={cardStyle}>
+		<Card
+			onPress={navigateToBusiness}
+			disabled
+			mode="elevated"
+			style={cardStyle}
+		>
 			<Card.Content>
 				<View style={styles.topRow}>
 					<Image
@@ -74,11 +68,13 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 							<StarRating rating={rating} />
 						</Paragraph> */}
 						<OpeningHours openingHours={business.openingHours} />
-						<Paragraph
-							style={[styles.address, { color: theme.colors.primary }]}
-						>
-							{business.address}
-						</Paragraph>
+						<Pressable onPress={handleLocation}>
+							<Paragraph
+								style={[styles.address, { color: theme.colors.primary }]}
+							>
+								{business.address}
+							</Paragraph>
+						</Pressable>
 					</View>
 				</View>
 				<Divider />
@@ -87,7 +83,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 			<BottomActions
 				hasWhatsapp={business.hasWhatsapp}
 				handleCall={handleCall}
-				handleSaveContact={handleSaveContact}
+				handleSendSms={handleSendSms}
 				handleShare={handleShare}
 				handleWhatsApp={handleWhatsApp}
 			/>

@@ -6,8 +6,6 @@ import useBusinesses from "../hooks/useBusinesses";
 const HomeScreen = () => {
 	const { data: businesses, isLoading } = useBusinesses();
 
-	console.log("data", businesses);
-
 	if (isLoading || !businesses) return <Loader style={styles.loader} />;
 	return (
 		<View style={styles.main}>
