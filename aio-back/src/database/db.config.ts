@@ -3,7 +3,6 @@ import { Otp } from '../otp/entities/otp.entity';
 import { Business } from '../business/entities/business.entity';
 import { Location } from '../business/entities/location.entity';
 import { OpeningHours } from '../common/entities/openingHours.entity';
-// import { join } from 'path';
 import { readFileSync } from 'fs';
 import { User } from '../users/entities/user.entity';
 import { Category } from '../category/entities/category.entity';
