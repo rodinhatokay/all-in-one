@@ -19,4 +19,5 @@ export enum ErrorMessages {
 	NoActivitiesFound = 'no activities found',
 	InvalidPhoneNumber = 'Invalid Phone Number',
 	invalidOtpCode = 'Invalid otp code',
+	CategoryAlreadyExistByName = 'Category name already exist in system',
 }
