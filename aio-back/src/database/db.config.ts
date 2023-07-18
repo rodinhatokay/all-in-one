@@ -12,7 +12,6 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 	const env = process.env.NODE_ENV || 'development';
 	const isDevMode = env.trim() === 'development';
 
-	console.log(`isdevmode: ${isDevMode}`);
 	const commonConfig: TypeOrmModuleOptions = {
 		type: 'postgres',
 		host: process.env.DATABASE_HOST || 'localhost',
@@ -41,10 +40,7 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 		synchronize: false,
 	};
 
-	console.log(`isdevmode: ${isDevMode}`);
-
 	const config = isDevMode ? devConfig : prodConfig;
-	console.log(`configDb:`, config);
 
 	return config;
 };
