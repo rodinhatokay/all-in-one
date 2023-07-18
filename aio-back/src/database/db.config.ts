@@ -31,7 +31,7 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 	const prodConfig = {
 		...commonConfig,
 		migrationsRun: true,
-		migrations: [__dirname + '/migrations/**/*.js'],
+		migrations: ['/app/dist/src/database/migrations/**/*.js'],
 		ssl: {
 			ca: !isDevMode ? readFileSync('/etc/ssl/certs/ca-certificate.crt') : null,
 		},
