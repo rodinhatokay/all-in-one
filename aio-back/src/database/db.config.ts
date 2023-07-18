@@ -3,7 +3,7 @@ import { Otp } from '../otp/entities/otp.entity';
 import { Business } from '../business/entities/business.entity';
 import { Location } from '../business/entities/location.entity';
 import { OpeningHours } from '../common/entities/openingHours.entity';
-import { join } from 'path';
+// import { join } from 'path';
 import { readFileSync } from 'fs';
 import { User } from '../users/entities/user.entity';
 import { Category } from '../category/entities/category.entity';
@@ -28,12 +28,15 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 		synchronize: true,
 	};
 
-	const prodConfig: TypeOrmModuleOptions = {
+	const prodConfig = {
 		...commonConfig,
 		migrationsRun: true,
-		migrations: ['src/migrations/*.js'],
+		migrations: [__dirname + '/migrations/**/*.js'],
 		ssl: {
 			ca: !isDevMode ? readFileSync('/etc/ssl/certs/ca-certificate.crt') : null,
+		},
+		cli: {
+			migrationsDir: 'migrations',
 		},
 		synchronize: false,
 	};
