@@ -36,6 +36,9 @@ export const useOTP = () => {
 			if (axios.isAxiosError(err) && err.response?.status === 400) {
 				setErrorPhoneNumber("invalidPhoneNumber");
 			}
+			else { 
+				setErrorPhoneNumber("genericError")
+			}
 			throw err;
 		} finally {
 			setLoading(false);

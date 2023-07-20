@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { StyleSheet, View } from "react-native";
-import { IconButton } from "react-native-paper";
-import Icon from "react-native-vector-icons/FontAwesome";
-import FeatherIcon from "react-native-vector-icons/Feather";
-import OcticonsIcon from "react-native-vector-icons/Octicons";
-import { useTheme } from "../../contexts/ThemeContext";
+import { FC } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import OcticonsIcon from 'react-native-vector-icons/Octicons';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const iconSize = 22;
 const hitSlop = 20;
@@ -31,7 +31,7 @@ const BottomActions: FC<Props> = ({
 	return (
 		<View style={styles.buttonContainer}>
 			<IconButton
-				icon={() => <FeatherIcon color={color} name="phone" size={22} />}
+				icon={() => <FeatherIcon color={color} name="phone" size={iconSize} />}
 				onPress={handleCall}
 			/>
 			<IconButton
@@ -47,12 +47,12 @@ const BottomActions: FC<Props> = ({
 			/>
 			<IconButton
 				icon={() => (
-					<FeatherIcon name="message-circle" color={color} size={22} />
+					<FeatherIcon name="message-circle" color={color} size={iconSize} />
 				)}
 				onPress={handleSendSms}
 			/>
 			<IconButton
-				icon={() => <FeatherIcon name="share" color={color} size={22} />}
+				icon={() => <FeatherIcon name="share" color={color} size={iconSize} />}
 				onPress={handleShare}
 			/>
 		</View>
@@ -61,8 +61,8 @@ const BottomActions: FC<Props> = ({
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		flexDirection: "row",
-		justifyContent: "space-between",
+		flexDirection: 'row',
+		justifyContent: 'space-between',
 		marginHorizontal: 10,
 	},
 });

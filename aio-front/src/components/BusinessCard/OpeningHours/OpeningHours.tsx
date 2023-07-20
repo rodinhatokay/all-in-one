@@ -1,14 +1,15 @@
-import { FC, memo, useCallback, useMemo, useState } from "react";
-import { LayoutAnimation, Pressable, StyleSheet, View } from "react-native";
-import { Business } from "../../../services/business/business.types";
-import { Text } from "../../partials/Text";
-import { useOpeningHours } from "../../../hooks/useOpeningHours";
-import DropDownIcon from "../../DropDownIcon/DropDownIcon";
-import { useTheme } from "../../../contexts/ThemeContext";
-import { useLocalization } from "../../../contexts/LocalizationContext";
+import { FC, memo, useCallback, useMemo, useState } from 'react';
+import { LayoutAnimation, Pressable, StyleSheet, View } from 'react-native';
+import { Business } from '../../../services/business/business.types';
+import { Text } from '../../partials/Text';
+import { useOpeningHours } from '../../../hooks/useOpeningHours';
+import DropDownIcon from '../../DropDownIcon/DropDownIcon';
+import { useTheme } from '../../../contexts/ThemeContext';
+import { useLocalization } from '../../../contexts/LocalizationContext';
+import * as Haptics from 'expo-haptics';
 
 interface Props {
-	openingHours: Business["openingHours"];
+	openingHours: Business['openingHours'];
 }
 
 const OpeningHours: FC<Props> = (props) => {
@@ -17,6 +18,7 @@ const OpeningHours: FC<Props> = (props) => {
 		useOpeningHours(props.openingHours);
 
 	const toggleSetExpandList = useCallback(() => {
+		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 		LayoutAnimation.configureNext(LayoutAnimation.Presets.spring); // create spring animation for next layout
 		setExpanedList((val) => !val);
 	}, [setExpanedList]);
@@ -26,7 +28,7 @@ const OpeningHours: FC<Props> = (props) => {
 
 	const colorTodayText = useMemo(
 		() =>
-			statusTodayOpeningHours === "open"
+			statusTodayOpeningHours === 'open'
 				? theme.colors.green
 				: theme.colors.red,
 		[statusTodayOpeningHours],
@@ -35,19 +37,19 @@ const OpeningHours: FC<Props> = (props) => {
 	if (!openingHours.length) return null;
 
 	return (
-		<Pressable onPress={toggleSetExpandList} style={styles.main}>
+		<Pressable hitSlop={10} onPress={toggleSetExpandList} style={styles.main}>
 			<View style={styles.contentContainer}>
 				{expandList ? (
 					openingHours.map((openingHour, idx) => {
 						return (
 							<View key={idx} style={styles.expandedListView}>
 								<Text variant="bodySmall" style={styles.dayText}>
-									{t(openingHour.day)}:{" "}
+									{t(openingHour.day)}:{' '}
 								</Text>
 								<Text variant="bodySmall" key={openingHour.day}>
 									{openingHour.hoursAsText
 										? openingHour.hoursAsText
-										: t("closed")}
+										: t('closed')}
 								</Text>
 							</View>
 						);
@@ -58,26 +60,29 @@ const OpeningHours: FC<Props> = (props) => {
 							variant="bodySmall"
 							style={[{ color: colorTodayText }, styles.dayText]}
 						>
-							{t("today")}:
-						</Text>{" "}
+							{t('today')}:
+						</Text>{' '}
 						{`${
 							openingHours[todayOpeningHoursIndex].hoursAsText
 								? openingHours[todayOpeningHoursIndex].hoursAsText
-								: t("closed")
+								: t('closed')
 						}`}
 					</Text>
 				)}
 			</View>
-			<DropDownIcon status={expandList ? "up" : "down"} />
+			<DropDownIcon
+				onClick={toggleSetExpandList}
+				status={expandList ? 'up' : 'down'}
+			/>
 		</Pressable>
 	);
 };
 
 const styles = StyleSheet.create({
-	main: { flex: 1, flexDirection: "row" },
-	contentContainer: { flex: 1, flexDirection: "column" },
-	expandedListView: { flexDirection: "row", paddingVertical: 1 },
-	dayText: { fontWeight: "700" },
+	main: { flexDirection: 'row' },
+	contentContainer: { flex: 1, flexDirection: 'column' },
+	expandedListView: { flexDirection: 'row', paddingVertical: 1 },
+	dayText: { fontWeight: '700', fontFamily: 'Rubik-Medium' },
 });
 
 export default memo(OpeningHours);
