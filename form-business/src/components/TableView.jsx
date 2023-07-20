@@ -52,7 +52,16 @@ export const BasicTable = () => {
               <TableCell>{row.id}</TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.address}</TableCell>
-              <TableCell>{row.logoPath}</TableCell>
+              <TableCell>
+                <img
+                  src={row.logoPath}
+                  style={{
+                    maxWidth: "100px",
+                    maxHeight: "100px",
+                    marginLeft: "10px",
+                  }}
+                />
+              </TableCell>
               <TableCell>{row.location?.latitude}</TableCell>
               <TableCell>{row.location?.longitude}</TableCell>
               <TableCell>{row.category?.name}</TableCell>
