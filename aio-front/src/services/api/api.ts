@@ -2,7 +2,7 @@ import Axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 const KEY_STORE_TOKEN = 'StoreTokenAPI';
 
-const baseUrlApi = __DEV__
+const baseUrlApi = !__DEV__
 	? 'http://www.allinoneocean.com/api'
 	: 'http://192.168.1.107:3001/api'; // temporary local ip will fix later
 
