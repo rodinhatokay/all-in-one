@@ -1,13 +1,13 @@
-import { ScrollView, StyleSheet, View } from "react-native";
-import { useTheme, Text, Appbar } from "react-native-paper";
-import { useLocalization } from "../contexts/LocalizationContext";
-import { Image } from "expo-image";
-import LocaleSelector from "../components/LocaleSelector/LocaleSelector";
-import PhoneNumberForm from "../sections/login/PhoneNumberForm";
-import OtpCodeForm from "../sections/login/OtpCodeForm";
-import { useCallback, useState } from "react";
-import useOTP from "../hooks/useOTP";
-import { logError } from "../services/logger/loggerService";
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { useTheme, Text, Appbar } from 'react-native-paper';
+import { useLocalization } from '../contexts/LocalizationContext';
+import { Image } from 'expo-image';
+import LocaleSelector from '../components/LocaleSelector/LocaleSelector';
+import PhoneNumberForm from '../sections/login/PhoneNumberForm';
+import OtpCodeForm from '../sections/login/OtpCodeForm';
+import { useCallback, useState } from 'react';
+import useOTP from '../hooks/useOTP';
+import { logError } from '../services/logger/loggerService';
 
 /**
  * Login screen
@@ -35,8 +35,7 @@ const LoginScreen = () => {
 			await getOtpCode();
 			setDisplayFormCode(true);
 		} catch (error) {
-			logError("error occured in onPressGetOtpCode", error);
-			throw error;
+			logError('error occured in onPressGetOtpCode', error);
 		}
 	}, [setDisplayFormCode, getOtpCode]);
 
@@ -53,12 +52,12 @@ const LoginScreen = () => {
 				bounces={false}
 				contentContainerStyle={styles.scroll}
 				style={styles.main}
-				keyboardShouldPersistTaps={"handled"}
+				keyboardShouldPersistTaps={'handled'}
 			>
-				<Text style={styles.header}>{t("aio")}</Text>
-				<Text style={styles.subHeader}>{t("allInOne")}</Text>
+				<Text style={styles.header}>{t('aio')}</Text>
+				<Text style={styles.subHeader}>{t('allInOne')}</Text>
 				<Image
-					source={require("../../assets/images/logo.png")}
+					source={require('../../assets/images/logo.png')}
 					style={[styles.logo, { tintColor: theme.colors.primary }]}
 					tintColor={theme.colors.primary}
 					contentFit="contain"
@@ -95,14 +94,14 @@ const styles = StyleSheet.create({
 	main: {
 		flex: 1,
 	},
-	scroll: { alignItems: "center", flex: 1 },
+	scroll: { alignItems: 'center', flex: 1 },
 	header: { fontSize: 35 },
 	subHeader: { fontSize: 18 },
 	contentContainer: {
 		gap: 20,
 		padding: 15,
 		flex: 1,
-		width: "100%",
+		width: '100%',
 	},
 	logo: { height: 120, width: 150 },
 });

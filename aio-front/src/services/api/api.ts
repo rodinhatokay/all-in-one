@@ -1,17 +1,17 @@
-import Axios from "axios";
-import * as SecureStore from "expo-secure-store";
-const KEY_STORE_TOKEN = "StoreTokenAPI";
+import Axios from 'axios';
+import * as SecureStore from 'expo-secure-store';
+const KEY_STORE_TOKEN = 'StoreTokenAPI';
 
 const baseUrlApi = !__DEV__
-	? "http://allinoneocean.com/api"
-	: "http://192.168.1.107:3001/api"; // temporary local ip will fix later
+	? 'http://www.allinoneocean.com/api'
+	: 'http://192.168.1.107:3001/api'; // temporary local ip will fix later
 
 const api = Axios.create({
 	baseURL: baseUrlApi,
 	timeout: 30000, // 30 seconds
 	headers: {
-		Accept: "application/json",
-		"Content-Type": "application/json",
+		Accept: 'application/json',
+		'Content-Type': 'application/json',
 	},
 });
 
@@ -20,11 +20,11 @@ if (__DEV__) {
 		function (config) {
 			console.log(`API URL(${config.method}):`, config.url);
 
-			console.log("API requesting data:", config.data);
+			console.log('API requesting data:', config.data);
 			return config;
 		},
 		function (error) {
-			console.log("API ERROR:", error);
+			console.log('API ERROR:', error);
 
 			return Promise.reject(error);
 		},

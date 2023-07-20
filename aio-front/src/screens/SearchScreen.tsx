@@ -1,32 +1,21 @@
-import { useState } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
-import { Searchbar } from "react-native-paper";
-import { Business } from "../services/business/business.types";
-import BusinessCard from "../components/BusinessCard/BusinessCard";
-import { categories } from "../mock/businsesses";
+import { useState } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
+import { Searchbar } from 'react-native-paper';
+import { Business } from '../services/business/business.types';
+import BusinessCard from '../components/BusinessCard/BusinessCard';
+import { categories } from '../mock/businsesses';
+import useBusinesses from '../hooks/useBusinesses';
 
 const SearchScreen = () => {
-	const [loading, setIsLoading] = useState(false);
-	const [searchResult, setSearchResult] = useState<Business[]>([]);
-	const [searchQuery, setSearchQuery] = useState("");
+	const [query, setQuery] = useState('');
 
-	const onChangeSearch = async (query: string) => {
-		setSearchQuery(query);
-		if (!query) {
-			setSearchResult([]);
-			return;
-		}
-		setIsLoading(true);
-		try {
-			// Simulate API call
-			setSearchResult(categories[0].subCategories[0].businesses);
-			await new Promise((resolve) => setTimeout(resolve, 1000));
-		} catch (error) {
-			console.error("Error occurred during search:", error);
-		} finally {
-			setIsLoading(false);
-		}
-	};
+	const {
+		data: businesses,
+		isLoading,
+		error,
+	} = useBusinesses({ disabledWhenQueryEmpty: true, query });
+
+	console.log('error', error);
 
 	const renderItem = ({ item }: { item: Business }) => (
 		<BusinessCard business={item} />
@@ -37,13 +26,13 @@ const SearchScreen = () => {
 			<Searchbar
 				style={styles.searchBar}
 				placeholder="Search by business or category" // this is temporary until
-				onChangeText={onChangeSearch}
-				value={searchQuery}
-				loading={loading}
+				onChangeText={setQuery}
+				value={query}
+				loading={isLoading}
 				autoFocus
 			/>
 			<FlatList
-				data={searchResult}
+				data={businesses ?? []}
 				style={styles.flex}
 				keyboardDismissMode="on-drag"
 				renderItem={renderItem}
