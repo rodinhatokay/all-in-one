@@ -1,10 +1,10 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Business } from "./entities/business.entity";
-import { CreateBusiness } from "./dto/createBusiness.dto";
-import { ErrorMessages } from "../common/errors/errorMessage";
-import { UpdateBusiness } from "./dto/updateBusiness.dto";
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Like, Repository } from 'typeorm';
+import { Business } from './entities/business.entity';
+import { CreateBusiness } from './dto/createBusiness.dto';
+import { ErrorMessages } from '../common/errors/errorMessage';
+import { UpdateBusiness } from './dto/updateBusiness.dto';
 
 @Injectable()
 export class BusinessService {
@@ -16,20 +16,19 @@ export class BusinessService {
 	findOne(id: string) {
 		return this.businessRepository.findOne({
 			where: { id },
-			relations: ["category"],
+			relations: ['category'],
 		});
 	}
 
 	findAll(query?: string) {
 		return this.businessRepository.find({
 			where: query
-			  ? {
-				  name: query,
-				}
-			  : {},
-			relations: ["category"],
-		  });
-		  
+				? {
+						name: Like(`%${query}%`),
+				  }
+				: {},
+			relations: ['category'],
+		});
 	}
 
 	// async findBusinessesWithCategoryNames(): Promise<Business[]> {
