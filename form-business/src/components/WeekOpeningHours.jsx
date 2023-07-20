@@ -15,9 +15,9 @@ export const WeekOpeningHours = ({ onChange }) => {
     { day: "Monday", isOpen: true, hours: [] },
     { day: "Tuesday", isOpen: true, hours: [] },
     { day: "Wednesday", isOpen: true, hours: [] },
-    { day: "Thursday", isOpen: true,  hours: [] },
-    { day: "Friday", isOpen: true,  hours: [] },
-    { day: "Saturday", isOpen: true,  hours: [] },
+    { day: "Thursday", isOpen: true, hours: [] },
+    { day: "Friday", isOpen: true, hours: [] },
+    { day: "Saturday", isOpen: true, hours: [] },
   ]);
 
   const handleOpeningHourChange = (dayIndex, hourIndex, field, value) => {
@@ -74,7 +74,7 @@ export const WeekOpeningHours = ({ onChange }) => {
                     alignItems="center"
                     key={hourIndex}
                   >
-                    <Grid item xs={4}>
+                    <Grid item xs={2}>
                       <TextField
                         label="Start Hour"
                         value={hour.start}
@@ -89,7 +89,7 @@ export const WeekOpeningHours = ({ onChange }) => {
                         fullWidth
                       />
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={2}>
                       <TextField
                         label="Closing Hour"
                         value={hour.end}
