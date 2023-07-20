@@ -47,6 +47,7 @@ export class AioBackClient {
 				location: location,
 				openingHours: convertDataToOpeningHours(form.openingHours),
 				address: form.address,
+        category: form.category,
 			};
 
 			// Send the POST request to the backend using Axios
