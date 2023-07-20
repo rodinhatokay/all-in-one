@@ -76,4 +76,18 @@ export class AioBackClient {
 			throw new Error("Failed to get categories");
 		}
 	}
+  public async getBusinesses(): Promise<any> {
+		try {
+			// Send the POST request to the backend using Axios
+			const response = await this.axios.get("/business");
+
+			// Return the response from the backend
+			return response.data;
+		} catch (error) {
+			// Handle any errors that occurred during the request
+			console.error(error);
+			throw new Error("Failed to get business");
+		}
+	}
+  
 }

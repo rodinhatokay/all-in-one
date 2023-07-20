@@ -111,10 +111,12 @@ const BusinessForm = () => {
       .then((result) => {
         // Handle the result from the backend
         console.log(result);
+        alert("Business has been added");
       })
       .catch((error) => {
         // Handle any errors that occurred during the request
         console.error(error);
+        alert(error);
       });
   };
 
@@ -153,23 +155,23 @@ const BusinessForm = () => {
             </Select>
           </Grid>
           {/* <Grid item xs={12} sm={2}>
-            <TextField
-              label="Category Name"
-              name="categoryName"
-              variant="outlined"
-              onChange={handleInputChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <TextField
-              label="Sub Category Name"
-              name="subCategoryName"
-              variant="outlined"
-              onChange={handleInputChange}
-              fullWidth
-            />
-          </Grid> */}
+      <TextField
+        label="Category Name"
+        name="categoryName"
+        variant="outlined"
+        onChange={handleInputChange}
+        fullWidth
+      />
+    </Grid>
+    <Grid item xs={12} sm={2}>
+      <TextField
+        label="Sub Category Name"
+        name="subCategoryName"
+        variant="outlined"
+        onChange={handleInputChange}
+        fullWidth
+      />
+    </Grid> */}
 
           <Grid item xs={12} sm={2}>
             <TextField
