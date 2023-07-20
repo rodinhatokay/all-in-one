@@ -13,10 +13,6 @@ import { BusinessModule } from './business/business.module';
 import { SpacesModule } from './spaces/spaces.module';
 import { DatabaseModule } from './database/database.module';
 import { CategoryModule } from './category/category.module';
-import { MockSpacesModule } from './spaces/mock.spaces.module';
-
-const spacesModule =
-	process.env.NODE_ENV === 'production' ? SpacesModule : MockSpacesModule;
 
 @Module({
 	imports: [
@@ -38,7 +34,7 @@ const spacesModule =
 		UsersModule,
 		AuthModule,
 		BusinessModule,
-		spacesModule,
+		SpacesModule,
 		CategoryModule,
 	],
 	controllers: [AppController],

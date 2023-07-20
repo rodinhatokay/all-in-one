@@ -42,7 +42,7 @@ const BusinessForm = () => {
     // subCategoryName: "",
     filePath: null,
     address: null,
-    selectedCategory: null,
+    category: null,
   });
 
   const [categories, setCategories] = useState([]);
@@ -88,7 +88,7 @@ const BusinessForm = () => {
   };
 
   const handleCategoryChange = (event) => {
-    setForm({ ...form, selectedCategory: event.target.value });
+    setForm({ ...form, category: event.target.value });
   };
 
   const handleFileChange = (event) => {
@@ -137,7 +137,7 @@ const BusinessForm = () => {
               style={{ width: "200px" }}
               labelId="category-label"
               id="category"
-              value={form.selectedCategory}
+              value={form.categoryId}
               onChange={handleCategoryChange}
               label="Category"
             >
@@ -145,7 +145,7 @@ const BusinessForm = () => {
                 <MenuItem
                   style={{ width: "200px" }}
                   key={category.id}
-                  value={category.id}
+                  value={category}
                 >
                   {category.name}
                 </MenuItem>

@@ -16,19 +16,20 @@ export class BusinessService {
 	findOne(id: string) {
 		return this.businessRepository.findOne({
 			where: { id },
+			relations: ["category"],
 		});
 	}
 
 	findAll(query?: string) {
-		return this.businessRepository.find(
-			query
-				? {
-						where: {
-							name: query,
-						},
-				  }
-				: undefined,
-		);
+		return this.businessRepository.find({
+			where: query
+			  ? {
+				  name: query,
+				}
+			  : {},
+			relations: ["category"],
+		  });
+		  
 	}
 
 	// async findBusinessesWithCategoryNames(): Promise<Business[]> {
@@ -46,10 +47,6 @@ export class BusinessService {
 
 		if (existingBusiness)
 			throw new BadRequestException(ErrorMessages.BusinessAlreadyExists);
-
-		// const category = await this.categoryRepository.findOne({
-		// 	where: { name: createBusiness.categoryName },
-		// });
 
 		const business = this.businessRepository.create(createBusiness);
 		return await this.businessRepository.save(business);

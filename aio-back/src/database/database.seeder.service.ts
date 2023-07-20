@@ -40,6 +40,7 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 				logoPath: 'https://avatars.githubusercontent.com/u/57593612?s=96&v=4',
 				address: 'Kfar Kama, abazkh 5',
 				hasWhatsapp: true,
+				category: { name: 'Cosmetics' },
 				location: {
 					latitude: 50,
 					longitude: 20,
@@ -61,6 +62,7 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 				logoPath: 'https://avatars.githubusercontent.com/u/57593612?s=96&v=4',
 				address: 'Kfar Kama, Adiga 10',
 				hasWhatsapp: false,
+				category: { name: 'Cosmetics' },
 				location: {
 					latitude: 50,
 					longitude: 20,
@@ -157,3 +159,4 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 		await this.categoryRepository.save(categories);
 	}
 }
+
