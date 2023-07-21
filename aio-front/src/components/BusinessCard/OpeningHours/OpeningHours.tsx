@@ -19,7 +19,13 @@ const OpeningHours: FC<Props> = (props) => {
 
 	const toggleSetExpandList = useCallback(() => {
 		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-		LayoutAnimation.configureNext(LayoutAnimation.Presets.spring); // create spring animation for next layout
+		LayoutAnimation.configureNext(
+			LayoutAnimation.create(
+				250,
+				LayoutAnimation.Types.linear,
+				LayoutAnimation.Properties.scaleY,
+			),
+		); // create spring animation for next layout
 		setExpanedList((val) => !val);
 	}, [setExpanedList]);
 

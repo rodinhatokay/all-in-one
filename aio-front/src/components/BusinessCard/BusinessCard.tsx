@@ -1,4 +1,4 @@
-import { View, StyleSheet, Pressable } from 'react-native';
+import { View, StyleSheet, Pressable, Platform, ViewStyle } from 'react-native';
 import { Image } from '../partials';
 import { Card, Divider } from 'react-native-paper';
 import { Business } from '../../services/business/business.types';
@@ -34,7 +34,14 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 		if (isThemeDark) return styles.card;
 		return [
 			styles.card,
-			// Platform.OS === "ios" && { backgroundColor: "rgba(150, 150, 150, 0.12)" },
+			Platform.OS === 'ios'
+				? {
+						backgroundColor: 'rgba(200, 200, 200,0.12)',
+				  }
+				: {
+						backgroundColor: theme.colors.card,
+						elevation: 20,
+				  },
 		];
 	}, [isThemeDark, theme]);
 
@@ -55,11 +62,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 					/>
 					<View style={styles.flex}>
 						<View style={styles.titleRow}>
-							<Text
-								variant="headlineSmall"
-								numberOfLines={2}
-								style={styles.name}
-							>
+							<Text variant="titleLarge" numberOfLines={2} style={styles.name}>
 								{name}
 							</Text>
 							{/* <FavoriteButton
@@ -69,19 +72,20 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 								isFavorite={isFavorite}
 							/> */}
 						</View>
-						<Text style={styles.description} variant="bodyMedium">
-							{description}
-						</Text>
-
+						<Text variant="labelMedium">{description}</Text>
 						{/* <Paragraph style={styles.noMarginVertical}>
 							<StarRating rating={rating} />
 						</Paragraph> */}
 						<OpeningHours openingHours={business.openingHours} />
 						<Pressable onPress={handleLocation}>
-							<Text style={[styles.address, { color: theme.colors.primary }]}>
+							<Text
+								variant="labelMedium"
+								style={[styles.address, { color: theme.colors.primary }]}
+							>
 								{business.address}
 							</Text>
 						</Pressable>
+						{/* <Divider /> */}
 					</View>
 				</View>
 				<Divider />
@@ -129,16 +133,15 @@ const styles = StyleSheet.create({
 		// fontSize: 14,
 		paddingBottom: 0,
 		marginBottom: 0,
-		fontFamily: 'Rubik-Regular',
 	},
 	noMarginVertical: { marginVertical: 0 },
 	address: {
 		textDecorationLine: 'underline',
 		marginVertical: 0,
-		fontFamily: 'Rubik-Light',
+		fontFamily: 'Rubik-Bold',
 	},
 	description: {
-		// textAlign: 'center',
+		textAlign: 'center',
 		// paddingTop: 4,
 		// fontFamily: 'Rubik-SemiBold',
 	},
