@@ -19,9 +19,9 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 	) {}
 
 	async onApplicationBootstrap() {
+		await this.seedCategories();
 		await this.seedBusinesses();
 		await this.seedUsers();
-		await this.seedCategories();
 	}
 
 	private async seedBusinesses() {
@@ -32,6 +32,7 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 
 		console.log('RUNNING SEED BUSINESSES FOR DB');
 
+		const categories = await this.categoryRepository.find();
 		const businesses: CreateBusiness[] = [
 			{
 				name: 'Fashion Emporium(Rodin)',
@@ -40,7 +41,7 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 				logoPath: 'https://avatars.githubusercontent.com/u/57593612?s=96&v=4',
 				address: 'Kfar Kama, abazkh 5',
 				hasWhatsapp: true,
-				category: { name: 'Cosmetics' },
+				category: categories.pop(),
 				location: {
 					latitude: 50,
 					longitude: 20,
@@ -62,7 +63,7 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 				logoPath: 'https://avatars.githubusercontent.com/u/57593612?s=96&v=4',
 				address: 'Kfar Kama, Adiga 10',
 				hasWhatsapp: false,
-				category: { name: 'Cosmetics' },
+				category: categories.pop(),
 				location: {
 					latitude: 50,
 					longitude: 20,
