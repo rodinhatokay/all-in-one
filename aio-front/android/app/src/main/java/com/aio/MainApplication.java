@@ -1,4 +1,4 @@
-package com.aio;
+package com.allinoneocean.aio;
 
 import android.app.Application;
 import android.content.res.Configuration;

@@ -20,14 +20,15 @@
 			"infoPlist": {
 				"CFBundleAllowMixedLocalizations": true,
 				"ExpoLocalization_supportsRTL": true
-			}
+			},
+			"bundleIdentifier": "com.allinoneocean.aio"
 		},
 		"android": {
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/images/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
 			},
-			"package": "com.aio"
+			"package": "com.allinoneocean.aio"
 		},
 		"web": {
 			"bundler": "metro",

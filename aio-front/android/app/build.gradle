@@ -113,9 +113,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.aio'
+    namespace 'com.allinoneocean.aio'
     defaultConfig {
-        applicationId 'com.aio'
+        applicationId 'com.allinoneocean.aio'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
