@@ -20,4 +20,5 @@ export enum ErrorMessages {
 	InvalidPhoneNumber = 'Invalid Phone Number',
 	invalidOtpCode = 'Invalid otp code',
 	CategoryAlreadyExistByName = 'Category name already exist in system',
+	TermsOfUseDoesntExist = 'TermsOfUseDoesntExist',
 }

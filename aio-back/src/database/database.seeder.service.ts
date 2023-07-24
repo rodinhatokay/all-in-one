@@ -6,6 +6,8 @@ import { User } from '../users/entities/user.entity';
 import { CreateBusiness } from '../business/dto/createBusiness.dto';
 import { Business } from '../business/entities/business.entity';
 import { Category } from '../category/entities/category.entity';
+import { TermsOfUse } from '../terms-of-use/entities/terms-of-use.entity';
+import { Language } from '../common/constants/langauges';
 
 @Injectable()
 export class DatabaseSeederService implements OnApplicationBootstrap {
@@ -16,12 +18,34 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 		private readonly businessRepository: Repository<Business>,
 		@InjectRepository(Category)
 		private readonly categoryRepository: Repository<Category>,
+		@InjectRepository(TermsOfUse)
+		private readonly termsOfUseRepository: Repository<TermsOfUse>,
 	) {}
 
 	async onApplicationBootstrap() {
-		await this.seedCategories();
-		await this.seedBusinesses();
-		await this.seedUsers();
+		await Promise.all([
+			this.seedCategories(),
+			this.seedBusinesses(),
+			this.seedUsers(),
+			this.seedTermsOfUse(),
+		]);
+	}
+
+	private async seedTermsOfUse() {
+		const count = await this.termsOfUseRepository.count();
+		if (count) return;
+
+		console.log('RUNNING SEED TERMS FOR DB');
+
+		await this.termsOfUseRepository.save({
+			content: 'english terms',
+			language: Language.ENGLISH,
+		});
+
+		await this.termsOfUseRepository.save({
+			content: 'תנאי שימוש',
+			language: Language.ENGLISH,
+		});
 	}
 
 	private async seedBusinesses() {
@@ -160,4 +184,3 @@ export class DatabaseSeederService implements OnApplicationBootstrap {
 		await this.categoryRepository.save(categories);
 	}
 }
-

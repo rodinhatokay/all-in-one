@@ -1,0 +1,420 @@
+<!--docxjs library predefined styles--><style>
+.docx-wrapper { background: gray; padding: 30px; padding-bottom: 0px; display: flex; flex-flow: column; align-items: center; } 
+.docx-wrapper>section.docx { background: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-bottom: 30px; }
+.docx { color: black; }
+section.docx { box-sizing: border-box; display: flex; flex-flow: column nowrap; position: relative; overflow: hidden; }
+section.docx>article { margin-bottom: auto; }
+.docx table { border-collapse: collapse; }
+.docx table td, .docx table th { vertical-align: top; }
+.docx p { margin: 0pt; min-height: 1em; }
+.docx span { white-space: pre-wrap; overflow-wrap: break-word; }
+.docx a { color: inherit; text-decoration: inherit; }
+</style><!--docxjs document theme values--><style>.docx {
+  --docx-majorHAnsi-font: Calibri Light;
+  --docx-minorHAnsi-font: Calibri;
+  --docx-dk1-color: #000000;
+  --docx-lt1-color: #FFFFFF;
+  --docx-dk2-color: #44546A;
+  --docx-lt2-color: #E7E6E6;
+  --docx-accent1-color: #4472C4;
+  --docx-accent2-color: #ED7D31;
+  --docx-accent3-color: #A5A5A5;
+  --docx-accent4-color: #FFC000;
+  --docx-accent5-color: #5B9BD5;
+  --docx-accent6-color: #70AD47;
+  --docx-hlink-color: #0563C1;
+  --docx-folHlink-color: #954F72;
+}
+</style><!--docxjs document styles--><style>.docx span {
+  font-family: var(--docx-minorHAnsi-font);
+  min-height: 11.00pt;
+  font-size: 11.00pt;
+}
+.docx p {
+  margin-bottom: 8.00pt;
+  line-height: 1.08;
+}
+p.docx_heading4 {
+  margin-top: 5.00pt;
+  margin-bottom: 5.00pt;
+  line-height: 1.00;
+}
+p.docx_heading4 span {
+  font-family: Times New Roman;
+  font-weight: bold;
+  min-height: 12.00pt;
+  font-size: 12.00pt;
+}
+p.docx_heading4 span {
+  font-family: Times New Roman;
+  font-weight: bold;
+  min-height: 12.00pt;
+  font-size: 12.00pt;
+}
+.docx table, table.docx_tablenormal td {
+  padding-top: 0.00pt;
+  padding-left: 5.40pt;
+  padding-bottom: 0.00pt;
+  padding-right: 5.40pt;
+}
+span.docx_strong {
+  font-weight: bold;
+}
+span.docx_heading4char {
+  font-family: Times New Roman;
+  font-weight: bold;
+  min-height: 12.00pt;
+  font-size: 12.00pt;
+}
+span.docx_heading4char p {
+  margin-top: 5.00pt;
+  margin-bottom: 5.00pt;
+  line-height: 1.00;
+}
+span.docx_heading4char {
+  font-family: Times New Roman;
+  font-weight: bold;
+  min-height: 12.00pt;
+  font-size: 12.00pt;
+}
+p.docx_listparagraph {
+  margin-left: 36.00pt;
+}
+p.docx_balloontext {
+  margin-bottom: 0.00pt;
+  line-height: 1.00;
+}
+p.docx_balloontext span {
+  font-family: Segoe UI;
+  min-height: 9.00pt;
+  font-size: 9.00pt;
+}
+p.docx_balloontext span {
+  font-family: Segoe UI;
+  min-height: 9.00pt;
+  font-size: 9.00pt;
+}
+span.docx_balloontextchar {
+  font-family: Segoe UI;
+  min-height: 9.00pt;
+  font-size: 9.00pt;
+}
+span.docx_balloontextchar p {
+  margin-bottom: 0.00pt;
+  line-height: 1.00;
+}
+span.docx_balloontextchar {
+  font-family: Segoe UI;
+  min-height: 9.00pt;
+  font-size: 9.00pt;
+}
+span.docx_commentreference {
+  min-height: 8.00pt;
+  font-size: 8.00pt;
+}
+p.docx_commenttext {
+  line-height: 1.00;
+}
+p.docx_commenttext span {
+  min-height: 10.00pt;
+  font-size: 10.00pt;
+}
+p.docx_commenttext span {
+  min-height: 10.00pt;
+  font-size: 10.00pt;
+}
+span.docx_commenttextchar {
+  min-height: 10.00pt;
+  font-size: 10.00pt;
+}
+span.docx_commenttextchar p {
+  line-height: 1.00;
+}
+span.docx_commenttextchar {
+  min-height: 10.00pt;
+  font-size: 10.00pt;
+}
+p.docx_commentsubject span {
+  font-weight: bold;
+  min-height: 10.00pt;
+  font-size: 10.00pt;
+}
+p.docx_commentsubject {
+  line-height: 1.00;
+}
+p.docx_commentsubject span {
+  font-weight: bold;
+  min-height: 10.00pt;
+  font-size: 10.00pt;
+}
+span.docx_commentsubjectchar {
+  font-weight: bold;
+  min-height: 10.00pt;
+  font-size: 10.00pt;
+}
+span.docx_commentsubjectchar {
+  font-weight: bold;
+  min-height: 10.00pt;
+  font-size: 10.00pt;
+}
+span.docx_commentsubjectchar p {
+  line-height: 1.00;
+}
+span.docx_hyperlink {
+  color: #0000FF;
+  text-decoration: underline;
+}
+</style><!--docxjs document numbering styles--><style>p.docx-num-2-0:before {
+  content: ""counter(docx-num-2-0, decimal)".\9";
+  counter-increment: docx-num-2-0;
+}
+p.docx-num-2-0 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -18.00pt;
+  margin-left: 36.00pt;
+}
+p.docx-num-2-0 {
+  counter-reset: docx-num-2-1;
+}
+p.docx-num-2-1:before {
+  content: ""counter(docx-num-2-0, decimal)"."counter(docx-num-2-1, decimal)".\9";
+  counter-increment: docx-num-2-1;
+}
+p.docx-num-2-1 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -18.00pt;
+  margin-left: 22.50pt;
+}
+p.docx-num-2-1 {
+  counter-reset: docx-num-2-2;
+}
+p.docx-num-2-2:before {
+  content: ""counter(docx-num-2-0, decimal)"."counter(docx-num-2-1, decimal)"."counter(docx-num-2-2, decimal)".\9";
+  counter-increment: docx-num-2-2;
+}
+p.docx-num-2-2 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -36.00pt;
+  margin-left: 54.00pt;
+}
+p.docx-num-2-2 {
+  counter-reset: docx-num-2-3;
+}
+p.docx-num-2-3:before {
+  content: ""counter(docx-num-2-0, decimal)"."counter(docx-num-2-1, decimal)"."counter(docx-num-2-2, decimal)"."counter(docx-num-2-3, decimal)".\9";
+  counter-increment: docx-num-2-3;
+}
+p.docx-num-2-3 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -36.00pt;
+  margin-left: 54.00pt;
+}
+p.docx-num-2-3 {
+  counter-reset: docx-num-2-4;
+}
+p.docx-num-2-4:before {
+  content: ""counter(docx-num-2-0, decimal)"."counter(docx-num-2-1, decimal)"."counter(docx-num-2-2, decimal)"."counter(docx-num-2-3, decimal)"."counter(docx-num-2-4, decimal)".\9";
+  counter-increment: docx-num-2-4;
+}
+p.docx-num-2-4 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -54.00pt;
+  margin-left: 72.00pt;
+}
+p.docx-num-2-4 {
+  counter-reset: docx-num-2-5;
+}
+p.docx-num-2-5:before {
+  content: ""counter(docx-num-2-0, decimal)"."counter(docx-num-2-1, decimal)"."counter(docx-num-2-2, decimal)"."counter(docx-num-2-3, decimal)"."counter(docx-num-2-4, decimal)"."counter(docx-num-2-5, decimal)".\9";
+  counter-increment: docx-num-2-5;
+}
+p.docx-num-2-5 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -54.00pt;
+  margin-left: 72.00pt;
+}
+p.docx-num-2-5 {
+  counter-reset: docx-num-2-6;
+}
+p.docx-num-2-6:before {
+  content: ""counter(docx-num-2-0, decimal)"."counter(docx-num-2-1, decimal)"."counter(docx-num-2-2, decimal)"."counter(docx-num-2-3, decimal)"."counter(docx-num-2-4, decimal)"."counter(docx-num-2-5, decimal)"."counter(docx-num-2-6, decimal)".\9";
+  counter-increment: docx-num-2-6;
+}
+p.docx-num-2-6 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -72.00pt;
+  margin-left: 90.00pt;
+}
+p.docx-num-2-6 {
+  counter-reset: docx-num-2-7;
+}
+p.docx-num-2-7:before {
+  content: ""counter(docx-num-2-0, decimal)"."counter(docx-num-2-1, decimal)"."counter(docx-num-2-2, decimal)"."counter(docx-num-2-3, decimal)"."counter(docx-num-2-4, decimal)"."counter(docx-num-2-5, decimal)"."counter(docx-num-2-6, decimal)"."counter(docx-num-2-7, decimal)".\9";
+  counter-increment: docx-num-2-7;
+}
+p.docx-num-2-7 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -72.00pt;
+  margin-left: 90.00pt;
+}
+p.docx-num-2-7 {
+  counter-reset: docx-num-2-8;
+}
+p.docx-num-2-8:before {
+  content: ""counter(docx-num-2-0, decimal)"."counter(docx-num-2-1, decimal)"."counter(docx-num-2-2, decimal)"."counter(docx-num-2-3, decimal)"."counter(docx-num-2-4, decimal)"."counter(docx-num-2-5, decimal)"."counter(docx-num-2-6, decimal)"."counter(docx-num-2-7, decimal)"."counter(docx-num-2-8, decimal)".\9";
+  counter-increment: docx-num-2-8;
+}
+p.docx-num-2-8 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -90.00pt;
+  margin-left: 108.00pt;
+}
+p.docx-num-1-0:before {
+  content: ""counter(docx-num-1-0, decimal)".\9";
+  counter-increment: docx-num-1-0;
+  font-weight: bold;
+  color: #000000;
+  min-height: 18.00pt;
+  font-size: 18.00pt;
+}
+p.docx-num-1-0 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -18.00pt;
+  margin-left: 36.00pt;
+}
+p.docx-num-1-0 {
+  counter-reset: docx-num-1-1;
+}
+p.docx-num-1-1:before {
+  content: ""counter(docx-num-1-1, lower-alpha)".\9";
+  counter-increment: docx-num-1-1;
+}
+p.docx-num-1-1 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -18.00pt;
+  margin-left: 72.00pt;
+}
+p.docx-num-1-1 {
+  counter-reset: docx-num-1-2;
+}
+p.docx-num-1-2:before {
+  content: ""counter(docx-num-1-2, lower-roman)".\9";
+  counter-increment: docx-num-1-2;
+}
+p.docx-num-1-2 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -9.00pt;
+  margin-left: 108.00pt;
+}
+p.docx-num-1-2 {
+  counter-reset: docx-num-1-3;
+}
+p.docx-num-1-3:before {
+  content: ""counter(docx-num-1-3, decimal)".\9";
+  counter-increment: docx-num-1-3;
+}
+p.docx-num-1-3 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -18.00pt;
+  margin-left: 144.00pt;
+}
+p.docx-num-1-3 {
+  counter-reset: docx-num-1-4;
+}
+p.docx-num-1-4:before {
+  content: ""counter(docx-num-1-4, lower-alpha)".\9";
+  counter-increment: docx-num-1-4;
+}
+p.docx-num-1-4 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -18.00pt;
+  margin-left: 180.00pt;
+}
+p.docx-num-1-4 {
+  counter-reset: docx-num-1-5;
+}
+p.docx-num-1-5:before {
+  content: ""counter(docx-num-1-5, lower-roman)".\9";
+  counter-increment: docx-num-1-5;
+}
+p.docx-num-1-5 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -9.00pt;
+  margin-left: 216.00pt;
+}
+p.docx-num-1-5 {
+  counter-reset: docx-num-1-6;
+}
+p.docx-num-1-6:before {
+  content: ""counter(docx-num-1-6, decimal)".\9";
+  counter-increment: docx-num-1-6;
+}
+p.docx-num-1-6 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -18.00pt;
+  margin-left: 252.00pt;
+}
+p.docx-num-1-6 {
+  counter-reset: docx-num-1-7;
+}
+p.docx-num-1-7:before {
+  content: ""counter(docx-num-1-7, lower-alpha)".\9";
+  counter-increment: docx-num-1-7;
+}
+p.docx-num-1-7 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -18.00pt;
+  margin-left: 288.00pt;
+}
+p.docx-num-1-7 {
+  counter-reset: docx-num-1-8;
+}
+p.docx-num-1-8:before {
+  content: ""counter(docx-num-1-8, lower-roman)".\9";
+  counter-increment: docx-num-1-8;
+}
+p.docx-num-1-8 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: none;
+  text-indent: -9.00pt;
+  margin-left: 324.00pt;
+}
+.docx-wrapper {
+  counter-reset: docx-num-2-0 docx-num-1-0;
+}
+</style><div class="docx-wrapper"><section class="docx" style="padding: 72pt 90pt; width: 595.3pt; min-height: 841.9pt;"><article><p><span style="font-family: var(--docx-minorBidi-font); font-weight: bold; min-height: 18pt; font-size: 18pt; text-decoration: underline;">Terms of use</span></p><p><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">Before accessing the "All </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">in</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> One" application (hereinafter: "the Application" or</span><span style="font-family: Arial, var(--docx-minorBidi-font); font-weight: bold; color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> "All in One"), </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">please read the terms of use below, which </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">constitute</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> a binding legal basis for any action in the Application.</span></p><p><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">"All In One" </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">provides</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> information of businesses/services.</span></p><p><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">By using the Application, you confirm that the User has read and agreed to the Terms of Use. If the User does not agree with the Terms of Use, the Application or its services may not be used.</span></p><p><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The Terms of Use may change from time to time. In such a case, we will provide notice of a change in the Terms of Use and the User's responsibility to be updated in due course.</span></p><p><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The Terms of Use </span><span class="docx_oi732d6d" style="min-height: 10pt; font-size: 10pt;">are written in the masculine gender for convenience </span><span class="docx_oi732d6d" style="min-height: 10pt; font-size: 10pt;">only but</span><span class="docx_oi732d6d" style="min-height: 10pt; font-size: 10pt;"> are intended for both men and women.</span></p><p><span style="font-family: var(--docx-minorBidi-font); font-weight: bold; color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">Please read the Terms of Use carefully.</span></p><p class="docx_listparagraph docx-num-2-0"><span style="font-family: var(--docx-minorBidi-font); font-weight: bold; color: rgb(48, 48, 48); min-height: 14pt; font-size: 14pt;">Limitation of Liability</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The content of the services</span><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">/</span><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">products provided by the merchants who are in the application are the responsibility of the merchants who provide them.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The Application and the Content are all “as is”, we do not </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">warrant</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> the accuracy and correctness of all services/products provided by the Merchants </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">located</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> in the App, the description and image of the service/product are the responsibility of the Business Owners. We are not responsible for any loss or damage to users who rely on the information provided in the App.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">Changes to services/products may change at the discretion of the Merchant. </span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">We are not responsible for the accuracy of the user's location via GPS.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">All recommendations presented in the application are recommendations only, and we do not warrant their accuracy. </span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">We do not warrant that use of the Application will always be available, or that the application will function quickly and fault-free. </span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The prices displayed in the application when ordering a service/product are the sole responsibility of the merchants. </span></p><p class="docx_listparagraph docx-num-2-0"><span style="font-family: var(--docx-minorBidi-font); font-weight: bold; color: rgb(48, 48, 48); min-height: 14pt; font-size: 14pt;">Using the app</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">Use of the Application is subject to agreement to these Terms of Use, any use not in accordance with these Terms of Use is deemed a breach of these Terms. </span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">Do not copy or use any content within the App.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">It is strictly forbidden to compromise the integrity of the Application through malware</span><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> and/</span><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">or to place an undue load on the Application's servers. This offense will be considered hacking into the App, and we reserve the right of enforcement at our discretion.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">Do not enter illegal or inappropriate content into the app.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The application may not be used </span><span style="font-family: Arial; min-height: 10pt; font-size: 10pt;">for</span><span style="font-family: Arial; color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">illegal purposes.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">Any use of the Application and its contents are for personal purposes only. No commercial, business or marketing use may be made, unless permitted in writing by the Application Owner.</span></p><p class="docx_listparagraph docx-num-2-0"><span style="font-family: var(--docx-minorBidi-font); font-weight: bold; color: rgb(48, 48, 48); min-height: 14pt; font-size: 14pt;"> Privacy Policy</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">When registering for the Application, you </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">are required to</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">provide</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">accurate</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> personal information </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">in order to</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> use the Application's services. Please note that </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">providing</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> incorrect details may prevent you from using the Application and impair the experience the app usage. If your details have changed, please update via the App.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">When you enter the Application, you declare and agree that the details you </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">provide,</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> and the </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">additional</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> details collected during your use of the Application will be stored in the System.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">If the disclosure of the User's details is required by a government body acting by law or by court order or as part of legal proceedings against the Company – the Company will provide the User's details which are in the system while preserving the User's privacy as much as possible.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">When submitting an audit to the business, you represent and agree that your details will appear on the business page.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The Company attaches </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">great importance</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> to the issue of information security </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">for</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> users. We make </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">great efforts</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> to protect the user's personal information. It should be noted that the Company does not guarantee that its services will be completely immune from hacking and / or unauthorized access to the information stored in them. By using the Application, you acknowledge and agree to these risks. </span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">We may use information accumulated from you while using the Application to improve the user experience and server processing efficiency.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">We </span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">retain GPS</span><span style="font-family: Arial, var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> data when you use the App within the Service.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The Company will use the information collected to address technical problems.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">The Company will use the information collected in accordance with the provisions of any law.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">We may change this Privacy Policy at any time, please review periodically to stay updated.</span></p><p class="docx_listparagraph docx-num-2-0"><span style="font-family: var(--docx-minorBidi-font); font-weight: bold; color: rgb(48, 48, 48); min-height: 14pt; font-size: 14pt;">Jurisdiction</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;"> Use of the Application and its Terms of Use are subject to the laws of the State of Israel. The place of arbitration and jurisdiction is in the competent court </span></p><p class="docx_listparagraph docx-num-2-0"><span style="font-family: var(--docx-minorBidi-font); font-weight: bold; color: rgb(48, 48, 48); min-height: 14pt; font-size: 14pt;">Intellectual Property Ownership</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">All intellectual property rights displayed in the Application are owned by The Application or by other third parties such as merchants, accounts, computer code, titles, system database, user lists, images, descriptions, all content displayed, etc.</span></p><p class="docx_listparagraph docx-num-2-1"><span style="font-family: var(--docx-minorBidi-font); color: rgb(48, 48, 48); min-height: 10pt; font-size: 10pt;">You agree that there may be changes in the designs, content of the application, order of lists, specifications and rules of any design presented in any way.</span></p><p style="margin-left: 18pt;"></p></article></section></div>

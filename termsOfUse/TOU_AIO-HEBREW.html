@@ -1,0 +1,1944 @@
+<!--docxjs library predefined styles--><style>
+	.docx-wrapper {
+		background: gray;
+		padding: 30px;
+		padding-bottom: 0px;
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+	}
+	.docx-wrapper > section.docx {
+		background: white;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		margin-bottom: 30px;
+	}
+	.docx {
+		color: black;
+	}
+	section.docx {
+		box-sizing: border-box;
+		display: flex;
+		flex-flow: column nowrap;
+		position: relative;
+		overflow: hidden;
+	}
+	section.docx > article {
+		margin-bottom: auto;
+	}
+	.docx table {
+		border-collapse: collapse;
+	}
+	.docx table td,
+	.docx table th {
+		vertical-align: top;
+	}
+	.docx p {
+		margin: 0pt;
+		min-height: 1em;
+	}
+	.docx span {
+		white-space: pre-wrap;
+		overflow-wrap: break-word;
+	}
+	.docx a {
+		color: inherit;
+		text-decoration: inherit;
+	}</style
+><!--docxjs document theme values--><style>
+	.docx {
+		--docx-majorHAnsi-font: Calibri Light;
+		--docx-minorHAnsi-font: Calibri;
+		--docx-dk1-color: #000000;
+		--docx-lt1-color: #ffffff;
+		--docx-dk2-color: #44546a;
+		--docx-lt2-color: #e7e6e6;
+		--docx-accent1-color: #4472c4;
+		--docx-accent2-color: #ed7d31;
+		--docx-accent3-color: #a5a5a5;
+		--docx-accent4-color: #ffc000;
+		--docx-accent5-color: #5b9bd5;
+		--docx-accent6-color: #70ad47;
+		--docx-hlink-color: #0563c1;
+		--docx-folHlink-color: #954f72;
+	}</style
+><!--docxjs document styles--><style>
+	.docx span {
+		font-family: var(--docx-minorHAnsi-font);
+		min-height: 11pt;
+		font-size: 11pt;
+	}
+	.docx p {
+		margin-bottom: 8pt;
+		line-height: 1.08;
+	}
+	.docx p,
+	p.docx_normal {
+	}
+	p.docx_heading4 {
+		margin-top: 5pt;
+		margin-bottom: 5pt;
+		line-height: 1;
+	}
+	p.docx_heading4 span {
+		font-family: Times New Roman;
+		font-weight: bold;
+		min-height: 12pt;
+		font-size: 12pt;
+	}
+	p.docx_heading4 span {
+		font-family: Times New Roman;
+		font-weight: bold;
+		min-height: 12pt;
+		font-size: 12pt;
+	}
+	.docx table,
+	table.docx_tablenormal td {
+		padding-top: 0pt;
+		padding-left: 5.4pt;
+		padding-bottom: 0pt;
+		padding-right: 5.4pt;
+	}
+	span.docx_strong {
+		font-weight: bold;
+	}
+	span.docx_heading4char {
+		font-family: Times New Roman;
+		font-weight: bold;
+		min-height: 12pt;
+		font-size: 12pt;
+	}
+	span.docx_heading4char p {
+		margin-top: 5pt;
+		margin-bottom: 5pt;
+		line-height: 1;
+	}
+	span.docx_heading4char {
+		font-family: Times New Roman;
+		font-weight: bold;
+		min-height: 12pt;
+		font-size: 12pt;
+	}
+	p.docx_listparagraph {
+		margin-left: 36pt;
+	}
+	p.docx_balloontext {
+		margin-bottom: 0pt;
+		line-height: 1;
+	}
+	p.docx_balloontext span {
+		font-family: Segoe UI;
+		min-height: 9pt;
+		font-size: 9pt;
+	}
+	p.docx_balloontext span {
+		font-family: Segoe UI;
+		min-height: 9pt;
+		font-size: 9pt;
+	}
+	span.docx_balloontextchar {
+		font-family: Segoe UI;
+		min-height: 9pt;
+		font-size: 9pt;
+	}
+	span.docx_balloontextchar p {
+		margin-bottom: 0pt;
+		line-height: 1;
+	}
+	span.docx_balloontextchar {
+		font-family: Segoe UI;
+		min-height: 9pt;
+		font-size: 9pt;
+	}
+	span.docx_commentreference {
+		min-height: 8pt;
+		font-size: 8pt;
+	}
+	p.docx_commenttext {
+		line-height: 1;
+	}
+	p.docx_commenttext span {
+		min-height: 10pt;
+		font-size: 10pt;
+	}
+	p.docx_commenttext span {
+		min-height: 10pt;
+		font-size: 10pt;
+	}
+	span.docx_commenttextchar {
+		min-height: 10pt;
+		font-size: 10pt;
+	}
+	span.docx_commenttextchar p {
+		line-height: 1;
+	}
+	span.docx_commenttextchar {
+		min-height: 10pt;
+		font-size: 10pt;
+	}
+	p.docx_commentsubject span {
+		font-weight: bold;
+		min-height: 10pt;
+		font-size: 10pt;
+	}
+	p.docx_commentsubject {
+		line-height: 1;
+	}
+	p.docx_commentsubject span {
+		font-weight: bold;
+		min-height: 10pt;
+		font-size: 10pt;
+	}
+	span.docx_commentsubjectchar {
+		font-weight: bold;
+		min-height: 10pt;
+		font-size: 10pt;
+	}
+	span.docx_commentsubjectchar {
+		font-weight: bold;
+		min-height: 10pt;
+		font-size: 10pt;
+	}
+	span.docx_commentsubjectchar p {
+		line-height: 1;
+	}
+	span.docx_hyperlink {
+		color: #0000ff;
+		text-decoration: underline;
+	}</style
+><!--docxjs document numbering styles--><style>
+	p.docx-num-2-0:before {
+		content: "" counter(docx-num-2-0, decimal) ".\9";
+		counter-increment: docx-num-2-0;
+	}
+	p.docx-num-2-0 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -18pt;
+		margin-left: 36pt;
+	}
+	p.docx-num-2-0 {
+		counter-reset: docx-num-2-1;
+	}
+	p.docx-num-2-1:before {
+		content: "" counter(docx-num-2-0, decimal) "."
+			counter(docx-num-2-1, decimal) ".\9";
+		counter-increment: docx-num-2-1;
+	}
+	p.docx-num-2-1 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -18pt;
+		margin-left: 22.5pt;
+	}
+	p.docx-num-2-1 {
+		counter-reset: docx-num-2-2;
+	}
+	p.docx-num-2-2:before {
+		content: "" counter(docx-num-2-0, decimal) "."
+			counter(docx-num-2-1, decimal) "." counter(docx-num-2-2, decimal) ".\9";
+		counter-increment: docx-num-2-2;
+	}
+	p.docx-num-2-2 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -36pt;
+		margin-left: 54pt;
+	}
+	p.docx-num-2-2 {
+		counter-reset: docx-num-2-3;
+	}
+	p.docx-num-2-3:before {
+		content: "" counter(docx-num-2-0, decimal) "."
+			counter(docx-num-2-1, decimal) "." counter(docx-num-2-2, decimal) "."
+			counter(docx-num-2-3, decimal) ".\9";
+		counter-increment: docx-num-2-3;
+	}
+	p.docx-num-2-3 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -36pt;
+		margin-left: 54pt;
+	}
+	p.docx-num-2-3 {
+		counter-reset: docx-num-2-4;
+	}
+	p.docx-num-2-4:before {
+		content: "" counter(docx-num-2-0, decimal) "."
+			counter(docx-num-2-1, decimal) "." counter(docx-num-2-2, decimal) "."
+			counter(docx-num-2-3, decimal) "." counter(docx-num-2-4, decimal) ".\9";
+		counter-increment: docx-num-2-4;
+	}
+	p.docx-num-2-4 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -54pt;
+		margin-left: 72pt;
+	}
+	p.docx-num-2-4 {
+		counter-reset: docx-num-2-5;
+	}
+	p.docx-num-2-5:before {
+		content: "" counter(docx-num-2-0, decimal) "."
+			counter(docx-num-2-1, decimal) "." counter(docx-num-2-2, decimal) "."
+			counter(docx-num-2-3, decimal) "." counter(docx-num-2-4, decimal) "."
+			counter(docx-num-2-5, decimal) ".\9";
+		counter-increment: docx-num-2-5;
+	}
+	p.docx-num-2-5 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -54pt;
+		margin-left: 72pt;
+	}
+	p.docx-num-2-5 {
+		counter-reset: docx-num-2-6;
+	}
+	p.docx-num-2-6:before {
+		content: "" counter(docx-num-2-0, decimal) "."
+			counter(docx-num-2-1, decimal) "." counter(docx-num-2-2, decimal) "."
+			counter(docx-num-2-3, decimal) "." counter(docx-num-2-4, decimal) "."
+			counter(docx-num-2-5, decimal) "." counter(docx-num-2-6, decimal) ".\9";
+		counter-increment: docx-num-2-6;
+	}
+	p.docx-num-2-6 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -72pt;
+		margin-left: 90pt;
+	}
+	p.docx-num-2-6 {
+		counter-reset: docx-num-2-7;
+	}
+	p.docx-num-2-7:before {
+		content: "" counter(docx-num-2-0, decimal) "."
+			counter(docx-num-2-1, decimal) "." counter(docx-num-2-2, decimal) "."
+			counter(docx-num-2-3, decimal) "." counter(docx-num-2-4, decimal) "."
+			counter(docx-num-2-5, decimal) "." counter(docx-num-2-6, decimal) "."
+			counter(docx-num-2-7, decimal) ".\9";
+		counter-increment: docx-num-2-7;
+	}
+	p.docx-num-2-7 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -72pt;
+		margin-left: 90pt;
+	}
+	p.docx-num-2-7 {
+		counter-reset: docx-num-2-8;
+	}
+	p.docx-num-2-8:before {
+		content: "" counter(docx-num-2-0, decimal) "."
+			counter(docx-num-2-1, decimal) "." counter(docx-num-2-2, decimal) "."
+			counter(docx-num-2-3, decimal) "." counter(docx-num-2-4, decimal) "."
+			counter(docx-num-2-5, decimal) "." counter(docx-num-2-6, decimal) "."
+			counter(docx-num-2-7, decimal) "." counter(docx-num-2-8, decimal) ".\9";
+		counter-increment: docx-num-2-8;
+	}
+	p.docx-num-2-8 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -90pt;
+		margin-left: 108pt;
+	}
+	p.docx-num-1-0:before {
+		content: "" counter(docx-num-1-0, decimal) ".\9";
+		counter-increment: docx-num-1-0;
+		font-weight: bold;
+		color: #000000;
+		min-height: 18pt;
+		font-size: 18pt;
+	}
+	p.docx-num-1-0 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -18pt;
+		margin-left: 36pt;
+	}
+	p.docx-num-1-0 {
+		counter-reset: docx-num-1-1;
+	}
+	p.docx-num-1-1:before {
+		content: "" counter(docx-num-1-1, lower-alpha) ".\9";
+		counter-increment: docx-num-1-1;
+	}
+	p.docx-num-1-1 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -18pt;
+		margin-left: 72pt;
+	}
+	p.docx-num-1-1 {
+		counter-reset: docx-num-1-2;
+	}
+	p.docx-num-1-2:before {
+		content: "" counter(docx-num-1-2, lower-roman) ".\9";
+		counter-increment: docx-num-1-2;
+	}
+	p.docx-num-1-2 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -9pt;
+		margin-left: 108pt;
+	}
+	p.docx-num-1-2 {
+		counter-reset: docx-num-1-3;
+	}
+	p.docx-num-1-3:before {
+		content: "" counter(docx-num-1-3, decimal) ".\9";
+		counter-increment: docx-num-1-3;
+	}
+	p.docx-num-1-3 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -18pt;
+		margin-left: 144pt;
+	}
+	p.docx-num-1-3 {
+		counter-reset: docx-num-1-4;
+	}
+	p.docx-num-1-4:before {
+		content: "" counter(docx-num-1-4, lower-alpha) ".\9";
+		counter-increment: docx-num-1-4;
+	}
+	p.docx-num-1-4 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -18pt;
+		margin-left: 180pt;
+	}
+	p.docx-num-1-4 {
+		counter-reset: docx-num-1-5;
+	}
+	p.docx-num-1-5:before {
+		content: "" counter(docx-num-1-5, lower-roman) ".\9";
+		counter-increment: docx-num-1-5;
+	}
+	p.docx-num-1-5 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -9pt;
+		margin-left: 216pt;
+	}
+	p.docx-num-1-5 {
+		counter-reset: docx-num-1-6;
+	}
+	p.docx-num-1-6:before {
+		content: "" counter(docx-num-1-6, decimal) ".\9";
+		counter-increment: docx-num-1-6;
+	}
+	p.docx-num-1-6 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -18pt;
+		margin-left: 252pt;
+	}
+	p.docx-num-1-6 {
+		counter-reset: docx-num-1-7;
+	}
+	p.docx-num-1-7:before {
+		content: "" counter(docx-num-1-7, lower-alpha) ".\9";
+		counter-increment: docx-num-1-7;
+	}
+	p.docx-num-1-7 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -18pt;
+		margin-left: 288pt;
+	}
+	p.docx-num-1-7 {
+		counter-reset: docx-num-1-8;
+	}
+	p.docx-num-1-8:before {
+		content: "" counter(docx-num-1-8, lower-roman) ".\9";
+		counter-increment: docx-num-1-8;
+	}
+	p.docx-num-1-8 {
+		display: list-item;
+		list-style-position: inside;
+		list-style-type: none;
+		text-indent: -9pt;
+		margin-left: 324pt;
+	}
+	.docx-wrapper {
+		counter-reset: docx-num-2-0 docx-num-1-0;
+	}
+</style>
+<div class="docx-wrapper">
+	<section
+		class="docx"
+		style="padding: 72pt 90pt; width: 595.3pt; min-height: 841.9pt"
+	>
+		<article>
+			<p>
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						font-weight: bold;
+						min-height: 18pt;
+						font-size: 18pt;
+						text-decoration: underline;
+					"
+					>תנאי שימוש</span
+				>
+			</p>
+			<p>
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>בטרם כניסתך לאפליקציית</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					"</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>All</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+				</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>In</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+				</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>One</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>" </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>(</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>להלן: "</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						font-weight: bold;
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>האפליקציה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>"</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					או</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					"</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>All</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					In One</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>") </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>יש לקרוא את תנאי השימוש להלן המהווים בסיס משפטי מחייב לכל פעולה
+					באפליקציה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p>
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>"All In One</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>" </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>מספקת מידע עבור עסקים/שירותים בסביבה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.
+				</span>
+			</p>
+			<p>
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>שימוש באפליקציה מהווה אישור לכך שהמשתמש קרא והסכים לתנאי השימוש. </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>אם המשתמש אינו מסכים עם תנאי השימוש, אין להשתמש באפליקציה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					או בשירותיו</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p>
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>תנאי השימוש יכולים להשתנות מעת לעת. במקרה כזה, אנו נמסור הודעה על
+					שינוי תנאי השימוש ועל אחריות המשתמש להתעדכן בבוא העת</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p>
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>תנאי </span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ה</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>שימוש </span
+				><span class="docx_oi732d6d" style="min-height: 10pt; font-size: 10pt"
+					>נכתב</span
+				><span class="docx_oi732d6d" style="min-height: 10pt; font-size: 10pt"
+					>ו</span
+				><span class="docx_oi732d6d" style="min-height: 10pt; font-size: 10pt">
+					בלשון זכר מטעמי נוחות בלבד, אך מיועד</span
+				><span class="docx_oi732d6d" style="min-height: 10pt; font-size: 10pt"
+					>ים</span
+				><span class="docx_oi732d6d" style="min-height: 10pt; font-size: 10pt">
+					לנשים וגברים כאחד.</span
+				>
+			</p>
+			<p>
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						font-weight: bold;
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>יש לקרוא את תנאי השימוש בעיון רב.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-0">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						font-weight: bold;
+						color: rgb(48, 48, 48);
+						min-height: 14pt;
+						font-size: 14pt;
+					"
+					>הגבלת אחריות</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>תוכן השירותים</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>/</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>מוצרים שמספקים בעלי העסקים הנמצאים באפליקציה הן באחריות בעלי העסקים
+					אשר מספקים אותם.
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>האפליקציה והתכנים כול</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ם</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					כפי שה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ם</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+				</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>(“as is”)</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>, </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>אנו לא מתחייבים לדיוק ונכונות כל השירותים</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>/</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>מוצרים שמספקים בעלי העסקים הנמצאים באפליקציה, תיאור ותמונת
+					השירות</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>/</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>מוצר הן באחריות בעלי העסקים. אנו לא אחראים לכל הפסד או נזק למשתמשים
+					אשר מסתמכים על המידע המסופק באפליקציה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>שינויי</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ם בשירותים</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>/</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>מוצרים עלולים להשתנות על פי שיקול הדעת של בעל העסק.</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>איננו אחראים על דיוק מיקום המשתמש דרך ה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>-</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>GPS</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>כל ההמלצות אשר מוצגות באפליקציה הן בגדר המלצה בלבד, ואנו לא מתחייבים
+					על דיוקם</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>איננו מתחייבים כי שימוש באפליקציה </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>י</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>היה זמי</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ן</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					תמיד, או תפקוד האפליקציה </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>י</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>היה מהיר ונקי מתקלות</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>המחירים אשר מוצגים באפליקציה בזמן הזמנת שירות</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>/</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>מוצר הינם באחריות בתי העסק בלבד</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-0">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						font-weight: bold;
+						color: rgb(48, 48, 48);
+						min-height: 14pt;
+						font-size: 14pt;
+					"
+					>שימוש באפליקציה</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ה</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>שימוש באפליקציה כפו</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ף</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					בהסכמה לתנאי שימוש זה, כל שימוש שאינו בהתאם לתנאי השימוש נחשב כהפרה של
+					תנאים אלו.
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>אין להעתיק או להשתמש בכל התכנים </span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>הנמצאים ב</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>תוך האפליקציה</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>חל איסור מוחלט לפגוע בתקינות האפליקציה דרך תוכנות זדוניות ו</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>/</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>או להטיל עומס מופרז על שרתי האפליקציה. עבירה זו תחשב כפריצה
+					לאפליקציה, ואנו שומרים לעצמנו על זכות אכיפה בהתאם לשיקולים שלנו.
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>אין להזין לאפליקציה תכנים לא חוקים או לא הולמים.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>אין להשתמש באפליקציה </span
+				><span style="min-height: 10pt; font-size: 10pt">למטרות</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					לא חוקיות.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>כל שימוש באפליקציה ותכניה הינם למטרות אישיות בלבד</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					אין לבצע שימוש מסחרי, עסקי או שיווקי</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>,</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					אלא אם</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					ה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ותר בכתב על ידי בעלי האפליקציה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-0">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						font-weight: bold;
+						color: rgb(48, 48, 48);
+						min-height: 14pt;
+						font-size: 14pt;
+					"
+				>
+					מדיניות פרטיות</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>בעת ההרשמה לאפליקציה הנך נדרש לספק במדויק פרטים אישים על מנת להשתמש
+					בשירותי האפליקציה. יש לציין כי מסירת פרטים שגויים עלולים למנוע ממך את
+					השימוש באפליקציה, לפגוע בחוויית משתמש. אם פרטיך השתנו, יש לעדכן
+					באמצעות האפליקציה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>בעת כניסתך לאפליקציה הנך מצהיר ומסכים, כי הפרטים שתמסור והפרטים
+					הנוספים שיאספו במהלך שימושך באפליקציה יישמרו במערכת</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ב</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>מידה וחשיפת הפרטים של המשתמש תידרש על ידי גוף ממשלתי הפועל על פי
+					דין</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+				</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>או על פי צו בית משפט או במסגרת הליכים משפטיים כנגד החברה </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>–</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					תמסור החברה את הפרטים של המשתמש אשר נמצאים במערכת</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					תוך שמירה על פרטיותו של המשתמש ככל הניתן</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>בעת מסירת ביקורת לבית העסק, הנך מצהיר ומסכים כי הפרטים שלך יופיעו בדף
+					העסק</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>החברה רואה חשיבות </span
+				><span id="_GoBack"></span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>רבה בנושא אבטחת המידע של המשתמשים. אנו עושים מאמצים רבים לצורך הגנה
+					על המידע האישי של המשתמש. יש לציין כי </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>החברה לא מתחייבת ששירותיה יהיו חסינים באופן מוחלט מפני פריצה ו/או
+					מפני גישה לא מורשת למידע המאוחסן בה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ם</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>. על ידי שימוש באפליקציה הנך מאשר ומסכים </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>לסיכונים אלו</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>אנו עשויים להשתמש במידע שנצבר ממך בזמן שימוש באפליקציה עבור שיפור
+					חווית השימוש</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+				</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ו</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>יעילות עיבוד </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>השרתים</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>אנו שומרים נתוני</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+				</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>GPS</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+				</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>בזמן שימוש האפליקציה במסגרת השירות</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>החברה </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ת</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>עשה שימוש ב</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>מידע ה</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>נאסף בטיפול בבעיות טכניות</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>החברה תשתמש במידע שנאסף </span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>על פי הוראות כל דין</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>אנו רשאים לשנות את מדיניות הפרטיות בכל עת, מומלץ לעיין מדי פעם על מנת
+					להישאר מעודכן</span
+				><span
+					style="
+						font-family: Arial, var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-0">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						font-weight: bold;
+						color: rgb(48, 48, 48);
+						min-height: 14pt;
+						font-size: 14pt;
+					"
+					>סמכות שיפוט</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					השימוש באפליקציה ותנאי השימוש שלה כפופים לחוקי מדינת ישראל. מקום
+					בוררות והשיפוט הינו בבית המשפט המוסמך
+				</span>
+			</p>
+			<p class="docx_listparagraph docx-num-2-0">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						font-weight: bold;
+						color: rgb(48, 48, 48);
+						min-height: 14pt;
+						font-size: 14pt;
+					"
+					>בעלות קניין רוחני</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>כל </span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>זכויות </span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>הקניין הרוחני המוצג באפליקציה הינ</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>ן</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					בבעלות האפליקציה</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					או של צדדים שלישיים אחרים כדוגמת בתי העסק</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>,</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					חשבונות, קוד מחשב, כותרות, מאגר מידע של המערכת, רשימות משתמשים,</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+				>
+					תמונות, תיאורים, כל התכנים שמוצגים וכדומה.</span
+				>
+			</p>
+			<p class="docx_listparagraph docx-num-2-1">
+				<span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>הנך מסכים כי </span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>י</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>יתכנו שינויים בעיצובים, תכנים באפליקציה, סדר רשימות, המפ</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>רט ובכללי כל תכן המוצג בדרך כלשהי</span
+				><span
+					style="
+						font-family: var(--docx-minorBidi-font);
+						color: rgb(48, 48, 48);
+						min-height: 10pt;
+						font-size: 10pt;
+					"
+					>.</span
+				>
+			</p>
+			<p style="margin-left: 18pt"></p>
+		</article>
+	</section>
+</div>
