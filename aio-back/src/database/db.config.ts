@@ -6,6 +6,7 @@ import { OpeningHours } from '../common/entities/openingHours.entity';
 import { readFileSync } from 'fs';
 import { User } from '../users/entities/user.entity';
 import { Category } from '../category/entities/category.entity';
+import { TermsOfUse } from '../terms-of-use/entities/terms-of-use.entity';
 
 export const getDbConfig = (): TypeOrmModuleOptions => {
 	const env = process.env.NODE_ENV || 'development';
@@ -18,7 +19,15 @@ export const getDbConfig = (): TypeOrmModuleOptions => {
 		username: process.env.DATABASE_USER || 'postgres',
 		password: process.env.DATABASE_PASS || 'pass123',
 		database: process.env.DATABASE_DB || 'postgres',
-		entities: [User, Otp, Business, Location, OpeningHours, Category],
+		entities: [
+			User,
+			Otp,
+			Business,
+			Location,
+			OpeningHours,
+			Category,
+			TermsOfUse,
+		],
 	};
 
 	const devConfig: TypeOrmModuleOptions = {

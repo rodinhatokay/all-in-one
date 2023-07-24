@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-	@PrimaryGeneratedColumn("uuid")
+	@PrimaryGeneratedColumn('uuid')
 	id: string;
 
 	@Column({ nullable: true })
@@ -11,7 +11,10 @@ export class User {
 	@Column({ nullable: true })
 	lastName?: string;
 
-	// TODO: change to termsAccepted and add date to terms accepted
+	/**
+	 * TODO: remove terms from here and store into seperate table,
+	 * TODO: that holds userId, id of the termsOfContent and timestamp when it accepted
+	 */
 	@Column({ nullable: true })
 	terms: boolean;
 
