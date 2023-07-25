@@ -42,12 +42,14 @@
 		},
 		"plugins": [
 			"expo-localization",
-			"expo-build-properties",
-			{
-				"android": {
-					"usesCleartextTraffic": true
+			[
+				"expo-build-properties",
+				{
+					"android": {
+						"usesCleartextTraffic": true
+					}
 				}
-			}
+			]
 		],
 		"owner": "allinoneocean"
 	}
