@@ -40,7 +40,16 @@
 				"projectId": "bb5b5c67-fce9-4660-890d-4104d97ec36f"
 			}
 		},
-		"plugins": ["expo-localization"],
+		"plugins": [
+			"expo-localization",
+			"expo-build-properties",
+			"expo-build-properties",
+			{
+				"android": {
+					"usesCleartextTraffic": true
+				}
+			}
+		],
 		"owner": "allinoneocean"
 	}
 }
