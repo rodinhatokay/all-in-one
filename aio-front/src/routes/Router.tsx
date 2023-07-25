@@ -1,13 +1,13 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, View } from "react-native";
-import { useTheme } from "../contexts/ThemeContext";
-import NoAuthRouter from "./NoAuthStack";
-import { navigationRef } from "./routerActions";
-import AuthRoutes from "./AuthRoutes";
-import { useAuth } from "../contexts/AuthContext";
-import * as SplashScreen from "expo-splash-screen";
-import useInitApp from "../hooks/useInitApp";
-import { useCallback } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, View } from 'react-native';
+import { useTheme } from '../contexts/ThemeContext';
+import NoAuthRouter from './NoAuthRouter';
+import { navigationRef } from './routerActions';
+import AuthRoutes from './AuthRoutes';
+import { useAuth } from '../contexts/AuthContext';
+import * as SplashScreen from 'expo-splash-screen';
+import useInitApp from '../hooks/useInitApp';
+import { useCallback } from 'react';
 
 SplashScreen.preventAutoHideAsync();
 

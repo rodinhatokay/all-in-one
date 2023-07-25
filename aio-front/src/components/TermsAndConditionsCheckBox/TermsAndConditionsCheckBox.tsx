@@ -1,11 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useCallback, useState } from 'react';
 import {
 	StyleSheet,
 	Pressable,
 	View,
 	Dimensions,
 	ScrollView,
-} from "react-native";
+} from 'react-native';
 import {
 	Checkbox,
 	Dialog,
@@ -13,9 +13,12 @@ import {
 	Portal,
 	Button,
 	Text,
-} from "react-native-paper";
-import { useLocalization } from "../../contexts/LocalizationContext";
-import { useTheme } from "../../contexts/ThemeContext";
+} from 'react-native-paper';
+import { useLocalization } from '../../contexts/LocalizationContext';
+import { useTheme } from '../../contexts/ThemeContext';
+import RenderHtml from 'react-native-render-html';
+import { useWindowDimensions } from 'react-native';
+import { useTermsAndConditions } from '../../hooks/useTermsAndConidtions';
 
 interface Props {
 	checked: boolean;
@@ -24,6 +27,7 @@ interface Props {
 }
 
 const TermsAndConditionsCheckBox: FC<Props> = (props) => {
+	const { data: termsContent, isError, isLoading } = useTermsAndConditions();
 	const { checked, error, onCheck } = props;
 	const { t } = useLocalization();
 	const { theme } = useTheme();
@@ -33,13 +37,20 @@ const TermsAndConditionsCheckBox: FC<Props> = (props) => {
 
 	const hideTAC = () => setIsDisplayTAC(false);
 
+	const windowWidth = useWindowDimensions().width;
+
+	const _onCheck = useCallback(() => {
+		if (isError || isLoading) return;
+		onCheck(!checked);
+	}, [isError, isLoading, checked]);
+
 	return (
 		<>
-			<Pressable onPress={() => onCheck(!checked)}>
+			<Pressable onPress={_onCheck}>
 				<View style={styles.checkboxContainer}>
-					<Checkbox.Android status={checked ? "checked" : "unchecked"} />
+					<Checkbox.Android status={checked ? 'checked' : 'unchecked'} />
 					<View style={styles.textContainer}>
-						<Text>{t("iAgreeToThe")}</Text>
+						<Text>{t('iAgreeToThe')}</Text>
 						<Pressable hitSlop={20} onPress={displayTermsAndConditions}>
 							<Text
 								style={[
@@ -47,14 +58,14 @@ const TermsAndConditionsCheckBox: FC<Props> = (props) => {
 									{ color: theme.colors.primary },
 								]}
 							>
-								{" "}
-								{t("termsAndConditions")}
+								{' '}
+								{t('termsAndConditions')}
 							</Text>
 						</Pressable>
 					</View>
 				</View>
 				<HelperText type="error" visible={error}>
-					{t("pleaseAccpetTheTermsAndConditionsToProceed")}
+					{t('pleaseAccpetTheTermsAndConditionsToProceed')}
 				</HelperText>
 			</Pressable>
 			<Portal>
@@ -63,50 +74,20 @@ const TermsAndConditionsCheckBox: FC<Props> = (props) => {
 					visible={isDisplayTAC}
 					style={styles.dialog}
 				>
-					<Dialog.Title>{t("termsAndConditions")}</Dialog.Title>
-					<Dialog.ScrollArea style={styles.smallPadding}>
-						<ScrollView contentContainerStyle={styles.biggerPadding}>
-							<Text>
-								Material is the metaphor
-								{"\n"}
-								{"\n"}A material metaphor is the unifying theory of a
-								rationalized space and a system of motion. The material is
-								grounded in tactile reality, inspired by the study of paper and
-								ink, yet technologically advanced and open to imagination and
-								magic.
-								{"\n"}
-								{"\n"}
-								Surfaces and edges of the material provide visual cues that are
-								grounded in reality. The use of familiar tactile attributes
-								helps users quickly understand affordances. Yet the flexibility
-								of the material creates new affordances that supersede those in
-								the physical world, without breaking the rules of physics.
-								{"\n"}
-								{"\n"}
-								The fundamentals of light, surface, and movement are key to
-								conveying how objects move, interact, and exist in space and in
-								relation to each other. Realistic lighting shows seams, divides
-								space, and indicates moving parts.
-								{"\n"}
-								{"\n"}A material metaphor is the unifying theory of a
-								rationalized space and a system of motion. The material is
-								grounded in tactile reality, inspired by the study of paper and
-								ink, yet technologically advanced and open to imagination and
-								magic.
-								{"\n"}
-								{"\n"}
-								Surfaces and edges of the material provide visual cues that are
-								grounded in reality. The use of familiar tactile attributes
-								helps users quickly understand affordances. Yet the flexibility
-								of the material creates new affordances that supersede those in
-								the physical world, without breaking the rules of physics.
-								{"\n"}
-								{"\n"}
-								The fundamentals of light, surface, and movement are key to
-								conveying how objects move, interact, and exist in space and in
-								relation to each other. Realistic lighting shows seams, divides
-								space, and indicates moving parts.
-							</Text>
+					<Dialog.ScrollArea style={styles.noPadding}>
+						<ScrollView style={styles.smallPadding}>
+							<ScrollView horizontal>
+								<RenderHtml
+									source={{ html: termsContent }}
+									contentWidth={windowWidth}
+									ignoredStyles={[
+										'paddingTop',
+										'paddingLeft',
+										'paddingBottom',
+										'paddingRight',
+									]}
+								/>
+							</ScrollView>
 						</ScrollView>
 					</Dialog.ScrollArea>
 					<Dialog.Actions>
@@ -120,19 +101,19 @@ const TermsAndConditionsCheckBox: FC<Props> = (props) => {
 
 const styles = StyleSheet.create({
 	checkboxContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		alignSelf: "flex-start",
+		flexDirection: 'row',
+		alignItems: 'center',
+		alignSelf: 'flex-start',
 	},
-	termsAndCondidtionsTxt: { textDecorationLine: "underline" },
+	termsAndCondidtionsTxt: { textDecorationLine: 'underline' },
 	smallPadding: {
+		paddingHorizontal: 15,
+	},
+	noPadding: {
 		paddingHorizontal: 0,
 	},
-	biggerPadding: {
-		paddingHorizontal: 24,
-	},
-	textContainer: { flexDirection: "row", alignItems: "center" },
-	dialog: { maxHeight: 0.6 * Dimensions.get("window").height },
+	textContainer: { flexDirection: 'row', alignItems: 'center' },
+	dialog: { maxHeight: 0.6 * Dimensions.get('window').height },
 });
 
 export default TermsAndConditionsCheckBox;

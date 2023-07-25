@@ -5,22 +5,24 @@ import {
 	TextInput as RNTextInput,
 	KeyboardAvoidingView,
 	Platform,
-} from "react-native";
-import { Button, TextInput, HelperText, Text } from "react-native-paper";
-import TermsAndConditionsCheckBox from "../components/TermsAndConditionsCheckBox/TermsAndConditionsCheckBox";
-import { useLocalization } from "../contexts/LocalizationContext";
-import { useTheme } from "../contexts/ThemeContext";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useRegister } from "../hooks/useRegister";
-import { NoAuthStack } from "../routes/types";
-import { useCallback, useEffect, useRef } from "react";
+} from 'react-native';
+import { Button, TextInput, HelperText, Text } from 'react-native-paper';
+import TermsAndConditionsCheckBox from '../components/TermsAndConditionsCheckBox/TermsAndConditionsCheckBox';
+import { useLocalization } from '../contexts/LocalizationContext';
+import { useTheme } from '../contexts/ThemeContext';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useRegister } from '../hooks/useRegister';
+import { NoAuthStack } from '../routes/types';
+import { useCallback, useEffect, useRef } from 'react';
 
-type Props = NativeStackScreenProps<NoAuthStack, "register">;
+type Props = NativeStackScreenProps<NoAuthStack, 'register'>;
 
 const RegisterScreen = ({ route }: Props) => {
 	const { t } = useLocalization();
 	const { theme } = useTheme();
-	const { access_token, phoneNumber } = route.params;
+	// const { access_token, phoneNumber } = route.params;
+	const access_token = 'asd';
+	const phoneNumber = '0524560793';
 
 	const {
 		termsAccepted,
@@ -55,10 +57,10 @@ const RegisterScreen = ({ route }: Props) => {
 			ref={scrollRef}
 			style={styles.container}
 			contentContainerStyle={{ gap: 5 }}
-			keyboardShouldPersistTaps={"handled"}
+			keyboardShouldPersistTaps={'handled'}
 		>
 			<KeyboardAvoidingView
-				behavior={Platform.OS === "ios" ? "padding" : "height"}
+				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 				style={styles.container}
 			>
 				<View>
@@ -73,7 +75,7 @@ const RegisterScreen = ({ route }: Props) => {
 						onSubmitEditing={focusLastNameInput}
 					/>
 					<HelperText type="error" visible={errors.firstName}>
-						{t("pleaseEnterYourFirstName")}
+						{t('pleaseEnterYourFirstName')}
 					</HelperText>
 				</View>
 				<View>
@@ -88,7 +90,7 @@ const RegisterScreen = ({ route }: Props) => {
 						onChangeText={onChangeLastName}
 					/>
 					<HelperText type="error" visible={errors.lastName}>
-						{t("pleaseEnterYourLastName")}
+						{t('pleaseEnterYourLastName')}
 					</HelperText>
 				</View>
 
@@ -119,11 +121,11 @@ const RegisterScreen = ({ route }: Props) => {
 					onPress={handleRegister}
 					style={styles.btnRegister}
 				>
-					{t("register")}
+					{t('register')}
 				</Button>
 				{errors.generic ? (
 					<Text style={[{ color: theme.colors.error }, styles.errorText]}>
-						{t("genericError")}
+						{t('genericError')}
 					</Text>
 				) : null}
 			</KeyboardAvoidingView>
@@ -142,15 +144,15 @@ const styles = StyleSheet.create({
 	},
 
 	row: {
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
 		paddingVertical: 8,
 		paddingHorizontal: 16,
 	},
 	btnRegister: { margin: 15 },
 	errorText: {
-		textAlign: "center",
+		textAlign: 'center',
 	},
 });
 
