@@ -43,7 +43,6 @@
 		"plugins": [
 			"expo-localization",
 			"expo-build-properties",
-			"expo-build-properties",
 			{
 				"android": {
 					"usesCleartextTraffic": true
