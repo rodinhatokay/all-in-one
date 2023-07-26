@@ -78,7 +78,7 @@ const OpeningHours: FC<Props> = (props) => {
 			</View>
 			<DropDownIcon
 				onClick={toggleSetExpandList}
-				status={expandList ? 'up' : 'down'}
+				status={expandList ? 'down' : 'up'}
 			/>
 		</Pressable>
 	);
