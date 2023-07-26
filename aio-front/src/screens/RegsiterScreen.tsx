@@ -20,9 +20,7 @@ type Props = NativeStackScreenProps<NoAuthStack, 'register'>;
 const RegisterScreen = ({ route }: Props) => {
 	const { t } = useLocalization();
 	const { theme } = useTheme();
-	// const { access_token, phoneNumber } = route.params;
-	const access_token = 'asd';
-	const phoneNumber = '0524560793';
+	const { access_token, phoneNumber } = route.params;
 
 	const {
 		termsAccepted,
