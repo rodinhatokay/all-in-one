@@ -1,56 +1,60 @@
 {
-	"expo": {
-		"name": "aio-front",
-		"slug": "all-in-one",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/images/icon.png",
-		"userInterfaceStyle": "automatic",
-		"splash": {
-			"image": "./assets/images/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true,
-			"config": {
-				"usesNonExemptEncryption": false
-			},
-			"infoPlist": {
-				"CFBundleAllowMixedLocalizations": true,
-				"ExpoLocalization_supportsRTL": true
-			},
-			"bundleIdentifier": "com.allinoneocean.aio"
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/adaptive-icon.png",
-				"backgroundColor": "#ffffff"
-			},
-			"package": "com.allinoneocean.aio"
-		},
-		"web": {
-			"bundler": "metro",
-			"favicon": "./assets/images/favicon.png"
-		},
-		"extra": {
-			"supportsRTL": true,
-			"eas": {
-				"projectId": "bb5b5c67-fce9-4660-890d-4104d97ec36f"
-			}
-		},
-		"plugins": [
-			"expo-localization",
-			[
-				"expo-build-properties",
-				{
-					"android": {
-						"usesCleartextTraffic": true
-					}
-				}
-			]
-		],
-		"owner": "allinoneocean"
-	}
+  "expo": {
+    "name": "All In One",
+    "slug": "all-in-one",
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
+        "ExpoLocalization_supportsRTL": true
+      },
+      "bundleIdentifier": "com.allinoneocean.aio",
+      "buildNumber": "2"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.allinoneocean.aio",
+      "versionCode": 2
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "supportsRTL": true,
+      "eas": {
+        "projectId": "bb5b5c67-fce9-4660-890d-4104d97ec36f"
+      }
+    },
+    "plugins": [
+      "expo-localization",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "owner": "allinoneocean"
+  }
 }
