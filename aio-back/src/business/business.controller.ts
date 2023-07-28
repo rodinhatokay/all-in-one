@@ -8,27 +8,33 @@ import {
 	Put,
 	Query,
 	UseGuards,
-} from "@nestjs/common";
-import { ApiTags } from "@nestjs/swagger";
-import { BusinessService } from "./business.service";
-import { CreateBusiness } from "./dto/createBusiness.dto";
-import { UpdateBusiness } from "./dto/updateBusiness.dto";
-import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
+} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { BusinessService } from './business.service';
+import { CreateBusiness } from './dto/createBusiness.dto';
+import { UpdateBusiness } from './dto/updateBusiness.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
-@ApiTags("business")
-@Controller("business")
+@ApiTags('business')
+@Controller('business')
 @UseGuards(JwtAuthGuard)
 export class BusinessController {
 	constructor(private readonly businessService: BusinessService) {}
 
-	@Get(":id")
-	findOne(@Param("id") id: string) {
+	@Get(':id')
+	findOne(@Param('id') id: string) {
 		return this.businessService.findOne(id);
 	}
 
 	@Get()
-	findAll(@Query("query") query?: string) {
-		return this.businessService.findAll(query);
+	findAll(
+		@Query('query') query?: string,
+		@Query('page') page?: string,
+		@Query('itemsPerPage') itemsPerPage?: string,
+	) {
+		const parsedPage = parseInt(page, 10) || 1;
+		const parsedItemsPerPage = parseInt(itemsPerPage, 10) || 10;
+		return this.businessService.findAll(query, parsedPage, parsedItemsPerPage);
 	}
 
 	@Post()
@@ -36,13 +42,14 @@ export class BusinessController {
 		return this.businessService.create(createBusinessDto);
 	}
 
-	@Put(":id")
-	update(@Param("id") id: string, @Body() updateBusinessDto: UpdateBusiness) {
+	@Put(':id')
+	update(@Param('id') id: string, @Body() updateBusinessDto: UpdateBusiness) {
 		return this.businessService.update(id, updateBusinessDto);
 	}
 
-	@Delete(":id")
-	delete(@Param("id") id: string) {
-		return this.businessService.delete(id);
-	}
+	// @Delete(":id")
+	// delete(@Param("id") id: string) {
+	// 	return this.businessService.delete(id);
+	// }
 }
+

@@ -5,7 +5,7 @@ export enum ErrorMessages {
 	UserAlreadyExists = 'User already exists',
 	UserDoesNotExists = 'User does not exists',
 	BusinessAlreadyExists = 'Business already exists',
-	BusinessDoesNotExists = 'Business does not exists',
+	BusinessNotFound = 'Business does not exists',
 	NotValidPassword = 'Password must be at least 8 characters long.',
 	NotValidEmail = 'Please use a valid email format.',
 	FailedSingingOut = 'failed signing out',
