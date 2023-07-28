@@ -5,7 +5,7 @@ import axios from "axios";
 import { registerUserApi } from "../services/user/userApi";
 import { useAuth } from "../contexts/AuthContext";
 import { trimStringsInObj } from "../util/string.util";
-import { formatPhoneNumberToGlobal } from "../services/common/format";
+import { normalizePhoneNumberFormat } from "../services/common/format";
 type Errors = {
 	[key in Inputs]: boolean;
 };
@@ -102,7 +102,7 @@ export const useRegister = (phoneNumber?: string, access_token?: string) => {
 					termsAccepted,
 					firstName,
 					lastName,
-					phoneNumber: formatPhoneNumberToGlobal(phoneNumber),
+					phoneNumber: normalizePhoneNumberFormat(phoneNumber),
 				}),
 				access_token,
 			);
