@@ -24,7 +24,7 @@
         "ExpoLocalization_supportsRTL": true
       },
       "bundleIdentifier": "com.allinoneocean.aio",
-      "buildNumber": "2"
+      "buildNumber": "5"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,7 +32,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.allinoneocean.aio",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "bundler": "metro",
