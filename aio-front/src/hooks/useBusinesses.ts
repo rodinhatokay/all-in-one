@@ -18,13 +18,13 @@ interface Options {
 
 const useBusinesses = (options?: Options) => {
 	const disableFetch = options?.disabledWhenQueryEmpty && !options.query;
-	return useQuery<Business[], Error>(
-		['businesses', options?.query],
-		() => fetchBusinesses(options?.query),
-		{
-			enabled: !disableFetch,
-		},
-	);
+	return useQuery<Business[], Error>({
+		queryKey: ['businesses', options?.query],
+		queryFn: () => fetchBusinesses(options?.query),
+		enabled: !disableFetch,
+		staleTime: 1000 * 60 * 5, // 5 minutes (time in milliseconds)
+		cacheTime: 1000 * 60 * 60, // 1 hour (time in milliseconds)
+	});
 };
 
 export default useBusinesses;

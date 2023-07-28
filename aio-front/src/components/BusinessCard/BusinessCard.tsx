@@ -29,19 +29,13 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	const { theme, isThemeDark } = useTheme();
 
 	const cardStyle = useMemo(() => {
-		// const { lightGrey } = theme.colors;
-
 		if (isThemeDark) return styles.card;
 		return [
 			styles.card,
-			Platform.OS === 'ios'
-				? {
-						backgroundColor: 'rgba(200, 200, 200,0.12)',
-				  }
-				: {
-						backgroundColor: theme.colors.card,
-						elevation: 20,
-				  },
+			{
+				backgroundColor: theme.colors.card,
+				elevation: 20,
+			},
 		];
 	}, [isThemeDark, theme]);
 

@@ -3,7 +3,6 @@ import { View, StyleSheet, FlatList } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { Business } from '../services/business/business.types';
 import BusinessCard from '../components/BusinessCard/BusinessCard';
-import { categories } from '../mock/businsesses';
 import useBusinesses from '../hooks/useBusinesses';
 
 const SearchScreen = () => {
@@ -13,7 +12,7 @@ const SearchScreen = () => {
 		data: businesses,
 		isLoading,
 		error,
-	} = useBusinesses({ disabledWhenQueryEmpty: true, query });
+	} = useBusinesses({ query });
 
 	console.log('error', error);
 
