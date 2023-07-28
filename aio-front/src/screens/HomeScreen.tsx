@@ -16,7 +16,7 @@ const HomeScreen = () => {
 	return (
 		<View style={styles.main}>
 			<BusinessList
-				businesses={businesses}
+				data={businesses}
 				onRefresh={refetch}
 				refreshing={isRefetching}
 			/>

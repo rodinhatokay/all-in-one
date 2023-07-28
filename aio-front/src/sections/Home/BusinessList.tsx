@@ -1,28 +1,31 @@
-import { FlatList } from 'react-native';
+import { FlatList, FlatListProps } from 'react-native';
 import { Business } from '../../services/business/business.types';
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import BusinessCard from '../../components/BusinessCard/BusinessCard';
 import { StyleSheet } from 'react-native';
 
-interface Props {
-	businesses: Business[];
+interface Props extends Partial<FlatListProps<Business>> {
 	refreshing?: boolean;
 	onRefresh?: VoidFunction;
+	data: Business[];
 }
 
-const BusinessList: FC<Props> = ({ businesses, refreshing, onRefresh }) => {
-	const renderItem = ({ item }: { item: Business }) => (
-		<BusinessCard business={item} />
+const BusinessList: FC<Props> = ({ data, refreshing, onRefresh, ...props }) => {
+	const renderItem = useCallback(
+		({ item }: { item: Business }) => <BusinessCard business={item} />,
+		[],
 	);
+	const keyExtractor = useCallback((item: Business) => item.id, []);
 
 	return (
 		<FlatList
 			refreshing={refreshing}
 			onRefresh={onRefresh}
-			data={businesses}
+			data={data}
 			style={styles.main}
 			renderItem={renderItem}
-			keyExtractor={(item) => item.id}
+			keyExtractor={keyExtractor}
+			{...props}
 		/>
 	);
 };

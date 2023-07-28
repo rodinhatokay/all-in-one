@@ -34,7 +34,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 			styles.card,
 			{
 				backgroundColor: theme.colors.card,
-				elevation: 20,
+				// elevation: 20,
 			},
 		];
 	}, [isThemeDark, theme]);

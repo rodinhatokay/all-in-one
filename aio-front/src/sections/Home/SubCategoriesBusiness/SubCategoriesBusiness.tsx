@@ -1,20 +1,20 @@
-import { Dimensions, View } from "react-native";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { Text, useTheme } from "react-native-paper";
-import { SubCategory, categories } from "../../../mock/businsesses";
-import BusinessList from "../BusinessList";
-import { FC } from "react";
+import { Dimensions } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+// import { Text, useTheme } from 'react-native-paper';
+// import { SubCategory, categories } from '../../../mock/businsesses';
+import BusinessList from '../BusinessList';
+import { FC } from 'react';
 
 const Tab = createMaterialTopTabNavigator();
 
 interface Props {
 	route?: {
-		params?: { subCategories: SubCategory[] };
+		params?: { subCategories: any[] }; // params?: { subCategories: SubCategory[] };
 	};
 }
 
 const initialLayout = {
-	width: Dimensions.get("window").width,
+	width: Dimensions.get('window').width,
 };
 
 const SubCategoriesBusiness: FC<Props> = (props) => {
@@ -29,7 +29,7 @@ const SubCategoriesBusiness: FC<Props> = (props) => {
 					return (
 						<BusinessList
 							key={subCategory.name}
-							businesses={subCategory.businesses}
+							data={subCategory.businesses}
 						/>
 					);
 				};

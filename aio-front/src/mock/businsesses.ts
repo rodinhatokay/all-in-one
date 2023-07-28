@@ -1,157 +1,162 @@
-import { Business } from "../services/business/business.types";
+import { Business } from '../services/business/business.types';
 
-export type SubCategory = { name: string; businesses: Business[] };
-
-const foodCategories: SubCategory[] = [
+const businesses: Business[] = [
 	{
-		name: "Restaurants",
-		businesses: [
+		id: '1',
+		name: "John's Bakery",
+		logoPath:
+			'https://img.freepik.com/free-vector/bakery-shop-logo-emblem-template_17005-1482.jpg?w=826&t=st=1690564522~exp=1690565122~hmac=9ffa4e3bd2d748702c65faf8736e644c0e56ca3fc2e71f606ec0f61517dfe48a',
+		description: 'The best homemade bread and pastries in town.',
+		address: '123 Baker Street, Townville, 12345',
+		hasWhatsapp: true,
+		phoneNumber: '+1234567890',
+		location: {
+			latitude: 35.6895,
+			longitude: 139.6917,
+		},
+		owner: 'John Doe',
+		openingHours: [
 			{
-				id: "fdgdf",
-				name: "Tasty Bites",
-				description: "A cozy restaurant serving delicious meals",
-				owner: "John Smith",
-				phoneNumber: "123-456-7890",
-				isFavorite: true,
-				rating: 5,
+				id: 1,
+				day: 'Monday',
+				hours: [{ start: '08:00', end: '17:00' }],
 			},
 			{
-				id: "fdgdfhgf",
-				name: "Pizza Paradise",
-				description: "Authentic Italian pizzas made with love",
-				owner: "Jane Doe",
-				phoneNumber: "987-654-3210",
-				isFavorite: false,
-				rating: 5,
+				id: 2,
+				day: 'Tuesday',
+				hours: [{ start: '08:00', end: '17:00' }],
+			},
+			{
+				id: 3,
+				day: 'Wednesday',
+				hours: [{ start: '08:00', end: '17:00' }],
+			},
+			{
+				id: 4,
+				day: 'Thursday',
+				hours: [{ start: '08:00', end: '17:00' }],
+			},
+			{
+				id: 5,
+				day: 'Friday',
+				hours: [{ start: '08:00', end: '22:00' }],
+			},
+			{
+				id: 6,
+				day: 'Saturday',
+				hours: [{ start: '08:00', end: '17:00' }],
+			},
+			{
+				id: 7,
+				day: 'Sunday',
+				hours: [{ start: '08:00', end: '17:00' }],
 			},
 		],
 	},
 	{
-		name: "Food Trucks",
-		businesses: [
+		id: '2',
+		name: 'Tech Repair Center',
+		logoPath:
+			'https://img.freepik.com/free-vector/tech-computer-logo-template_23-2149204147.jpg?w=826&t=st=1690564487~exp=1690565087~hmac=d12a849c88b94b3298fd4693e7998a9a230ba4ab556ddb2bacac2190ef629314',
+		description: 'Quick and reliable repairs for all your tech gadgets.',
+		address: '456 Tech Drive, Electron City, 54321',
+		hasWhatsapp: false,
+		phoneNumber: '+0987654321',
+		location: {
+			latitude: 40.7128,
+			longitude: 74.006,
+		},
+		owner: 'Jane Smith',
+		openingHours: [
 			{
-				id: "fdgdfcvnbcbv",
-				name: "Burger On Wheels",
-				description: "Gourmet burgers served from a food truck",
-				owner: "Mike Johnson",
-				phoneNumber: "456-789-0123",
-				isFavorite: true,
-				rating: 3,
+				id: 1,
+				day: 'Monday',
+				hours: [{ start: '09:00', end: '18:00' }],
 			},
 			{
-				id: "fdgdhgmjnghf",
-				name: "Taco Express",
-				description: "Tasty tacos on the go",
-				owner: "Sarah Thompson",
-				phoneNumber: "789-012-3456",
-				isFavorite: true,
-				rating: 3,
+				id: 2,
+				day: 'Tuesday',
+				hours: [{ start: '09:00', end: '18:00' }],
+			},
+			{
+				id: 3,
+				day: 'Wednesday',
+				hours: [{ start: '09:00', end: '18:00' }],
+			},
+			{
+				id: 4,
+				day: 'Thursday',
+				hours: [{ start: '09:00', end: '18:00' }],
+			},
+			{
+				id: 5,
+				day: 'Friday',
+				hours: [{ start: '09:00', end: '18:00' }],
+			},
+			{
+				id: 6,
+				day: 'Saturday',
+				hours: [{ start: '09:00', end: '18:00' }],
+			},
+			{
+				id: 7,
+				day: 'Sunday',
+				hours: [{ start: '09:00', end: '18:00' }],
+			},
+		],
+	},
+	{
+		id: '3',
+		name: 'Green Thumb Nursery',
+		logoPath:
+			'https://cdn-icons-png.flaticon.com/512/25/25166.png?w=826&t=st=1690564596~exp=1690565196~hmac=080d6defd009351039ac84af3b797af921b6ed82713941154623f5d1233215b9',
+		description: 'Healthy and vibrant plants for your home and garden.',
+		address: '789 Plant Lane, Green City, 78901',
+		hasWhatsapp: true,
+		phoneNumber: '+1122334455',
+		location: {
+			latitude: 34.0522,
+			longitude: 118.2437,
+		},
+		owner: 'Mary Johnson',
+		openingHours: [
+			{
+				id: 1,
+				day: 'Monday',
+				hours: [{ start: '10:00', end: '19:00' }],
+			},
+			{
+				id: 2,
+				day: 'Tuesday',
+				hours: [{ start: '10:00', end: '19:00' }],
+			},
+			{
+				id: 3,
+				day: 'Wednesday',
+				hours: [{ start: '10:00', end: '19:00' }],
+			},
+			{
+				id: 4,
+				day: 'Thursday',
+				hours: [{ start: '10:00', end: '19:00' }],
+			},
+			{
+				id: 5,
+				day: 'Friday',
+				hours: [{ start: '10:00', end: '19:00' }],
+			},
+			{
+				id: 6,
+				day: 'Saturday',
+				hours: [{ start: '10:00', end: '19:00' }],
+			},
+			{
+				id: 7,
+				day: 'Sunday',
+				hours: [{ start: '10:00', end: '19:00' }],
 			},
 		],
 	},
 ];
-const RetailsAndServicesCategories: { name: string; businesses: Business[] }[] =
-	[
-		{
-			name: "Retail Stores",
-			businesses: [
-				{
-					id: "1",
-					name: "Fashion Emporium",
-					description: "Trendy clothing store with a wide selection",
-					owner: "Emily Anderson",
-					phoneNumber: "123-456-7890",
-					isFavorite: true,
-					rating: 2,
-				},
-				{
-					id: "2",
-					name: "Gadget World",
-					description: "Electronics store offering the latest gadgets",
-					owner: "Michael Johnson",
-					phoneNumber: "987-654-3210",
-					isFavorite: false,
-					rating: 3,
-				},
-			],
-		},
-		{
-			name: "Health & Beauty",
-			businesses: [
-				{
-					id: "3",
-					name: "Wellness Spa",
-					description: "Relaxing spa with various wellness treatments",
-					owner: "Jessica Davis",
-					phoneNumber: "456-789-0123",
-					isFavorite: true,
-					rating: 2,
-				},
-				{
-					id: "4",
-					name: "Beauty Haven",
-					description: "Beauty salon specializing in hair and makeup",
-					owner: "Sarah Thompson",
-					phoneNumber: "789-012-3456",
-					isFavorite: true,
-					rating: 5,
-				},
-			],
-		},
-		{
-			name: "Home Services",
-			businesses: [
-				{
-					id: "5",
-					name: "Fix-It All",
-					description: "Home repair and maintenance services",
-					owner: "Daniel Wilson",
-					phoneNumber: "012-345-6789",
-					isFavorite: true,
-					rating: 5,
-				},
-				{
-					id: "6",
-					name: "Cleaning Pros",
-					description: "Professional cleaning services for homes",
-					owner: "Jennifer Adams",
-					phoneNumber: "345-678-9012",
-					isFavorite: false,
-					rating: 5,
-				},
-			],
-		},
-		{
-			name: "Automotives",
-			businesses: [
-				{
-					id: "7",
-					name: "Car Garage",
-					description: "Full-service garage for car repairs",
-					owner: "Robert Miller",
-					phoneNumber: "678-901-2345",
-					isFavorite: true,
-					rating: 5,
-				},
-				{
-					id: "8",
-					name: "Tire Shop",
-					description: "Specialized shop for tire sales and services",
-					owner: "Michelle Clark",
-					phoneNumber: "901-234-5678",
-					isFavorite: false,
-					rating: 5,
-				},
-			],
-		},
-	];
 
-export const categories = [
-	{ name: "Retail & Services", subCategories: RetailsAndServicesCategories },
-	{ name: "Food & Drink", subCategories: foodCategories },
-] as const;
-
-export const favoriteBusinesses = [
-	...foodCategories[0].businesses,
-	...RetailsAndServicesCategories[0].businesses,
-];
+export default businesses;

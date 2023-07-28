@@ -1,24 +1,16 @@
 import { useState } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import { Business } from '../services/business/business.types';
-import BusinessCard from '../components/BusinessCard/BusinessCard';
+
 import useBusinesses from '../hooks/useBusinesses';
+import BusinessList from '../sections/Home/BusinessList';
 
 const SearchScreen = () => {
 	const [query, setQuery] = useState('');
 
-	const {
-		data: businesses,
-		isLoading,
-		error,
-	} = useBusinesses({ query });
+	const { data: businesses, isLoading, error } = useBusinesses({ query });
 
 	console.log('error', error);
-
-	const renderItem = ({ item }: { item: Business }) => (
-		<BusinessCard business={item} />
-	);
 
 	return (
 		<View style={styles.flex}>
@@ -30,11 +22,10 @@ const SearchScreen = () => {
 				loading={isLoading}
 				autoFocus
 			/>
-			<FlatList
+			<BusinessList
 				data={businesses ?? []}
 				style={styles.flex}
 				keyboardDismissMode="on-drag"
-				renderItem={renderItem}
 				keyExtractor={(item) => item.id}
 			/>
 		</View>
@@ -45,7 +36,6 @@ const styles = StyleSheet.create({
 	flex: { flex: 1 },
 	searchBar: {
 		margin: 15,
-		// height:
 	},
 });
 
