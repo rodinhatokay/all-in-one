@@ -48,12 +48,14 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 		>
 			<Card.Content>
 				<View style={styles.topRow}>
-					<Image
-						source={{
-							uri: business.logoPath,
-						}}
-						style={styles.image}
-					/>
+					<View style={styles.shadow}>
+						<Image
+							source={{
+								uri: business.logoPath,
+							}}
+							style={styles.image}
+						/>
+					</View>
 					<View style={styles.flex}>
 						<View style={styles.titleRow}>
 							<Text variant="titleLarge" numberOfLines={2} style={styles.name}>
@@ -138,6 +140,17 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		// paddingTop: 4,
 		// fontFamily: 'Rubik-SemiBold',
+	},
+	shadow: {
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 1,
+		},
+		shadowOpacity: 0.22,
+		shadowRadius: 2.22,
+
+		elevation: 3,
 	},
 });
 
