@@ -38,7 +38,7 @@ export class BusinessService {
 
 		if (!businesses) {
 			businesses = await this.businessRepository.find({
-				relations: ['category', 'OpeningHours'],
+				relations: ['category'],
 			});
 			await this.cacheService.set(BUSINESSES_CACHE_KEY, businesses);
 		}

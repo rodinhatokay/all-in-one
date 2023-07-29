@@ -50,4 +50,5 @@ export class Business {
 
 	@ManyToMany(() => User, (user) => user.favoriteBusinesses)
 	users: User[];
+	
 }
