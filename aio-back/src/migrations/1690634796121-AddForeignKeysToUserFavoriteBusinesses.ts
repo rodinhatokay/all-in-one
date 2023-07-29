@@ -4,29 +4,28 @@ export class AddForeignKeysToUserFavoriteBusinesses1631303405982 implements Migr
     name = 'AddForeignKeysToUserFavoriteBusinesses1631303405982'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-      // Add foreign key constraints to the existing table
-      await queryRunner.query(`
-        ALTER TABLE "user_favorite_businesses"
-        ADD CONSTRAINT "FK_user_favorite_businesses_userId_user" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE
-      `);
-  
-      await queryRunner.query(`
-        ALTER TABLE "user_favorite_businesses"xp
-        ADD CONSTRAINT "FK_user_favorite_businesses_businessId_business" FOREIGN KEY ("businessId") REFERENCES "business"("id") ON DELETE CASCADE ON UPDATE CASCADE
-      `);
-    }
-  
-    public async down(queryRunner: QueryRunner): Promise<void> {
-      // Remove foreign key constraints from the existing table
-      await queryRunner.query(`
-        ALTER TABLE "user_favorite_businesses"
-        DROP CONSTRAINT "FK_user_favorite_businesses_userId_user"
-      `);
-  
-      await queryRunner.query(`
-        ALTER TABLE "user_favorite_businesses"
-        DROP CONSTRAINT "FK_user_favorite_businesses_businessId_business"
-      `);
-    }
-  }
-  
+        await queryRunner.query(`
+          -- Create the "favorite_businesses" table
+          CREATE TABLE "favorite_businesses" (
+              "user_id" uuid NOT NULL,
+              "business_id" uuid NOT NULL,
+              CONSTRAINT "PK_8e00b134db84f47b551b4e083f6" PRIMARY KEY ("user_id", "business_id")
+          );
+    
+          -- Create foreign keys
+          ALTER TABLE "favorite_businesses" ADD CONSTRAINT "FK_9e32ae26a81c7cf6dcecaa27b56" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
+          ALTER TABLE "favorite_businesses" ADD CONSTRAINT "FK_50256e61c526b65b58a6ef5eb45" FOREIGN KEY ("business_id") REFERENCES "business"("id") ON DELETE CASCADE;
+        `);
+      }
+    
+      public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`
+          -- Drop foreign keys
+          ALTER TABLE "favorite_businesses" DROP CONSTRAINT "FK_9e32ae26a81c7cf6dcecaa27b56";
+          ALTER TABLE "favorite_businesses" DROP CONSTRAINT "FK_50256e61c526b65b58a6ef5eb45";
+    
+          -- Drop the "favorite_businesses" table
+          DROP TABLE "favorite_businesses";
+        `);
+      }
+}
