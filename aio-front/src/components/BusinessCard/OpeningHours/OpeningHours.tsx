@@ -54,7 +54,11 @@ const OpeningHours: FC<Props> = (props) => {
 									variant="bodySmall"
 									style={[
 										styles.dayText,
-										isToday ? { color: colorTodayText } : null,
+										{
+											color: isToday ? colorTodayText : undefined,
+											fontFamily: isToday ? 'Rubik-SemiBold' : undefined,
+											minWidth: 37,
+										},
 									]}
 								>
 									{t(openingHour.day)}:{' '}

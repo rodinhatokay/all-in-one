@@ -35,7 +35,7 @@ const AuthRoutes: FC = () => {
 				}}
 				component={HomeStackScreen}
 			/>
-			{/* <BottomTabs.Screen
+			<BottomTabs.Screen
 				name="FavoritesTab"
 				options={{
 					headerShown: true,
@@ -51,7 +51,7 @@ const AuthRoutes: FC = () => {
 					),
 				}}
 				component={FavoritesScreen}
-			/> */}
+			/>
 			<BottomTabs.Screen
 				name="profileTab"
 				options={{

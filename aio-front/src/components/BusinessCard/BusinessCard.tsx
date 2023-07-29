@@ -5,7 +5,7 @@ import { Business } from '../../services/business/business.types';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useMemo } from 'react';
 import BottomActions from './BottomActions';
-// import FavoriteButton from "../FavoriteButton";
+import FavoriteButton from '../FavoriteButton';
 // import StarRating from "../RatingStar";
 import OpeningHours from './OpeningHours/OpeningHours';
 import useBusinessActions from '../../hooks/useBusinessActions';
@@ -33,56 +33,64 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 		return { ...styles.card, backgroundColor: theme.colors.card };
 	}, [isThemeDark, theme]);
 
-	return (
-		<Card
-			onPress={navigateToBusiness}
-			disabled
-			mode="elevated"
-			style={cardStyle}
-		>
-			<Card.Content>
-				<View style={styles.topRow}>
-					<LogoImage logoPath={business.logoPath} altText={business.name} />
+	const memoizedBusinessCard = useMemo(() => {
+		return (
+			<Card
+				onPress={navigateToBusiness}
+				disabled
+				mode="elevated"
+				style={cardStyle}
+			>
+				<Card.Content>
+					<View style={styles.topRow}>
+						<LogoImage logoPath={business.logoPath} altText={business.name} />
 
-					<View style={styles.flex}>
-						<View style={styles.titleRow}>
-							<Text variant="titleLarge" numberOfLines={2} style={styles.name}>
-								{name}
-							</Text>
-							{/* <FavoriteButton
+						<View style={styles.flex}>
+							<View style={styles.titleRow}>
+								<Text
+									variant="titleLarge"
+									numberOfLines={2}
+									style={styles.name}
+								>
+									{name}
+								</Text>
+								{/* <FavoriteButton
 								onPress={() => {
 									throw new Error("need to implement");
 								}}
-								isFavorite={isFavorite}
+								isFavorite={true}
 							/> */}
-						</View>
-						<Text variant="labelMedium">{description}</Text>
-						{/* <Paragraph style={styles.noMarginVertical}>
+							</View>
+							<Text variant="labelMedium">{description}</Text>
+							{/* <Paragraph style={styles.noMarginVertical}>
 							<StarRating rating={rating} />
 						</Paragraph> */}
-						<OpeningHours openingHours={business.openingHours} />
-						<Pressable onPress={handleLocation}>
-							<Text
-								variant="labelMedium"
-								style={[styles.address, { color: theme.colors.primary }]}
-							>
-								{business.address}
-							</Text>
-						</Pressable>
-						{/* <Divider /> */}
+							<OpeningHours openingHours={business.openingHours} />
+							<Pressable onPress={handleLocation}>
+								<Text
+									variant="labelMedium"
+									style={[styles.address, { color: theme.colors.primary }]}
+								>
+									{business.address}
+								</Text>
+							</Pressable>
+							{/* <Divider /> */}
+						</View>
 					</View>
-				</View>
-				<Divider />
-			</Card.Content>
-			<BottomActions
-				hasWhatsapp={business.hasWhatsapp}
-				handleCall={handleCall}
-				handleSendSms={handleSendSms}
-				handleShare={handleShare}
-				handleWhatsApp={handleWhatsApp}
-			/>
-		</Card>
-	);
+					<Divider />
+				</Card.Content>
+				<BottomActions
+					hasWhatsapp={business.hasWhatsapp}
+					handleCall={handleCall}
+					handleSendSms={handleSendSms}
+					handleShare={handleShare}
+					handleWhatsApp={handleWhatsApp}
+				/>
+			</Card>
+		);
+	}, [business, cardStyle]);
+
+	return memoizedBusinessCard;
 };
 
 const styles = StyleSheet.create({

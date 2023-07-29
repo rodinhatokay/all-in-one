@@ -4,24 +4,43 @@ import { Searchbar } from 'react-native-paper';
 
 import useBusinesses from '../hooks/useBusinesses';
 import BusinessList from '../sections/Home/BusinessList';
+import { Business } from '../services/business/business.types';
 
 const SearchScreen = () => {
 	const [query, setQuery] = useState('');
 
-	const { data: businesses, isLoading, error } = useBusinesses({ query });
+	const { data: businesses, error } = useBusinesses();
+	const [filteredBusinesses, setFilteredBusinesses] = useState<
+		Business[] | undefined
+	>(businesses);
+	console.log('error', error);
+
+	const handleChangeText = (text: string) => {
+		const filteredBusinesses = businesses?.filter((business: Business) => {
+			const businessName = business.name.toLowerCase();
+			// const businessCategory = business.category.toLowerCase();
+			const searchTerm = text.toLowerCase();
+
+			// Search by business name or category
+			return businessName.includes(searchTerm);
+			// businessCategory.includes(searchTerm)
+		});
+
+		setFilteredBusinesses(filteredBusinesses);
+		setQuery(text);
+	};
 
 	return (
 		<View style={styles.flex}>
 			<Searchbar
 				style={styles.searchBar}
 				placeholder="Search by business or category" // this is temporary until
-				onChangeText={setQuery}
+				onChangeText={handleChangeText}
 				value={query}
-				loading={isLoading}
 				autoFocus
 			/>
 			<BusinessList
-				data={businesses ?? []}
+				data={filteredBusinesses ?? []}
 				style={styles.flex}
 				keyboardDismissMode="on-drag"
 				keyExtractor={(item) => item.id}

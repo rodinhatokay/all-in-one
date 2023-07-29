@@ -43,6 +43,7 @@ const PhoneNumberForm: FC<Props> = (props) => {
 				onPress={props.onPressGetOtpCode}
 				style={styles.btn}
 				loading={props.loading}
+				disabled={props.loading}
 			>
 				{t("getVerificationCode")}
 			</Button>
