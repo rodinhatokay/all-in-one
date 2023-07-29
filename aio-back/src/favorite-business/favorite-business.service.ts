@@ -12,7 +12,7 @@ export class FavoriteBusinessService {
 	constructor(
 		@InjectRepository(User)
 		private userRepository: Repository<User>,
-		private cacheService: CacheService,
+		private readonly cacheService: CacheService,
 	) {}
 
 	async addToFavorites(userId: string, businessId: string): Promise<void> {
@@ -32,10 +32,6 @@ export class FavoriteBusinessService {
 
 		if (!business) {
 			throw new Error(ErrorMessages.BusinessNotFound);
-		}
-
-		if (!user || !business) {
-			throw new Error(ErrorMessages.UserOrBusinessNotFound);
 		}
 
 		if (user.favoriteBusinesses === undefined) user.favoriteBusinesses = [];
@@ -106,9 +102,9 @@ export class FavoriteBusinessService {
 					user.favoriteBusinesses,
 				);
 				return user.favoriteBusinesses;
-			} else {
-				return [];
 			}
+			
+			return [];
 		} catch (error) {
 			console.error('Error fetching favorite businesses:', error);
 			throw error;

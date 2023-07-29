@@ -13,7 +13,7 @@ export class BusinessService {
 	constructor(
 		@InjectRepository(Business)
 		private readonly businessRepository: Repository<Business>,
-		private cacheService: CacheService,
+		private readonly cacheService: CacheService,
 	) {}
 
 	async findOne(id: string) {
