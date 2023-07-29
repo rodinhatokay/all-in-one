@@ -32,8 +32,8 @@ export class BusinessController {
 		@Query('page') page?: string,
 		@Query('itemsPerPage') itemsPerPage?: string,
 	) {
-		const parsedPage = parseInt(page, 10) || 1;
-		const parsedItemsPerPage = parseInt(itemsPerPage, 10) || 10;
+		const parsedPage = parseInt(page, 100) || 1;
+		const parsedItemsPerPage = parseInt(itemsPerPage, 100) || 100;
 		return this.businessService.findAll(query, parsedPage, parsedItemsPerPage);
 	}
 
