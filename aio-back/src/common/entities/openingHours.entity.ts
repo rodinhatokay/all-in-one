@@ -9,7 +9,6 @@ export class OpeningHours {
     
 	@Column()
 	day: DayOfWeek;
-
   
 	@Column('jsonb')
 	hours: { start: string; end: string }[];

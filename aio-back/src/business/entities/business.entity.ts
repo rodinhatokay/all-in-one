@@ -4,11 +4,13 @@ import {
 	JoinColumn,
 	ManyToOne,
 	OneToMany,
+	ManyToMany,
 	PrimaryGeneratedColumn,
 } from "typeorm";
 import { Location } from "./location.entity";
 import { OpeningHours } from "../../common/entities/openingHours.entity";
 import { Category } from "../../category/entities/category.entity";
+import { User } from "../../users/entities/user.entity";
 
 @Entity()
 export class Business {
@@ -46,6 +48,6 @@ export class Business {
 	@JoinColumn({ name: "categoryId" })
 	category: Category;
 
-	// @ManyToMany(() => User, (user) => user.favoriteBusinesses)
-	// users: User[];
+	@ManyToMany(() => User, (user) => user.favoriteBusinesses)
+	users: User[];
 }
