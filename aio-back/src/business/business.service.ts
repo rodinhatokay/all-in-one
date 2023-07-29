@@ -1,48 +1,46 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Business } from './entities/business.entity';
 import { CreateBusiness } from './dto/createBusiness.dto';
 import { ErrorMessages } from '../common/errors/errorMessage';
 import { UpdateBusiness } from './dto/updateBusiness.dto';
-import { Cache } from 'cache-manager';
+import { CacheService } from '../cache/cache.service';
+import { BUSINESSES_CACHE_KEY } from '../common/constants/cache-keys';
 
 @Injectable()
 export class BusinessService {
-	readonly TTL = 60 * 60 * 100;
 	constructor(
 		@InjectRepository(Business)
 		private readonly businessRepository: Repository<Business>,
-		@Inject(CACHE_MANAGER) private cacheManager: Cache,
+		private cacheService: CacheService,
 	) {}
 
 	async findOne(id: string) {
 		const cacheKey = `business:${id}`;
-		let business: Business = await this.cacheManager.get<Business>(cacheKey);
+		let business: Business = await this.cacheService.get<Business>(cacheKey);
 
 		if (!business) {
 			business = await this.businessRepository.findOne({
 				where: { id },
 				relations: ['category'],
 			});
-			await this.cacheManager.set(cacheKey, business, this.TTL);
+			await this.cacheService.set(cacheKey, business);
 		}
 
 		return business;
 	}
 
 	async findAll(query?: string, page = 1, itemsPerPage = 100) {
-		const cacheKey = 'businesses';
-		let businesses: Business[] = await this.cacheManager.get<Business[]>(
-			cacheKey,
+		let businesses: Business[] = await this.cacheService.get<Business[]>(
+			BUSINESSES_CACHE_KEY,
 		);
 
 		if (!businesses) {
 			businesses = await this.businessRepository.find({
 				relations: ['category'],
 			});
-			await this.cacheManager.set(cacheKey, businesses, this.TTL);
+			await this.cacheService.set(BUSINESSES_CACHE_KEY, businesses);
 		}
 
 		const paginatedBusinesses = query
@@ -77,12 +75,13 @@ export class BusinessService {
 		const businessToAdd = this.businessRepository.create(createBusiness);
 
 		const business = await this.businessRepository.save(businessToAdd);
-		const businesses: Business[] = await this.cacheManager.get<Business[]>(
-			'businesses',
+		const businesses: Business[] = await this.cacheService.get<Business[]>(
+			BUSINESSES_CACHE_KEY,
 		);
 
 		businesses.push(business);
-		await this.cacheManager.set('businesses', businesses, this.TTL);
+		await this.cacheService.set(BUSINESSES_CACHE_KEY, businesses);
+		return business;
 	}
 
 	async update(id: string, updateBusiness: UpdateBusiness) {
@@ -95,19 +94,19 @@ export class BusinessService {
 
 		const updatedBusiness = Object.assign(existingBusiness, updateBusiness);
 		await this.businessRepository.save(updatedBusiness);
-		await this.cacheManager.del(`business:${id}`); // Invalidate the cache for the specific business
+		await this.cacheService.del(`business:${id}`); 
 
-		const businesses: Business[] = await this.cacheManager.get<Business[]>(
-			'businesses',
+		const businesses: Business[] = await this.cacheService.get<Business[]>(
+			BUSINESSES_CACHE_KEY,
 		);
 		businesses.push(updatedBusiness);
 
-		await this.cacheManager.set('businesses', businesses, this.TTL);
+		await this.cacheService.set(BUSINESSES_CACHE_KEY, businesses);
 		return updatedBusiness;
 	}
 
 	async delete(id: string) {
-		await this.cacheManager.del(`business:${id}`); // Invalidate the cache for the specific business
+		await this.cacheService.del(`business:${id}`); 
 		return await this.businessRepository.delete(id);
 	}
 }
