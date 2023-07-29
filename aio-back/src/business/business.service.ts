@@ -32,7 +32,7 @@ export class BusinessService {
 		return business;
 	}
 
-	async findAll(query?: string, page = 1, itemsPerPage = 10) {
+	async findAll(query?: string, page = 1, itemsPerPage = 100) {
 		const cacheKey = 'businesses';
 		let businesses: Business[] = await this.cacheManager.get<Business[]>(
 			cacheKey,

@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
 // import * as session from 'express-session';
 import { NestExpressApplication } from "@nestjs/platform-express";
+import { BusinessService } from "./business/business.service";
 
 // declare module 'express-session' {
 //   export interface SessionData {
@@ -23,6 +24,8 @@ async function bootstrap() {
 			},
 		}),
 	);
+	const businessService = app.get(BusinessService); 
+	await businessService.findAll();
 
 	// app.use(
 	//   session({
