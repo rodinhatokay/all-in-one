@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Business } from '../../business/entities/business.entity';
 
 @Entity()
 export class User {
@@ -25,7 +26,8 @@ export class User {
 	@Column({ nullable: true })
 	isFullyRegistered: boolean;
 
-	// @ManyToMany(() => Business)
-	// @JoinTable()
-	// favoriteBusinesses: Business[];
+	@ManyToMany(() => Business)
+	@JoinTable()
+	favoriteBusinesses: Business[];
 }
+

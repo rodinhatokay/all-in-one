@@ -14,6 +14,7 @@ import { SpacesModule } from './spaces/spaces.module';
 import { DatabaseModule } from './database/database.module';
 import { CategoryModule } from './category/category.module';
 import { TermsOfUseModule } from './terms-of-use/terms-of-use.module';
+import { FavoriteBusinessModule } from './favorite-business/favorite-business.module';
 
 @Module({
 	imports: [
@@ -38,6 +39,7 @@ import { TermsOfUseModule } from './terms-of-use/terms-of-use.module';
 		SpacesModule,
 		CategoryModule,
 		TermsOfUseModule,
+		FavoriteBusinessModule,
 	],
 	controllers: [AppController],
 	providers: [
@@ -49,3 +51,4 @@ import { TermsOfUseModule } from './terms-of-use/terms-of-use.module';
 	],
 })
 export class AppModule {}
+
