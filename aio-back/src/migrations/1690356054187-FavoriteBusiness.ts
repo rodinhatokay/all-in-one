@@ -13,17 +13,17 @@ export class FavoriteBusiness1690356054187 implements MigrationInterface {
         await queryRunner.query(
           `CREATE INDEX "IDX_user_favorite_businesses_businessId" ON "user_favorite_businesses" ("businessId") `
         );
-        await queryRunner.query(
-          `ALTER TABLE "user_favorite_businesses" ADD CONSTRAINT "FK_user_favorite_businesses_userId_user" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE`
-        );
-        await queryRunner.query(
-          `ALTER TABLE "user_favorite_businesses" ADD CONSTRAINT "FK_user_favorite_businesses_businessId_business" FOREIGN KEY ("businessId") REFERENCES "business"("id") ON DELETE CASCADE ON UPDATE CASCADE`
-        );
+        // await queryRunner.query(
+        //   `ALTER TABLE "user_favorite_businesses" ADD CONSTRAINT "FK_user_favorite_businesses_userId_user" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE`
+        // );
+        // await queryRunner.query(
+        //   `ALTER TABLE "user_favorite_businesses" ADD CONSTRAINT "FK_user_favorite_businesses_businessId_business" FOREIGN KEY ("businessId") REFERENCES "business"("id") ON DELETE CASCADE ON UPDATE CASCADE`
+        // );
       }
     
       public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`ALTER TABLE "user_favorite_businesses" DROP CONSTRAINT "FK_user_favorite_businesses_businessId_business"`);
-        await queryRunner.query(`ALTER TABLE "user_favorite_businesses" DROP CONSTRAINT "FK_user_favorite_businesses_userId_user"`);
+        // await queryRunner.query(`ALTER TABLE "user_favorite_businesses" DROP CONSTRAINT "FK_user_favorite_businesses_businessId_business"`);
+        // await queryRunner.query(`ALTER TABLE "user_favorite_businesses" DROP CONSTRAINT "FK_user_favorite_businesses_userId_user"`);
         await queryRunner.query(`DROP INDEX "IDX_user_favorite_businesses_businessId"`);
         await queryRunner.query(`DROP INDEX "IDX_user_favorite_businesses_userId"`);
         await queryRunner.query(`DROP TABLE "user_favorite_businesses"`);
