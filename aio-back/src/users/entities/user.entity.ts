@@ -26,7 +26,7 @@ export class User {
 	@Column({ nullable: true })
 	isFullyRegistered: boolean;
 
-	@ManyToMany(() => Business)
+	@ManyToMany(() => Business, (business) => business.users)
 	@JoinTable()
 	favoriteBusinesses: Business[];
 }
