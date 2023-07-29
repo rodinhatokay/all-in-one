@@ -38,7 +38,7 @@ export class BusinessService {
 
 		if (!businesses) {
 			businesses = await this.businessRepository.find({
-				relations: ['category'],
+				relations: ['category', 'OpeningHours'],
 			});
 			await this.cacheService.set(BUSINESSES_CACHE_KEY, businesses);
 		}
@@ -94,7 +94,7 @@ export class BusinessService {
 
 		const updatedBusiness = Object.assign(existingBusiness, updateBusiness);
 		await this.businessRepository.save(updatedBusiness);
-		await this.cacheService.del(`business:${id}`); 
+		await this.cacheService.del(`business:${id}`);
 
 		const businesses: Business[] = await this.cacheService.get<Business[]>(
 			BUSINESSES_CACHE_KEY,
@@ -106,7 +106,7 @@ export class BusinessService {
 	}
 
 	async delete(id: string) {
-		await this.cacheService.del(`business:${id}`); 
+		await this.cacheService.del(`business:${id}`);
 		return await this.businessRepository.delete(id);
 	}
 }
