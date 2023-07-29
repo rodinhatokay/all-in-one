@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm"
 
-export class AddForeignKeysToUserFavoriteBusinesses1631303405982 implements MigrationInterface {
-    name = 'AddForeignKeysToUserFavoriteBusinesses1631303405982'
+export class AddForeignKeysToUserFavoriteBusinesses1631303405983 implements MigrationInterface {
+    name = 'AddForeignKeysToUserFavoriteBusinesses1631303405983'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
