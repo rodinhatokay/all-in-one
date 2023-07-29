@@ -11,7 +11,7 @@ export class AddForeignKeysToUserFavoriteBusinesses1631303405982 implements Migr
       `);
   
       await queryRunner.query(`
-        ALTER TABLE "user_favorite_businesses"
+        ALTER TABLE "user_favorite_businesses"xp
         ADD CONSTRAINT "FK_user_favorite_businesses_businessId_business" FOREIGN KEY ("businessId") REFERENCES "business"("id") ON DELETE CASCADE ON UPDATE CASCADE
       `);
     }
