@@ -28,11 +28,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/adaptive-icon.png"
       },
+      "icon": "./assets/images/icon.png",
       "package": "com.allinoneocean.aio",
-      "versionCode": 3
+      "versionCode": 9
     },
     "web": {
       "bundler": "metro",
@@ -52,6 +52,12 @@
           "android": {
             "usesCleartextTraffic": true
           }
+        }
+      ],
+      [
+        "expo-updates",
+        {
+          "username": "allinoneocean"
         }
       ]
     ],
