@@ -27,12 +27,9 @@
       "buildNumber": "5"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png"
-      },
       "icon": "./assets/images/icon.png",
       "package": "com.allinoneocean.aio",
-      "versionCode": 9
+      "versionCode": 11
     },
     "web": {
       "bundler": "metro",
