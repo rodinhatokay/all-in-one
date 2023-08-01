@@ -1,4 +1,4 @@
-import { View, StyleSheet, Pressable, Platform, ViewStyle } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import { Image } from '../partials';
 import { Card, Divider } from 'react-native-paper';
 import { Business } from '../../services/business/business.types';
@@ -27,16 +27,9 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	} = useBusinessActions(business);
 
 	const { theme, isThemeDark } = useTheme();
-
 	const cardStyle = useMemo(() => {
 		if (isThemeDark) return styles.card;
-		return [
-			styles.card,
-			{
-				backgroundColor: theme.colors.card,
-				// elevation: 20,
-			},
-		];
+		return { ...styles.card, backgroundColor: theme.colors.card };
 	}, [isThemeDark, theme]);
 
 	return (

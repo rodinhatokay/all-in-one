@@ -24,7 +24,6 @@ export class UserService {
 		const user = await this.userRepository.findOne({
 			where: { id, isActive: true },
 		});
-		if (!user) throw new NotFoundException(ErrorMessages.UserNotFound);
 		return user;
 	}
 
@@ -32,7 +31,6 @@ export class UserService {
 		const user = await this.userRepository.findOne({
 			where: { phoneNumber, isActive: true },
 		});
-		if (!user) throw new NotFoundException(ErrorMessages.UserNotFound);
 		return user;
 	}
 
@@ -40,7 +38,6 @@ export class UserService {
 		const { firstName, lastName, termsAccepted, phoneNumber } = register;
 
 		const existingUser: User = await this.findUserByPhoneNumber(phoneNumber);
-
 		if (existingUser?.isFullyRegistered)
 			throw new BadRequestException(ErrorMessages.UserAlreadyExists);
 

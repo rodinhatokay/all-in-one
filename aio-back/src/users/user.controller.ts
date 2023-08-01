@@ -3,6 +3,7 @@ import {
 	Delete,
 	Get,
 	HttpCode,
+	NotFoundException,
 	Param,
 	UseGuards,
 } from '@nestjs/common';
@@ -11,6 +12,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { UserService } from './user.service';
 import { User } from '../common/decorators/user.decorator';
 import { JwtPayload } from '../auth/types/jwt';
+import { ErrorMessages } from '../common/errors/errorMessage';
 
 @ApiTags('user')
 @Controller('user')
@@ -20,12 +22,16 @@ export class UserController {
 
 	@Get('/current-user')
 	async findOneByToken(@User() user: JwtPayload) {
-		return await this.userService.findOne(user.userId);
+		const _user = await this.userService.findOne(user.userId);
+		if (!_user) throw new NotFoundException(ErrorMessages.UserNotFound);
+		return _user;
 	}
 
 	@Get(':id')
 	async findOne(@Param('id') id: string) {
-		return await this.userService.findOne(id);
+		const _user = await this.userService.findOne(id);
+		if (!_user) throw new NotFoundException(ErrorMessages.UserNotFound);
+		return _user;
 	}
 
 	@Delete(':id')

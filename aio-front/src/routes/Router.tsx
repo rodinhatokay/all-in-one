@@ -8,6 +8,9 @@ import { useAuth } from '../contexts/AuthContext';
 import * as SplashScreen from 'expo-splash-screen';
 import useInitApp from '../hooks/useInitApp';
 import { useCallback } from 'react';
+import * as Linking from 'expo-linking';
+
+const prefix = Linking.createURL('/');
 
 SplashScreen.preventAutoHideAsync();
 
@@ -40,6 +43,18 @@ const Router = () => {
 				onReady={onLayoutRootView}
 				theme={theme}
 				ref={navigationRef}
+				linking={{
+					prefixes: [
+						prefix,
+						'http://wwww.allinoneocean.com',
+						'https://wwww.allinoneocean.com',
+					],
+					config: {
+						screens: {
+							settingsTab: 'settings',
+						},
+					},
+				}}
 			>
 				{isAuthenticated ? <AuthRoutes /> : <NoAuthRouter />}
 			</NavigationContainer>

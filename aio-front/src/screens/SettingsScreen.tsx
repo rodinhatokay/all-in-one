@@ -1,15 +1,14 @@
-import { useRef, useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
-import { View } from "react-native";
-import { Button, RadioButton, Text } from "react-native-paper";
-import { ThemeMode, useTheme } from "../contexts/ThemeContext";
-import AnimatedLottieView from "lottie-react-native";
-import Title from "../sections/Settings/Title";
-import { useLocalization } from "../contexts/LocalizationContext";
-import { useAuth } from "../contexts/AuthContext";
+import { useRef } from 'react';
+import { StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import { Button, RadioButton, Text } from 'react-native-paper';
+import { ThemeMode, useTheme } from '../contexts/ThemeContext';
+import AnimatedLottieView from 'lottie-react-native';
+import Title from '../sections/Settings/Title';
+import { useLocalization } from '../contexts/LocalizationContext';
 import LogoutDialog, {
 	DialogRef,
-} from "../components/DialogLogout/DialogLogout";
+} from '../components/DialogLogout/DialogLogout';
 
 const SettingsScreen = () => {
 	const { changeTheme, mode } = useTheme();
@@ -23,7 +22,7 @@ const SettingsScreen = () => {
 
 	return (
 		<View style={styles.main}>
-			<Title>{t("appearances")}</Title>
+			<Title>{t('appearances')}</Title>
 			<RadioButton.Group
 				onValueChange={(val) => changeTheme(val as ThemeMode)}
 				value={mode}
@@ -40,12 +39,12 @@ const SettingsScreen = () => {
 				onPress={openLogoutDialog}
 				style={styles.logoutButton}
 			>
-				{t("logOut")}
+				{t('logOut')}
 			</Button>
 
 			<View style={styles.animationContainer}>
 				<AnimatedLottieView
-					source={require("../../assets/lottieAnimations/profile-lock.json")}
+					source={require('../../assets/lottieAnimations/profile-lock.json')}
 					style={styles.animation}
 					resizeMode="contain"
 					loop
@@ -65,12 +64,12 @@ const styles = StyleSheet.create({
 	logoutButton: {
 		marginTop: 10,
 		marginHorizontal: 10,
-		alignSelf: "flex-start",
+		alignSelf: 'flex-start',
 	},
 	animationContainer: {
 		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	animation: {
 		height: 250,

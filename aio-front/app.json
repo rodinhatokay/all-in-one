@@ -1,63 +1,62 @@
 {
-  "expo": {
-    "name": "All In One",
-    "slug": "all-in-one",
-    "version": "1.0.1",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "config": {
-        "usesNonExemptEncryption": false
-      },
-      "infoPlist": {
-        "CFBundleAllowMixedLocalizations": true,
-        "ExpoLocalization_supportsRTL": true
-      },
-      "bundleIdentifier": "com.allinoneocean.aio",
-      "buildNumber": "5"
-    },
-    "android": {
-      "icon": "./assets/images/icon.png",
-      "package": "com.allinoneocean.aio",
-      "versionCode": 11
-    },
-    "web": {
-      "bundler": "metro",
-      "favicon": "./assets/images/favicon.png"
-    },
-    "extra": {
-      "supportsRTL": true,
-      "eas": {
-        "projectId": "bb5b5c67-fce9-4660-890d-4104d97ec36f"
-      }
-    },
-    "plugins": [
-      "expo-localization",
-      [
-        "expo-build-properties",
-        {
-          "android": {
-            "usesCleartextTraffic": true
-          }
-        }
-      ],
-      [
-        "expo-updates",
-        {
-          "username": "allinoneocean"
-        }
-      ]
-    ],
-    "owner": "allinoneocean"
-  }
+	"expo": {
+		"name": "All In One",
+		"slug": "all-in-one",
+		"version": "1.0.1",
+		"scheme": "allinone",
+		"orientation": "portrait",
+		"icon": "./assets/images/icon.png",
+		"userInterfaceStyle": "automatic",
+		"splash": {
+			"image": "./assets/images/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"config": {
+				"usesNonExemptEncryption": false
+			},
+			"infoPlist": {
+				"CFBundleAllowMixedLocalizations": true,
+				"ExpoLocalization_supportsRTL": true
+			},
+			"bundleIdentifier": "com.allinoneocean.aio",
+			"buildNumber": "5"
+		},
+		"android": {
+			"icon": "./assets/images/icon.png",
+			"package": "com.allinoneocean.aio",
+			"versionCode": 11
+		},
+		"web": {
+			"bundler": "metro",
+			"favicon": "./assets/images/favicon.png"
+		},
+		"extra": {
+			"supportsRTL": true,
+			"eas": {
+				"projectId": "bb5b5c67-fce9-4660-890d-4104d97ec36f"
+			}
+		},
+		"plugins": [
+			"expo-localization",
+			[
+				"expo-build-properties",
+				{
+					"android": {
+						"usesCleartextTraffic": true
+					}
+				}
+			],
+			[
+				"expo-updates",
+				{
+					"username": "allinoneocean"
+				}
+			]
+		],
+		"owner": "allinoneocean"
+	}
 }

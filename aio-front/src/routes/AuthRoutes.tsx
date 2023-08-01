@@ -1,27 +1,18 @@
 import { FC } from 'react';
-import { HomeStack } from './types';
-import { NavigatorScreenParams } from '@react-navigation/native';
+import { BottomTabParams } from './types';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStackScreen from './HomeStackScreen';
-import FavoritesScreen from '../screens/FavoritesScreen';
+// import FavoritesScreen from '../screens/FavoritesScreen';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import SettingsScreen from '../screens/SettingsScreen';
 import LocaleSelector from '../components/LocaleSelector/LocaleSelector';
-import { useLocalization } from '../contexts/LocalizationContext';
+// import { useLocalization } from '../contexts/LocalizationContext';
 import { useAuth } from '../contexts/AuthContext';
-
-type BottomTabParams = {
-	HomeStack: NavigatorScreenParams<HomeStack>;
-	FavoritesTab: undefined;
-	SettingsTab: undefined;
-};
 
 const BottomTabs = createBottomTabNavigator<BottomTabParams>();
 
 const AuthRoutes: FC = () => {
-	const { t } = useLocalization();
 	const { user } = useAuth();
 	return (
 		<BottomTabs.Navigator
@@ -32,7 +23,7 @@ const AuthRoutes: FC = () => {
 			}}
 		>
 			<BottomTabs.Screen
-				name="HomeStack"
+				name="homeStack"
 				options={{
 					tabBarIcon: ({ color, size, focused }) => (
 						<MaterialCommunityIcons
@@ -62,7 +53,7 @@ const AuthRoutes: FC = () => {
 				component={FavoritesScreen}
 			/> */}
 			<BottomTabs.Screen
-				name="SettingsTab"
+				name="settingsTab"
 				options={{
 					headerShown: true,
 					tabBarShowLabel: false,
