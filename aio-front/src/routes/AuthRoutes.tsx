@@ -5,7 +5,7 @@ import HomeStackScreen from './HomeStackScreen';
 // import FavoritesScreen from '../screens/FavoritesScreen';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import SettingsScreen from '../screens/SettingsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import LocaleSelector from '../components/LocaleSelector/LocaleSelector';
 // import { useLocalization } from '../contexts/LocalizationContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -53,7 +53,7 @@ const AuthRoutes: FC = () => {
 				component={FavoritesScreen}
 			/> */}
 			<BottomTabs.Screen
-				name="settingsTab"
+				name="profileTab"
 				options={{
 					headerShown: true,
 					tabBarShowLabel: false,
@@ -68,7 +68,7 @@ const AuthRoutes: FC = () => {
 						/>
 					),
 				}}
-				component={SettingsScreen}
+				component={ProfileScreen}
 			/>
 		</BottomTabs.Navigator>
 	);

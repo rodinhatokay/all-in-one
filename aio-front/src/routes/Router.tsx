@@ -51,7 +51,7 @@ const Router = () => {
 					],
 					config: {
 						screens: {
-							settingsTab: 'settings',
+							profileTab: 'profile',
 						},
 					},
 				}}

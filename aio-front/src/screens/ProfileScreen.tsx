@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { StyleSheet } from 'react-native';
 import { View } from 'react-native';
-import { Button, RadioButton, Text } from 'react-native-paper';
+import { Button, RadioButton } from 'react-native-paper';
 import { ThemeMode, useTheme } from '../contexts/ThemeContext';
 import AnimatedLottieView from 'lottie-react-native';
 import Title from '../sections/Settings/Title';
@@ -9,15 +9,29 @@ import { useLocalization } from '../contexts/LocalizationContext';
 import LogoutDialog, {
 	DialogRef,
 } from '../components/DialogLogout/DialogLogout';
+import DeleteAccountDialog from '../components/DeleteAccountDialog/DeleteAccountDialog';
+// import { RouteProp, useRoute } from '@react-navigation/native';
+// import { RootNavigation } from '../routes/types';
 
-const SettingsScreen = () => {
-	const { changeTheme, mode } = useTheme();
+// type SettingsScreenRouteProp = RouteProp<RootNavigation, 'settingsTab'>;
+
+const ProfileScreen = () => {
+	// const route = useRoute<SettingsScreenRouteProp>(); for later use
+	// console.log('displayDeleteUser', route?.params?.displayDeleteUser);
+
+	const { changeTheme, mode, theme } = useTheme();
 	const { t } = useLocalization();
 
 	const logoutDialogRef = useRef<DialogRef>(null);
 
+	const deleteAccountDialogRef = useRef<DialogRef>(null);
+
 	const openLogoutDialog = () => {
 		logoutDialogRef.current?.showDialog();
+	};
+
+	const openDeleteAccountDialog = () => {
+		deleteAccountDialogRef.current?.showDialog();
 	};
 
 	return (
@@ -34,13 +48,30 @@ const SettingsScreen = () => {
 				<RadioButton.Item label="Light theme" value="light" />
 				<RadioButton.Item label="Dark theme" value="dark" />
 			</RadioButton.Group>
-			<Button
-				mode="text"
-				onPress={openLogoutDialog}
-				style={styles.logoutButton}
+			<View
+				style={{
+					flexDirection: 'row',
+					// flex: 1,
+					marginHorizontal: 10,
+					alignItems: 'center',
+					justifyContent: 'space-between',
+				}}
 			>
-				{t('logOut')}
-			</Button>
+				<Button
+					mode="text"
+					onPress={openLogoutDialog}
+					style={styles.logoutButton}
+				>
+					{t('logOut')}
+				</Button>
+				<Button
+					mode={'text'}
+					textColor={theme.colors.error}
+					onPress={openDeleteAccountDialog}
+				>
+					delete account
+				</Button>
+			</View>
 
 			<View style={styles.animationContainer}>
 				<AnimatedLottieView
@@ -52,6 +83,7 @@ const SettingsScreen = () => {
 				/>
 			</View>
 			<LogoutDialog ref={logoutDialogRef} />
+			<DeleteAccountDialog ref={deleteAccountDialogRef} />
 		</View>
 	);
 };
@@ -63,7 +95,7 @@ const styles = StyleSheet.create({
 
 	logoutButton: {
 		marginTop: 10,
-		marginHorizontal: 10,
+		// marginHorizontal: 10,
 		alignSelf: 'flex-start',
 	},
 	animationContainer: {
@@ -77,4 +109,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default SettingsScreen;
+export default ProfileScreen;

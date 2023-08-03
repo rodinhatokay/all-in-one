@@ -24,7 +24,12 @@ export type HomeStack = {
 export type BottomTabParams = {
 	homeStack: NavigatorScreenParams<HomeStack>;
 	favoritesTab: undefined;
-	settingsTab: NavigatorScreenParams<unknown>;
+	profileTab?: {
+		/**
+		 * for future use: providing 'true' supposed to display delete user button
+		 */
+		displayDeleteUser?: string;
+	};
 };
 
 export type RootNavigation = NoAuthStack & Routes & BottomTabParams;
