@@ -10,8 +10,6 @@ const SearchScreen = () => {
 
 	const { data: businesses, isLoading, error } = useBusinesses({ query });
 
-	console.log('error', error);
-
 	return (
 		<View style={styles.flex}>
 			<Searchbar
