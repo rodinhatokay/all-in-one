@@ -16,7 +16,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd aio-back && docker build -t allinoneocean/web-expo .
+      - run: cd aio-front && docker build -t allinoneocean/web-expo .
       - run: docker push allinoneocean/web-expo
       - uses: digitalocean/action-doctl@v2
         with:
