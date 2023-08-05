@@ -15,6 +15,8 @@ spec:
       containers:
         - name: web-expo
           image: allinoneocean/web-expo
+      imagePullSecrets:
+        - name: dockerreg
 ---
 apiVersion: v1
 kind: Service
