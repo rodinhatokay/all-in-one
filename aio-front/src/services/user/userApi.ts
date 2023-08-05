@@ -1,5 +1,5 @@
-import api from "../api/api";
-import { User } from "./user.types";
+import api from '../api/api';
+import { User } from './user.types';
 
 export const getCurrentUserApi = async (
 	token?: string | null,
@@ -10,7 +10,7 @@ export const getCurrentUserApi = async (
 				Authorization: `Bearer ${token}`,
 		  }
 		: undefined;
-	return await api.get<User>("user/current-user", {
+	return await api.get<User>('user/current-user', {
 		headers,
 		signal,
 	});
@@ -35,7 +35,7 @@ export const registerUserApi = async (
 	signal?: AbortSignal,
 ) => {
 	return await api.post<{ access_token: string; user: User }>(
-		"auth/register",
+		'auth/register',
 		registerDetails,
 		{
 			headers: {
@@ -45,4 +45,19 @@ export const registerUserApi = async (
 			signal,
 		},
 	);
+};
+
+/**
+ * sends request to server to delete user
+ */
+export const deleteUserApi = async ({
+	id,
+	signal,
+}: {
+	id: string;
+	signal?: AbortSignal;
+}) => {
+	return await api.delete(`user/${id}`, {
+		signal,
+	});
 };

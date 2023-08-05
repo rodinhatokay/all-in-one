@@ -1,43 +1,42 @@
-import { useCallback, useMemo, useState } from "react";
-import { generateOtpApi, verifyOtpCodeApi } from "../services/otp/otpApi";
-import { logError } from "../services/logger/loggerService";
-import { validateOTP, validatePhoneNumber } from "../services/common/validate";
-import { IEnTranslations } from "../localization/en";
-import { normalizePhoneNumberFormat } from "../services/common/format";
-import axios from "axios";
-import { useAuth } from "../contexts/AuthContext";
-import { navigate } from "../routes/routerActions";
+import { useCallback, useMemo, useState } from 'react';
+import { generateOtpApi, verifyOtpCodeApi } from '../services/otp/otpApi';
+import { logError } from '../services/logger/loggerService';
+import { validateOTP, validatePhoneNumber } from '../services/common/validate';
+import { IEnTranslations } from '../localization/en';
+import { normalizePhoneNumberFormat } from '../services/common/format';
+import axios from 'axios';
+import { useAuth } from '../contexts/AuthContext';
+import { navigate } from '../routes/routerActions';
 
 /**
  * otp hook that handles all logic related to authenticate via otp
  */
 export const useOTP = () => {
 	const { signIn } = useAuth();
-	const [phoneNumber, setPhoneNumber] = useState("");
+	const [phoneNumber, setPhoneNumber] = useState('');
 	const [errorPhoneNumber, setErrorPhoneNumber] = useState<
-		keyof IEnTranslations | ""
-	>("");
-	const [otpCode, setOtpCode] = useState("");
-	const [errorOtpCode, setErrorOtpCode] = useState<keyof IEnTranslations | "">(
-		"",
+		keyof IEnTranslations | ''
+	>('');
+	const [otpCode, setOtpCode] = useState('');
+	const [errorOtpCode, setErrorOtpCode] = useState<keyof IEnTranslations | ''>(
+		'',
 	);
 	const [loading, setLoading] = useState(false);
 
 	const getOtpCode = useCallback(async () => {
 		try {
 			if (!validatePhoneNumber(phoneNumber)) {
-				setErrorPhoneNumber("invalidPhoneNumber");
-				throw new Error("invalidPhoneNumber");
+				setErrorPhoneNumber('invalidPhoneNumber');
+				throw new Error('invalidPhoneNumber');
 			}
 			setLoading(true);
 			await generateOtpApi(normalizePhoneNumberFormat(phoneNumber));
 		} catch (err) {
-			logError("error onPressGetotp", err);
+			logError('error onPressGetotp', err);
 			if (axios.isAxiosError(err) && err.response?.status === 400) {
-				setErrorPhoneNumber("invalidPhoneNumber");
-			}
-			else { 
-				setErrorPhoneNumber("genericError")
+				setErrorPhoneNumber('invalidPhoneNumber');
+			} else {
+				setErrorPhoneNumber('genericError');
 			}
 			throw err;
 		} finally {
@@ -51,12 +50,12 @@ export const useOTP = () => {
 	const valdiateOtpCode = useCallback(async () => {
 		try {
 			if (!validatePhoneNumber(phoneNumber)) {
-				setErrorPhoneNumber("invalidPhoneNumber");
-				throw new Error("invalidPhoneNumber");
+				setErrorPhoneNumber('invalidPhoneNumber');
+				throw new Error('invalidPhoneNumber');
 			}
 			if (!validateOTP(otpCode)) {
-				setErrorOtpCode("invalidOtpCode");
-				throw new Error("invalidOtpCode");
+				setErrorOtpCode('invalidOtpCode');
+				throw new Error('invalidOtpCode');
 			}
 			setLoading(true);
 			const responseVerification = await verifyOtpCodeApi({
@@ -70,13 +69,13 @@ export const useOTP = () => {
 				await signIn(access_token);
 			} else {
 				// navigate to regiser screen with phone number and access_token (for register)
-				navigate("register", { access_token, phoneNumber });
+				navigate('register', { access_token, phoneNumber });
 			}
 		} catch (err) {
 			if (axios.isAxiosError(err) && err.response?.status === 400) {
-				setErrorOtpCode("invalidOtpCode");
+				setErrorOtpCode('invalidOtpCode');
 			}
-			logError("error onPressValdiateVerficationCode", err);
+			logError('error onPressValdiateVerficationCode', err);
 			throw err;
 		} finally {
 			setLoading(false);
@@ -86,7 +85,7 @@ export const useOTP = () => {
 	const _setPhoneNumber = useCallback(
 		(phoneNumber: string) => {
 			setPhoneNumber(phoneNumber);
-			setErrorPhoneNumber("");
+			setErrorPhoneNumber('');
 		},
 		[setPhoneNumber, setErrorPhoneNumber],
 	);
@@ -94,7 +93,7 @@ export const useOTP = () => {
 	const _setOtpCode = useCallback(
 		(otpCode: string) => {
 			setOtpCode(otpCode);
-			setErrorOtpCode("");
+			setErrorOtpCode('');
 		},
 		[setOtpCode, setErrorOtpCode],
 	);

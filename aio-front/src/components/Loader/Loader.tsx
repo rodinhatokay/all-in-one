@@ -1,6 +1,7 @@
-import LottieView from "lottie-react-native";
-import { FC, useMemo } from "react";
-import { StyleProp, StyleSheet, ViewStyle } from "react-native";
+import LottieView from 'lottie-react-native';
+import { FC } from 'react';
+import { StyleProp, StyleSheet, ViewStyle, Platform } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 
 interface Props {
 	style?: StyleProp<ViewStyle>;
@@ -8,9 +9,12 @@ interface Props {
 }
 
 const Loader: FC<Props> = (props) => {
+	if (Platform.OS === 'web') {
+		return <ActivityIndicator size={'large'} />;
+	}
 	return (
 		<LottieView
-			source={require("../../../assets/lottieAnimations/infinity-loader.json")}
+			source={require('../../../assets/lottieAnimations/infinity-loader.json')}
 			style={[
 				styles.lottieView,
 				props.style,
@@ -26,6 +30,6 @@ const Loader: FC<Props> = (props) => {
 const styles = StyleSheet.create({
 	lottieView: { width: 250, height: 200 },
 
-	loadingScreen: { alignSelf: "center", marginTop: 50 },
+	loadingScreen: { alignSelf: 'center', marginTop: 50 },
 });
 export default Loader;

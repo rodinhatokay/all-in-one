@@ -6,14 +6,15 @@ import {
 	useCallback,
 	ReactNode,
 	FC,
-} from "react";
+} from 'react';
 import api, {
 	getStoredApiToken,
 	removeStoredApiToken,
 	storeApiToken,
-} from "../services/api/api";
-import { User } from "../services/user/user.types";
-import { getCurrentUserApi } from "../services/user/userApi";
+} from '../services/api/api';
+import { User } from '../services/user/user.types';
+import { deleteUserApi, getCurrentUserApi } from '../services/user/userApi';
+import { ErrorMessages } from '../services/common/ErrorMessages';
 
 interface AuthContextProps {
 	user: User | null;
@@ -21,6 +22,7 @@ interface AuthContextProps {
 	isAuthenticated: boolean;
 	signIn: (access_token: string, user?: User) => Promise<void>;
 	signOut: () => void;
+	deleteUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -47,7 +49,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 				setLoading(false);
 			} catch (error) {
 				setLoading(false);
-				console.error("error initing user from local local storage", error);
+				console.error('error initing user from local local storage', error);
 			}
 		};
 
@@ -88,12 +90,31 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
 		delete api.defaults.headers.Authorization;
 	};
 
+	const deleteUser = useCallback(
+		async (signal?: AbortSignal) => {
+			try {
+				if (!user?.id) {
+					throw new Error(ErrorMessages.cantDeleteUserWithoutProvidingId);
+				}
+				const { id } = user;
+				await deleteUserApi({ id, signal });
+				removeStoredApiToken();
+				setUser(null);
+				delete api.defaults.headers.Authorization;
+			} catch (err) {
+				console.error('error deleting user ', err);
+			}
+		},
+		[user, setUser],
+	);
+
 	const context: AuthContextProps = {
 		isAuthenticated: user ? true : false,
 		user,
 		signIn,
 		isLoading: loading,
 		signOut,
+		deleteUser,
 	};
 	if (loading) return null;
 	return (

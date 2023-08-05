@@ -3,6 +3,7 @@
     "name": "All In One",
     "slug": "all-in-one",
     "version": "1.0.1",
+    "scheme": "allinone",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "automatic",
@@ -29,7 +30,7 @@
     "android": {
       "icon": "./assets/images/icon.png",
       "package": "com.allinoneocean.aio",
-      "versionCode": 11
+      "versionCode": 12
     },
     "web": {
       "bundler": "metro",

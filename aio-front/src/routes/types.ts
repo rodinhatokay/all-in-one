@@ -1,3 +1,5 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
+
 export type NoAuthStack = {
 	// Intro: undefined;
 	login: undefined;
@@ -19,4 +21,15 @@ export type HomeStack = {
 	search: undefined;
 };
 
-export type RootNavigation = NoAuthStack & Routes & HomeStack;
+export type BottomTabParams = {
+	homeStack: NavigatorScreenParams<HomeStack>;
+	favoritesTab: undefined;
+	profileTab?: {
+		/**
+		 * for future use: providing 'true' supposed to display delete user button
+		 */
+		displayDeleteUser?: string;
+	};
+};
+
+export type RootNavigation = NoAuthStack & Routes & BottomTabParams;

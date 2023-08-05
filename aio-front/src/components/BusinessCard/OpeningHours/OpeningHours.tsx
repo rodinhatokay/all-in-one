@@ -50,10 +50,24 @@ const OpeningHours: FC<Props> = (props) => {
 						const isToday = idx === todayOpeningHoursIndex;
 						return (
 							<View key={idx} style={styles.expandedListView}>
-								<Text variant="bodySmall" style={[styles.dayText, isToday? {color: colorTodayText} : null] }>
+								<Text
+									variant="bodySmall"
+									style={[
+										styles.dayText,
+										isToday ? { color: colorTodayText } : null,
+									]}
+								>
 									{t(openingHour.day)}:{' '}
 								</Text>
-								<Text variant="bodySmall" key={openingHour.day} style={isToday? {color: colorTodayText, fontFamily: 'Rubik-SemiBold'} : undefined} >
+								<Text
+									variant="bodySmall"
+									key={openingHour.day}
+									style={
+										isToday
+											? { color: colorTodayText, fontFamily: 'Rubik-SemiBold' }
+											: undefined
+									}
+								>
 									{openingHour.hoursAsText
 										? openingHour.hoursAsText
 										: t('closed')}
