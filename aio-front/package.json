@@ -50,7 +50,8 @@
     "react-native-tab-view": "^3.5.1",
     "react-native-web": "~0.18.10",
     "react-query": "^3.39.3",
-    "expo-build-properties": "~0.6.0"
+    "expo-build-properties": "~0.6.0",
+    "@expo/webpack-config": "^18.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

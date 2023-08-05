@@ -10,6 +10,7 @@ import LogoutDialog, {
 	DialogRef,
 } from '../components/DialogLogout/DialogLogout';
 import DeleteAccountDialog from '../components/DeleteAccountDialog/DeleteAccountDialog';
+import { useIsMobile } from '../hooks/usePlatform';
 // import { RouteProp, useRoute } from '@react-navigation/native';
 // import { RootNavigation } from '../routes/types';
 
@@ -21,6 +22,7 @@ const ProfileScreen = () => {
 
 	const { changeTheme, mode, theme } = useTheme();
 	const { t } = useLocalization();
+	const isMobile = useIsMobile();
 
 	const logoutDialogRef = useRef<DialogRef>(null);
 
@@ -42,7 +44,7 @@ const ProfileScreen = () => {
 				value={mode}
 			>
 				<RadioButton.Item
-					label="Automatic (follow iOS setting)"
+					label="Automatic (follow device setting)"
 					value="deviceTheme"
 				/>
 				<RadioButton.Item label="Light theme" value="light" />
@@ -74,13 +76,15 @@ const ProfileScreen = () => {
 			</View>
 
 			<View style={styles.animationContainer}>
-				<AnimatedLottieView
-					source={require('../../assets/lottieAnimations/profile-lock.json')}
-					style={styles.animation}
-					resizeMode="contain"
-					loop
-					autoPlay
-				/>
+				{isMobile && (
+					<AnimatedLottieView
+						source={require('../../assets/lottieAnimations/profile-lock.json')}
+						style={styles.animation}
+						resizeMode="contain"
+						loop
+						autoPlay
+					/>
+				)}
 			</View>
 			<LogoutDialog ref={logoutDialogRef} />
 			<DeleteAccountDialog ref={deleteAccountDialogRef} />

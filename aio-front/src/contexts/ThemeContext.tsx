@@ -4,19 +4,19 @@ import React, {
 	useContext,
 	useEffect,
 	useState,
-} from "react";
+} from 'react';
 import {
 	DarkTheme as NavigationDarkTheme,
 	DefaultTheme as NavigationDefaultTheme,
-} from "@react-navigation/native";
+} from '@react-navigation/native';
 import {
 	MD3DarkTheme as PaperDarkTheme,
 	DefaultTheme as PaperDefaultTheme,
-} from "react-native-paper";
-import { CombinedDarkColor, CombinedDefaultColor } from "../constants/Colors";
-import { ColorSchemeName, useColorScheme } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { FONTS_FOR_PAPER } from "../constants/Fonts";
+} from 'react-native-paper';
+import { CombinedDarkColor, CombinedDefaultColor } from '../constants/Colors';
+import { ColorSchemeName, useColorScheme } from 'react-native';
+import LocalStorage from '../services/common/localStorage.service';
+import { FONTS_FOR_PAPER } from '../constants/Fonts';
 
 interface ThemeContext {
 	theme: DefaultCombinedTheme;
@@ -26,7 +26,7 @@ interface ThemeContext {
 	mode: ThemeMode;
 }
 
-export type ThemeMode = "dark" | "light" | "deviceTheme";
+export type ThemeMode = 'dark' | 'light' | 'deviceTheme';
 
 const CombinedDefaultTheme = {
 	...PaperDefaultTheme,
@@ -58,28 +58,28 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
 	const colorSchemeDevice = useColorScheme();
 
-	const [isThemeDark, setIsThemeDark] = useState(colorSchemeDevice === "dark");
+	const [isThemeDark, setIsThemeDark] = useState(colorSchemeDevice === 'dark');
 
 	const [theme, setTheme] = useState(
 		isThemeDark ? CombinedDarkTheme : CombinedDefaultTheme,
 	);
 	const [isThemeReady, setIsThemeReady] = useState(false);
-	const [mode, setMode] = useState<ThemeMode>("deviceTheme");
+	const [mode, setMode] = useState<ThemeMode>('deviceTheme');
 
 	const changeTheme = useCallback(
 		async (mode: ThemeMode) => {
 			setMode(mode);
-			if (mode === "deviceTheme") {
+			if (mode === 'deviceTheme') {
 				// try setting into color scheme device if provided
-				mode = colorSchemeDevice ?? "light";
+				mode = colorSchemeDevice ?? 'light';
 				// clear storage in device
 				await storeColorScheme(null);
 			} else {
 				// store scheme in device
 				await storeColorScheme(mode);
 			}
-			setIsThemeDark(mode === "dark");
-			setTheme(mode === "dark" ? CombinedDarkTheme : CombinedDefaultTheme);
+			setIsThemeDark(mode === 'dark');
+			setTheme(mode === 'dark' ? CombinedDarkTheme : CombinedDefaultTheme);
 		},
 		[setTheme, setIsThemeDark, colorSchemeDevice],
 	);
@@ -90,9 +90,9 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 				// store color scheme, if not stored it goes by default
 				const colorScheme = await getStoredColorScheme();
 				// in case doesnt stored any color schema just follow the device
-				changeTheme(colorScheme ?? "deviceTheme");
+				changeTheme(colorScheme ?? 'deviceTheme');
 			} catch (e) {
-				console.error("error initing theme", e);
+				console.error('error initing theme', e);
 			} finally {
 				setIsThemeReady(true);
 			}
@@ -110,9 +110,9 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 				// if user already stored color scheme then return
 				// nothing to change
 				if (storedColorSheme) return;
-				changeTheme("deviceTheme");
+				changeTheme('deviceTheme');
 			} catch (e) {
-				console.error("error on effect to color scheme device", e);
+				console.error('error on effect to color scheme device', e);
 			}
 		};
 		onChangeColorSchemeDevice();
@@ -136,20 +136,20 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 	);
 };
 
-const KEY_STORE_COLOR_SCHEME = "KEY_STORE_COLOR_SCHEME";
+const KEY_STORE_COLOR_SCHEME = 'KEY_STORE_COLOR_SCHEME';
 
 const storeColorScheme = async (colorScheme: ColorSchemeName) => {
 	if (colorScheme) {
-		await AsyncStorage.setItem(KEY_STORE_COLOR_SCHEME, colorScheme);
+		await LocalStorage.setItem(KEY_STORE_COLOR_SCHEME, colorScheme);
 		return;
 	} else {
-		await AsyncStorage.removeItem(KEY_STORE_COLOR_SCHEME);
+		await LocalStorage.removeItem(KEY_STORE_COLOR_SCHEME);
 	}
 };
 
-const getStoredColorScheme = async (): Promise<"light" | "dark" | null> => {
-	return (await AsyncStorage.getItem(KEY_STORE_COLOR_SCHEME)) as
-		| "light"
-		| "dark"
+const getStoredColorScheme = async (): Promise<'light' | 'dark' | null> => {
+	return (await LocalStorage.getItem(KEY_STORE_COLOR_SCHEME)) as
+		| 'light'
+		| 'dark'
 		| null;
 };
