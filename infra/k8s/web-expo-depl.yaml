@@ -15,9 +15,6 @@ spec:
       containers:
         - name: web-expo
           image: allinoneocean/web-expo
-          ports:
-            - containerPort: 80
-
 ---
 apiVersion: v1
 kind: Service
