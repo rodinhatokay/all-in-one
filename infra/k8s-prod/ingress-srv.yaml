@@ -21,7 +21,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: echo-service
+                name: web-expo-service
                 port:
                   number: 80
 ---
