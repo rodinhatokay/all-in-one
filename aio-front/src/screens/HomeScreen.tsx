@@ -2,6 +2,7 @@ import { View, StyleSheet } from 'react-native';
 import Loader from '../components/Loader/Loader';
 import BusinessList from '../sections/Home/BusinessList';
 import useBusinesses from '../hooks/useBusinesses';
+import CategoriesBusiness from '../sections/Home/CategoriesBusiness/CategoriesBusiness';
 
 const HomeScreen = () => {
 	const {
@@ -15,11 +16,12 @@ const HomeScreen = () => {
 
 	return (
 		<View style={styles.main}>
-			<BusinessList
+			{/* <BusinessList
 				data={businesses}
 				onRefresh={refetch}
 				refreshing={isRefetching}
-			/>
+			/> */}
+			<CategoriesBusiness />
 		</View>
 	);
 };
