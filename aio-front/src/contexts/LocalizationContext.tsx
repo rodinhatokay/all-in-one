@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import * as Localization from 'expo-localization';
 import { I18n } from 'i18n-js';
-import { I18nManager } from 'react-native';
+import { I18nManager, Platform } from 'react-native';
 import LocalStorage from '../services/common/localStorage.service';
 import en from '../localization/en';
 import he from '../localization/he';
@@ -25,7 +25,6 @@ const transilations = {
 };
 
 const i18n = new I18n(transilations, {
-	availableLocales: ['en', 'he'],
 	defaultLocale: 'en',
 	locale: getLocalLocaleHelper(Localization.locale),
 	enableFallback: true,
@@ -70,6 +69,9 @@ export const LocalizationProvider: React.FC<{ children: ReactNode }> = ({
 	};
 
 	useEffect(() => {
+		if (Platform.OS === 'web') {
+			return;
+		}
 		const loadLocale = async () => {
 			const storedLocale = await LocalStorage.getItem('locale');
 			if (storedLocale !== null) {
