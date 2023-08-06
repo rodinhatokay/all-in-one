@@ -14,10 +14,10 @@ import { useIsMobile } from '../hooks/usePlatform';
 // import { RouteProp, useRoute } from '@react-navigation/native';
 // import { RootNavigation } from '../routes/types';
 
-// type SettingsScreenRouteProp = RouteProp<RootNavigation, 'settingsTab'>;
+// type SettingsScreenRouteProp = RouteProp<RootNavigation, 'profileTab'>;
 
 const ProfileScreen = () => {
-	// const route = useRoute<SettingsScreenRouteProp>(); for later use
+	// const route = useRoute<SettingsScreenRouteProp>(); // for later use
 	// console.log('displayDeleteUser', route?.params?.displayDeleteUser);
 
 	const { changeTheme, mode, theme } = useTheme();
