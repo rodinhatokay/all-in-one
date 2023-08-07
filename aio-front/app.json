@@ -2,7 +2,7 @@
   "expo": {
     "name": "All In One",
     "slug": "all-in-one",
-    "version": "1.0.1",
+    "runtimeVersion": "1.0.2",
     "scheme": "allinone",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -65,6 +65,9 @@
         }
       ]
     ],
-    "owner": "allinoneocean"
+    "owner": "allinoneocean",
+    "updates": {
+      "url": "https://u.expo.dev/bb5b5c67-fce9-4660-890d-4104d97ec36f"
+    }
   }
 }
