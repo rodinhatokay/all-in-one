@@ -17,7 +17,8 @@
 			"android": {
 				"gradleCommand": ":app:assembleRelease"
 			},
-			"distribution": "internal"
+			"distribution": "internal",
+			"autoIncrement": false
 		},
 		"production": {
 			"autoIncrement": true
