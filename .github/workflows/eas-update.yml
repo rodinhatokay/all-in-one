@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-          cache: npm # Changed from 'yarn' to 'npm'
           working-directory: aio-front
 
       - name: Setup EAS
