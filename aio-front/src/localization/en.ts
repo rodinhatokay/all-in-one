@@ -55,6 +55,7 @@ const en = {
 	Thursday: 'Thu',
 	Friday: 'Fri',
 	Saturday: 'Sat',
+	noImage: 'No Image',
 };
 
 export type IEnTranslations = typeof en;

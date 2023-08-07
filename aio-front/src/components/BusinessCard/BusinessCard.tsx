@@ -10,6 +10,7 @@ import BottomActions from './BottomActions';
 import OpeningHours from './OpeningHours/OpeningHours';
 import useBusinessActions from '../../hooks/useBusinessActions';
 import { Text } from '../../components/partials/Text';
+import LogoImage from '../LogoImage/LogoImage';
 
 type BusinessCardProps = {
 	business: Business;
@@ -41,14 +42,8 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 		>
 			<Card.Content>
 				<View style={styles.topRow}>
-					<View style={styles.shadow}>
-						<Image
-							source={{
-								uri: business.logoPath,
-							}}
-							style={styles.image}
-						/>
-					</View>
+					<LogoImage logoPath={business.logoPath} altText={business.name} />
+
 					<View style={styles.flex}>
 						<View style={styles.titleRow}>
 							<Text variant="titleLarge" numberOfLines={2} style={styles.name}>
@@ -99,12 +94,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		marginBottom: 10,
 	},
-	image: {
-		width: 90,
-		height: 90,
-		marginRight: 15,
-		borderRadius: 50,
-	},
 	flex: { flex: 1, gap: 5 },
 	titleRow: {
 		// borderWidth: 1,
@@ -133,17 +122,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		// paddingTop: 4,
 		// fontFamily: 'Rubik-SemiBold',
-	},
-	shadow: {
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 1,
-		},
-		shadowOpacity: 0.22,
-		shadowRadius: 2.22,
-
-		elevation: 3,
 	},
 });
 
