@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import Loader from '../components/Loader/Loader';
-import BusinessList from '../sections/Home/BusinessList';
+import BusinessList from '../components/BusinessList';
 import useBusinesses from '../hooks/useBusinesses';
 
 const HomeScreen = () => {

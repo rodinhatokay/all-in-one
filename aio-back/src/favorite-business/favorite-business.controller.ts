@@ -2,14 +2,16 @@ import {
 	Body,
 	Controller,
 	Get,
-	Param,
 	Post,
 	Delete,
 	UseGuards,
+	Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { FavoriteBusinessService } from './favorite-business.service';
+import { User } from '../common/decorators/user.decorator';
+import { JwtPayload } from '../auth/types/jwt';
 import { FavoriteBusiness } from './dto/favoriteBusiness.dto';
 
 @ApiTags('favorite-businesses')
@@ -29,17 +31,18 @@ export class FavoriteBusinessController {
 	}
 
 	@Delete()
-	removeFromFavorites(@Body() favoriteBusiness: FavoriteBusiness) {
+	removeFromFavorites(
+		@Query('businessId') businessId: string,
+		@User() user: JwtPayload,
+	) {
 		return this.favoriteBusinessService.removeFromFavorites(
-			favoriteBusiness.userId,
-			favoriteBusiness.businessId,
+			user.userId,
+			businessId,
 		);
 	}
 
-	@UseGuards(JwtAuthGuard)
-	@Get(':id')
-	async findOne(@Param('id') userId: string) {
-		return this.favoriteBusinessService.getFavoriteBusinesses(userId);
+	@Get()
+	async findBusinessesByUserId(@User() user: JwtPayload) {
+		return this.favoriteBusinessService.getFavoriteBusinesses(user.userId);
 	}
 }
-

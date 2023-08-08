@@ -2,7 +2,7 @@ import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 // import { Text, useTheme } from 'react-native-paper';
 // import { SubCategory, categories } from '../../../mock/businsesses';
-import BusinessList from '../BusinessList';
+import BusinessList from '../../../components/BusinessList';
 import { FC } from 'react';
 
 const Tab = createMaterialTopTabNavigator();

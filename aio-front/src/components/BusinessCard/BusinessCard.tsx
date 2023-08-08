@@ -1,16 +1,16 @@
 import { View, StyleSheet, Pressable } from 'react-native';
-import { Image } from '../partials';
 import { Card, Divider } from 'react-native-paper';
 import { Business } from '../../services/business/business.types';
 import { useTheme } from '../../contexts/ThemeContext';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import BottomActions from './BottomActions';
-// import FavoriteButton from "../FavoriteButton";
+import FavoriteButton from '../FavoriteButton';
 // import StarRating from "../RatingStar";
 import OpeningHours from './OpeningHours/OpeningHours';
 import useBusinessActions from '../../hooks/useBusinessActions';
 import { Text } from '../../components/partials/Text';
 import LogoImage from '../LogoImage/LogoImage';
+import { useBusinessFavorites } from '../../contexts/BusinessFavoritesContext';
 
 type BusinessCardProps = {
 	business: Business;
@@ -28,6 +28,10 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	} = useBusinessActions(business);
 
 	const { theme, isThemeDark } = useTheme();
+
+	const { businessFavoriteIds, toggleFavoriteBusiness } =
+		useBusinessFavorites();
+
 	const cardStyle = useMemo(() => {
 		if (isThemeDark) return styles.card;
 		return { ...styles.card, backgroundColor: theme.colors.card };
@@ -49,12 +53,10 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 							<Text variant="titleLarge" numberOfLines={2} style={styles.name}>
 								{name}
 							</Text>
-							{/* <FavoriteButton
-								onPress={() => {
-									throw new Error("need to implement");
-								}}
-								isFavorite={isFavorite}
-							/> */}
+							<FavoriteButton
+								onPress={() => toggleFavoriteBusiness(business)}
+								isFavorite={businessFavoriteIds.has(business.id)}
+							/>
 						</View>
 						<Text variant="labelMedium">{description}</Text>
 						{/* <Paragraph style={styles.noMarginVertical}>
@@ -125,4 +127,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default BusinessCard;
+export default memo(BusinessCard);
