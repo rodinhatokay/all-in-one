@@ -39,5 +39,5 @@ jobs:
         working-directory: aio-front
 
       - name: Publish update
-        run: eas update --auto
+        run: eas update --branch production
         working-directory: aio-front
