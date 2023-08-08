@@ -44,7 +44,7 @@ const he: LangaugeTexts = {
 	invalidOtpCode: 'קוד לא תקין',
 	noInternet:
 		'לא מצליח להתחבר לאינטרנט. בדוק את חיבור הרשת שלך ונסה שוב.',
-	genericError: 'אופס.. הייתה שגיאה, אנא נסו שוב מאוחר יותר',
+	genericError: 'התרחשה שגיאה. בבקשה נסה שוב מאוחר יותר.',
 	closed: 'סגור',
 	open: 'פתוח',
 	closedToday: 'סגור היום',
