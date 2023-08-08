@@ -39,5 +39,5 @@ jobs:
         working-directory: aio-front
 
       - name: Publish update
-        run: eas update --branch production
+        run: eas update --branch production --message "Updating the app"
         working-directory: aio-front
