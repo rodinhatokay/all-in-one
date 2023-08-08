@@ -1,15 +1,15 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useEffect } from 'react';
 import Animated, {
 	useSharedValue,
 	withSpring,
 	useAnimatedStyle,
 	Extrapolate,
 	interpolate,
-} from "react-native-reanimated";
-import { Pressable, StyleSheet } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import * as Haptics from "expo-haptics";
-import { useTheme } from "../contexts/ThemeContext";
+} from 'react-native-reanimated';
+import { Pressable, StyleSheet } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface Props {
 	onPress?: VoidFunction;
@@ -19,6 +19,10 @@ interface Props {
 
 const FavoriteButton: FC<Props> = (props) => {
 	const liked = useSharedValue(props.isFavorite ? 1 : 0);
+
+	useEffect(() => {
+		liked.value = props.isFavorite ? 1 : 0;
+	}, [props.isFavorite]);
 
 	const outlineStyle = useAnimatedStyle(() => {
 		return {
@@ -53,14 +57,14 @@ const FavoriteButton: FC<Props> = (props) => {
 		<Pressable hitSlop={15} onPress={_onPress}>
 			<Animated.View style={[StyleSheet.absoluteFillObject, outlineStyle]}>
 				<MaterialCommunityIcons
-					name={"heart-outline"}
+					name={'heart-outline'}
 					size={props.size ?? 20}
 					color={theme.colors.onSurface}
 				/>
 			</Animated.View>
 			<Animated.View style={fillStyle}>
 				<MaterialCommunityIcons
-					name={"heart"}
+					name={'heart'}
 					size={props.size ?? 20}
 					color={theme.colors.red}
 				/>

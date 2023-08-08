@@ -1,13 +1,13 @@
 import { FlatList, FlatListProps } from 'react-native';
-import { Business } from '../../services/business/business.types';
-import { FC, useCallback } from 'react';
-import BusinessCard from '../../components/BusinessCard/BusinessCard';
+import { Business } from '../services/business/business.types';
+import { FC, memo, useCallback } from 'react';
+import BusinessCard from './BusinessCard/BusinessCard';
 import { StyleSheet } from 'react-native';
 
 interface Props extends Partial<FlatListProps<Business>> {
 	refreshing?: boolean;
 	onRefresh?: VoidFunction;
-	data: Business[];
+	data?: Business[] | null;
 }
 
 const BusinessList: FC<Props> = ({ data, refreshing, onRefresh, ...props }) => {
@@ -21,7 +21,7 @@ const BusinessList: FC<Props> = ({ data, refreshing, onRefresh, ...props }) => {
 		<FlatList
 			refreshing={refreshing}
 			onRefresh={onRefresh}
-			data={data}
+			data={data ?? []}
 			style={styles.main}
 			renderItem={renderItem}
 			keyExtractor={keyExtractor}
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
 	main: { flex: 1 },
 });
 
-export default BusinessList;
+export default memo(BusinessList);

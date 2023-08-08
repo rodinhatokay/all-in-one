@@ -1,9 +1,8 @@
 import { View, StyleSheet, Pressable } from 'react-native';
-import { Image } from '../partials';
 import { Card, Divider } from 'react-native-paper';
 import { Business } from '../../services/business/business.types';
 import { useTheme } from '../../contexts/ThemeContext';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import BottomActions from './BottomActions';
 import FavoriteButton from '../FavoriteButton';
 // import StarRating from "../RatingStar";
@@ -11,6 +10,7 @@ import OpeningHours from './OpeningHours/OpeningHours';
 import useBusinessActions from '../../hooks/useBusinessActions';
 import { Text } from '../../components/partials/Text';
 import LogoImage from '../LogoImage/LogoImage';
+import { useBusinessFavorites } from '../../contexts/BusinessFavoritesContext';
 
 type BusinessCardProps = {
 	business: Business;
@@ -28,69 +28,63 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	} = useBusinessActions(business);
 
 	const { theme, isThemeDark } = useTheme();
+
+	const { businessFavoriteIds, toggleFavoriteBusiness } =
+		useBusinessFavorites();
+
 	const cardStyle = useMemo(() => {
 		if (isThemeDark) return styles.card;
 		return { ...styles.card, backgroundColor: theme.colors.card };
 	}, [isThemeDark, theme]);
 
-	const memoizedBusinessCard = useMemo(() => {
-		return (
-			<Card
-				onPress={navigateToBusiness}
-				disabled
-				mode="elevated"
-				style={cardStyle}
-			>
-				<Card.Content>
-					<View style={styles.topRow}>
-						<LogoImage logoPath={business.logoPath} altText={business.name} />
+	return (
+		<Card
+			onPress={navigateToBusiness}
+			disabled
+			mode="elevated"
+			style={cardStyle}
+		>
+			<Card.Content>
+				<View style={styles.topRow}>
+					<LogoImage logoPath={business.logoPath} altText={business.name} />
 
-						<View style={styles.flex}>
-							<View style={styles.titleRow}>
-								<Text
-									variant="titleLarge"
-									numberOfLines={2}
-									style={styles.name}
-								>
-									{name}
-								</Text>
-								{/* <FavoriteButton
-								onPress={() => {
-									throw new Error("need to implement");
-								}}
-								isFavorite={true}
-							/> */}
-							</View>
-							<Text variant="labelMedium">{description}</Text>
-							{/* <Paragraph style={styles.noMarginVertical}>
+					<View style={styles.flex}>
+						<View style={styles.titleRow}>
+							<Text variant="titleLarge" numberOfLines={2} style={styles.name}>
+								{name}
+							</Text>
+							<FavoriteButton
+								onPress={() => toggleFavoriteBusiness(business)}
+								isFavorite={businessFavoriteIds.has(business.id)}
+							/>
+						</View>
+						<Text variant="labelMedium">{description}</Text>
+						{/* <Paragraph style={styles.noMarginVertical}>
 							<StarRating rating={rating} />
 						</Paragraph> */}
-							<OpeningHours openingHours={business.openingHours} />
-							<Pressable onPress={handleLocation}>
-								<Text
-									variant="labelMedium"
-									style={[styles.address, { color: theme.colors.primary }]}
-								>
-									{business.address}
-								</Text>
-							</Pressable>
-							{/* <Divider /> */}
-						</View>
+						<OpeningHours openingHours={business.openingHours} />
+						<Pressable onPress={handleLocation}>
+							<Text
+								variant="labelMedium"
+								style={[styles.address, { color: theme.colors.primary }]}
+							>
+								{business.address}
+							</Text>
+						</Pressable>
+						{/* <Divider /> */}
 					</View>
-					<Divider />
-				</Card.Content>
-				<BottomActions
-					hasWhatsapp={business.hasWhatsapp}
-					handleCall={handleCall}
-					handleSendSms={handleSendSms}
-					handleShare={handleShare}
-					handleWhatsApp={handleWhatsApp}
-				/>
-			</Card>
-		);
-	}, [business, cardStyle]);
-
-	return memoizedBusinessCard;
+				</View>
+				<Divider />
+			</Card.Content>
+			<BottomActions
+				hasWhatsapp={business.hasWhatsapp}
+				handleCall={handleCall}
+				handleSendSms={handleSendSms}
+				handleShare={handleShare}
+				handleWhatsApp={handleWhatsApp}
+			/>
+		</Card>
+	);
 };
 
 const styles = StyleSheet.create({
@@ -133,4 +127,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default BusinessCard;
+export default memo(BusinessCard);

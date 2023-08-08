@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { Platform, UIManager, View, StyleSheet } from 'react-native';
 import { useMemo } from 'react';
+import { BusinessFavoritesProvider } from './src/contexts/BusinessFavoritesContext';
 
 if (Platform.OS === 'android') {
 	if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -27,14 +28,16 @@ const App = () => {
 	}, [theme]);
 
 	return (
-		<PaperProvider theme={theme}>
-			<View style={wrapperStyles}>
-				<View style={styles.container}>
-					<StatusBar style={isThemeDark ? 'light' : 'dark'} />
-					<Router />
+		<BusinessFavoritesProvider>
+			<PaperProvider theme={theme}>
+				<View style={wrapperStyles}>
+					<View style={styles.container}>
+						<StatusBar style={isThemeDark ? 'light' : 'dark'} />
+						<Router />
+					</View>
 				</View>
-			</View>
-		</PaperProvider>
+			</PaperProvider>
+		</BusinessFavoritesProvider>
 	);
 };
 

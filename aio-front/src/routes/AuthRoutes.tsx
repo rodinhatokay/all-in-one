@@ -2,18 +2,20 @@ import { FC } from 'react';
 import { BottomTabParams } from './types';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStackScreen from './HomeStackScreen';
-// import FavoritesScreen from '../screens/FavoritesScreen';
+import FavoritesScreen from '../screens/FavoritesScreen';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ProfileScreen from '../screens/ProfileScreen';
 import LocaleSelector from '../components/LocaleSelector/LocaleSelector';
 // import { useLocalization } from '../contexts/LocalizationContext';
 import { useAuth } from '../contexts/AuthContext';
+import { useLocalization } from '../contexts/LocalizationContext';
 
 const BottomTabs = createBottomTabNavigator<BottomTabParams>();
 
 const AuthRoutes: FC = () => {
 	const { user } = useAuth();
+	const { t } = useLocalization();
 	return (
 		<BottomTabs.Navigator
 			screenOptions={{
@@ -36,15 +38,15 @@ const AuthRoutes: FC = () => {
 				component={HomeStackScreen}
 			/>
 			<BottomTabs.Screen
-				name="FavoritesTab"
+				name="favoritesTab"
 				options={{
 					headerShown: true,
-					headerTitle: t("favorites"),
+					headerTitle: t('favorites'),
 
 					tabBarShowLabel: false,
 					tabBarIcon: ({ color, size, focused }) => (
 						<MaterialCommunityIcons
-							name={focused ? "heart" : "heart-outline"}
+							name={focused ? 'heart' : 'heart-outline'}
 							color={color}
 							size={size}
 						/>

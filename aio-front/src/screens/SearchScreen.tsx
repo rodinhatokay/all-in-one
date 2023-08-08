@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 
 import useBusinesses from '../hooks/useBusinesses';
-import BusinessList from '../sections/Home/BusinessList';
+import BusinessList from '../components/BusinessList';
 import { Business } from '../services/business/business.types';
 
 const SearchScreen = () => {
