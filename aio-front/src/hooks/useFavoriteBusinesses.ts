@@ -14,7 +14,7 @@ export const useFavoriteBusinesses = () => {
 				return [];
 			}
 
-			const favorites = await generateFavoriteBusinessesApi(user.id);
+			const favorites = await getFavoriteBusinessesApi(user.id);
 			setLoading(true);
 			return favorites;
 		} catch (err) {
