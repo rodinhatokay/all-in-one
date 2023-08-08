@@ -6,7 +6,7 @@ import { Business } from '../business/business.types';
  * @param userId
  * @returns Business[]
  */
-export const generateFavoriteBusinessesApi = async (
+export const getFavoriteBusinessesApi = async (
 	userId: string,
 ): Promise<Business[]> => {
 	console.log(`favorite-businesses/${userId}`);
