@@ -10,6 +10,7 @@ import { useBusinessFavorites } from '../contexts/BusinessFavoritesContext';
 const FavoritesScreen = () => {
 	const { favoritesQuery } = useBusinessFavorites();
 	const { data: favoritesList, isLoading } = favoritesQuery;
+
 	const renderItem = ({ item }: { item: Business }) => (
 		<BusinessCard business={item} />
 	);
