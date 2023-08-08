@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { logError } from '../services/logger/loggerService';
 import { useAuth } from '../contexts/AuthContext';
-import { generateFavoriteBusinessesApi } from '../services/favorite-businesses/favoriteBusinessesApi';
+import { getFavoriteBusinessesApi } from '../services/favorite-businesses/favoriteBusinessesApi';
 
 export const useFavoriteBusinesses = () => {
 	const { user } = useAuth();
