@@ -1,4 +1,5 @@
 import { LangaugeTexts } from "./types";
+import { OTP_LENGTH } from '../services/otp/otp.util';
 
 const he: LangaugeTexts = {
 	english: "English",
@@ -10,6 +11,52 @@ const he: LangaugeTexts = {
 	username: "שם משתמש",
 	password: "סיסמה",
 	loading: "נא להמתין...",
+	aio: 'AiO',
+	allInOne: 'All in One',
+	appearances: 'מופעים',
+	logOut: 'התנתק',
+	deleteAccount: 'מחק משתמש',
+	areYouSureYouWantToDelete:
+		'האם אתה בטוח שברצונך למחוק את חשבונך? (כל הנתונים יימחקו)',
+	areYouSureYouWantToLogOut: 'האם אתה בטוח שאתה רוצה להתנתק?',
+	yes: 'כן',
+	no: 'לא',
+	register: 'הרשמה',
+	enterYourPhoneNumberWeWillSendXDigitsVerificationCode: `הזן את מספר הטלפון שלך, אנו נשלח קוד אימות של ${OTP_LENGTH} ספרות`,
+	phoneNumber: 'מספר נייד',
+	getVerificationCode: 'קבל קוד אימות',
+	enterTheCodeSentTo: 'הזן את הקוד שנשלח אל',
+	didntReceiveOtp: 'לא קיבלת קוד אימות?',
+	verifyAndContinue: 'אמת והמשך',
+	verificationCode: 'קוד אימות',
+	home: 'בית',
+	business: 'עסק',
+	search: 'חיפוש',
+	favorites: 'מועדפים',
+	noFavoritesYetStartAddingSome: 'עדיין אין מועדפים. התחל להוסיף כמה!',
+	pleaseAccpetTheTermsAndConditionsToProceed:
+		'יש לאשר תנאי שימוש כדי להמשיך.',
+	iAgreeToThe: 'אני מסכים ל',
+	termsAndConditions: 'תנאי שימוש',
+	pleaseEnterYourFirstName: 'אנא הזן את שמך הפרטי',
+	pleaseEnterYourLastName: 'אנא הזן את השם משפחה שלך',
+	invalidPhoneNumber: 'מספר נייד לא תקין',
+	invalidOtpCode: 'קוד לא תקין',
+	noInternet:
+		'לא מצליח להתחבר לאינטרנט. בדוק את חיבור הרשת שלך ונסה שוב.',
+	genericError: 'התרחשה שגיאה. בבקשה נסה שוב מאוחר יותר.',
+	closed: 'סגור',
+	open: 'פתוח',
+	closedToday: 'סגור היום',
+	today: 'היום',
+	Sunday: 'ראשון',
+	Monday: 'שני',
+	Tuesday: 'שלישי',
+	Wednesday: 'רביעי',
+	Thursday: 'חמישי',
+	Friday: 'שישי',
+	Saturday: 'שבת',
+	noImage: 'אין תמונה',
 };
 
 export default he;
