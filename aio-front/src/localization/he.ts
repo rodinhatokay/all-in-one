@@ -35,7 +35,7 @@ const he: LangaugeTexts = {
 	favorites: 'מועדפים',
 	noFavoritesYetStartAddingSome: 'עדיין אין מועדפים. התחל להוסיף כמה!',
 	pleaseAccpetTheTermsAndConditionsToProceed:
-		'אנא קבל את התנאים וההגבלות כדי להמשיך.',
+		'יש לאשר תנאי שימוש כדי להמשיך.',
 	iAgreeToThe: 'אני מסכים ל',
 	termsAndConditions: 'תנאי שימוש',
 	pleaseEnterYourFirstName: 'אנא הזן את שמך הפרטי',
