@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
-import Loader from '../components/Loader/Loader';
+// import Loader from '../components/Loader/Loader';
 import { Business } from '../services/business/business.types';
 import BusinessCard from '../components/BusinessCard/BusinessCard';
 import EmptyFavorites from '../sections/Favorites/EmptyFavorites';
@@ -15,7 +15,7 @@ const FavoritesScreen = () => {
 		<BusinessCard business={item} />
 	);
 
-	if (isLoading) return <Loader loadingScreen />;
+	if (isLoading) return null;
 
 	return (
 		<View style={styles.flex}>
