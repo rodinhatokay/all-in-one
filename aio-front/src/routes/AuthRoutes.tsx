@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BottomTabParams } from './types';
+import { AuthedRoutes } from './types';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStackScreen from './HomeStackScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
@@ -11,7 +11,7 @@ import LocaleSelector from '../components/LocaleSelector/LocaleSelector';
 import { useAuth } from '../contexts/AuthContext';
 import { useLocalization } from '../contexts/LocalizationContext';
 
-const BottomTabs = createBottomTabNavigator<BottomTabParams>();
+const BottomTabs = createBottomTabNavigator<AuthedRoutes>();
 
 const AuthRoutes: FC = () => {
 	const { user } = useAuth();

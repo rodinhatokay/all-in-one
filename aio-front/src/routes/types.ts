@@ -1,9 +1,11 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 
-export type NoAuthStack = {
+export type GuestRoute = {
 	// Intro: undefined;
 	login: undefined;
 	register: RegisterParams;
+	homeStack: NavigatorScreenParams<HomeStack>;
+	search: undefined;
 };
 
 export interface RegisterParams {
@@ -21,7 +23,7 @@ export type HomeStack = {
 	search: undefined;
 };
 
-export type BottomTabParams = {
+export type AuthedRoutes = {
 	homeStack: NavigatorScreenParams<HomeStack>;
 	favoritesTab: undefined;
 	profileTab?: {
@@ -32,4 +34,4 @@ export type BottomTabParams = {
 	};
 };
 
-export type RootNavigation = NoAuthStack & Routes & BottomTabParams;
+export type RootNavigation = GuestRoute & Routes & AuthedRoutes;

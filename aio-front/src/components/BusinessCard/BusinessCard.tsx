@@ -11,6 +11,7 @@ import useBusinessActions from '../../hooks/useBusinessActions';
 import { Text } from '../../components/partials/Text';
 import LogoImage from '../LogoImage/LogoImage';
 import { useBusinessFavorites } from '../../contexts/BusinessFavoritesContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 type BusinessCardProps = {
 	business: Business;
@@ -28,6 +29,7 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 	} = useBusinessActions(business);
 
 	const { theme, isThemeDark } = useTheme();
+	const { isAuthenticated } = useAuth();
 
 	const { businessFavoriteIds, toggleFavoriteBusiness } =
 		useBusinessFavorites();
@@ -53,10 +55,12 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({ business }) => {
 							<Text variant="titleLarge" numberOfLines={2} style={styles.name}>
 								{name}
 							</Text>
-							<FavoriteButton
-								onPress={() => toggleFavoriteBusiness(business)}
-								isFavorite={businessFavoriteIds.has(business.id)}
-							/>
+							{isAuthenticated && (
+								<FavoriteButton
+									onPress={() => toggleFavoriteBusiness(business)}
+									isFavorite={businessFavoriteIds.has(business.id)}
+								/>
+							)}
 						</View>
 						<Text variant="labelMedium">{description}</Text>
 						{/* <Paragraph style={styles.noMarginVertical}>
