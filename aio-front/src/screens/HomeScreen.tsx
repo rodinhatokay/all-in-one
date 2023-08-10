@@ -1,7 +1,9 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import Loader from '../components/Loader/Loader';
 import BusinessList from '../components/BusinessList';
 import useBusinesses from '../hooks/useBusinesses';
+import { useAuth } from '../contexts/AuthContext';
+import LoginBar from '../components/LoginBar/LoginBar';
 
 const HomeScreen = () => {
 	const {
@@ -10,17 +12,19 @@ const HomeScreen = () => {
 		refetch,
 		isRefetching,
 	} = useBusinesses();
+	const { isAuthenticated } = useAuth();
 
 	if (isLoading || !businesses) return <Loader style={styles.loader} />;
 
 	return (
-		<View style={styles.main}>
+		<SafeAreaView style={styles.main}>
 			<BusinessList
 				data={businesses}
 				onRefresh={refetch}
 				refreshing={isRefetching}
 			/>
-		</View>
+			{!isAuthenticated && <LoginBar />}
+		</SafeAreaView>
 	);
 };
 const styles = StyleSheet.create({

@@ -56,6 +56,7 @@ const en = {
 	Friday: 'Fri',
 	Saturday: 'Sat',
 	noImage: 'No Image',
+	unlockMoreFeaturesByLoggingIn: 'Unlock more features\nby logging in!',
 };
 
 export type IEnTranslations = typeof en;

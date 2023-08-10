@@ -2,7 +2,7 @@
 	"expo": {
 		"name": "All In One",
 		"slug": "all-in-one",
-		"runtimeVersion": "1.0.3",
+		"runtimeVersion": "1.0.2",
 		"scheme": "allinone",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
@@ -23,12 +23,12 @@
 				"ExpoLocalization_supportsRTL": true
 			},
 			"bundleIdentifier": "com.allinoneocean.aio",
-			"buildNumber": "8"
+			"buildNumber": "9"
 		},
 		"android": {
 			"icon": "./assets/images/icon.png",
 			"package": "com.allinoneocean.aio",
-			"versionCode": 18
+			"versionCode": 19
 		},
 		"web": {
 			"bundler": "metro",
