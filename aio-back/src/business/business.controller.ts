@@ -1,6 +1,7 @@
 import {
 	Body,
 	Controller,
+	Delete,
 	Get,
 	Param,
 	Post,
@@ -48,8 +49,8 @@ export class BusinessController {
 		return this.businessService.update(id, updateBusinessDto);
 	}
 
-	// @Delete(":id")
-	// delete(@Param("id") id: string) {
-	// 	return this.businessService.delete(id);
-	// }
+	@Delete(":id")
+	delete(@Param("id") id: string) {
+		return this.businessService.delete(id);
+	}
 }
