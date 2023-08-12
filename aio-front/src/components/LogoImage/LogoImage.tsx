@@ -32,6 +32,7 @@ const LogoImage: FC<Props> = ({ logoPath, altText }) => {
 					uri: logoPath,
 				}}
 				style={styles.size}
+				resizeMode="contain"
 			/>
 		</View>
 	);
