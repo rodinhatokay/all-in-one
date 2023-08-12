@@ -14,6 +14,9 @@ const he: LangaugeTexts = {
 	aio: 'AiO',
 	allInOne: 'All in One',
 	appearances: 'מופעים',
+	authomaticTheme: 'אוטומטי (עקוב אחר הגדרות המכשיר)',
+	lightTheme: 'מצב בהיר',
+	darkTheme: 'מצב כהה',
 	logOut: 'התנתק',
 	deleteAccount: 'מחק משתמש',
 	areYouSureYouWantToDelete:
@@ -33,7 +36,7 @@ const he: LangaugeTexts = {
 	business: 'עסק',
 	search: 'חיפוש',
 	favorites: 'מועדפים',
-	noFavoritesYetStartAddingSome: 'עדיין אין מועדפים. התחל להוסיף כמה!',
+	noFavoritesYetStartAddingSome: 'אין מועדפים. התחל להוסיף כמה!',
 	pleaseAccpetTheTermsAndConditionsToProceed:
 		'יש לאשר תנאי שימוש כדי להמשיך.',
 	iAgreeToThe: 'אני מסכים ל',
