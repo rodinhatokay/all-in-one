@@ -10,21 +10,29 @@
 			},
 			"ios": {
 				"buildConfiguration": "Debug"
-			}
+			},
+			"channel": "development"
 		},
 		"preview": {
 			"extends": "production",
 			"android": {
 				"gradleCommand": ":app:assembleRelease"
 			},
-			"distribution": "internal"
+			"distribution": "internal",
+			"autoIncrement": false,
+			"channel": "staging"
 		},
 		"production": {
-			"autoIncrement": true
+			// "autoIncrement": true,
+			"channel": "production"
 		}
 	},
 	"submit": {
 		"production": {
+			"android": {
+				"serviceAccountKeyPath": "./store-keys/pc-api-7191269929918925790-263-a5dc82fa30e4.json",
+				"track": "internal"
+			},
 			"ios": {
 				"appName": "All In One - AIO"
 			}

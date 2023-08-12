@@ -1,13 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 import { useTheme } from '../contexts/ThemeContext';
-import NoAuthRouter from './NoAuthRouter';
 import { navigationRef } from './routerActions';
 import AuthRoutes from './AuthRoutes';
 import { useAuth } from '../contexts/AuthContext';
 import * as SplashScreen from 'expo-splash-screen';
 import useInitApp from '../hooks/useInitApp';
 import { useCallback } from 'react';
+import * as Linking from 'expo-linking';
+import GuestRoutes from './GuestRoutes';
+
+const prefix = Linking.createURL('/');
 
 SplashScreen.preventAutoHideAsync();
 
@@ -40,8 +43,20 @@ const Router = () => {
 				onReady={onLayoutRootView}
 				theme={theme}
 				ref={navigationRef}
+				linking={{
+					prefixes: [
+						prefix,
+						'http://wwww.allinoneocean.com',
+						'https://wwww.allinoneocean.com',
+					],
+					config: {
+						screens: {
+							profileTab: 'profile',
+						},
+					},
+				}}
 			>
-				{isAuthenticated ? <AuthRoutes /> : <NoAuthRouter />}
+				{isAuthenticated ? <AuthRoutes /> : <GuestRoutes />}
 			</NavigationContainer>
 		</View>
 	);

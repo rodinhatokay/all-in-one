@@ -1,12 +1,16 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { ErrorMessages } from "../common/errors/errorMessage";
-import { User } from "./entities/user.entity";
-import { RegisterDto } from "../auth/dto/req/register.dto";
-import { Otp } from "../otp/entities/otp.entity";
-import { JwtService } from "@nestjs/jwt";
-import { JwtPayload } from "../auth/types/jwt";
+import {
+	BadRequestException,
+	Injectable,
+	NotFoundException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { ErrorMessages } from '../common/errors/errorMessage';
+import { User } from './entities/user.entity';
+import { RegisterDto } from '../auth/dto/req/register.dto';
+import { Otp } from '../otp/entities/otp.entity';
+import { JwtService } from '@nestjs/jwt';
+import { JwtPayload } from '../auth/types/jwt';
 
 @Injectable()
 export class UserService {
@@ -16,23 +20,24 @@ export class UserService {
 		private jwtService: JwtService,
 	) {}
 
-	findOne(id: string) {
-		return this.userRepository.findOne({
-			where: { id },
+	async findOne(id: string) {
+		const user = await this.userRepository.findOne({
+			where: { id, isActive: true },
 		});
+		return user;
 	}
 
 	async findUserByPhoneNumber(phoneNumber: string) {
-		return this.userRepository.findOne({
-			where: { phoneNumber },
+		const user = await this.userRepository.findOne({
+			where: { phoneNumber, isActive: true },
 		});
+		return user;
 	}
 
 	async register(register: RegisterDto) {
 		const { firstName, lastName, termsAccepted, phoneNumber } = register;
 
 		const existingUser: User = await this.findUserByPhoneNumber(phoneNumber);
-
 		if (existingUser?.isFullyRegistered)
 			throw new BadRequestException(ErrorMessages.UserAlreadyExists);
 
@@ -58,5 +63,18 @@ export class UserService {
 			access_token,
 			user,
 		};
+	}
+
+	/**
+	 * changes user data to
+	 * @param id
+	 */
+	async deleteOne(id: string) {
+		const user = await this.userRepository.findOne({
+			where: { id, isActive: true },
+		});
+		if (!user) throw new NotFoundException(ErrorMessages.UserNotFound);
+		user.isActive = false;
+		await this.userRepository.save(user);
 	}
 }

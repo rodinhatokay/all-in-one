@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: echo-deployment
+  name: web-expo-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: echo
+      app: web-expo
   template:
     metadata:
       labels:
-        app: echo
+        app: web-expo
     spec:
       containers:
-        - name: echo
-          image: mendhak/http-https-echo
-          ports:
-            - containerPort: 80
+        - name: web-expo
+          image: allinoneocean/web-expo
+      imagePullSecrets:
+        - name: dockerreg
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo-service
+  name: web-expo-service
 spec:
   selector:
-    app: echo
+    app: web-expo
   ports:
     - protocol: TCP
       port: 80

@@ -7,6 +7,7 @@ import Animated, {
 	Easing,
 } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Octicons';
+import { useTheme } from '../../contexts/ThemeContext';
 type Props = {
 	status: 'down' | 'up';
 	size?: number;
@@ -16,6 +17,8 @@ type Props = {
 
 const DropDownIcon: React.FC<Props> = ({ status, onClick, size, color }) => {
 	const rotation = useSharedValue(0);
+
+	const { theme } = useTheme();
 
 	useEffect(() => {
 		rotation.value = withTiming(status === 'up' ? 0 : 1, {
@@ -37,7 +40,11 @@ const DropDownIcon: React.FC<Props> = ({ status, onClick, size, color }) => {
 	return (
 		<TouchableOpacity onPress={onClick}>
 			<Animated.View style={animatedStyles}>
-				<Icon name="chevron-down" size={size ?? 18} color={color ?? 'black'} />
+				<Icon
+					name="chevron-down"
+					size={size ?? 18}
+					color={color ?? theme.colors.onSurface}
+				/>
 			</Animated.View>
 		</TouchableOpacity>
 	);

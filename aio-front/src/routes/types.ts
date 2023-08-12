@@ -1,7 +1,11 @@
-export type NoAuthStack = {
+import { NavigatorScreenParams } from '@react-navigation/native';
+
+export type GuestRoute = {
 	// Intro: undefined;
 	login: undefined;
 	register: RegisterParams;
+	homeStack: NavigatorScreenParams<HomeStack>;
+	search: undefined;
 };
 
 export interface RegisterParams {
@@ -19,4 +23,15 @@ export type HomeStack = {
 	search: undefined;
 };
 
-export type RootNavigation = NoAuthStack & Routes & HomeStack;
+export type AuthedRoutes = {
+	homeStack: NavigatorScreenParams<HomeStack>;
+	favoritesTab: undefined;
+	profileTab?: {
+		/**
+		 * for future use: providing 'true' supposed to display delete user button
+		 */
+		displayDeleteUser?: string;
+	};
+};
+
+export type RootNavigation = GuestRoute & Routes & AuthedRoutes;

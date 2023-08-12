@@ -13,6 +13,7 @@ import { BusinessService } from './business.service';
 import { CreateBusiness } from './dto/createBusiness.dto';
 import { UpdateBusiness } from './dto/updateBusiness.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { Public } from '../common/decorators/public.decorator';
 
 @ApiTags('business')
 @Controller('business')
@@ -25,6 +26,7 @@ export class BusinessController {
 		return this.businessService.findOne(id);
 	}
 
+	@Public()
 	@Get()
 	findAll(
 		@Query('query') query?: string,
@@ -51,4 +53,3 @@ export class BusinessController {
 	// 	return this.businessService.delete(id);
 	// }
 }
-

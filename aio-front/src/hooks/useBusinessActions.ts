@@ -45,13 +45,13 @@ const useBusinessActions = ({
 	}, [name, phoneNumber]);
 
 	const navigateToBusiness = useCallback(() => {
-		navigate('business');
+		navigate('homeStack', { screen: 'business' });
 	}, []);
 
 	const handleWhatsApp = useCallback(async () => {
-		const whatsappURL = `whatsapp://send?phone=${normalizePhoneNumberFormat(phoneNumber)}&text=${encodeURIComponent(
-			'',
-		)}`;
+		const whatsappURL = `whatsapp://send?phone=${normalizePhoneNumberFormat(
+			phoneNumber,
+		)}&text=${encodeURIComponent('')}`;
 
 		try {
 			await Linking.openURL(whatsappURL);

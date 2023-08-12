@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import * as SecureStore from 'expo-secure-store';
+import LocalStorage from '../common/localStorage.service';
 const KEY_STORE_TOKEN = 'StoreTokenAPI';
 
 export const baseUrlApi = !__DEV__
@@ -35,21 +35,21 @@ if (__DEV__) {
  * store token locally to end user
  */
 export const storeApiToken = async (token: string) => {
-	await SecureStore.setItemAsync(KEY_STORE_TOKEN, token);
+	await LocalStorage.setItem(KEY_STORE_TOKEN, token, { secured: true });
 };
 
 /**
  * get token stored locally to end user
  */
 export const getStoredApiToken = async () => {
-	return await SecureStore.getItemAsync(KEY_STORE_TOKEN);
+	return await LocalStorage.getItem(KEY_STORE_TOKEN, { secured: true });
 };
 
 /**
  * removes token stored locally to end user
  */
 export const removeStoredApiToken = async () => {
-	return await SecureStore.deleteItemAsync(KEY_STORE_TOKEN);
+	return await LocalStorage.removeItem(KEY_STORE_TOKEN, { secured: true });
 };
 
 export default api;

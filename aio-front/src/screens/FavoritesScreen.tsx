@@ -1,38 +1,21 @@
-import { FlatList, View } from "react-native";
-import { StyleSheet } from "react-native";
-import { useEffect, useState } from "react";
-import Loader from "../components/Loader/Loader";
-import { Business } from "../services/business/business.types";
-import BusinessCard from "../components/BusinessCard/BusinessCard";
-import EmptyFavorites from "../sections/Favorites/EmptyFavorites";
-import { favoriteBusinesses } from "../mock/businsesses";
+import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
+// import Loader from '../components/Loader/Loader';
+import EmptyFavorites from '../sections/Favorites/EmptyFavorites';
+import BusinessList from '../components/BusinessList';
+import { useBusinessFavorites } from '../contexts/BusinessFavoritesContext';
 
 const FavoritesScreen = () => {
-	const [loading, setLoading] = useState(true);
+	const { favoritesQuery } = useBusinessFavorites();
+	const { data: favoritesList, isLoading } = favoritesQuery;
 
-	const [favorites, setFavorites] = useState<Business[]>(favoriteBusinesses);
-
-	const renderItem = ({ item }: { item: Business }) => (
-		<BusinessCard business={item} />
-	);
-
-	useEffect(() => {
-		// temp for ui
-		// fetch favorites here..
-		setTimeout(() => {
-			setLoading(false);
-		}, 1500);
-	}, []);
-
-	if (loading) return <Loader loadingScreen />;
+	if (isLoading) return null;
 
 	return (
 		<View style={styles.flex}>
-			<FlatList
-				data={favorites}
-				renderItem={renderItem}
+			<BusinessList
+				data={favoritesList}
 				style={styles.flex}
-				keyExtractor={(item) => item.id}
 				ListEmptyComponent={EmptyFavorites}
 			/>
 		</View>
