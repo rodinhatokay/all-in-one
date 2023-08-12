@@ -7,12 +7,15 @@ import { ErrorMessages } from '../common/errors/errorMessage';
 import { UpdateBusiness } from './dto/updateBusiness.dto';
 import { CacheService } from '../cache/cache.service';
 import { BUSINESSES_CACHE_KEY } from '../common/constants/cache-keys';
+import { OpeningHours } from '../common/entities/openingHours.entity';
 
 @Injectable()
 export class BusinessService {
 	constructor(
 		@InjectRepository(Business)
 		private readonly businessRepository: Repository<Business>,
+		@InjectRepository(OpeningHours)
+		private openingHoursRepository: Repository<OpeningHours>,
 		private readonly cacheService: CacheService,
 	) {}
 
@@ -87,27 +90,71 @@ export class BusinessService {
 	async update(id: string, updateBusiness: UpdateBusiness) {
 		const existingBusiness = await this.businessRepository.findOne({
 			where: { id },
+			relations: ['openingHours', 'users'],
 		});
 
 		if (!existingBusiness)
 			throw new BadRequestException(ErrorMessages.BusinessNotFound);
 
-		const updatedBusiness = Object.assign(existingBusiness, updateBusiness);
-		await this.businessRepository.save(updatedBusiness);
-		await this.cacheService.del(`business:${id}`);
+		const updatedOpeningHours = updateBusiness.openingHours.map((entry) => ({
+			day: entry.day,
+			hours: entry.hours,
+		}));
+
+		// Update the properties of the existing business with the new values
+		Object.assign(existingBusiness, updateBusiness, {
+			openingHours: updatedOpeningHours,
+		});
+
+
+		await this.businessRepository.save(existingBusiness);
 
 		const businesses: Business[] = await this.cacheService.get<Business[]>(
 			BUSINESSES_CACHE_KEY,
 		);
-		businesses.push(updatedBusiness);
 
-		await this.cacheService.set(BUSINESSES_CACHE_KEY, businesses);
-		return updatedBusiness;
+		// Find the index of the existing business in the cached list
+		const index = businesses.findIndex((business) => business.id === id);
+		if (index !== -1) {
+			// Replace the old version with the updated business in the cached list
+			businesses[index] = existingBusiness;
+
+			// Update the cached list of businesses
+			await this.cacheService.set(BUSINESSES_CACHE_KEY, businesses);
+		}
+
+		return existingBusiness;
 	}
 
 	async delete(id: string) {
-		await this.cacheService.del(`business:${id}`);
-		return await this.businessRepository.delete(id);
+		const business = await this.businessRepository.findOne({
+			where: { id },
+			relations: ['openingHours'],
+		});
+
+		if (!business) {
+			throw new BadRequestException(ErrorMessages.BusinessNotFound);
+		}
+
+		// Delete associated opening hours
+		if (business.openingHours && business.openingHours.length > 0) {
+			for (const openingHour of business.openingHours) {
+				await this.openingHoursRepository.remove(openingHour);
+			}
+		}
+
+		// Update the cached list of businesses
+		const businesses: Business[] = await this.cacheService.get<Business[]>(
+			BUSINESSES_CACHE_KEY,
+		);
+
+		if (businesses) {
+			// Remove the deleted business from the cached list
+			const updatedBusinesses = businesses.filter((b) => b.id !== id);
+			await this.cacheService.set(BUSINESSES_CACHE_KEY, updatedBusinesses);
+		}
+
+		return await this.businessRepository.remove(business);
 	}
 }
 
