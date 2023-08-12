@@ -44,11 +44,11 @@ const ProfileScreen = () => {
 				value={mode}
 			>
 				<RadioButton.Item
-					label="Automatic (follow device setting)"
+					label={t('authomaticTheme')}
 					value="deviceTheme"
 				/>
-				<RadioButton.Item label="Light theme" value="light" />
-				<RadioButton.Item label="Dark theme" value="dark" />
+				<RadioButton.Item label={t('lightTheme')} value="light" />
+				<RadioButton.Item label={t('darkTheme')} value="dark" />
 			</RadioButton.Group>
 			<View
 				style={{
@@ -71,7 +71,7 @@ const ProfileScreen = () => {
 					textColor={theme.colors.error}
 					onPress={openDeleteAccountDialog}
 				>
-					delete account
+					{t('deleteAccount')}
 				</Button>
 			</View>
 

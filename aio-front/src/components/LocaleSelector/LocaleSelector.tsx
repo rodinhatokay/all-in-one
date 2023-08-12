@@ -18,7 +18,7 @@ const LocaleSelector: FC = () => {
 	}, [setLocale]);
 
 	const onPressHebrew = useCallback(() => {
-		setLocale("en");
+		setLocale("he");
 	}, [setLocale]);
 
 	const onPressArabic = useCallback(() => {

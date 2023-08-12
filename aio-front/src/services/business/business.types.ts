@@ -11,6 +11,7 @@ export type Business = {
 		longitude: number;
 	};
 	owner: string;
+	category: { name: string; id: string };
 	openingHours: {
 		id: number;
 		day: DayOfWeek;
@@ -19,10 +20,10 @@ export type Business = {
 };
 
 export type DayOfWeek =
-	| "Sunday"
-	| "Monday"
-	| "Tuesday"
-	| "Wednesday"
-	| "Thursday"
-	| "Friday"
-	| "Saturday";
+	| 'Sunday'
+	| 'Monday'
+	| 'Tuesday'
+	| 'Wednesday'
+	| 'Thursday'
+	| 'Friday'
+	| 'Saturday';

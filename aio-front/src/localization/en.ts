@@ -4,6 +4,9 @@ const en = {
 	aio: 'AiO',
 	allInOne: 'All in One',
 	appearances: 'Appearances',
+	authomaticTheme: 'Automatic (follow device setting)',
+	lightTheme: 'Light theme',
+	darkTheme: 'Dark theme',
 	logOut: 'Log Out',
 	deleteAccount: 'Delete Account',
 	areYouSureYouWantToDelete:
