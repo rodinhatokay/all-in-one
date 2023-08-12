@@ -1,13 +1,9 @@
 import { Dimensions, View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-// import SubCategoriesBusiness from '../SubCategoriesBusiness/SubCategoriesBusiness';
 import { StyleSheet } from 'react-native';
-// import useCategories from '../../../hooks/useCategories';
-// import Loader from '../../../components/Loader/Loader';
-import BusinessList from '../BusinessList';
-import useBusinesses from '../../../hooks/useBusinesses';
+import BusinessList from '../../../components/BusinessList';
 import { Business } from '../../../services/business/business.types';
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback } from 'react';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -20,19 +16,6 @@ interface Props {
 }
 
 const BusinessCategories: FC<Props> = ({ categories }) => {
-	// const { data: businesses, isLoading } = useBusinesses();
-	// const [groupedData, setGroupedData] = useState<{
-	// 	[categoryId: string]: Business[];
-	// }>({});
-
-	// if (businesses && Object.keys(groupedData).length === 0) {
-	// 	const groupedBusinesses = groupByCategoryId(businesses);
-	// 	setGroupedData(groupedBusinesses);
-	// }
-
-	// if (isLoading || !businesses || Object.keys(groupedData).length === 0)
-	// 	return <></>;
-
 	return (
 		<View style={styles.main}>
 			<Tab.Navigator
@@ -42,7 +25,7 @@ const BusinessCategories: FC<Props> = ({ categories }) => {
 				}}
 				initialLayout={initialLayout}
 			>
-				{Object.entries(categories).map(([categoryId, businesses]) => {
+				{Object.entries(categories).map(([, businesses]) => {
 					const { name } = businesses && businesses[0].category;
 
 					const BusinessListComponent = useCallback(
