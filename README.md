@@ -2,7 +2,7 @@
 
 [![deploy-backend](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-backend.yml/badge.svg)](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-backend.yml) [![deploy-manifests](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-manifests.yml/badge.svg)](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-manifests.yml) [![deploy-web-expo](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-web-expo.yml/badge.svg)](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-web-expo.yml) [![eas-update](https://github.com/rodinhatokay/all-in-one/actions/workflows/eas-update.yml/badge.svg)](https://github.com/rodinhatokay/all-in-one/actions/workflows/eas-update.yml)
 
-Welcome to our mono repo! This document provides a comprehensive guide on the structure, prerequisites, and basic knowledge you need to contribute effectively. We value each contributor and have prepared this guide to make the contribution process smoother.
+Welcome to the Kfar Kama Business/Services Directory! Our platform is tailored to simplify the process of finding businesses within the town of Kfar Kama. With this intuitive directory, you can effortlessly locate businesses, view their opening hours, and directly call them or send messages via WhatsApp. It's designed to integrate with your phone's calling function and WhatsApp, ensuring that all communications are efficient and straightforward. Dive in and explore the numerous businesses that Kfar Kama has to offer!
 
 ## Prerequisites:
 
