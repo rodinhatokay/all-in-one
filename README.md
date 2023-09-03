@@ -20,7 +20,7 @@ If you wish to contribute to the codebase, a solid understanding of the followin
 
 1. **Git and GitHub:** Version control and collaborative features.
 2. **NestJS:** For backend contributions.
-3. **React Native and Expo:** For frontend mobile contributions.
+3. **Expo(React Native):** For frontend mobile/web contributions.
 4. **Docker:** For building and deploying the backend.
 5. **Kubernetes (k8s):** Basics of Kubernetes if you're working with the `infra` folder.
 
