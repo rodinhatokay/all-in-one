@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://github.com/rodinhatokay/all-in-one/blob/main/aio-front/assets/images/logo.png" width="150px" alt="Description of Image">
+</p>
+
+
 # all-in-one
 
 [![deploy-backend](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-backend.yml/badge.svg)](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-backend.yml) [![deploy-manifests](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-manifests.yml/badge.svg)](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-manifests.yml) [![deploy-web-expo](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-web-expo.yml/badge.svg)](https://github.com/rodinhatokay/all-in-one/actions/workflows/deploy-web-expo.yml) [![eas-update](https://github.com/rodinhatokay/all-in-one/actions/workflows/eas-update.yml/badge.svg)](https://github.com/rodinhatokay/all-in-one/actions/workflows/eas-update.yml)
