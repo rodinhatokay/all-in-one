@@ -35,6 +35,12 @@ If you wish to contribute to the codebase, a solid understanding of the followin
 - `supportURL`: A support page, a requirement by Google Play.
 - `termsOfUse`: This folder houses a PDF file converted to an HTML file, simplifying the serving of terms of use.
 
+## Good First Issues
+
+We have a list of [good first issues][gfi] that contain bugs which have a relatively limited scope. This is a great place to get started, gain experience, and get familiar with our contribution process.
+
+[gfi]: https://github.com/rodinhatokay/all-in-one/labels/good%20first%20issue
+
 ## Recommended Extensions:
 
 For a better development experience, we recommend the following extensions to VS Code:
